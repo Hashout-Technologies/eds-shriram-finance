@@ -33,6 +33,33 @@
   ],
   "models": [
     {
+      "id": "cards",
+      "fields": [
+        {
+          "component": "select",
+          "name": "classes",
+          "value": "",
+          "label": "Cards options",
+          "description": "",
+          "valueType": "string",
+          "options": [
+            {
+              "name": "Default",
+              "value": ""
+            },
+            {
+              "name": "three-column",
+              "value": "three-column"
+            },
+            {
+              "name": "two-column",
+              "value": "two-column"
+            }
+          ]
+        }
+      ]
+    },
+    {
       "id": "card",
       "fields": [
         {
@@ -55,7 +82,9 @@
   "filters": [
     {
       "id": "cards",
-      "components": ["card"]
+      "components": [
+        "card"
+      ]
     }
   ]
 }
