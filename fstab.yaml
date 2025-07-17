@@ -1,5 +1,5 @@
 mountpoints:
   /:
-    url: "https://author-p43719-e1463462.adobeaemcloud.com/bin/franklin.delivery/adobe-rnd/aem-boilerplate-xwalk/main"
+    url: "https://author-p43719-e1463462.adobeaemcloud.com/bin/franklin.delivery/Hashout-Technologies/eds-shriram-finance/main"
     type: "markup"
     suffix: ".html"
