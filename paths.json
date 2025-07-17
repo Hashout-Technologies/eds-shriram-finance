@@ -5,6 +5,6 @@
     "/content/shriramfinance/metadata:/metadata.json"
   ],
   "includes": [
-    "/content/shriram/"
+    "/content/shriramfinance/"
   ]
 }
