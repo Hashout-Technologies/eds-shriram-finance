@@ -1,4 +1,5 @@
 /* stylelint-disable max-line-length */
+
 /* @font-face {
     font-family: GilmerLight;
     src: url('../fonts/GilmerLight.woff2') format("woff2");
@@ -9,34 +10,34 @@
 
 @font-face {
     font-family: GilmerRegular;
-    src: url('../fonts/GilmerRegular.woff2') format("woff2");
+    src: url("../fonts/GilmerRegular.woff2") format("woff2");
     font-weight: 400;
     font-style: normal;
-    font-display: swap
+    font-display: swap;
 }
 
 @font-face {
     font-family: GilmerMedium;
-    src: url('../fonts/GilmerMedium.woff2') format("woff2");
+    src: url("../fonts/GilmerMedium.woff2") format("woff2");
     font-weight: 400;
     font-style: normal;
-    font-display: swap
+    font-display: swap;
 }
 
 @font-face {
     font-family: GilmerBold;
-    src: url('../fonts/GilmerBold.woff2') format("woff2");
+    src: url("../fonts/GilmerBold.woff2") format("woff2");
     font-weight: 400;
     font-style: normal;
-    font-display: swap
+    font-display: swap;
 }
 
 @font-face {
     font-family: GilmerHeavy;
-    src: url('../fonts/GilmerHeavy.woff2') format("woff2");
+    src: url("../fonts/GilmerHeavy.woff2") format("woff2");
     font-weight: 400;
     font-style: normal;
-    font-display: swap
+    font-display: swap;
 }
 
 /* @font-face {
