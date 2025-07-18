@@ -225,20 +225,20 @@
         "component": "select",
         "name": "classes",
         "value": "",
-        "label": "Cards options",
+        "label": "Cards layout options",
         "description": "",
         "valueType": "string",
         "options": [
           {
-            "name": "Default",
+            "name": "Four column(default)",
             "value": ""
           },
           {
-            "name": "three-column",
+            "name": "Three column",
             "value": "three-column"
           },
           {
-            "name": "two-column",
+            "name": "Two column",
             "value": "two-column"
           }
         ]
@@ -251,7 +251,7 @@
       {
         "component": "aem-content",
         "name": "link",
-        "label": "Link"
+        "label": "Redirect to"
       },
       {
         "component": "reference",
