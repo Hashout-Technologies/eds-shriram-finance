@@ -200,6 +200,10 @@
                 "value": "black-bg"
               }
             ]
+          },
+          {
+            "name": "Align Center",
+            "value": "align-center"
           }
         ]
       }
