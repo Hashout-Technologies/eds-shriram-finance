@@ -33,14 +33,53 @@
   ],
   "models": [
     {
+      "id": "cards",
+      "fields": [
+        {
+          "component": "select",
+          "name": "classes",
+          "value": "",
+          "label": "Cards layout options",
+          "description": "",
+          "valueType": "string",
+          "options": [
+            {
+              "name": "Four column(default)",
+              "value": ""
+            },
+            {
+              "name": "Three column",
+              "value": "three-column"
+            },
+            {
+              "name": "Two column",
+              "value": "two-column"
+            }
+          ]
+        }
+      ]
+    },
+    {
       "id": "card",
       "fields": [
+        {
+          "component": "aem-content",
+          "name": "link",
+          "label": "Redirect to"
+        },
         {
           "component": "reference",
           "valueType": "string",
           "name": "image",
           "label": "Image",
           "multi": false
+        },
+        {
+          "component": "text",
+          "valueType": "string",
+          "name": "imageAlt",
+          "label": "Image alt text",
+          "required": true
         },
         {
           "component": "richtext",
@@ -55,7 +94,9 @@
   "filters": [
     {
       "id": "cards",
-      "components": ["card"]
+      "components": [
+        "card"
+      ]
     }
   ]
 }
