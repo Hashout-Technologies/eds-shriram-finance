@@ -6,9 +6,26 @@
 
 import { moveInstrumentation } from '../../scripts/scripts.js';
 
+/**
+ * Scroll the element to top of page.
+ */
+function scrollElementToTopAfterOpen(element) {
+  // Wait for full expansion before scrolling
+  requestAnimationFrame(() => {
+    setTimeout(() => {
+      const elementTop = element.getBoundingClientRect().top + window.scrollY;
+      window.scrollTo({
+        top: elementTop,
+        behavior: 'smooth',
+      });
+    }, 50); // allows browser to finish expanding
+  });
+}
+
 export default function decorate(block) {
-  [...block.children].forEach((row) => {
-    // decorate accordion item label
+  const detailsList = [];
+
+  [...block.children].forEach((row, index) => {
     const label = row.children[0];
     const summary = document.createElement('summary');
     summary.className = 'accordion-item-label';
@@ -21,6 +38,40 @@ export default function decorate(block) {
     moveInstrumentation(row, details);
     details.className = 'accordion-item';
     details.append(summary, body);
+
+    if (index === 0) {
+      details.setAttribute('open', '');
+    }
+
+    detailsList.push(details);
     row.replaceWith(details);
+  });
+
+  detailsList.forEach((detail) => {
+    const summary = detail.querySelector('summary');
+
+    summary.addEventListener('click', (e) => {
+      e.preventDefault();
+
+      const isOpen = detail.hasAttribute('open');
+
+      // If already open, close it
+      if (isOpen) {
+        detail.removeAttribute('open');
+        return;
+      }
+
+      // Close others
+      detailsList.forEach((d) => {
+        if (d !== detail) d.removeAttribute('open');
+      });
+
+      setTimeout(() => {
+        detail.setAttribute('open', '');
+
+        // Scroll after it's open
+        scrollElementToTopAfterOpen(detail);
+      }, 200); // Wait for others to collapse
+    });
   });
 }
