@@ -178,6 +178,10 @@
           {
             "name": "Sidebar",
             "value": "sidebar"
+          },
+          {
+            "name": "Align Center",
+            "value": "align-center"
           }
         ]
       }
