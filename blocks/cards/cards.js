@@ -8,18 +8,16 @@ export default function decorate(block) {
     const li = document.createElement('li');
     moveInstrumentation(row, li);
 
-    // Check if there's a link in this card
-    const linkElement = row.querySelector('a');
-    let linkWrapper = null;
-
-    if (linkElement && linkElement.href) {
-      // Create a wrapper link for the entire card
-      linkWrapper = document.createElement('a');
-      linkWrapper.href = linkElement.href;
-      linkWrapper.className = 'cards-card-link';
-
-      // Remove the original link element from the content
-      linkElement.remove();
+    // Check for URL in the first column (if it exists)
+    const columns = [...row.children];
+    let url = '';
+    if (columns.length > 1) {
+      const urlText = columns[0].textContent.trim();
+      if (urlText) {
+        url = urlText;
+        // Remove the URL div as we don't want to display it
+        columns[0].remove();
+      }
     }
 
     while (row.firstElementChild) li.append(row.firstElementChild);
@@ -28,16 +26,22 @@ export default function decorate(block) {
       else div.className = 'cards-card-body';
     });
 
-    // If we have a link, wrap the li in the link wrapper
-    if (linkWrapper) {
-      linkWrapper.append(li);
-      ul.append(linkWrapper);
-    } else {
-      ul.append(li);
+    // Add click event listener to the card if it has a URL
+    if (url) {
+      li.style.cursor = 'pointer';
+      li.addEventListener('click', () => {
+        window.location.href = url;
+      });
     }
+
+    ul.append(li);
   });
+
+  // Optimize images
   ul.querySelectorAll('picture > img').forEach((img) => {
-    const optimizedPic = createOptimizedPicture(img.src, img.alt, false, [{ width: '750' }]);
+    const optimizedPic = createOptimizedPicture(img.src, img.alt, false, [
+      { width: '750' },
+    ]);
     moveInstrumentation(img, optimizedPic.querySelector('img'));
     img.closest('picture').replaceWith(optimizedPic);
   });
