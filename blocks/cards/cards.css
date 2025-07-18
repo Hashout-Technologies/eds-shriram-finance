@@ -21,7 +21,7 @@
     background: var(--background-color);
 
 
-    &>.cards-card-body> p {
+    &>.cards-card-body>p {
       font-weight: 700;
       font-size: 18px;
       line-height: 100%;
@@ -53,10 +53,16 @@
   grid-template-columns: repeat(4, 1fr);
 }
 
-/* Responsive adjustments for smaller screens */
-@media (width <= 768px) {
+@media (width <=853px) {
   .cards>ul {
-    grid-template-columns: repeat(2, 1fr);
+    grid-template-columns: repeat(3, 1fr) !important;
+  }
+}
+
+/* Responsive adjustments for smaller screens */
+@media (width <=768px) {
+  .cards>ul {
+    grid-template-columns: repeat(2, 1fr) !important;
   }
 
   .cards.two-column>ul,
@@ -65,8 +71,8 @@
   }
 }
 
-@media (width <= 480px) {
+@media (width <=480px) {
   .cards>ul {
-    grid-template-columns: 1fr;
+    grid-template-columns: 1fr !important;
   }
 }
