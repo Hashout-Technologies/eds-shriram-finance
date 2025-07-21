@@ -1,13 +1,6 @@
-/* stylelint-disable max-line-length */
-
-/* @font-face {
-    font-family: GilmerLight;
-    src: url('../fonts/GilmerLight.woff2') format("woff2");
-    font-weight: 400;
-    font-style: normal;
-    font-display: swap
-} */
-
+/* ================================
+   FONT-FACE DECLARATIONS
+   ================================ */
 @font-face {
     font-family: GilmerRegular;
     src: url("../fonts/GilmerRegular.woff2") format("woff2");
@@ -39,11 +32,3 @@
     font-style: normal;
     font-display: swap;
 }
-
-/* @font-face {
-    font-family: GilmerOutline;
-    src: url(../fonts/GilmerOutline.woff2) format("woff2");
-    font-weight: 400;
-    font-style: normal;
-    font-display: swap
-} */
