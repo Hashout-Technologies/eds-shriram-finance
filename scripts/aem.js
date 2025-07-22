@@ -128,6 +128,11 @@ function setup() {
       console.log(error);
     }
   }
+
+  // Fallback for local development
+  if (!window.hlx.codeBasePath) {
+    window.hlx.codeBasePath = '';
+  }
 }
 
 /**
@@ -593,9 +598,9 @@ function buildBlock(blockName, content) {
  */
 async function loadBlock(block) {
   const status = block.dataset.blockStatus;
+  const { blockName } = block.dataset;
   if (status !== 'loading' && status !== 'loaded') {
     block.dataset.blockStatus = 'loading';
-    const { blockName } = block.dataset;
     try {
       const cssLoaded = loadCSS(`${window.hlx.codeBasePath}/blocks/${blockName}/${blockName}.css`);
       const decorationComplete = new Promise((resolve) => {
@@ -649,7 +654,8 @@ function decorateBlock(block) {
  * @param {Element} main The container element
  */
 function decorateBlocks(main) {
-  main.querySelectorAll('div.section > div > div').forEach(decorateBlock);
+  const blockElements = main.querySelectorAll('div.section > div > div');
+  blockElements.forEach(decorateBlock);
 }
 
 /**

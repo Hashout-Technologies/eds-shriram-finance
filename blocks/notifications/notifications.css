@@ -1,0 +1,220 @@
+.notifications {
+    position: absolute;
+    top: 70%;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 400px;
+    z-index: 1001;
+    display: none;
+    margin-top: 8px;
+}
+
+.notifications-container:not(.notifications-hidden) {
+    display: block;
+}
+
+.notifications-header {
+    background: #f2f2f2;
+    padding: 16px 20px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    border-bottom: 1px solid #e9ecef;
+    position: relative;
+}
+
+.notifications-header::before {
+    content: "";
+    position: absolute;
+    left: 45px;
+    top: 0;
+    width: 0;
+    height: 0;
+    border-left: 13px solid transparent;
+    border-right: 13px solid transparent;
+    border-top: 13px solid #fff;
+    clear: both;
+}
+
+.notifications-header-container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.notifications-title {
+    margin: 0;
+    font-size: 18px;
+    font-weight: 600;
+    color: #212529;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.notifications-badge {
+    background: #212529;
+    color: var(--color-primary-yellow);
+    border-radius: 50%;
+    width: 20px;
+    height: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 12px;
+    font-weight: 600;
+    margin-left: 8px;
+}
+
+.notifications-close {
+    background: none;
+    border: none;
+    font-size: 20px;
+    color: #212529;
+    cursor: pointer;
+    padding: 4px;
+    border-radius: 4px;
+    transition: background-color 0.2s;
+    width: fit-content;
+}
+
+.notifications-list {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    max-height: 400px;
+    overflow-y: auto;
+    position: relative;
+    border-bottom: 5px solid #ffcb08;
+    border-radius: 0 0 5px 5px;
+    background: #fff;
+    scrollbar-width: thin;
+
+    /* For Firefox */
+    scrollbar-color: #ffcb08 #f1f1f1;
+
+    /* For Firefox */
+}
+
+.notifications-list::before {
+    content: "";
+    width: 4px;
+    height: 0;
+    background: #ffcb08;
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    margin: auto;
+    transition: all .6s ease;
+}
+
+.notification-item {
+    padding: 24px 20px;
+    border-bottom: 1px solid #e9ecef;
+    transition: background-color 0.2s;
+}
+
+.notification-item:last-child {
+    border-bottom: none;
+}
+
+.notification-item:hover {
+    background-color: #f2f2f2 !important;
+}
+
+.notification-message {
+    font-size: 14px;
+    font-family: GilmerMedium, sans-serif;
+    line-height: 20px;
+    margin-bottom: 10px;
+}
+
+.notification-call-to-action {
+    margin-bottom: 12px;
+}
+
+.notification-call-to-action a {
+    cursor: pointer;
+    font-family: GilmerMedium, sans-serif;
+    color: #2f7ef4 !important;
+    margin-bottom: 10px;
+    font-size: 14px;
+    transition: color 0.2s;
+}
+
+.notification-call-to-action a:hover {
+    text-decoration: underline;
+}
+
+.notification-timestamp p {
+    font-size: 14px;
+    font-family: GilmerMedium, sans-serif;
+    color: #808185 !important;
+}
+
+.notifications-hidden {
+    display: none;
+}
+
+/* Mobile responsive */
+@media (width <=480px) {
+    .notifications {
+        position: fixed;
+        top: 60px;
+        right: 0;
+        transform: translateX(-44%);
+        width: 88%;
+        max-width: 100%;
+        margin: 0;
+        z-index: 1002;
+    }
+
+    .notification-item p {
+        display: block !important;
+    }
+
+    .notifications-header {
+        padding: 12px 16px;
+    }
+
+    .notification-item {
+        padding: 12px 16px;
+    }
+
+    .notification-badge {
+        width: 18px;
+        height: 18px;
+        font-size: 11px;
+    }
+}
+
+/* Scrollbar styling for webkit browsers */
+
+.notifications-list::-webkit-scrollbar {
+    width: 6px;
+    height: 6px;
+
+    /* Add height for horizontal scrollbars */
+}
+
+.notifications-list::-webkit-scrollbar-track {
+    background: #f1f1f1;
+    border-radius: 3px;
+
+    /* Add border-radius for consistency */
+}
+
+.notifications-list::-webkit-scrollbar-thumb {
+    background: #ffcb08;
+    border-radius: 3px;
+}
+
+.notifications-list::-webkit-scrollbar-thumb:hover {
+    background: #e6b800;
+}
+
+/* Optional: Style the corner where horizontal and vertical scrollbars meet */
+.notifications-list::-webkit-scrollbar-corner {
+    background: #f1f1f1;
+}

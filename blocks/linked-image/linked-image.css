@@ -1,0 +1,37 @@
+.linked-image {
+  display: inline-block;
+  max-width: 100%;
+}
+
+.linked-image a {
+  display: block;
+  text-decoration: none;
+  transition: opacity 0.3s ease;
+}
+
+/* Hide link text but keep image clickable */
+.linked-image a:not(:has(img)) {
+  display: none;
+}
+
+/* Alternative approach for browsers that don't support :has() */
+.linked-image a:empty {
+  display: none;
+}
+
+.linked-image a:hover {
+  opacity: 0.8;
+}
+
+.linked-image img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+}
+
+/* Responsive adjustments */
+@media (width <= 768px) {
+  .linked-image {
+    width: 100%;
+  }
+} 
