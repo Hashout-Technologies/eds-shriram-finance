@@ -2,31 +2,58 @@
    CSS VARIABLES
    ================================ */
 :root {
+    /* Breakpoints */
+    --breakpoint-tablet: 767px;
+    --layout-width: 1256px;
+    --section-top-btm-gap: 40px 0;
+
     /* Typography */
     --font-regular: "GilmerRegular", sans-serif;
     --font-medium: "GilmerMedium", sans-serif;
     --font-bold: "GilmerBold", sans-serif;
     --font-heavy: "GilmerHeavy", sans-serif;
-    --font-size-xs: 0.75rem;
-    --font-size-s: 0.7778rem;
+    --font-size-xs: 0.65rem;
+    --font-size-s: 0.75rem;
     --font-size-sm: 0.875rem;
     --font-size-base: 1rem;
-    --font-size-lg: 1.125rem;
-    --font-size-xl: 1.5rem;
-    --font-size-xxl: 2rem;
+    --font-size-xl: 1.125rem;
+    --font-size-xxl: 1.5rem;
 
-    /* Colors (Sample tokens - replace with your design system tokens) */
-    --color-text: #333;
-    --color-background: #fff;
-    --color-primary: #004080;
-    --color-secondary: #e5f0ff;
-    --color-accent: #0070f3;
+    /* Common colors */
+    --color-white: #fff;
+    --color-black: #000;
+    --color-text-primary: #2e2a94;
+    --color-text-secondary: #2f7ef4;
     --color-border: #ddd;
     --color-error: #d93025;
+    --color-primary-yellow: #ffcb09;
+
+    /* Neutral colours */
+    --color-neutral-100: #f7f7f7;
+    --color-neutral-300: #e6e6e6;
+    --color-neutral-500: #ccc;
+    --color-neutral-600: #aaa;
+    --color-neutral-700: #8a8a8a;
+    --color-neutral-800: #666;
+    --color-neutral-900: #333;
+    --color-neutral-1000: #121212;
+
+    /* Font Weights */
+    --font-weight-100: 100;
+    --font-weight-200: 200;
+    --font-weight-300: 300;
+    --font-weight-400: 400;
+    --font-weight-500: 500;
+    --font-weight-600: 600;
+    --font-weight-700: 700;
+    --font-weight-800: 800;
+    --font-weight-900: 900;
 
     /* Spacing */
     --space-xs: 0.25rem;
     --space-sm: 0.5rem;
+    --space-s: 0.75rem;
+    --space-m: 0.845rem;
     --space-md: 1rem;
     --space-lg: 1.5rem;
     --space-xl: 2rem;
@@ -47,7 +74,7 @@ body {
     margin: 0;
     font-family: var(--font-regular);
     font-size: var(--font-size-base);
-    color: var(--color-text);
+    color: var(--color-neutral-900);
     background-color: var(--color-background);
     scroll-behavior: smooth;
     -webkit-font-smoothing: antialiased;
@@ -62,51 +89,62 @@ h3,
 h4,
 h5,
 h6 {
-    margin: 0 0 var(--space-sm);
-    line-height: 1.25;
-    font-family: var(--font-bold);
-    font-weight: 700;
-    color: var(--color-text);
+    margin: 0 0 var(--space-md);
+    line-height: 1.4;
+    font-family: var(--font-medium);
+    font-weight: var(--font-weight-600);
+    color: var(--color-neutral-900);
 }
 
 h1 {
     font-size: var(--font-size-xxl);
+    font-family: var(--font-regular);
+    font-weight: var(--font-weight-400);
 }
 
 h2 {
     font-size: var(--font-size-xl);
+    font-family: var(--font-bold);
+    font-weight: var(--font-weight-700);
 }
 
 h3 {
-    font-size: 1.25rem;
-}
-
-h4 {
-    font-size: var(--font-size-lg);
-}
-
-h5 {
     font-size: var(--font-size-base);
 }
 
-h6 {
+h4 {
     font-size: var(--font-size-sm);
 }
 
-p {
+h5 {
     font-size: var(--font-size-s);
+}
+
+h6 {
+    font-size: var(--font-size-xs);
+}
+
+p {
+    font-size: var(--font-size-sm);
+    font-weight: var(--font-weight-400);
     margin: 0 0 var(--space-md);
-    line-height: 1.6;
+    line-height: 1.5;
 }
 
+/* links */
 a {
-    color: var(--color-primary);
+    color: var(--color-text-secondary);
+    font-size: var(--font-size-sm);
+    font-family: var(--font-medium);
     text-decoration: none;
-    transition: color 0.2s ease;
+    font-style: normal;
+    cursor: pointer;
 }
 
-a:hover {
-    text-decoration: underline;
+a:hover,
+a:focus {
+    text-decoration: none;
+    color: var(--link-color);
 }
 
 strong {
@@ -154,22 +192,21 @@ input,
 select,
 textarea,
 button {
-    font-family: inherit;
+    font-family: var(--font-medium);
     font-size: var(--font-size-base);
     border: 1px solid var(--color-border);
     padding: var(--space-sm);
     margin-bottom: var(--space-md);
-    border-radius: 4px;
+    border-radius: var(--space-sm);
     background-color: #fff;
-    color: var(--color-text);
+    color: var(--color-neutral-700);
+    width: 100%;
 }
 
 input:focus,
 select:focus,
 textarea:focus {
     outline: none;
-    border-color: var(--color-primary);
-    box-shadow: 0 0 0 2px rgb(0 64 128/ 20%);
 }
 
 /* ================================
@@ -268,15 +305,15 @@ main picture {
     border: 1px solid var(--color-border, #ddd);
 }
 
-/* ================================
-   RESPONSIVE TYPOGRAPHY
-   ================================ */
-@media (width >= 768px) {
-    :root {
-        --font-size-base: 1.125rem;
-        --font-size-xl: 2rem;
-        --font-size-xxl: 2.5rem;
-    }
+.icon {
+    display: inline-block;
+    height: 24px;
+    width: 24px;
+}
+
+.icon img {
+    height: 100%;
+    width: 100%;
 }
 
 /* ================================
@@ -352,4 +389,143 @@ main picture {
     overflow: hidden;
     clip: rect(1px, 1px, 1px, 1px);
     white-space: nowrap;
+}
+
+/* ================================
+   Form
+   ================================ */
+.form-container {
+    padding: var(--space-md);
+    border-radius: var(--space-md);
+}
+
+.form-input {
+    padding: var(--space-m);
+    margin-bottom: var(--space-lg);
+}
+
+.primary-button {
+    padding: var(--space-m);
+    background-color: var(--color-primary-yellow);
+    color: var(--color-neutral-1000);
+    border-radius: var(--space-sm);
+}
+
+/* ================================
+   SECTION
+   ================================ */
+
+/* Section container width */
+main > .section > div {
+    max-width: var(--layout-width);
+    margin: auto;
+    padding: var(--section-top-btm-gap);
+}
+
+/* Section container full width */
+main > .section.full-width > div {
+    max-width: 100%;
+}
+
+/* Section two column container */
+main > .section.section-two-column {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+    padding: 1rem;
+}
+
+main > .section.section-two-column > .left-column,
+main > .section.section-two-column > :not(.left-column) {
+    width: 100%;
+}
+
+/* Section 7:3 column container */
+main .section.flex-col-7-3 {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    margin-left: auto;
+    margin-right: auto;
+    max-width: var(--layout-width);
+}
+
+main .section.flex-col-7-3 > div {
+    flex: 0 0 100%;
+    max-width: 100%;
+}
+
+/* ================================
+   RESPONSIVE TYPOGRAPHY
+   ================================ */
+@media (width > 768px) {
+    :root {
+        --font-size-xs: 0.65rem;
+        --font-size-s: 0.75rem;
+        --font-size-sm: 0.875rem;
+        --font-size-base: 1rem;
+        --font-size-xl: 1.3333rem;
+        --font-size-xxl: 1.7778rem;
+        --section-top-btm-gap: 24px 0 40px 0;
+    }
+
+    /* From 24px to 32px */
+    h1 {
+        font-family: var(--font-medium);
+        font-weight: var(--font-weight-600);
+    }
+
+    /* Remains 18px to 24px */
+    h2 {
+        font-size: var(--font-size-xl);
+    }
+
+    /* Remains 16px to 18px */
+    h3 {
+        font-size: var(--font-size-base);
+        font-family: var(--font-bold);
+        font-weight: var(--font-weight-700);
+    }
+
+    h4 {
+        font-size: var(--font-size-base);
+    }
+
+    h5 {
+        font-size: var(--font-size-s);
+    }
+
+    h6 {
+        font-size: var(--font-size-xs);
+    }
+
+    main > .section.section-two-column {
+        grid-template-columns: 70% 30%;
+        align-items: start;
+    }
+
+    /* Left column goes in column 1 */
+    main > .section.section-two-column > .left-column {
+        grid-column: 1;
+    }
+
+    /* All other direct children go in column 2 (right side) */
+    main > .section.section-two-column > :not(.left-column) {
+        grid-column: 2;
+    }
+
+    /* Section 7:3 column */
+    main .section.flex-col-7-3 {
+        flex-direction: row;
+    }
+
+    main .section.flex-col-7-3 > div:first-child {
+        flex: 0 0 68%;
+        max-width: 68%;
+    }
+
+    main .section.flex-col-7-3 > div:last-child {
+        flex: 0 0 31%;
+        max-width: 31%;
+    }
 }
