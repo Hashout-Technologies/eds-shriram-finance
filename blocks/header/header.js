@@ -21,83 +21,34 @@ function toggleAllNavSections(sections, expanded = false) {
 }
 
 /**
- * Handles keyboard navigation for dropdown menus
- */
-function handleDropdownKeydown(e) {
-  const focused = document.activeElement;
-  const isNavDrop = focused.classList.contains('nav-drop');
-
-  if (!isNavDrop || (e.code !== 'Enter' && e.code !== 'Space')) return;
-
-  e.preventDefault();
-  const isExpanded = focused.getAttribute('aria-expanded') === 'true';
-
-  toggleAllNavSections(focused.closest('.nav-sections'), false);
-  focused.setAttribute('aria-expanded', !isExpanded);
-}
-
-/**
- * Adds keyboard event listener to focused nav section
- */
-function enableKeyboardNavigation() {
-  document.activeElement.addEventListener('keydown', handleDropdownKeydown);
-}
-
-/**
- * Manages dropdown keyboard accessibility based on screen size
- */
-function handleDropdownAccessibility(navSections) {
-  const navDrops = navSections.querySelectorAll('.nav-drop');
-
-  navDrops.forEach((drop) => {
-    if (isDesktop.matches) {
-      if (!drop.hasAttribute('tabindex')) {
-        drop.setAttribute('tabindex', 0);
-        drop.addEventListener('focus', enableKeyboardNavigation);
-      }
-    } else {
-      drop.removeAttribute('tabindex');
-      drop.removeEventListener('focus', enableKeyboardNavigation);
-    }
-  });
-}
-
-/**
- * Handles navigation closure when Escape key is pressed
+ * Handles sidebar closure when Escape key is pressed
  */
 function handleEscapeKey(e) {
   if (e.code !== 'Escape') return;
 
   const nav = document.getElementById('nav');
-  const navSections = nav.querySelector('.nav-sections');
-  const expandedSection = navSections.querySelector('[aria-expanded="true"]');
+  const sidebar = nav.querySelector('.nav-sidebar');
 
-  if (expandedSection && isDesktop.matches) {
-    toggleAllNavSections(navSections, false);
-    expandedSection.focus();
-  } else if (!isDesktop.matches) {
+  if (!isDesktop.matches && sidebar) {
     // eslint-disable-next-line no-use-before-define
-    toggleMenu(nav, navSections, false).then(() => {
+    toggleSidebar(nav, sidebar, false).then(() => {
       nav.querySelector('button').focus();
     });
   }
 }
 
 /**
- * Handles navigation closure when focus is lost
+ * Handles sidebar closure when focus is lost
  */
 function handleFocusLost(e) {
   const nav = e.currentTarget;
 
   if (!nav.contains(e.relatedTarget)) {
-    const navSections = nav.querySelector('.nav-sections');
-    const expandedSection = navSections.querySelector('[aria-expanded="true"]');
+    const sidebar = nav.querySelector('.nav-sidebar');
 
-    if (expandedSection && isDesktop.matches) {
-      toggleAllNavSections(navSections, false);
-    } else if (!isDesktop.matches) {
+    if (!isDesktop.matches && sidebar) {
       // eslint-disable-next-line no-use-before-define
-      toggleMenu(nav, navSections, false);
+      toggleSidebar(nav, sidebar, false);
     }
   }
 }
@@ -116,29 +67,59 @@ function handleEventListeners(nav, isExpanded) {
 }
 
 /**
- * Toggles the mobile menu visibility and accessibility
+ * Toggles the sidebar visibility and accessibility
  */
-const toggleMenu = async (nav, navSections, forceExpanded = null) => {
+const toggleSidebar = async (nav, sidebar, forceExpanded = null) => {
   const isCurrentlyExpanded = nav.getAttribute('aria-expanded') === 'true';
   const shouldExpand = forceExpanded !== null ? forceExpanded : !isCurrentlyExpanded;
 
   const button = nav.querySelector('.nav-hamburger button');
   const placeholders = await fetchPlaceholders();
 
-  // Update body overflow for mobile
-  document.body.style.overflowY = !shouldExpand || isDesktop.matches ? '' : 'hidden';
+  // Update body overflow and add overlay for mobile
+  if (!isDesktop.matches) {
+    document.body.style.overflowY = shouldExpand ? 'hidden' : '';
+
+    // Add/remove overlay
+    let overlay = document.querySelector('.sidebar-overlay');
+    if (shouldExpand && !overlay) {
+      overlay = document.createElement('div');
+      overlay.className = 'sidebar-overlay';
+      overlay.addEventListener('click', () => toggleSidebar(nav, sidebar, false));
+      document.body.appendChild(overlay);
+    } else if (!shouldExpand && overlay) {
+      overlay.remove();
+    }
+  }
 
   // Update nav state
   nav.setAttribute('aria-expanded', shouldExpand);
-  toggleAllNavSections(navSections, shouldExpand && !isDesktop.matches);
+
+  // Toggle sidebar visibility with improved animation
+  if (sidebar) {
+    if (shouldExpand) {
+      sidebar.style.display = 'block';
+      // Trigger animation after display is set
+      setTimeout(() => {
+        sidebar.classList.add('sidebar-open');
+      }, 10);
+    } else {
+      sidebar.classList.remove('sidebar-open');
+      // Wait for animation to complete before hiding
+      setTimeout(() => {
+        if (!sidebar.classList.contains('sidebar-open')) {
+          sidebar.style.display = 'none';
+        }
+      }, 300);
+    }
+  }
 
   // Update button label
   const labelKey = shouldExpand ? 'navCloseLabel' : 'navOpenLabel';
-  const defaultLabel = shouldExpand ? 'Close navigation' : 'Open navigation';
+  const defaultLabel = shouldExpand ? 'Close sidebar' : 'Open sidebar';
   button.setAttribute('aria-label', placeholders[labelKey] || defaultLabel);
 
-  // Handle keyboard accessibility
-  handleDropdownAccessibility(navSections);
+  // Handle event listeners
   handleEventListeners(nav, shouldExpand);
 };
 
@@ -174,7 +155,9 @@ function updateDropdownHeight(mainDropdown) {
   let maxHeight = 0;
 
   // Get all visible submenu children containers
-  const visibleChildren = dropdownContainer.querySelectorAll("li > ul[style*='flex']");
+  const visibleChildren = dropdownContainer.querySelectorAll(
+    "li > ul[style*='flex']",
+  );
 
   visibleChildren.forEach((childrenContainer) => {
     // Get the actual scroll height of the content
@@ -557,6 +540,7 @@ export default async function decorate(block) {
   const navBrand = nav.querySelector('.nav-brand');
   const navSections = nav.querySelector('.nav-sections');
   const navTools = nav.querySelector('.nav-tools');
+  const sidebar = nav.querySelector('.sidebar');
 
   // Clean up brand section
   if (navBrand) {
@@ -578,12 +562,16 @@ export default async function decorate(block) {
   // Setup navigation tools
   setupNavTools(navTools);
 
+  // Remove sidebar from navTools if it exists
+  if (navTools && sidebar) {
+    sidebar.remove();
+  }
+
   // Extract navigation assets and create structure
   const { hamburgerIcon, brandLogo, toolsContent } = extractNavigationAssets(navBrand);
 
   // Create hamburger button
   const hamburger = await createHamburgerButton(hamburgerIcon);
-  hamburger.addEventListener('click', () => toggleMenu(nav, navSections));
 
   // Create navigation structure
   const topSection = document.createElement('div');
@@ -620,9 +608,89 @@ export default async function decorate(block) {
   nav.textContent = '';
   nav.append(topSection, bottomSection);
 
-  // Initialize menu state and responsive behavior
-  await toggleMenu(nav, navSections, isDesktop.matches);
-  isDesktop.addEventListener('change', () => toggleMenu(nav, navSections, isDesktop.matches));
+  // Create sidebar section if it exists
+  let sidebarSection = null;
+  if (sidebar) {
+    sidebarSection = document.createElement('div');
+    sidebarSection.classList.add('nav-sidebar');
+    // Remove nav-tools class from sidebar
+    sidebar.classList.remove('nav-tools');
+
+    // Group sidebar content into header and main sections
+    const columnsWrapper = sidebar.querySelector('.columns-wrapper');
+    const accordionWrapper = sidebar.querySelector('.accordion-wrapper');
+
+    if (columnsWrapper) {
+      const headerSection = document.createElement('div');
+      headerSection.classList.add('sidebar-header');
+      headerSection.append(columnsWrapper);
+
+      // Add close functionality to the first image in sidebar header
+      const firstImage = columnsWrapper.querySelector('img');
+      if (firstImage) {
+        firstImage.style.cursor = 'pointer';
+        firstImage.setAttribute('role', 'button');
+        firstImage.setAttribute('tabindex', '0');
+        firstImage.setAttribute('aria-label', 'Close sidebar');
+
+        // Add click handler
+        firstImage.addEventListener('click', () => {
+          toggleSidebar(nav, sidebarSection, false);
+        });
+
+        // Add keyboard support
+        firstImage.addEventListener('keydown', (e) => {
+          if (e.key === 'Enter' || e.key === ' ') {
+            e.preventDefault();
+            toggleSidebar(nav, sidebarSection, false);
+          }
+        });
+      }
+
+      sidebarSection.append(headerSection);
+    }
+
+    if (accordionWrapper) {
+      const mainSection = document.createElement('div');
+      mainSection.classList.add('sidebar-main');
+      mainSection.append(accordionWrapper);
+      sidebarSection.append(mainSection);
+    }
+
+    nav.append(sidebarSection);
+  }
+
+  // Add hamburger click event listener after sidebar section is created
+  hamburger.addEventListener('click', () => toggleSidebar(nav, sidebarSection));
+
+  // Initialize sidebar state and responsive behavior
+  if (sidebarSection) {
+    // Set initial display state
+    sidebarSection.style.display = isDesktop.matches ? 'block' : 'none';
+
+    // Add CSS classes for better styling control
+    sidebarSection.classList.add('sidebar-initialized');
+
+    await toggleSidebar(nav, sidebarSection, isDesktop.matches);
+    isDesktop.addEventListener('change', () => toggleSidebar(nav, sidebarSection, isDesktop.matches));
+  }
+
+  // Handle mobile navigation visibility
+  if (navSections) {
+    navSections.style.display = isDesktop.matches ? 'block' : 'none';
+    isDesktop.addEventListener('change', () => {
+      navSections.style.display = isDesktop.matches ? 'block' : 'none';
+    });
+  }
+
+  // Handle mobile top-right items visibility
+  const topRightSection = nav.querySelector('.nav-top-right');
+  if (topRightSection) {
+    topRightSection.style.display = isDesktop.matches ? 'flex' : 'none';
+    isDesktop.addEventListener('change', () => {
+      topRightSection.style.display = isDesktop.matches ? 'flex' : 'none';
+    });
+  }
 
   // Create navigation wrapper and add to block
   const navWrapper = document.createElement('div');
