@@ -31,15 +31,13 @@
                     "component": "text",
                     "valueType": "string",
                     "name": "imageAlt",
-                    "label": "Image alt text",
-                    "required": true
+                    "label": "Image alt text"
                 },
                 {
                     "component": "text",
                     "name": "textContent_title",
                     "label": "Title",
-                    "valueType": "string",
-                    "required": true
+                    "valueType": "string"
                 },
                 {
                     "component": "richtext",
