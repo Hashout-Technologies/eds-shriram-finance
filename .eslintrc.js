@@ -20,7 +20,7 @@ module.exports = {
     'no-param-reassign': [2, { props: false }], // allow modifying properties of param
     'xwalk/max-cells': ['error', {
       goldloan: 7,
-      socialshare: 5,
+      socialshare: 8,
     }],
   },
 };

@@ -588,10 +588,31 @@
       },
       {
         "component": "reference",
-        "valueType": "string[]",
-        "name": "textContent_image",
-        "label": "Social share icons",
-        "multi": true
+        "valueType": "string",
+        "name": "textContent_twitter",
+        "label": "Twitter icon",
+        "multi": false
+      },
+      {
+        "component": "reference",
+        "valueType": "string",
+        "name": "textContent_facebook",
+        "label": "Facebook icon",
+        "multi": false
+      },
+      {
+        "component": "reference",
+        "valueType": "string",
+        "name": "textContent_instagram",
+        "label": "Instagram icon",
+        "multi": false
+      },
+      {
+        "component": "reference",
+        "valueType": "string",
+        "name": "textContent_linkedin",
+        "label": "Linkedin icon",
+        "multi": false
       },
       {
         "component": "reference",
