@@ -588,7 +588,7 @@
       },
       {
         "component": "reference",
-        "valueType": "array",
+        "valueType": "string[]",
         "name": "textContent_image",
         "label": "Social share icons",
         "multi": true
