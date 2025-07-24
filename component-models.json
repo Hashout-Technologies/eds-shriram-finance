@@ -598,42 +598,6 @@
       "name": "postedDate",
       "label": "Posted Date",
       "valueType": "string"
-    },
-    {
-      "component": "text",
-      "name": "updatedDate",
-      "label": "Updated Date",
-      "valueType": "string"
-    },
-    {
-      "component": "text",
-      "name": "viewCount",
-      "label": "View Count",
-      "valueType": "number"
-    },
-    {
-      "component": "text",
-      "name": "readingTime",
-      "label": "Reading Time (minutes)",
-      "valueType": "number"
-    },
-    {
-      "component": "reference",
-      "name": "shareIcon",
-      "label": "Share Icon",
-      "multi": false
-    },
-    {
-      "component": "reference",
-      "name": "viewIcon",
-      "label": "View Icon",
-      "multi": false
-    },
-    {
-      "component": "reference",
-      "name": "timeIcon",
-      "label": "Time Icon",
-      "multi": false
     }
   ]
 }
