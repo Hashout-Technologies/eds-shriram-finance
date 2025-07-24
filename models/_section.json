@@ -91,6 +91,7 @@
         "carousel",
         "columns",
         "fragment",
+<<<<<<< HEAD
         "category-listing",
         "embed",
         "fragment",
@@ -109,6 +110,9 @@
         "articles-category-cards",
         "product-cards",
         "category-links"
+=======
+        "category-cards"
+>>>>>>> 464d206 (skleton category block)
       ]
     }
   ]
