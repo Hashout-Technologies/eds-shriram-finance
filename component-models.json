@@ -206,6 +206,52 @@
     ]
   },
   {
+    "id": "category-cards",
+    "fields": [
+      {
+        "component": "richtext",
+        "valueType": "string",
+        "name": "title",
+        "value": "",
+        "label": "Text Content"
+      },
+      {
+        "component": "reference",
+        "name": "image",
+        "value": "",
+        "label": "Background Image",
+        "valueType": "string",
+        "multi": false
+      },
+      {
+        "component": "text",
+        "name": "imageAlt",
+        "value": "",
+        "label": "Image Alt",
+        "valueType": "string"
+      }
+    ]
+  },
+  {
+    "id": "category-card",
+    "fields": [
+      {
+        "component": "richtext",
+        "valueType": "string",
+        "name": "title",
+        "value": "",
+        "label": "Text Content"
+      },
+      {
+        "component": "text",
+        "name": "categoryName",
+        "value": "",
+        "label": "Category Name",
+        "valueType": "string"
+      }
+    ]
+  },
+  {
     "id": "columns",
     "fields": [
       {

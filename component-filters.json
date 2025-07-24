@@ -8,23 +8,15 @@
   {
     "id": "section",
     "components": [
-      "accordion",
-      "button",
-      "cards",
-      "carousel",
-      "columns",
-      "embed",
-      "fragment",
-      "form",
-      "hero",
-      "image",
-      "quote",
-      "search",
-      "tabs",
-      "table",
       "text",
+      "image",
+      "button",
       "title",
-      "video"
+      "hero",
+      "cards",
+      "columns",
+      "fragment",
+      "category-cards"
     ]
   },
   {
@@ -43,6 +35,12 @@
     "id": "carousel",
     "components": [
       "carousel-item"
+    ]
+  },
+  {
+    "id": "category-cards",
+    "components": [
+      "category-card"
     ]
   },
   {
