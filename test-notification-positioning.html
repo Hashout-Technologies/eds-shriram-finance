@@ -1,0 +1,396 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Test Notification Positioning</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 20px;
+            background-color: #f5f5f5;
+        }
+        
+        .test-header {
+            background: white;
+            padding: 16px 24px;
+            border-radius: 8px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+            margin-bottom: 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .header-right {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+        }
+        
+        .icon-notification {
+            position: relative;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 48px;
+            height: 48px;
+            border-radius: 50%;
+            transition: background-color 0.2s;
+            border: 2px solid #ddd;
+        }
+        
+        .icon-notification img {
+            width: 24px;
+            height: 24px;
+        }
+        
+        .notification-badge {
+            position: absolute;
+            top: 8px;
+            right: 8px;
+            background: #212529;
+            color: white;
+            border-radius: 50%;
+            width: 18px;
+            height: 18px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 10px;
+            font-weight: 600;
+            min-width: 18px;
+        }
+        
+        .notifications {
+            position: absolute;
+            top: 100%;
+            right: 0;
+            max-width: 400px;
+            z-index: 1001;
+            display: none;
+            margin-top: 8px;
+        }
+        
+        .notifications-container {
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+            overflow: hidden;
+            position: relative;
+        }
+        
+        .notifications-header {
+            background: #f8f9fa;
+            padding: 16px 20px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            border-bottom: 1px solid #e9ecef;
+        }
+        
+        .notifications-title {
+            margin: 0;
+            font-size: 18px;
+            font-weight: 600;
+            color: #212529;
+        }
+        
+        .notifications-close {
+            background: none;
+            border: none;
+            font-size: 20px;
+            color: #212529;
+            cursor: pointer;
+            padding: 4px;
+            border-radius: 4px;
+        }
+        
+        .notifications-list {
+            list-style: none;
+            margin: 0;
+            padding: 0;
+            max-height: 200px;
+            overflow-y: auto;
+        }
+        
+        .notification-item {
+            padding: 16px 20px;
+            border-bottom: 1px solid #e9ecef;
+        }
+        
+        .notification-item:last-child {
+            border-bottom: none;
+        }
+        
+        .test-content {
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+        }
+        
+        .test-controls {
+            margin-bottom: 20px;
+            padding: 16px;
+            background: #f8f9fa;
+            border-radius: 8px;
+        }
+        
+        .test-controls button {
+            margin-right: 10px;
+            padding: 8px 16px;
+            border: 1px solid #007bff;
+            background: #007bff;
+            color: white;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+        
+        .test-controls button:hover {
+            background: #0056b3;
+        }
+        
+        .debug-info {
+            background: #e9ecef;
+            padding: 16px;
+            border-radius: 8px;
+            margin-top: 20px;
+            font-family: monospace;
+            font-size: 12px;
+        }
+    </style>
+</head>
+<body>
+    <div class="test-header">
+        <div class="header-left">
+            <h2>Test Header</h2>
+        </div>
+        <div class="header-right">
+            <span class="icon icon-notification">
+                <img data-icon-name="notification" src="/icons/notification.svg" loading="lazy" alt="Notifications">
+                <span class="notification-badge" aria-label="3 unread notifications">3</span>
+            </span>
+        </div>
+    </div>
+
+    <!-- Notifications Block (should be moved inside the icon) -->
+    <div class="notifications block" data-block-name="notifications" data-block-status="loaded">
+        <div class="notifications-container">
+            <div class="notifications-header">
+                <h3 class="notifications-title">Notifications</h3>
+                <span class="notifications-badge">3</span>
+                <button class="notifications-close" aria-label="Close notifications">×</button>
+            </div>
+            <ul class="notifications-list">
+                <li class="notification-item">
+                    <div class="notification-message">
+                        <p>Test notification 1</p>
+                    </div>
+                    <div class="notification-call-to-action">
+                        <a href="#">Action 1</a>
+                    </div>
+                    <div class="notification-timestamp">
+                        <p>25-06-2025 08:30:00</p>
+                    </div>
+                </li>
+                <li class="notification-item">
+                    <div class="notification-message">
+                        <p>Test notification 2</p>
+                    </div>
+                    <div class="notification-call-to-action">
+                        <a href="#">Action 2</a>
+                    </div>
+                    <div class="notification-timestamp">
+                        <p>25-06-2025 08:30:00</p>
+                    </div>
+                </li>
+                <li class="notification-item">
+                    <div class="notification-message">
+                        <p>Test notification 3</p>
+                    </div>
+                    <div class="notification-call-to-action">
+                        <a href="#">Action 3</a>
+                    </div>
+                    <div class="notification-timestamp">
+                        <p>25-06-2025 08:30:00</p>
+                    </div>
+                </li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="test-content">
+        <h1>Notification Positioning Test</h1>
+        <p>This test verifies that the notifications block is moved inside the notification icon.</p>
+        
+        <div class="test-controls">
+            <h3>Test Controls:</h3>
+            <button onclick="testMoveNotifications()">Test Move Notifications</button>
+            <button onclick="checkStructure()">Check Structure</button>
+            <button onclick="toggleNotifications()">Toggle Panel</button>
+            <button onclick="testClickFunctionality()">Test Click on Icon</button>
+        </div>
+        
+        <div class="debug-info" id="debug-info">
+            <h3>Debug Information:</h3>
+            <div id="debug-output">Click "Check Structure" to see the current DOM structure.</div>
+        </div>
+    </div>
+
+    <script>
+        // Simplified version of the processNotificationsBlock function
+        function processNotificationsBlock(notificationsBlock) {
+            // Find notification icons to attach the notifications block to
+            const notificationIcons = document.querySelectorAll('.icon-notification, [data-icon="notification"], .notification-icon');
+            
+            console.log('🔧 Processing notifications block:', notificationsBlock);
+            console.log('🔔 Found notification icons:', notificationIcons.length);
+            
+            if (notificationIcons.length > 0) {
+                // Move notifications block to the first notification icon
+                const firstIcon = notificationIcons[0];
+                console.log('✅ Moving notifications to icon:', firstIcon);
+                firstIcon.appendChild(notificationsBlock);
+            } else {
+                // Fallback: move to body if no notification icon found
+                console.log('⚠️ No notification icons found, moving to body');
+                document.body.appendChild(notificationsBlock);
+            }
+
+            // Add close functionality to the close button
+            const closeButton = notificationsBlock.querySelector('.notifications-close');
+            if (closeButton) {
+                closeButton.addEventListener('click', () => {
+                    toggleNotifications();
+                });
+            }
+
+            // Initially hide the notifications and ensure proper initial state
+            notificationsBlock.style.display = 'none';
+            const container = notificationsBlock.querySelector('.notifications-container');
+            if (container) {
+                container.classList.add('notifications-hidden');
+            }
+        }
+
+        function testMoveNotifications() {
+            const notificationsBlock = document.querySelector('.notifications');
+            if (notificationsBlock) {
+                processNotificationsBlock(notificationsBlock);
+                checkStructure();
+            } else {
+                alert('No notifications block found!');
+            }
+        }
+
+        function checkStructure() {
+            const debugOutput = document.getElementById('debug-output');
+            const notificationIcon = document.querySelector('.icon-notification');
+            const notificationsBlock = document.querySelector('.notifications');
+            
+            let structure = '<strong>Current Structure:</strong><br>';
+            
+            if (notificationIcon) {
+                structure += '✅ Notification icon found<br>';
+                structure += `📍 Icon parent: ${notificationIcon.parentElement.tagName}.${notificationIcon.parentElement.className}<br>`;
+                
+                // Check if notifications block is inside the icon
+                const notificationsInsideIcon = notificationIcon.querySelector('.notifications');
+                if (notificationsInsideIcon) {
+                    structure += '✅ Notifications block is INSIDE the icon<br>';
+                } else {
+                    structure += '❌ Notifications block is NOT inside the icon<br>';
+                }
+                
+                structure += `🔢 Icon children count: ${notificationIcon.children.length}<br>`;
+                structure += '<strong>Icon children:</strong><br>';
+                Array.from(notificationIcon.children).forEach((child, index) => {
+                    structure += `  ${index + 1}. ${child.tagName}.${child.className}<br>`;
+                });
+            } else {
+                structure += '❌ No notification icon found<br>';
+            }
+            
+            if (notificationsBlock) {
+                structure += `📍 Notifications block parent: ${notificationsBlock.parentElement.tagName}.${notificationsBlock.parentElement.className}<br>`;
+                
+                // Check visibility status
+                const container = notificationsBlock.querySelector('.notifications-container');
+                const isVisible = notificationsBlock.style.display === 'block' && !container.classList.contains('notifications-hidden');
+                structure += `👁️ Notifications panel is ${isVisible ? 'VISIBLE' : 'HIDDEN'}<br>`;
+                structure += `📱 Display style: ${notificationsBlock.style.display}<br>`;
+                structure += `🎭 Container class: ${container ? container.className : 'N/A'}<br>`;
+            } else {
+                structure += '❌ No notifications block found<br>';
+            }
+            
+            debugOutput.innerHTML = structure;
+        }
+
+        function toggleNotifications() {
+            console.log('🔧 toggleNotifications called');
+            const notificationsBlock = document.querySelector('.notifications');
+            console.log('🔍 Found notifications block:', notificationsBlock);
+            
+            if (notificationsBlock) {
+                const container = notificationsBlock.querySelector('.notifications-container');
+                const isVisible = notificationsBlock.style.display === 'block' && !container.classList.contains('notifications-hidden');
+                
+                console.log('📊 Current state:', {
+                    display: notificationsBlock.style.display,
+                    hasHiddenClass: container.classList.contains('notifications-hidden'),
+                    isVisible
+                });
+                
+                if (isVisible) {
+                    console.log('❌ Hiding notifications');
+                    container.classList.add('notifications-hidden');
+                    notificationsBlock.style.display = 'none';
+                } else {
+                    console.log('✅ Showing notifications');
+                    notificationsBlock.style.display = 'block';
+                    container.classList.remove('notifications-hidden');
+                }
+                
+                // Update debug info
+                checkStructure();
+            } else {
+                console.log('❌ No notifications block found');
+            }
+        }
+        
+        function testClickFunctionality() {
+            const notificationIcon = document.querySelector('.icon-notification');
+            if (notificationIcon) {
+                // Simulate a click on the notification icon
+                notificationIcon.click();
+            }
+        }
+
+        // Initialize
+        document.addEventListener('DOMContentLoaded', function() {
+            console.log('🚀 Page loaded, ready to test');
+            checkStructure();
+            
+            // Add click handler to notification icon
+            const notificationIcon = document.querySelector('.icon-notification');
+            console.log('🔍 Found notification icon:', notificationIcon);
+            
+            if (notificationIcon) {
+                console.log('✅ Adding click handler to notification icon');
+                notificationIcon.addEventListener('click', (e) => {
+                    console.log('🖱️ Notification icon clicked!');
+                    e.preventDefault();
+                    e.stopPropagation();
+                    toggleNotifications();
+                });
+            } else {
+                console.log('❌ No notification icon found');
+            }
+        });
+    </script>
+</body>
+</html> 

@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Notification Structure Example</title>
+    <style>
+        body { font-family: Arial, sans-serif; margin: 20px; }
+        .example { border: 1px solid #ccc; padding: 20px; margin: 20px 0; }
+        .field { background: #f0f0f0; padding: 10px; margin: 5px 0; }
+        .field-name { font-weight: bold; color: #333; }
+        .field-value { color: #666; }
+    </style>
+</head>
+<body>
+    <h1>Notification Block Structure Example</h1>
+    
+    <div class="example">
+        <h2>Correct Structure for Notification Item</h2>
+        <p>Each notification item should have these fields in order:</p>
+        
+        <div class="field">
+            <div class="field-name">1. Message (richtext)</div>
+            <div class="field-value">Don't miss out! Get up to 8.55%*p.a. and grow your savings faster</div>
+        </div>
+        
+        <div class="field">
+            <div class="field-name">2. Call to Action Text (text)</div>
+            <div class="field-value">Invest Now</div>
+        </div>
+        
+        <div class="field">
+            <div class="field-name">3. Call to Action Link (aem-content)</div>
+            <div class="field-value">&lt;a href="https://www.shriramfinance.in/fixed-deposit"&gt;Invest Now&lt;/a&gt;</div>
+        </div>
+        
+        <div class="field">
+            <div class="field-name">4. Timestamp (text)</div>
+            <div class="field-value">2 hours ago</div>
+        </div>
+    </div>
+
+    <div class="example">
+        <h2>Expected HTML Output</h2>
+        <p>After processing, the notification item should look like:</p>
+        <pre><code>&lt;li class="notification-item"&gt;
+  &lt;div class="notification-message"&gt;
+    &lt;p&gt;Don't miss out! Get up to 8.55%*p.a. and grow your savings faster&lt;/p&gt;
+  &lt;/div&gt;
+  &lt;div class="notification-call-to-action"&gt;
+    &lt;a href="https://www.shriramfinance.in/fixed-deposit"&gt;Invest Now&lt;/a&gt;
+  &lt;/div&gt;
+  &lt;div class="notification-timestamp"&gt;
+    &lt;p&gt;2 hours ago&lt;/p&gt;
+  &lt;/div&gt;
+&lt;/li&gt;</code></pre>
+    </div>
+
+    <div class="example">
+        <h2>Content Author Instructions</h2>
+        <p>When creating notification items in AEM:</p>
+        <ol>
+            <li><strong>Message:</strong> Add the main notification text (richtext field)</li>
+            <li><strong>Call to Action Text:</strong> Add the button/link text (e.g., "Invest Now")</li>
+            <li><strong>Call to Action Link:</strong> Add the actual link/button (aem-content field)</li>
+            <li><strong>Timestamp:</strong> Add when the notification was created (e.g., "2 hours ago")</li>
+        </ol>
+    </div>
+</body>
+</html> 

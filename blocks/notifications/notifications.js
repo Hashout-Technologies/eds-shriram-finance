@@ -17,13 +17,17 @@ export default function decorate(block) {
   badge.className = 'notifications-badge';
   badge.textContent = block.children.length;
 
+  const container = document.createElement('div');
+  container.className = 'notifications-header-container';
+
   const closeButton = document.createElement('button');
   closeButton.className = 'notifications-close';
   closeButton.innerHTML = '×';
   closeButton.setAttribute('aria-label', 'Close notifications');
 
-  header.appendChild(title);
-  header.appendChild(badge);
+  container.appendChild(title);
+  container.appendChild(badge);
+  header.appendChild(container);
   header.appendChild(closeButton);
 
   // Create notifications list
@@ -36,11 +40,13 @@ export default function decorate(block) {
     li.className = 'notification-item';
     moveInstrumentation(row, li);
 
-    // Extract content from the row
-    const messageDiv = row.querySelector(':scope > div:nth-child(1)');
-    const callToActionDiv = row.querySelector(':scope > div:nth-child(2)');
-    const timestampDiv = row.querySelector(':scope > div:nth-child(3)');
+    // Extract content from the row based on field names
+    const messageDiv = row.querySelector('[data-field="message"]') || row.querySelector(':scope > div:nth-child(1)');
+    const callToActionDiv = row.querySelector('[data-field="callToAction"]') || row.querySelector(':scope > div:nth-child(2)');
+    const callToActionLinkDiv = row.querySelector('[data-field="callToActionLink"]') || row.querySelector(':scope > div:nth-child(3)');
+    const timestampDiv = row.querySelector('[data-field="timestamp"]') || row.querySelector(':scope > div:nth-child(4)');
 
+    // Add message
     if (messageDiv) {
       const message = document.createElement('div');
       message.className = 'notification-message';
@@ -48,13 +54,33 @@ export default function decorate(block) {
       li.appendChild(message);
     }
 
-    if (callToActionDiv) {
+    // Add call to action with link
+    if (callToActionDiv || callToActionLinkDiv) {
       const callToAction = document.createElement('div');
       callToAction.className = 'notification-call-to-action';
-      callToAction.innerHTML = callToActionDiv.innerHTML;
+
+      // If we have both text and link, combine them
+      if (callToActionDiv && callToActionLinkDiv) {
+        const link = callToActionLinkDiv.querySelector('a');
+        if (link) {
+          const text = callToActionDiv.textContent.trim() || 'Invest Now';
+          link.textContent = text;
+          callToAction.appendChild(link);
+        } else {
+          callToAction.innerHTML = callToActionLinkDiv.innerHTML;
+        }
+      } else if (callToActionLinkDiv) {
+        // Only link available
+        callToAction.innerHTML = callToActionLinkDiv.innerHTML;
+      } else if (callToActionDiv) {
+        // Only text available
+        callToAction.innerHTML = callToActionDiv.innerHTML;
+      }
+
       li.appendChild(callToAction);
     }
 
+    // Add timestamp
     if (timestampDiv) {
       const timestamp = document.createElement('div');
       timestamp.className = 'notification-timestamp';
@@ -82,4 +108,32 @@ export default function decorate(block) {
   closeButton.addEventListener('click', () => {
     notificationsContainer.classList.add('notifications-hidden');
   });
+
+  // Update notification badges after processing
+  const updateNotificationBadges = () => {
+    const notificationIcons = document.querySelectorAll('.icon-notification, [data-icon="notification"], .notification-icon');
+    notificationIcons.forEach((icon) => {
+      // Count the number of notification items
+      const notificationItems = block.querySelectorAll('.notification-item');
+      const count = notificationItems.length;
+
+      // Remove existing badge if it exists
+      const existingBadge = icon.querySelector('.notification-badge');
+      if (existingBadge) {
+        existingBadge.remove();
+      }
+
+      // Only create badge if count is greater than 0
+      if (count > 0) {
+        const countBadge = document.createElement('span');
+        countBadge.className = 'notification-badge';
+        countBadge.textContent = count;
+        countBadge.setAttribute('aria-label', `${count} unread notifications`);
+        icon.appendChild(countBadge);
+      }
+    });
+  };
+
+  // Update badges after processing
+  updateNotificationBadges();
 }

@@ -532,6 +532,173 @@ function cleanupButtonStyling(navSections) {
 }
 
 /**
+ * Toggles notifications panel visibility
+ */
+function toggleNotifications(notificationsBlock, forceVisible = null) {
+  const container = notificationsBlock.querySelector('.notifications-container');
+  if (!container) return;
+
+  // Check if notifications are currently visible by checking both display and class
+  const isCurrentlyVisible = notificationsBlock.style.display !== 'none' && !container.classList.contains('notifications-hidden');
+  const shouldShow = forceVisible !== null ? forceVisible : !isCurrentlyVisible;
+
+  if (shouldShow) {
+    notificationsBlock.style.display = 'block';
+    container.classList.remove('notifications-hidden');
+    // Add click outside to close
+    setTimeout(() => {
+      // eslint-disable-next-line no-use-before-define
+      document.addEventListener('click', handleClickOutside);
+    }, 100);
+  } else {
+    container.classList.add('notifications-hidden');
+    notificationsBlock.style.display = 'none';
+    // eslint-disable-next-line no-use-before-define
+    document.removeEventListener('click', handleClickOutside);
+  }
+}
+
+/**
+ * Handles clicks outside the notifications panel
+ */
+function handleClickOutside(e) {
+  // Find all notification icons and check if click is outside any of them
+  const notificationIcons = document.querySelectorAll('.icon-notification, [data-icon="notification"], .notification-icon');
+  let clickedOutside = true;
+
+  notificationIcons.forEach((icon) => {
+    if (icon.contains(e.target)) {
+      clickedOutside = false;
+    }
+  });
+
+  if (clickedOutside) {
+    // Find the notifications block and close it
+    const notificationsBlock = document.querySelector('.notifications');
+    if (notificationsBlock) {
+      toggleNotifications(notificationsBlock, false);
+    }
+  }
+}
+
+/**
+ * Creates or updates the notification badge
+ */
+function createNotificationBadge(notificationIcon, count) {
+  // Remove existing badge if it exists
+  const existingBadge = notificationIcon.querySelector('.notification-badge');
+  if (existingBadge) {
+    existingBadge.remove();
+  }
+
+  // Only create badge if count is greater than 0
+  if (count > 0) {
+    const badge = document.createElement('span');
+    badge.className = 'notification-badge';
+    badge.textContent = count;
+    badge.setAttribute('aria-label', `${count} unread notifications`);
+    notificationIcon.appendChild(badge);
+  }
+}
+
+/**
+ * Updates the notification badge count
+ */
+function updateNotificationBadge(notificationIcon) {
+  // Find notifications block - first look inside the icon, then globally
+  const notificationsBlock = notificationIcon.querySelector('.notifications') || document.querySelector('.notifications');
+  if (!notificationsBlock) return;
+
+  // Count the number of notification items
+  const notificationItems = notificationsBlock.querySelectorAll('.notification-item');
+  const count = notificationItems.length;
+
+  createNotificationBadge(notificationIcon, count);
+}
+
+/**
+ * Sets up notification icon click functionality
+ */
+function setupNotificationIcon(notificationIcon) {
+  // Find notifications block - first look inside the icon, then globally
+  const notificationsBlock = notificationIcon.querySelector('.notifications') || document.querySelector('.notifications');
+
+  if (!notificationsBlock) {
+    // Store the icon for later setup when notifications block is available
+    if (!window.pendingNotificationIcons) {
+      window.pendingNotificationIcons = [];
+    }
+    window.pendingNotificationIcons.push(notificationIcon);
+    return;
+  }
+
+  // Create initial badge
+  updateNotificationBadge(notificationIcon);
+
+  // Add click event to notification icon
+  notificationIcon.addEventListener('click', (e) => {
+    e.preventDefault();
+    e.stopPropagation();
+    toggleNotifications(notificationsBlock);
+  });
+
+  // Add keyboard support
+  notificationIcon.addEventListener('keydown', (e) => {
+    if (e.key === 'Enter' || e.key === ' ') {
+      e.preventDefault();
+      toggleNotifications(notificationsBlock);
+    }
+  });
+}
+
+/**
+ * Processes the notifications block from header content
+ */
+function processNotificationsBlock(notificationsBlock) {
+  // Find notification icons to attach the notifications block to
+  const notificationIcons = document.querySelectorAll('.icon-notification, [data-icon="notification"], .notification-icon');
+
+  if (notificationIcons.length > 0) {
+    // Move notifications block to the first notification icon
+    const firstIcon = notificationIcons[0];
+    firstIcon.appendChild(notificationsBlock);
+  } else {
+    // Fallback: move to body if no notification icon found
+    document.body.appendChild(notificationsBlock);
+  }
+
+  // Add close functionality to the close button
+  const closeButton = notificationsBlock.querySelector('.notifications-close');
+  if (closeButton) {
+    closeButton.addEventListener('click', (e) => {
+      e.preventDefault();
+      e.stopPropagation();
+      toggleNotifications(notificationsBlock, false);
+    });
+  }
+
+  // Initially hide the notifications and ensure proper initial state
+  notificationsBlock.style.display = 'none';
+  const container = notificationsBlock.querySelector('.notifications-container');
+  if (container) {
+    container.classList.add('notifications-hidden');
+  }
+
+  // Update notification badges after processing
+  notificationIcons.forEach((icon) => {
+    updateNotificationBadge(icon);
+  });
+
+  // Setup any pending notification icons that were waiting for the notifications block
+  if (window.pendingNotificationIcons && window.pendingNotificationIcons.length > 0) {
+    window.pendingNotificationIcons.forEach((icon) => {
+      setupNotificationIcon(icon);
+    });
+    window.pendingNotificationIcons = []; // Clear the pending list
+  }
+}
+
+/**
  * Sets up navigation tools section
  */
 function setupNavTools(navTools) {
@@ -540,6 +707,13 @@ function setupNavTools(navTools) {
   const searchLink = navTools.querySelector('a[href*="search"]');
   if (searchLink && !searchLink.textContent.trim()) {
     searchLink.setAttribute('aria-label', 'Search');
+  }
+
+  // Setup notification icon functionality
+  const notificationIcon = navTools.querySelector('.icon-notification, [data-icon="notification"], .notification-icon');
+
+  if (notificationIcon) {
+    setupNotificationIcon(notificationIcon);
   }
 }
 
@@ -604,6 +778,14 @@ export default async function decorate(block) {
 
   // Extract navigation assets and create structure
   const { hamburgerIcon, brandLogo, toolsContent } = extractNavigationAssets(navBrand);
+
+  // Setup notification icon from toolsContent (which comes from navBrand columns)
+  if (toolsContent) {
+    setupNavTools(toolsContent);
+  }
+
+  // Capture notifications block before rebuilding navigation structure
+  const capturedNotificationsBlock = nav.querySelector('.notifications');
 
   // Create hamburger button
   const hamburger = await createHamburgerButton(hamburgerIcon);
@@ -718,20 +900,16 @@ export default async function decorate(block) {
     });
   }
 
-  // Handle mobile top-right items visibility
-  const topRightSection = nav.querySelector('.nav-top-right');
-  if (topRightSection) {
-    topRightSection.style.display = isDesktop.matches ? 'flex' : 'none';
-    isDesktop.addEventListener('change', () => {
-      topRightSection.style.display = isDesktop.matches ? 'flex' : 'none';
-    });
-  }
-
   // Create navigation wrapper and add to block
   const navWrapper = document.createElement('div');
   navWrapper.className = 'nav-wrapper';
   navWrapper.append(nav);
   block.append(navWrapper);
+
+  // Process notifications block after navigation structure is built
+  if (capturedNotificationsBlock) {
+    processNotificationsBlock(capturedNotificationsBlock);
+  }
 
   // Add breadcrumbs if enabled
   const breadcrumbsEnabled = getMetadata('breadcrumbs')?.toLowerCase() === 'true';

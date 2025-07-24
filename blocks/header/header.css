@@ -523,13 +523,14 @@ header nav .nav-tools .button {
    ========================================================================== */
 
 header nav .nav-top-right p {
+    display: block;
     margin: 0;
     font-size: var(--body-font-size-xs);
     color: #1a1a1a;
     font-weight: 500;
 }
 
-header nav .nav-top-right p:nth-child(2) a {
+header nav .nav-top-right p:nth-child(3) a {
     display: flex;
     align-items: center;
     justify-content: center;
@@ -575,11 +576,76 @@ header nav .nav-top-right .icon img {
     height: 24px;
 }
 
+/* Notification Icon Styles */
+header nav .nav-top-right .icon-notification,
+header nav .nav-top-right [data-icon="notification"],
+header nav .nav-top-right .notification-icon {
+    position: relative;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    transition: background-color 0.2s;
+}
+
+header nav .nav-top-right .icon-notification:hover,
+header nav .nav-top-right [data-icon="notification"]:hover,
+header nav .nav-top-right .notification-icon:hover {
+    background-color: rgb(0 0 0 / 5%);
+}
+
+header nav .nav-top-right .icon-notification .notification-badge,
+header nav .nav-top-right [data-icon="notification"] .notification-badge,
+header nav .nav-top-right .notification-icon .notification-badge {
+    position: absolute;
+    top: 8px;
+    right: 8px;
+    background: #212529;
+    color: white;
+    border-radius: 50%;
+    width: 18px;
+    height: 18px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 10px;
+    font-weight: 600;
+    min-width: 18px;
+}
+
 @media (width < 900px) {
     header nav .nav-top-right {
+        display: flex;
+        align-items: center;
+        gap: 16px;
+    }
+
+    /* Hide all elements except notification icon on mobile */
+    header nav .nav-top-right > div:not(:has(.icon-notification, [data-icon="notification"], .notification-icon)),
+    header nav .nav-top-right > p {
         display: none;
     }
 
+    header nav .nav-top-right p {
+        display: none;
+    }
+
+    header nav .nav-top-right p:nth-child(2) {
+        display: block;
+    }
+
+    /* Show notification icon on mobile */
+    header nav .nav-top-right .icon-notification,
+    header nav .nav-top-right [data-icon="notification"],
+    header nav .nav-top-right .notification-icon {
+        display: flex;
+        position: relative;
+    }
+
+    /* When sidebar is expanded, show all elements */
     header nav[aria-expanded="true"] .nav-top-right {
         display: flex;
         flex-direction: column;
@@ -588,8 +654,20 @@ header nav .nav-top-right .icon img {
         padding: 16px 0;
     }
 
+    header nav[aria-expanded="true"] .nav-top-right > div:not(:has(.icon-notification, [data-icon="notification"], .notification-icon)),
+    header nav[aria-expanded="true"] .nav-top-right > p {
+        display: block;
+    }
+
     header nav[aria-expanded="true"] .nav-top-right p {
         font-size: var(--body-font-size-s);
+    }
+
+    /* Ensure notification icon positioning works on mobile */
+    header nav[aria-expanded="true"] .nav-top-right .icon-notification,
+    header nav[aria-expanded="true"] .nav-top-right [data-icon="notification"],
+    header nav[aria-expanded="true"] .nav-top-right .notification-icon {
+        position: relative;
     }
 }
 
@@ -758,26 +836,45 @@ header nav .nav-sidebar .sidebar-main::-webkit-scrollbar-thumb:hover {
    Responsive Improvements
    ========================================================================== */
 
-@media (width <=480px) {
+@media (width <=768px) {
     header nav .nav-sidebar {
-        width: 100%;
-        left: -100%;
+        width: 70%;
+        left: -70%;
+        max-width: 70vw;
     }
 
     header nav .nav-sidebar .sidebar-main {
-        padding: 15px 20px;
+        padding: 8px 12px;
+        gap: 6px;
     }
 
     header nav .nav-sidebar .sidebar-header>div>div>div {
-        padding: 0 20px;
+        padding: 0 12px;
+    }
+
+    header nav .nav-sidebar .sidebar-header .columns-img-col:first-child {
+        height: 24px;
+    }
+
+    header nav .nav-sidebar .sidebar-header .columns-img-col:first-child img {
+        max-height: 24px;
+        width: auto;
+    }
+
+    header nav .nav-sidebar .sidebar-main .accordion-wrapper .accordion details p {
+        padding: 6px 8px;
+        gap: 10px;
+        font-size: 12px;
+    }
+
+    header nav .nav-sidebar .sidebar-main .accordion-wrapper .accordion details .accordion-item-body ul>li {
+        padding: 12px 0 6px 6px;
+        font-size: 12px;
+        line-height: 18px;
     }
 }
 
-@media (width >=481px) and (width <=768px) {
-    header nav .nav-sidebar {
-        width: 320px;
-    }
-}
+
 
 header nav .nav-sidebar .sidebar-main .accordion-wrapper .accordion {
     padding: 0;

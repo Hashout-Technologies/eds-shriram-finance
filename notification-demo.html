@@ -1,0 +1,329 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Notification Demo</title>
+    <link rel="stylesheet" href="blocks/header/header.css">
+    <link rel="stylesheet" href="blocks/notifications/notifications.css">
+    <style>
+        :root {
+            --nav-height: 60px;
+        }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            margin: 0;
+            padding: 0;
+            background: #f5f5f5;
+        }
+        
+        .demo-header {
+            background: white;
+            height: var(--nav-height);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 20px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000;
+        }
+        
+        .header-left {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+        }
+        
+        .gold-price {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-weight: 500;
+            color: #333;
+        }
+        
+        .chevron-down {
+            width: 12px;
+            height: 12px;
+            border: 2px solid #333;
+            border-width: 0 2px 2px 0;
+            transform: rotate(45deg);
+        }
+        
+        .header-right {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+        }
+        
+        .notification-icon {
+            position: relative;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 48px;
+            height: 48px;
+            border-radius: 50%;
+            transition: background-color 0.2s;
+        }
+        
+        .notification-icon:hover {
+            background-color: rgba(0, 0, 0, 0.05);
+        }
+        
+        .bell-icon {
+            width: 24px;
+            height: 24px;
+            background: #333;
+            border-radius: 50%;
+            position: relative;
+        }
+        
+        .bell-icon::before {
+            content: '';
+            position: absolute;
+            top: 4px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 12px;
+            height: 8px;
+            border: 2px solid white;
+            border-bottom: none;
+            border-radius: 8px 8px 0 0;
+        }
+        
+        .bell-icon::after {
+            content: '';
+            position: absolute;
+            bottom: 2px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 2px;
+            height: 4px;
+            background: white;
+            border-radius: 1px;
+        }
+        
+        .notification-badge {
+            position: absolute;
+            top: 8px;
+            right: 8px;
+            background: #212529;
+            color: white;
+            border-radius: 50%;
+            width: 18px;
+            height: 18px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 10px;
+            font-weight: 600;
+            min-width: 18px;
+        }
+        
+        .login-button {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-decoration: none;
+            padding: 7px 20px;
+            gap: 8px;
+            border-radius: 8px;
+            background: #ffcb09;
+            color: #1a1a1a;
+            font-weight: 600;
+            font-size: 12px;
+            line-height: 120%;
+        }
+        
+        .person-icon {
+            width: 16px;
+            height: 16px;
+            background: #1a1a1a;
+            border-radius: 50%;
+        }
+        
+        .content {
+            margin-top: var(--nav-height);
+            padding: 40px 20px;
+            text-align: center;
+        }
+        
+        h1 {
+            color: #333;
+            margin-bottom: 20px;
+        }
+        
+        p {
+            color: #666;
+            line-height: 1.6;
+        }
+    </style>
+</head>
+<body>
+    <header class="demo-header">
+        <div class="header-left">
+            <div class="gold-price">
+                Gold Price
+                <div class="chevron-down"></div>
+            </div>
+        </div>
+        <div class="header-right">
+            <div class="notification-icon icon-notification">
+                <div class="bell-icon"></div>
+                <span class="notification-badge">4</span>
+            </div>
+            <a href="#" class="login-button">
+                <div class="person-icon"></div>
+                Register / Login
+            </a>
+        </div>
+    </header>
+    
+    <div class="content">
+        <h1>Notification Demo</h1>
+        <p>Click on the bell icon in the header to see the notifications panel.</p>
+    </div>
+
+    <!-- Include the actual notifications block in the header content -->
+    <div class="notifications" style="display: none;">
+        <div class="notifications-container">
+            <div class="notifications-header">
+                <h3 class="notifications-title">Notifications</h3>
+                <span class="notifications-badge">3</span>
+                <button class="notifications-close" aria-label="Close notifications">×</button>
+            </div>
+            <ul class="notifications-list">
+                <li class="notification-item">
+                    <div class="notification-message">
+                        Don't miss out! Get up to 8.55%*p.a. and grow your savings faster
+                    </div>
+                    <div class="notification-call-to-action">
+                        <a href="#">Invest Now</a>
+                    </div>
+                    <div class="notification-timestamp">
+                        25-06-2025 08:30:00
+                    </div>
+                </li>
+                <li class="notification-item">
+                    <div class="notification-message">
+                        Fixed Investment Plan up to 8.05%* p.a. Interest rates.
+                    </div>
+                    <div class="notification-call-to-action">
+                        <a href="#">Invest Now</a>
+                    </div>
+                    <div class="notification-timestamp">
+                        25-06-2025 08:30:00
+                    </div>
+                </li>
+                <li class="notification-item">
+                    <div class="notification-message">
+                        Grow your savings with FD interest rates as high as 8.55%*p.a.
+                    </div>
+                    <div class="notification-call-to-action">
+                        <a href="#">Invest Now</a>
+                    </div>
+                    <div class="notification-timestamp">
+                        25-06-2025 08:30:00
+                    </div>
+                </li>
+            </ul>
+            <div class="notifications-scroll-indicator"></div>
+        </div>
+    </div>
+
+    <script>
+        // Simplified notification functionality that works with header content
+        function setupNotificationIcon(notificationIcon) {
+            // Find notifications block from the header content
+            let notificationsBlock = document.querySelector('.notifications');
+            
+            if (!notificationsBlock) {
+                console.warn('Notifications block not found in header content');
+                return;
+            }
+
+            // Add click event to notification icon
+            notificationIcon.addEventListener('click', (e) => {
+                e.preventDefault();
+                e.stopPropagation();
+                toggleNotifications(notificationsBlock);
+            });
+
+            // Add keyboard support
+            notificationIcon.addEventListener('keydown', (e) => {
+                if (e.key === 'Enter' || e.key === ' ') {
+                    e.preventDefault();
+                    toggleNotifications(notificationsBlock);
+                }
+            });
+        }
+
+        function toggleNotifications(notificationsBlock, forceVisible = null) {
+            const container = notificationsBlock.querySelector('.notifications-container');
+            if (!container) return;
+            
+            const isCurrentlyVisible = !container.classList.contains('notifications-hidden');
+            const shouldShow = forceVisible !== null ? forceVisible : !isCurrentlyVisible;
+            
+            if (shouldShow) {
+                notificationsBlock.style.display = 'block';
+                container.classList.remove('notifications-hidden');
+                // Add click outside to close
+                setTimeout(() => {
+                    document.addEventListener('click', handleClickOutside);
+                }, 100);
+            } else {
+                container.classList.add('notifications-hidden');
+                notificationsBlock.style.display = 'none';
+                document.removeEventListener('click', handleClickOutside);
+            }
+        }
+
+        function handleClickOutside(e) {
+            const notificationsBlock = document.querySelector('.notifications');
+            if (notificationsBlock && !notificationsBlock.contains(e.target)) {
+                toggleNotifications(notificationsBlock, false);
+            }
+        }
+
+        // Process notifications block from header content
+        function processNotificationsBlock(notificationsBlock) {
+            // Move notifications block to body for proper positioning
+            document.body.appendChild(notificationsBlock);
+            
+            // Add close functionality to the close button
+            const closeButton = notificationsBlock.querySelector('.notifications-close');
+            if (closeButton) {
+                closeButton.addEventListener('click', () => {
+                    toggleNotifications(notificationsBlock, false);
+                });
+            }
+            
+            // Initially hide the notifications
+            notificationsBlock.style.display = 'none';
+        }
+
+        // Initialize notification functionality
+        document.addEventListener('DOMContentLoaded', () => {
+            // Process notifications block if it exists
+            const notificationsBlock = document.querySelector('.notifications');
+            if (notificationsBlock) {
+                processNotificationsBlock(notificationsBlock);
+            }
+            
+            // Setup notification icon
+            const notificationIcon = document.querySelector('.icon-notification');
+            if (notificationIcon) {
+                setupNotificationIcon(notificationIcon);
+            }
+        });
+    </script>
+</body>
+</html> 

@@ -1,0 +1,480 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Notification Positioning Test</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 20px;
+            background-color: #f5f5f5;
+        }
+        
+        .test-header {
+            background: white;
+            padding: 16px 24px;
+            border-radius: 8px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+            margin-bottom: 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .header-left {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+        }
+        
+        .gold-price {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-weight: 500;
+            color: #1a1a1a;
+        }
+        
+        .chevron-down {
+            width: 0;
+            height: 0;
+            border-left: 4px solid transparent;
+            border-right: 4px solid transparent;
+            border-top: 4px solid #1a1a1a;
+        }
+        
+        .header-right {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+        }
+        
+        .icon-notification {
+            position: relative;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 48px;
+            height: 48px;
+            border-radius: 50%;
+            transition: background-color 0.2s;
+        }
+        
+        .icon-notification:hover {
+            background-color: rgba(0, 0, 0, 0.05);
+        }
+        
+        .icon-notification img {
+            width: 24px;
+            height: 24px;
+        }
+        
+        .notification-badge {
+            position: absolute;
+            top: 8px;
+            right: 8px;
+            background: #212529;
+            color: white;
+            border-radius: 50%;
+            width: 18px;
+            height: 18px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 10px;
+            font-weight: 600;
+            min-width: 18px;
+        }
+        
+        .login-button {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-decoration: none;
+            padding: 7px 20px;
+            gap: 8px;
+            border-radius: 8px;
+            background: #ffcb09;
+            color: #1a1a1a;
+            font-weight: 600;
+            font-size: 12px;
+            line-height: 120%;
+        }
+        
+        .person-icon {
+            width: 16px;
+            height: 16px;
+            background: #1a1a1a;
+            border-radius: 50%;
+        }
+        
+        .test-content {
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+        }
+        
+        .test-controls {
+            margin-bottom: 20px;
+            padding: 16px;
+            background: #f8f9fa;
+            border-radius: 8px;
+        }
+        
+        .test-controls button {
+            margin-right: 10px;
+            padding: 8px 16px;
+            border: 1px solid #007bff;
+            background: #007bff;
+            color: white;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+        
+        .test-controls button:hover {
+            background: #0056b3;
+        }
+        
+        .notifications {
+            position: absolute;
+            top: 100%;
+            right: 0;
+            max-width: 400px;
+            z-index: 1001;
+            display: none;
+            margin-top: 8px;
+        }
+        
+        .notifications-container {
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+            overflow: hidden;
+            position: relative;
+        }
+        
+        .notifications-header {
+            background: #f8f9fa;
+            padding: 16px 20px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            border-bottom: 1px solid #e9ecef;
+            position: relative;
+        }
+        
+        .notifications-header::before {
+            content: '';
+            position: absolute;
+            top: -8px;
+            right: 20px;
+            width: 0;
+            height: 0;
+            border-left: 8px solid transparent;
+            border-right: 8px solid transparent;
+            border-bottom: 8px solid #f8f9fa;
+        }
+        
+        .notifications-title {
+            margin: 0;
+            font-size: 18px;
+            font-weight: 600;
+            color: #212529;
+        }
+        
+        .notifications-close {
+            background: none;
+            border: none;
+            font-size: 20px;
+            color: #212529;
+            cursor: pointer;
+            padding: 4px;
+            border-radius: 4px;
+        }
+        
+        .notifications-list {
+            list-style: none;
+            margin: 0;
+            padding: 0;
+            max-height: 300px;
+            overflow-y: auto;
+        }
+        
+        .notification-item {
+            padding: 16px 20px;
+            border-bottom: 1px solid #e9ecef;
+        }
+        
+        .notification-item:last-child {
+            border-bottom: none;
+        }
+        
+        .notification-message {
+            color: #212529;
+            font-size: 14px;
+            line-height: 1.4;
+            margin-bottom: 8px;
+        }
+        
+        .notification-call-to-action a {
+            color: #007bff;
+            text-decoration: underline;
+            font-size: 14px;
+            font-weight: 500;
+        }
+        
+        .notification-timestamp {
+            color: #6c757d;
+            font-size: 12px;
+            margin-top: 6px;
+        }
+        
+        .notifications-hidden {
+            display: none;
+        }
+        
+        /* Mobile responsive */
+        @media (width <= 480px) {
+            .notifications {
+                max-width: calc(100vw - 32px);
+                right: -16px;
+                left: -16px;
+                width: calc(100vw - 32px);
+            }
+            
+            .notifications-container {
+                border-radius: 0;
+            }
+            
+            .notifications-header {
+                padding: 12px 16px;
+            }
+            
+            .notification-item {
+                padding: 12px 16px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="test-header">
+        <div class="header-left">
+            <div class="gold-price">
+                Gold Price
+                <div class="chevron-down"></div>
+            </div>
+        </div>
+        <div class="header-right">
+            <span class="icon icon-notification">
+                <img data-icon-name="notification" src="/icons/notification.svg" loading="lazy" alt="Notifications">
+                <span class="notification-badge" aria-label="3 unread notifications">3</span>
+                
+                <!-- Notifications Block Inside Icon -->
+                <div class="notifications block" data-block-name="notifications" data-block-status="loaded" style="display: none;">
+                    <div class="notifications-container notifications-hidden">
+                        <div class="notifications-header">
+                            <h3 class="notifications-title">Notifications</h3>
+                            <span class="notifications-badge">3</span>
+                            <button class="notifications-close" aria-label="Close notifications">×</button>
+                        </div>
+                        <ul class="notifications-list" id="notifications-list">
+                            <li class="notification-item">
+                                <div class="notification-message">
+                                    <p>Don't miss out! Get up to 8.55%*p.a. and grow your savings faster</p>
+                                </div>
+                                <div class="notification-call-to-action">
+                                    <a href="https://www.shriramfinance.in/fixed-deposit" title="https://www.shriramfinance.in/fixed-deposit">Invest Now</a>
+                                </div>
+                                <div class="notification-timestamp">
+                                    <p>25-06-2025 08:30:00</p>
+                                </div>
+                            </li>
+                            <li class="notification-item">
+                                <div class="notification-message">
+                                    <p>Fixed Investment Plan up to 8.05%* p.a. Interest rates.</p>
+                                </div>
+                                <div class="notification-call-to-action">
+                                    <a href="https://www.shriramfinance.in/fixed-deposit" title="https://www.shriramfinance.in/fixed-deposit">Invest Now</a>
+                                </div>
+                                <div class="notification-timestamp">
+                                    <p>25-06-2025 08:30:00</p>
+                                </div>
+                            </li>
+                            <li class="notification-item">
+                                <div class="notification-message">
+                                    <p>Grow your savings with FD interest rates as high as 8.55%*p.a.</p>
+                                </div>
+                                <div class="notification-call-to-action">
+                                    <a href="https://www.shriramfinance.in/fixed-deposit" title="https://www.shriramfinance.in/fixed-deposit">Invest Now</a>
+                                </div>
+                                <div class="notification-timestamp">
+                                    <p>25-06-2025 08:30:00</p>
+                                </div>
+                            </li>
+                        </ul>
+                        <div class="notifications-scroll-indicator"></div>
+                    </div>
+                </div>
+            </span>
+            
+            <a href="#" class="login-button">
+                <div class="person-icon"></div>
+                Register / Login
+            </a>
+        </div>
+    </div>
+
+    <div class="test-content">
+        <h1>Notification Positioning Test</h1>
+        <p>This test demonstrates the new notification positioning where the notifications block is inside the notification icon span.</p>
+        
+        <div class="test-controls">
+            <h3>Test Controls:</h3>
+            <button onclick="toggleNotifications()">Toggle Panel</button>
+            <button onclick="addNotification()">Add Notification</button>
+            <button onclick="removeNotification()">Remove Notification</button>
+            <button onclick="clearNotifications()">Clear All</button>
+        </div>
+        
+        <div class="test-info">
+            <h3>Current Status:</h3>
+            <p><strong>Notification Count:</strong> <span id="notification-count">3</span></p>
+            <p><strong>Badge Visible:</strong> <span id="badge-visible">Yes</span></p>
+            <p><strong>Panel Position:</strong> <span id="panel-position">Inside Icon Span</span></p>
+        </div>
+        
+        <div class="test-details">
+            <h3>Key Changes:</h3>
+            <ul>
+                <li><strong>Positioning:</strong> Notifications block is now inside the icon span</li>
+                <li><strong>CSS:</strong> Uses <code>position: absolute</code> relative to the icon</li>
+                <li><strong>Structure:</strong> Icon span becomes the positioning context</li>
+                <li><strong>Mobile:</strong> Responsive positioning for smaller screens</li>
+            </ul>
+        </div>
+    </div>
+
+    <script>
+        // Notification badge functionality
+        function createNotificationBadge(notificationIcon, count) {
+            // Remove existing badge if it exists
+            const existingBadge = notificationIcon.querySelector('.notification-badge');
+            if (existingBadge) {
+                existingBadge.remove();
+            }
+
+            // Only create badge if count is greater than 0
+            if (count > 0) {
+                const badge = document.createElement('span');
+                badge.className = 'notification-badge';
+                badge.textContent = count;
+                badge.setAttribute('aria-label', `${count} unread notifications`);
+                notificationIcon.appendChild(badge);
+            }
+        }
+
+        function updateNotificationBadge() {
+            const notificationIcon = document.querySelector('.icon-notification');
+            const notificationItems = document.querySelectorAll('.notification-item');
+            const count = notificationItems.length;
+
+            createNotificationBadge(notificationIcon, count);
+            
+            // Update status display
+            document.getElementById('notification-count').textContent = count;
+            document.getElementById('badge-visible').textContent = count > 0 ? 'Yes' : 'No';
+        }
+
+        function toggleNotifications() {
+            const notificationsBlock = document.querySelector('.notifications');
+            const container = notificationsBlock.querySelector('.notifications-container');
+            const isVisible = notificationsBlock.style.display === 'block';
+            
+            if (isVisible) {
+                container.classList.add('notifications-hidden');
+                notificationsBlock.style.display = 'none';
+            } else {
+                notificationsBlock.style.display = 'block';
+                container.classList.remove('notifications-hidden');
+            }
+        }
+
+        function addNotification() {
+            const list = document.getElementById('notifications-list');
+            const newItem = document.createElement('li');
+            newItem.className = 'notification-item';
+            newItem.innerHTML = `
+                <div class="notification-message">
+                    <p>New notification added at ${new Date().toLocaleTimeString()}</p>
+                </div>
+                <div class="notification-call-to-action">
+                    <a href="#">View Details</a>
+                </div>
+                <div class="notification-timestamp">
+                    <p>${new Date().toLocaleDateString()} ${new Date().toLocaleTimeString()}</p>
+                </div>
+            `;
+            list.appendChild(newItem);
+            updateNotificationBadge();
+        }
+
+        function removeNotification() {
+            const list = document.getElementById('notifications-list');
+            const items = list.querySelectorAll('.notification-item');
+            if (items.length > 0) {
+                items[items.length - 1].remove();
+                updateNotificationBadge();
+            }
+        }
+
+        function clearNotifications() {
+            const list = document.getElementById('notifications-list');
+            list.innerHTML = '';
+            updateNotificationBadge();
+        }
+
+        // Setup notification icon click handler
+        function setupNotificationIcon() {
+            const notificationIcon = document.querySelector('.icon-notification');
+            if (notificationIcon) {
+                notificationIcon.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    e.stopPropagation();
+                    toggleNotifications();
+                });
+
+                // Add keyboard support
+                notificationIcon.addEventListener('keydown', (e) => {
+                    if (e.key === 'Enter' || e.key === ' ') {
+                        e.preventDefault();
+                        toggleNotifications();
+                    }
+                });
+            }
+        }
+
+        // Setup close button
+        function setupCloseButton() {
+            const closeButton = document.querySelector('.notifications-close');
+            if (closeButton) {
+                closeButton.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    e.stopPropagation();
+                    toggleNotifications();
+                });
+            }
+        }
+
+        // Initialize
+        document.addEventListener('DOMContentLoaded', function() {
+            setupNotificationIcon();
+            setupCloseButton();
+            updateNotificationBadge();
+        });
+    </script>
+</body>
+</html> 
