@@ -572,33 +572,33 @@
     ]
   },
   {
-            "id": "goldloan",
-            "fields": [
-                {
-                    "component": "reference",
-                    "valueType": "string",
-                    "name": "textContent_image",
-                    "label": "Image",
-                    "multi": false
-                },
-                {
-                    "component": "richtext",
-                    "name": "textContent_text",
-                    "label": "Text",
-                    "valueType": "string"
-                },
-                {
-                    "component": "richtext",
-                    "name": "content_text",
-                    "label": "Content",
-                    "valueType": "string"
-                },
-                {
-                    "component": "aem-content",
-                    "name": "content_cta",
-                    "label": "CTA",
-                    "valueType": "string"
-                }
-            ]
-    }
+    "id": "goldloan",
+    "fields": [
+      {
+        "component": "reference",
+        "valueType": "string",
+        "name": "textContent_image",
+        "label": "Image",
+        "multi": false
+      },
+      {
+        "component": "richtext",
+        "name": "textContent_text",
+        "label": "Text",
+        "valueType": "string"
+      },
+      {
+        "component": "richtext",
+        "name": "content_text",
+        "label": "Content",
+        "valueType": "string"
+      },
+      {
+        "component": "aem-content",
+        "name": "content_cta",
+        "label": "CTA",
+        "valueType": "string"
+      }
+    ]
+  }
 ]
