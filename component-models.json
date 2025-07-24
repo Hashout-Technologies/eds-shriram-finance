@@ -570,5 +570,42 @@
         "label": "Placeholder Image Alt Text"
       }
     ]
+  },
+  {
+    "id": "socialshare",
+    "fields": [
+      {
+        "component": "text",
+        "name": "title",
+        "label": "Title",
+        "valueType": "string"
+      },
+      {
+        "component": "text",
+        "name": "textContent_text",
+        "label": "Text",
+        "valueType": "string"
+      },
+      {
+        "component": "reference",
+        "valueType": "array",
+        "name": "textContent_image",
+        "label": "Social share icons",
+        "multi": true
+      },
+      {
+        "component": "reference",
+        "valueType": "string",
+        "name": "copyLink_icon",
+        "label": "Copy link icon",
+        "multi": false
+      },
+      {
+        "component": "text",
+        "name": "copyLink_text",
+        "label": "Copy link label",
+        "valueType": "string"
+      }
+    ]
   }
 ]
