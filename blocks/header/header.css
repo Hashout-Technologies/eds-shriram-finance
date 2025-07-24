@@ -217,6 +217,16 @@ header nav .nav-brand-logo img {
 header nav .nav-sections {
     flex: 1 1 auto;
     position: relative;
+    display: none; /* Default hidden, will be overridden by classes */
+}
+
+/* Navigation sections display states */
+header nav .nav-sections.desktop-visible {
+    display: block;
+}
+
+header nav .nav-sections.mobile-visible {
+    display: none;
 }
 
 header nav .nav-sections ul {
@@ -370,28 +380,29 @@ header nav .nav-sections ul>li>ul>li {
     }
 
     header nav .nav-sections .default-content-wrapper>ul>li>ul>li.nav-leaf>p:hover {
-        color: #ffcb08;
         text-decoration: underline;
     }
 
     /* Direct anchor tags in leaf nodes (like Calculators dropdown) */
     header nav .nav-sections .default-content-wrapper>ul>li>ul>li.nav-leaf>a {
-        background: none;
-        text-decoration: underline;
-        color: #1a1a1a;
-        font-weight: 500;
-        display: block;
-        padding: 10px 20px;
-        width: 100%;
-        font-size: 14px;
-        font-family: GilmerRegular, sans-serif;
-        transition: color 0.2s ease;
-    }
+    background: none;
+    text-decoration: underline;
+    color: #1a1a1a;
+    font-weight: 500;
+    display: block;
+    padding: 10px 20px;
+    width: 100%;
+    font-size: 14px;
+    font-family: GilmerRegular, sans-serif;
+    transition: color 0.2s ease;
+    cursor: pointer;
+}
 
     header nav .nav-sections .default-content-wrapper>ul>li>ul>li.nav-leaf>a:hover {
-        color: #ffcb08;
-        text-decoration: underline !important;
-    }
+    text-decoration: underline !important;
+}
+
+
 
     /* Active submenu indicator */
     /* stylelint-disable-next-line no-descending-specificity */
@@ -412,7 +423,7 @@ header nav .nav-sections ul>li>ul>li {
         left: 240px;
         width: calc(100% - 240px);
         top: 0;
-        display: flex;
+        display: none; /* Default hidden, will be overridden by classes */
         flex-direction: row;
         justify-content: flex-start;
         background-color: transparent;
@@ -465,7 +476,7 @@ header nav .nav-sections ul>li>ul>li {
     /* Deep nested submenu containers */
     /* stylelint-disable-next-line no-descending-specificity */
     header nav .nav-sections .default-content-wrapper>ul>li>ul>li>ul>li>ul {
-        display: block;
+        display: none; /* Default hidden, will be overridden by classes */
         margin-top: 15px;
         padding-left: 20px;
     }
@@ -616,6 +627,21 @@ header nav .nav-top-right .notification-icon .notification-badge {
     min-width: 18px;
 }
 
+/* Default states for notifications */
+.notifications {
+    display: none; /* Default hidden, will be overridden by classes */
+    position: absolute;
+    top: 100%;
+    right: 0;
+    z-index: 1000;
+    background: white;
+    border: 1px solid #e0e0e0;
+    border-radius: 8px;
+    box-shadow: 0 4px 12px rgb(0 0 0 / 15%);
+    min-width: 300px;
+    max-width: 400px;
+}
+
 @media (width < 900px) {
     header nav .nav-top-right {
         display: flex;
@@ -757,6 +783,7 @@ header nav .nav-sidebar {
     transition: all 0.3s ease-in-out;
     box-shadow: 5px 10px 10px #000;
     transform: translateX(0);
+    display: none; /* Default hidden, will be overridden by classes */
 }
 
 header nav .nav-sidebar.sidebar-open {
@@ -767,6 +794,17 @@ header nav .nav-sidebar.sidebar-open {
 header nav .nav-sidebar.sidebar-initialized {
     transition: transform 0.3s ease-in-out, left 0.3s ease-in-out;
 }
+
+/* Sidebar display states */
+header nav .nav-sidebar.sidebar-visible {
+    display: block;
+}
+
+header nav .nav-sidebar.sidebar-hidden {
+    display: none;
+}
+
+
 
 /* ==========================================================================
    Sidebar Header Improvements
@@ -971,4 +1009,62 @@ header nav .nav-sidebar .sidebar-main .accordion-wrapper .accordion details:not(
 header nav .nav-sidebar .sidebar-main .accordion-wrapper .accordion details[open] .accordion-item-body {
     border-top: none;
     background-color: var(--light-color);
+}
+
+/* ==========================================================================
+   JavaScript Style Classes
+   ========================================================================== */
+
+/* Body overflow control for mobile sidebar */
+body.sidebar-open {
+    overflow-y: hidden;
+}
+
+/* Submenu children display states */
+header nav .nav-sections .default-content-wrapper>ul>li>ul>li>ul.submenu-children-hidden {
+    display: none !important;
+}
+
+header nav .nav-sections .default-content-wrapper>ul>li>ul>li>ul.submenu-children-visible {
+    display: flex !important;
+}
+
+/* Submenu transition effects */
+header nav .nav-sections .default-content-wrapper>ul>li>ul>li>ul.submenu-transition {
+    opacity: 0;
+    transform: translateY(-10px);
+    transition: opacity 0.3s ease, transform 0.3s ease;
+}
+
+header nav .nav-sections .default-content-wrapper>ul>li>ul>li>ul.submenu-transition.submenu-visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* Sidebar close button styling */
+.sidebar-close-button {
+    cursor: pointer;
+}
+
+/* Notifications display states */
+.notifications.notifications-block-hidden {
+    display: none !important;
+}
+
+.notifications.notifications-block-visible {
+    display: block !important;
+}
+
+/* Dropdown height control */
+.dropdown-height-auto {
+    height: auto;
+}
+
+/* Grandchildren display states */
+header nav .nav-sections .default-content-wrapper>ul>li>ul>li>ul>li>ul.grandchildren-hidden {
+    display: none !important;
+}
+
+header nav .nav-sections .default-content-wrapper>ul>li>ul>li>ul>li>ul.grandchildren-visible {
+    display: block !important;
 }

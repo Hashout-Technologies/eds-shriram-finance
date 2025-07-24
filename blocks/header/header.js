@@ -78,7 +78,11 @@ const toggleSidebar = async (nav, sidebar, forceExpanded = null) => {
 
   // Update body overflow and add overlay for mobile
   if (!isDesktop.matches) {
-    document.body.style.overflowY = shouldExpand ? 'hidden' : '';
+    if (shouldExpand) {
+      document.body.classList.add('sidebar-open');
+    } else {
+      document.body.classList.remove('sidebar-open');
+    }
 
     // Add/remove overlay
     let overlay = document.querySelector('.sidebar-overlay');
@@ -98,7 +102,8 @@ const toggleSidebar = async (nav, sidebar, forceExpanded = null) => {
   // Toggle sidebar visibility with improved animation
   if (sidebar) {
     if (shouldExpand) {
-      sidebar.style.display = 'block';
+      sidebar.classList.remove('sidebar-hidden');
+      sidebar.classList.add('sidebar-visible');
       // Trigger animation after display is set
       setTimeout(() => {
         sidebar.classList.add('sidebar-open');
@@ -108,7 +113,8 @@ const toggleSidebar = async (nav, sidebar, forceExpanded = null) => {
       // Wait for animation to complete before hiding
       setTimeout(() => {
         if (!sidebar.classList.contains('sidebar-open')) {
-          sidebar.style.display = 'none';
+          sidebar.classList.remove('sidebar-visible');
+          sidebar.classList.add('sidebar-hidden');
         }
       }, 300);
     }
@@ -129,7 +135,8 @@ const toggleSidebar = async (nav, sidebar, forceExpanded = null) => {
 function hideGrandchildren(childrenContainer) {
   const grandchildren = childrenContainer.querySelectorAll('li > ul');
   grandchildren.forEach((grandchild) => {
-    grandchild.style.display = 'none';
+    grandchild.classList.remove('grandchildren-visible');
+    grandchild.classList.add('grandchildren-hidden');
   });
 }
 
@@ -139,7 +146,8 @@ function hideGrandchildren(childrenContainer) {
 function showGrandchildren(childrenContainer) {
   const grandchildren = childrenContainer.querySelectorAll('li > ul');
   grandchildren.forEach((grandchild) => {
-    grandchild.style.display = 'block';
+    grandchild.classList.remove('grandchildren-hidden');
+    grandchild.classList.add('grandchildren-visible');
   });
 }
 
@@ -156,7 +164,7 @@ function updateDropdownHeight(mainDropdown) {
 
   // Get all visible submenu children containers
   const visibleChildren = dropdownContainer.querySelectorAll(
-    "li > ul[style*='flex']",
+    'li > ul.submenu-children-visible',
   );
 
   visibleChildren.forEach((childrenContainer) => {
@@ -180,6 +188,7 @@ function updateDropdownHeight(mainDropdown) {
 function resetDropdownHeight(navSection) {
   const dropdown = navSection.querySelector('ul');
   if (dropdown) {
+    dropdown.classList.remove('dropdown-height-auto');
     dropdown.style.height = 'auto';
   }
 }
@@ -209,12 +218,7 @@ function setupSubmenuHoverEvents(navSection) {
       // Check if there's a direct anchor tag (like in Calculators dropdown)
       const directAnchor = submenuItem.querySelector(':scope > a');
       if (directAnchor) {
-        // Style the anchor to look like a clickable link
-        directAnchor.style.textDecoration = 'underline';
-        directAnchor.style.cursor = 'pointer';
-        directAnchor.style.color = '#1a1a1a';
-        directAnchor.style.fontWeight = '500';
-
+        // The styling is now handled by CSS classes
         return;
       }
 
@@ -223,10 +227,6 @@ function setupSubmenuHoverEvents(navSection) {
       if (submenuParagraph) {
         const anchor = submenuParagraph.querySelector('a');
         if (anchor) {
-          // Style the paragraph to look like a clickable link
-          submenuParagraph.style.textDecoration = 'underline';
-          submenuParagraph.style.cursor = 'pointer';
-
           // Add click handler to the paragraph
           submenuParagraph.addEventListener('click', (e) => {
             e.preventDefault();
@@ -238,12 +238,15 @@ function setupSubmenuHoverEvents(navSection) {
     }
 
     // Initially hide all submenu children and their grandchildren
-    submenuChildren.style.display = 'none';
+    submenuChildren.classList.remove('submenu-children-visible');
+    submenuChildren.classList.add('submenu-children-hidden');
     hideGrandchildren(submenuChildren);
 
     // Show first submenu's children by default
     if (submenuItem === submenuItems[0]) {
-      submenuChildren.style.display = 'flex';
+      submenuChildren.classList.remove('submenu-children-hidden');
+      submenuChildren.classList.add('submenu-children-visible');
+      submenuChildren.classList.add('submenu-visible');
       showGrandchildren(submenuChildren);
       submenuItem.classList.add('active');
       updateDropdownHeight(mainDropdown);
@@ -255,14 +258,16 @@ function setupSubmenuHoverEvents(navSection) {
       submenuItems.forEach((item) => {
         const children = item.querySelector(':scope > ul');
         if (children) {
-          children.style.display = 'none';
+          children.classList.remove('submenu-children-visible');
+          children.classList.add('submenu-children-hidden');
           hideGrandchildren(children);
         }
         item.classList.remove('active');
       });
 
       // Show children and grandchildren of current submenu item
-      submenuChildren.style.display = 'flex';
+      submenuChildren.classList.remove('submenu-children-hidden');
+      submenuChildren.classList.add('submenu-children-visible');
       showGrandchildren(submenuChildren);
       submenuItem.classList.add('active');
 
@@ -270,12 +275,10 @@ function setupSubmenuHoverEvents(navSection) {
       updateDropdownHeight(mainDropdown);
 
       // Add smooth transition effect
-      submenuChildren.style.opacity = '0';
-      submenuChildren.style.transform = 'translateY(-10px)';
+      submenuChildren.classList.add('submenu-transition');
+      submenuChildren.classList.remove('submenu-visible');
       setTimeout(() => {
-        submenuChildren.style.transition = 'opacity 0.3s ease, transform 0.3s ease';
-        submenuChildren.style.opacity = '1';
-        submenuChildren.style.transform = 'translateY(0)';
+        submenuChildren.classList.add('submenu-visible');
       }, 10);
     });
   });
@@ -539,11 +542,12 @@ function toggleNotifications(notificationsBlock, forceVisible = null) {
   if (!container) return;
 
   // Check if notifications are currently visible by checking both display and class
-  const isCurrentlyVisible = notificationsBlock.style.display !== 'none' && !container.classList.contains('notifications-hidden');
+  const isCurrentlyVisible = !notificationsBlock.classList.contains('notifications-block-hidden') && !container.classList.contains('notifications-hidden');
   const shouldShow = forceVisible !== null ? forceVisible : !isCurrentlyVisible;
 
   if (shouldShow) {
-    notificationsBlock.style.display = 'block';
+    notificationsBlock.classList.remove('notifications-block-hidden');
+    notificationsBlock.classList.add('notifications-block-visible');
     container.classList.remove('notifications-hidden');
     // Add click outside to close
     setTimeout(() => {
@@ -552,7 +556,8 @@ function toggleNotifications(notificationsBlock, forceVisible = null) {
     }, 100);
   } else {
     container.classList.add('notifications-hidden');
-    notificationsBlock.style.display = 'none';
+    notificationsBlock.classList.remove('notifications-block-visible');
+    notificationsBlock.classList.add('notifications-block-hidden');
     // eslint-disable-next-line no-use-before-define
     document.removeEventListener('click', handleClickOutside);
   }
@@ -678,7 +683,7 @@ function processNotificationsBlock(notificationsBlock) {
   }
 
   // Initially hide the notifications and ensure proper initial state
-  notificationsBlock.style.display = 'none';
+  notificationsBlock.classList.add('notifications-block-hidden');
   const container = notificationsBlock.querySelector('.notifications-container');
   if (container) {
     container.classList.add('notifications-hidden');
@@ -845,7 +850,7 @@ export default async function decorate(block) {
       // Add close functionality to the first image in sidebar header
       const firstImage = columnsWrapper.querySelector('img');
       if (firstImage) {
-        firstImage.style.cursor = 'pointer';
+        firstImage.classList.add('sidebar-close-button');
         firstImage.setAttribute('role', 'button');
         firstImage.setAttribute('tabindex', '0');
         firstImage.setAttribute('aria-label', 'Close sidebar');
@@ -883,7 +888,13 @@ export default async function decorate(block) {
   // Initialize sidebar state and responsive behavior
   if (sidebarSection) {
     // Set initial display state
-    sidebarSection.style.display = isDesktop.matches ? 'block' : 'none';
+    if (isDesktop.matches) {
+      sidebarSection.classList.add('sidebar-visible');
+      sidebarSection.classList.remove('sidebar-hidden');
+    } else {
+      sidebarSection.classList.add('sidebar-hidden');
+      sidebarSection.classList.remove('sidebar-visible');
+    }
 
     // Add CSS classes for better styling control
     sidebarSection.classList.add('sidebar-initialized');
@@ -894,9 +905,21 @@ export default async function decorate(block) {
 
   // Handle mobile navigation visibility
   if (navSections) {
-    navSections.style.display = isDesktop.matches ? 'block' : 'none';
+    if (isDesktop.matches) {
+      navSections.classList.add('desktop-visible');
+      navSections.classList.remove('mobile-visible');
+    } else {
+      navSections.classList.add('mobile-visible');
+      navSections.classList.remove('desktop-visible');
+    }
     isDesktop.addEventListener('change', () => {
-      navSections.style.display = isDesktop.matches ? 'block' : 'none';
+      if (isDesktop.matches) {
+        navSections.classList.add('desktop-visible');
+        navSections.classList.remove('mobile-visible');
+      } else {
+        navSections.classList.add('mobile-visible');
+        navSections.classList.remove('desktop-visible');
+      }
     });
   }
 
