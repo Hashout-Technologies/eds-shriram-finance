@@ -568,36 +568,75 @@
         "name": "placeholder_imageAlt",
         "value": "",
         "label": "Placeholder Image Alt Text"
+      }
+    ]
+  },
+  {
+    "id": "article-header",
+    "fields": [
+      {
+        "component": "text",
+        "name": "title",
+        "label": "Article Title",
+        "valueType": "string"
       },
       {
-  "id": "article-header",
-  "fields": [
-    {
-      "component": "text",
-      "name": "title",
-      "label": "Article Title",
-      "valueType": "string"
-    },
-    {
-      "component": "text",
-      "name": "category",
-      "label": "Category",
-      "valueType": "string"
-    },
-    {
-      "component": "text",
-      "name": "author",
-      "label": "Written by",
-      "valueType": "string"
-    },
-    {
-      "component": "text",
-      "name": "postedDate",
-      "label": "Posted Date",
-      "valueType": "string"
-    }
-  ]
-}
+        "component": "text",
+        "name": "category",
+        "label": "Category",
+        "valueType": "string"
+      },
+      {
+        "component": "text",
+        "name": "author",
+        "label": "Written by",
+        "valueType": "string"
+      },
+      {
+        "component": "text",
+        "name": "postedDate",
+        "label": "Posted Date",
+        "valueType": "string"
+      },
+      {
+        "component": "text",
+        "name": "updatedDate",
+        "label": "Updated Date",
+        "valueType": "string"
+      },
+      {
+        "component": "text",
+        "name": "viewCount",
+        "label": "View Count",
+        "valueType": "string"
+      },
+      {
+        "component": "text",
+        "name": "readingTime",
+        "label": "Reading Time (minutes)",
+        "valueType": "string"
+      },
+      {
+        "component": "reference",
+        "valueType": "string",
+        "name": "shareIcon",
+        "label": "Share Icon",
+        "multi": false
+      },
+      {
+        "component": "reference",
+        "valueType": "string",
+        "name": "viewIcon",
+        "label": "View Icon",
+        "multi": false
+      },
+      {
+        "component": "reference",
+        "valueType": "string",
+        "name": "timeIcon",
+        "label": "Time Icon",
+        "multi": false
+      }
     ]
   }
 ]
