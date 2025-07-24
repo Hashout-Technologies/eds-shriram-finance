@@ -582,12 +582,6 @@
       },
       {
         "component": "text",
-        "name": "category",
-        "label": "Category",
-        "valueType": "string"
-      },
-      {
-        "component": "text",
         "name": "author",
         "label": "Written by",
         "valueType": "string"
@@ -602,18 +596,6 @@
         "component": "text",
         "name": "updatedDate",
         "label": "Updated Date",
-        "valueType": "string"
-      },
-      {
-        "component": "text",
-        "name": "viewCount",
-        "label": "View Count",
-        "valueType": "string"
-      },
-      {
-        "component": "text",
-        "name": "readingTime",
-        "label": "Reading Time (minutes)",
         "valueType": "string"
       },
       {
