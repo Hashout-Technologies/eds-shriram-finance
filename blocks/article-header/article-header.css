@@ -1,0 +1,405 @@
+/* Article Header Specific Styles - Exact Copy with Namespaced Classes */
+.article-header .article-header-frame {
+  display: flex;
+  flex-direction: column;
+  width: 832px;
+  align-items: flex-end;
+  gap: 24px;
+  padding: 40px;
+  position: relative;
+  background-color: #ffffff;
+  border-radius: 24px;
+  overflow: hidden;
+}
+
+.article-header .article-header-frame .article-header-div {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 16px;
+  position: relative;
+  align-self: stretch;
+  width: 100%;
+  flex: 0 0 auto;
+}
+
+.article-header .article-header-frame .article-header-div-2 {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 24px;
+  position: relative;
+  align-self: stretch;
+  width: 100%;
+  flex: 0 0 auto;
+}
+
+.article-header .article-header-frame .article-header-text-wrapper {
+  position: relative;
+  align-self: stretch;
+  margin-top: -1.00px;
+  font-family: "Gilmer", Helvetica;
+  font-weight: 700;
+  color: #333333;
+  font-size: 24px;
+  letter-spacing: 0px;
+  line-height: 120%;
+  font-style: normal;
+}
+
+.article-header .article-header-frame .article-header-div-3 {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  position: relative;
+  align-self: stretch;
+  width: 100%;
+  flex: 0 0 auto;
+}
+
+.article-header .article-header-frame .article-header-div-4 {
+  display: flex;
+  width: 343px;
+  align-items: center;
+  justify-content: space-between;
+  position: relative;
+}
+
+.article-header .article-header-frame .article-header-p {
+  position: relative;
+  width: fit-content;
+  margin-top: -1.00px;
+  font-family: "Gilmer-Regular", Helvetica;
+  font-weight: 400;
+  color: #333333;
+  font-size: 14px;
+  letter-spacing: 0;
+  line-height: 21px;
+  white-space: nowrap;
+}
+
+.article-header .article-header-frame .article-header-span {
+  font-family: "Gilmer", Helvetica;
+  font-weight: 400;
+  color: #333333;
+  font-size: 14px;
+  letter-spacing: 0px;
+  line-height: 150%;
+  font-style: normal;
+}
+
+.article-header .article-header-frame .article-header-text-wrapper-2 {
+  font-family: "Gilmer", Helvetica;
+  font-weight: 500;
+  font-style: normal;
+  letter-spacing: 0px;
+  line-height: 150%;
+  font-size: 14px;
+}
+
+.article-header .article-header-frame .article-header-updated-july-wrapper {
+  position: relative;
+  width: 166px;
+  height: 21px;
+}
+
+.article-header .article-header-frame .article-header-updated-july {
+  position: relative;
+  width: fit-content;
+  margin-top: -1.00px;
+  font-family: "Gilmer-Regular", Helvetica;
+  font-weight: 400;
+  color: #333333;
+  font-size: 14px;
+  letter-spacing: 0;
+  line-height: 21px;
+  white-space: nowrap;
+}
+
+.article-header .article-header-frame .article-header-div-5 {
+  display: inline-flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 24px;
+  position: relative;
+  flex: 0 0 auto;
+}
+
+.article-header .article-header-frame .article-header-group {
+  position: relative;
+  width: 80px;
+  height: 24px;
+}
+
+.article-header .article-header-frame .article-header-text-wrapper-3 {
+  position: absolute;
+  top: 0;
+  left: 32px;
+  font-family: "Gilmer-Medium", Helvetica;
+  font-weight: 500;
+  color: #333333;
+  font-size: 16px;
+  letter-spacing: 0;
+  line-height: 24px;
+  white-space: nowrap;
+}
+
+.article-header .article-header-frame .article-header-img {
+  position: absolute;
+  width: 24px;
+  height: 24px;
+  top: 0;
+  left: 0;
+}
+
+.article-header .article-header-frame .article-header-group-wrapper {
+  position: relative;
+  width: 62px;
+  height: 24px;
+}
+
+.article-header .article-header-frame .article-header-group-2 {
+  position: relative;
+  width: 64px;
+  height: 24px;
+}
+
+.article-header .article-header-frame .article-header-text-wrapper-4 {
+  position: absolute;
+  top: 0;
+  left: 29px;
+  font-family: "Gilmer", Helvetica;
+  font-weight: 500;
+  color: #333333;
+  font-size: 14px;
+  letter-spacing: 0px;
+  line-height: 150%;
+  white-space: nowrap;
+  font-style: normal;
+}
+
+.article-header .article-header-frame .article-header-frame-wrapper {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  position: relative;
+  flex: 0 0 auto;
+}
+
+.article-header .article-header-frame .article-header-div-6 {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 5px;
+  position: relative;
+  flex: 0 0 auto;
+  border-radius: 30px;
+}
+
+.article-header .article-header-frame .article-header-clock-timer {
+  position: relative;
+  width: 24px;
+  height: 24px;
+}
+
+.article-header .article-header-frame .article-header-text-wrapper-5 {
+  position: relative;
+  width: fit-content;
+  font-family: "Gilmer", Helvetica;
+  font-weight: 500;
+  color: #333333;
+  font-size: 14px;
+  letter-spacing: 0px;
+  line-height: 150%;
+  white-space: nowrap;
+  font-style: normal;
+}
+
+.article-header .article-header-frame .article-header-div-wrapper {
+  display: flex;
+  align-items: center;
+  gap: 18px;
+  position: relative;
+  align-self: stretch;
+  width: 100%;
+  flex: 0 0 auto;
+}
+
+.article-header .article-header-frame .article-header-frame-wrapper-2 {
+  display: inline-flex;
+  align-items: center;
+  gap: 610px;
+  position: relative;
+  flex: 0 0 auto;
+}
+
+.article-header .article-header-frame .article-header-div-7 {
+  display: flex;
+  width: 752px;
+  align-items: center;
+  justify-content: space-between;
+  position: relative;
+}
+
+
+/* IMAGE PART */
+
+
+/* Article Image Section Styles - Target only the picture/image */
+.default-content-wrapper picture {
+  position: relative;
+  width: 100%;
+  height: auto;
+  align-self: stretch;
+  margin-left: 40px;
+  padding: 40px;
+  background-color: #ffffff;
+  border-radius: 24px;
+  overflow: hidden;
+}
+
+.default-content-wrapper picture img {
+  position: relative;
+  width: 752px;
+  height: 299px;
+  object-fit: cover;
+  border-radius: 12px;
+}
+
+/* Responsive adjustments */
+@media (max-width: 900px) {
+  .default-content-wrapper picture {
+    margin-left: 20px;
+    padding: 20px;
+  }
+  
+  .default-content-wrapper picture img {
+    width: 100%;
+    height: auto;
+    max-width: 752px;
+  }
+}
+
+@media (max-width: 600px) {
+  .default-content-wrapper picture {
+    margin-left: 15px;
+    padding: 15px;
+  }
+  
+  .default-content-wrapper picture img {
+    height: auto;
+    min-height: 200px;
+  }
+}
+
+/* TEXT PART*/
+/* TO BE REMOVED LAETER TO ANOTHER CSS FILE */
+
+/* Article Text Content Styles - Create container effect without touching default-content-wrapper */
+
+/* Create visual container using background and borders on text elements */
+.default-content-wrapper p:not(:has(picture)),
+.default-content-wrapper h4 {
+  background-color: #ffffff;
+  padding: 20px 40px;
+  margin: 0;
+  width: 832px;
+  box-sizing: border-box;
+  position: relative;
+}
+
+/* First element gets top border radius */
+.default-content-wrapper p:first-of-type:not(:has(picture)) {
+  border-radius: 24px 24px 0 0;
+  padding-top: 40px;
+}
+
+/* Last text element gets bottom border radius */
+.default-content-wrapper p:last-of-type:not(:has(picture)),
+.default-content-wrapper h4:last-of-type {
+  border-radius: 0 0 24px 24px;
+  padding-bottom: 40px;
+}
+
+/* If only one text element, give it full border radius */
+.default-content-wrapper p:first-of-type:last-of-type:not(:has(picture)) {
+  border-radius: 24px;
+  padding: 40px;
+}
+
+/* Typography for paragraphs */
+.default-content-wrapper p:not(:has(picture)) {
+  font-family: "Gilmer", Helvetica, Arial, sans-serif;
+  font-weight: 400;
+  color: #333333;
+  font-size: 14px;
+  letter-spacing: 0px;
+  line-height: 150%;
+  font-style: normal;
+}
+
+/* Typography for headings */
+.default-content-wrapper h4 {
+  font-family: "Gilmer", Helvetica, Arial, sans-serif;
+  font-weight: 500;
+  color: #333333;
+  font-size: 18px;
+  letter-spacing: 0px;
+  line-height: 130%;
+  font-style: normal;
+}
+
+/* Links */
+.default-content-wrapper p:not(:has(picture)) a {
+  color: #2f7ef4;
+  text-decoration: none;
+}
+
+.default-content-wrapper p:not(:has(picture)) a:hover {
+  text-decoration: underline;
+}
+
+/* Add spacing between text container and other elements */
+.default-content-wrapper p:first-of-type:not(:has(picture)) {
+  margin-top: 24px;
+}
+
+/* Responsive */
+@media (max-width: 900px) {
+  .default-content-wrapper p:not(:has(picture)),
+  .default-content-wrapper h4 {
+    width: 100%;
+    max-width: 832px;
+    padding-left: 20px;
+    padding-right: 20px;
+  }
+  
+  .default-content-wrapper p:first-of-type:not(:has(picture)) {
+    padding-top: 20px;
+  }
+  
+  .default-content-wrapper p:last-of-type:not(:has(picture)),
+  .default-content-wrapper h4:last-of-type {
+    padding-bottom: 20px;
+  }
+}
+
+@media (max-width: 600px) {
+  .default-content-wrapper p:not(:has(picture)),
+  .default-content-wrapper h4 {
+    padding-left: 15px;
+    padding-right: 15px;
+  }
+  
+  .default-content-wrapper h4 {
+    font-size: 16px;
+  }
+  
+  .default-content-wrapper p:not(:has(picture)) {
+    font-size: 13px;
+  }
+}
+
+
+
+    
