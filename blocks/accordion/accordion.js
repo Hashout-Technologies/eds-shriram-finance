@@ -5,22 +5,7 @@
  */
 
 import { moveInstrumentation } from '../../scripts/scripts.js';
-
-/**
- * Scroll the element to top of page.
- */
-function scrollElementToTopAfterOpen(element) {
-  // Wait for full expansion before scrolling
-  requestAnimationFrame(() => {
-    setTimeout(() => {
-      const elementTop = element.getBoundingClientRect().top + window.scrollY;
-      window.scrollTo({
-        top: elementTop,
-        behavior: 'smooth',
-      });
-    }, 50); // allows browser to finish expanding
-  });
-}
+import scrollElementToTopAfterOpen from '../../scripts/utils.js';
 
 export default function decorate(block) {
   const detailsList = [];
