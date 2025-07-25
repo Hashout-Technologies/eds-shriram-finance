@@ -587,13 +587,13 @@
       "fields": [
         {
             "component": "aem-content",
-            "name": "tag",
+            "name": "textContent_cta",
             "label": "Link",
             "valueType": "string"
         },
         {
             "component": "text",
-            "name": "tagLabel",
+            "name": "textContent_ctaText",
             "label": "Tag label",
             "valueType": "string"
         }
