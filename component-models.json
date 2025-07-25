@@ -741,6 +741,7 @@
     }
   ]
 },
+
 {
   "id": "lead-form",
   "fields": [
@@ -754,54 +755,9 @@
     {
       "component": "text",
       "valueType": "string",
-      "name": "nameLabel",
-      "label": "Name Field Label",
-      "value": "Name*"
-    },
-    {
-      "component": "text",
-      "valueType": "string",
-      "name": "mobileLabel",
-      "label": "Mobile Field Label",
-      "value": "Mobile Number*"
-    },
-    {
-      "component": "text",
-      "valueType": "string",
-      "name": "pincodeLabel",
-      "label": "Pincode Field Label",
-      "value": "Pincode*"
-    },
-    {
-      "component": "text",
-      "valueType": "string",
-      "name": "buttonText",
-      "label": "Button Text",
-      "value": "Apply Now"
-    },
-    {
-      "component": "text",
-      "valueType": "string",
       "name": "actionUrl",
       "label": "Form Action URL",
       "value": ""
-    },
-    {
-      "component": "select",
-      "name": "method",
-      "label": "Form Method",
-      "valueType": "string",
-      "value": "POST",
-      "options": [
-        {
-          "name": "POST",
-          "value": "POST"
-        },
-        {
-          "name": "GET",
-          "value": "GET"
-        }
-      ]
     }
   ]
 }
