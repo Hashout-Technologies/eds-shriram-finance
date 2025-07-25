@@ -1,266 +1,640 @@
-/*
- * Copyright 2020 Adobe. All rights reserved.
- * This file is licensed to you under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License. You may obtain a copy
- * of the License at http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing, software distributed under
- * the License is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR REPRESENTATIONS
- * OF ANY KIND, either express or implied. See the License for the specific language
- * governing permissions and limitations under the License.
- */
-
+/* ================================
+   CSS VARIABLES
+   ================================ */
 :root {
-  /* colors */
-  --background-color: white;
-  --light-color: #f8f8f8;
-  --dark-color: #505050;
-  --text-color: #131313;
-  --link-color: #3b63fb;
-  --link-hover-color: #1d3ecf;
-  --overlay-background-color:lightgrey;
+    /* Breakpoints */
+    --breakpoint-tablet: 767px;
+    --layout-width: 1256px;
+    --section-top-btm-gap: 40px 0;
 
-  /* fonts */
-  --body-font-family: roboto, roboto-fallback, sans-serif;
-  --heading-font-family: roboto-condensed, roboto-condensed-fallback, sans-serif;
+    /* Typography */
+    --font-regular: "GilmerRegular", sans-serif;
+    --font-medium: "GilmerMedium", sans-serif;
+    --font-bold: "GilmerBold", sans-serif;
+    --font-heavy: "GilmerHeavy", sans-serif;
+    --font-size-xs: 0.65rem;
+    --font-size-s: 0.75rem;
+    --font-size-sm: 0.875rem;
+    --font-size-base: 1rem;
+    --font-size-xl: 1.125rem;
+    --font-size-xxl: 1.5rem;
 
-  /* body sizes */
-  --body-font-size-m: 22px;
-  --body-font-size-s: 19px;
-  --body-font-size-xs: 17px;
+    /* Common colors */
+    --color-white: #fff;
+    --color-black: #000;
+    --color-text-primary: #2e2a94;
+    --color-text-secondary: #2f7ef4;
+    --color-border: #ddd;
+    --color-error: #d93025;
+    --color-primary-yellow: #ffcb09;
 
-  /* heading sizes */
-  --heading-font-size-xxl: 55px;
-  --heading-font-size-xl: 44px;
-  --heading-font-size-l: 34px;
-  --heading-font-size-m: 27px;
-  --heading-font-size-s: 24px;
-  --heading-font-size-xs: 22px;
+    /* Neutral colours */
+    --color-neutral-100: #f7f7f7;
+    --color-neutral-300: #e6e6e6;
+    --color-neutral-500: #ccc;
+    --color-neutral-600: #aaa;
+    --color-neutral-700: #8a8a8a;
+    --color-neutral-800: #666;
+    --color-neutral-900: #333;
+    --color-neutral-1000: #121212;
 
-  /* nav heights */
-  --nav-height: 64px;
-  --breadcrumbs-height: 34px;
-  --header-height: var(--nav-height);
+    /* Font Weights */
+    --font-weight-100: 100;
+    --font-weight-200: 200;
+    --font-weight-300: 300;
+    --font-weight-400: 400;
+    --font-weight-500: 500;
+    --font-weight-600: 600;
+    --font-weight-700: 700;
+    --font-weight-800: 800;
+    --font-weight-900: 900;
+
+    /* Spacing */
+    --space-xs: 0.25rem;
+    --space-sm: 0.5rem;
+    --space-s: 0.75rem;
+    --space-m: 0.845rem;
+    --space-md: 1rem;
+    --space-lg: 1.5rem;
+    --space-xl: 2rem;
 }
 
-/* fallback fonts */
-@font-face {
-  font-family: roboto-condensed-fallback;
-  size-adjust: 88.82%;
-  src: local('Arial');
+/* ================================
+   RESET & BOX MODEL
+   ================================ */
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
 }
 
-@font-face {
-  font-family: roboto-fallback;
-  size-adjust: 99.529%;
-  src: local('Arial');
-}
-
-@media (width >= 900px) {
-  :root {
-    /* body sizes */
-    --body-font-size-m: 18px;
-    --body-font-size-s: 16px;
-    --body-font-size-xs: 14px;
-
-    /* heading sizes */
-    --heading-font-size-xxl: 45px;
-    --heading-font-size-xl: 36px;
-    --heading-font-size-l: 28px;
-    --heading-font-size-m: 22px;
-    --heading-font-size-s: 20px;
-    --heading-font-size-xs: 18px;
-  }
-}
-
+html,
 body {
-  display: none;
-  margin: 0;
-  background-color: var(--background-color);
-  color: var(--text-color);
-  font-family: var(--body-font-family);
-  font-size: var(--body-font-size-m);
-  line-height: 1.6;
+    padding: 0;
+    margin: 0;
+    font-family: var(--font-regular);
+    font-size: var(--font-size-base);
+    color: var(--color-neutral-900);
+    background-color: var(--color-background);
+    scroll-behavior: smooth;
+    -webkit-font-smoothing: antialiased;
 }
 
-body.appear {
-  display: block;
-}
-
-header {
-  height: var(--header-height);
-}
-
-header .header,
-footer .footer {
-  visibility: hidden;
-}
-
-header .header[data-block-status="loaded"],
-footer .footer[data-block-status="loaded"] {
-  visibility: visible;
-}
-
-@media (width >= 900px) {
-  body[data-breadcrumbs] {
-    --header-height: calc(var(--nav-height) + var(--breadcrumbs-height));
-  }
-}
-
+/* ================================
+   TYPOGRAPHY
+   ================================ */
 h1,
 h2,
 h3,
 h4,
 h5,
 h6 {
-  margin-top: 0.8em;
-  margin-bottom: 0.25em;
-  font-family: var(--heading-font-family);
-  font-weight: 600;
-  line-height: 1.25;
-  scroll-margin: 40px;
+    margin: 0 0 var(--space-md);
+    line-height: 1.4;
+    font-family: var(--font-medium);
+    font-weight: var(--font-weight-600);
+    color: var(--color-neutral-900);
 }
 
-h1 { font-size: var(--heading-font-size-xxl); }
-h2 { font-size: var(--heading-font-size-xl); }
-h3 { font-size: var(--heading-font-size-l); }
-h4 { font-size: var(--heading-font-size-m); }
-h5 { font-size: var(--heading-font-size-s); }
-h6 { font-size: var(--heading-font-size-xs); }
-
-p,
-dl,
-ol,
-ul,
-pre,
-blockquote {
-  margin-top: 0.8em;
-  margin-bottom: 0.25em;
+h1 {
+    font-size: var(--font-size-xxl);
+    font-family: var(--font-regular);
+    font-weight: var(--font-weight-400);
 }
 
-code,
-pre {
-  font-size: var(--body-font-size-s);
+h2 {
+    font-size: var(--font-size-xl);
+    font-family: var(--font-bold);
+    font-weight: var(--font-weight-700);
 }
 
-pre {
-  padding: 16px;
-  border-radius: 8px;
-  background-color: var(--light-color);
-  overflow-x: auto;
-  white-space: pre;
+h3 {
+    font-size: var(--font-size-base);
 }
 
-main > div {
-  margin: 40px 16px;
+h4 {
+    font-size: var(--font-size-sm);
 }
 
-input,
-textarea,
-select,
-button {
-  font: inherit;
+h5 {
+    font-size: var(--font-size-s);
+}
+
+h6 {
+    font-size: var(--font-size-xs);
+}
+
+p {
+    font-size: var(--font-size-sm);
+    font-weight: var(--font-weight-400);
+    margin: 0 0 var(--space-md);
+    line-height: 1.5;
 }
 
 /* links */
-a:any-link {
-  color: var(--link-color);
-  text-decoration: none;
-  overflow-wrap: break-word;
+a {
+    color: var(--color-text-secondary);
+    font-size: var(--font-size-sm);
+    font-family: var(--font-medium);
+    text-decoration: none;
+    font-style: normal;
+    cursor: pointer;
 }
 
-a:hover {
-  color: var(--link-hover-color);
-  text-decoration: underline;
+a:hover,
+a:focus {
+    text-decoration: none;
+    color: var(--link-color);
 }
 
-/* buttons */
-a.button:any-link,
+strong {
+    font-family: var(--font-bold);
+}
+
+small {
+    font-size: var(--font-size-sm);
+}
+
+/* ================================
+   LISTS
+   ================================ */
+ul,
+ol {
+    margin: 0 0 var(--space-md) var(--space-lg);
+    padding: 0;
+}
+
+li {
+    margin-bottom: var(--space-xs);
+}
+
+/* ================================
+   TABLES
+   ================================ */
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: var(--space-lg);
+    font-size: var(--font-size-sm);
+}
+
+th,
+td {
+    padding: var(--space-sm);
+    border: 1px solid var(--color-border);
+    text-align: left;
+}
+
+/* ================================
+   FORMS
+   ================================ */
+input,
+select,
+textarea,
 button {
-  box-sizing: border-box;
-  display: inline-block;
-  max-width: 100%;
-  margin: 12px 0;
-  border: 2px solid transparent;
-  border-radius: 2.4em;
-  padding: 0.5em 1.2em;
-  font-family: var(--body-font-family);
-  font-style: normal;
-  font-weight: 500;
-  line-height: 1.25;
-  text-align: center;
-  text-decoration: none;
-  background-color: var(--link-color);
-  color: var(--background-color);
-  cursor: pointer;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  white-space: nowrap;
+    font-family: var(--font-medium);
+    font-size: var(--font-size-base);
+    border: 1px solid var(--color-border);
+    padding: var(--space-sm);
+    margin-bottom: var(--space-md);
+    border-radius: var(--space-sm);
+    background-color: #fff;
+    color: var(--color-neutral-700);
+    width: 100%;
 }
 
-a.button:hover,
-a.button:focus,
-button:hover,
-button:focus {
-  background-color: var(--link-hover-color);
-  cursor: pointer;
+input:focus,
+select:focus,
+textarea:focus {
+    outline: none;
 }
 
-button:disabled,
-button:disabled:hover {
-  background-color: var(--light-color);
-  cursor: unset;
+/* ================================
+   BUTTONS
+   ================================ */
+button {
+    padding: var(--space-sm) var(--space-md);
+    font-weight: 500;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
 }
 
-a.button.secondary,
+button.primary {
+    background-color: var(--color-primary);
+    color: #fff;
+}
+
+button.primary:hover {
+    background-color: #036;
+}
+
 button.secondary {
-  background-color: unset;
-  border: 2px solid currentcolor;
-  color: var(--text-color);
+    background-color: var(--color-secondary);
+    color: var(--color-primary);
 }
 
-main img {
-  max-width: 100%;
-  width: auto;
-  height: auto;
+button.secondary:hover {
+    background-color: #cde;
+}
+
+/* ================================
+   IMAGES (AEM Franklin Compatible)
+   ================================ */
+
+/* Base style for all images inside content */
+main img,
+main picture img {
+    max-width: 100%;
+    height: auto;
+    display: block;
+    border-style: none;
+}
+
+/* Picture wrapper spacing reset */
+main picture {
+    display: block;
+    margin: 0;
+    padding: 0;
+    line-height: 0;
+}
+
+/* ================================
+   IMAGE UTILITIES
+   ================================ */
+
+/* Center the image inside container */
+.img-center {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+/* Responsive image container (can be used on block wrappers) */
+.img-responsive {
+    width: 100%;
+    height: auto;
+    object-fit: contain;
+}
+
+/* For hero or banner images */
+.img-cover {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+/* Rounded corners */
+.img-rounded {
+    border-radius: 8px;
+}
+
+/* Fully circular image */
+.img-circle {
+    border-radius: 50%;
+}
+
+/* Optional: Shadow for elevation */
+.img-shadow {
+    box-shadow: 0 4px 12px rgb(0 0 0/ 15%);
+}
+
+/* Optional: Border */
+.img-bordered {
+    border: 1px solid var(--color-border, #ddd);
 }
 
 .icon {
-  display: inline-block;
-  height: 24px;
-  width: 24px;
+    display: inline-block;
+    height: 24px;
+    width: 24px;
 }
 
 .icon img {
-  height: 100%;
-  width: 100%;
+    height: 100%;
+    width: 100%;
 }
 
-/* sections */
-main > .section {
-  margin: 40px 0;
+/* ================================
+   TEXT CLASSES
+   ================================ */
+.text-center {
+    text-align: center;
 }
 
+.text-right {
+    text-align: right;
+}
+
+.text-left {
+    text-align: left;
+}
+
+.font-regular {
+    font-family: var(--font-regular);
+}
+
+.font-medium {
+    font-family: var(--font-medium);
+}
+
+.font-bold {
+    font-family: var(--font-bold);
+}
+
+.font-heavy {
+    font-family: var(--font-heavy);
+}
+
+/* ================================
+   MARGIN
+   ================================ */
+
+.mt-0 {
+    margin-top: 0;
+}
+
+.mb-0 {
+    margin-bottom: 0;
+}
+
+.mt-sm {
+    margin-top: var(--space-sm);
+}
+
+.mb-sm {
+    margin-bottom: var(--space-sm);
+}
+
+.mt-md {
+    margin-top: var(--space-md);
+}
+
+.mb-md {
+    margin-bottom: var(--space-md);
+}
+
+.mt-lg {
+    margin-top: var(--space-lg);
+}
+
+.mb-lg {
+    margin-bottom: var(--space-lg);
+}
+
+/* ================================
+   FLEX
+   ================================ */
+.flex {
+    display: flex;
+}
+
+.flex-col {
+    flex-direction: column;
+}
+
+.flex-row {
+    flex-direction: row;
+}
+
+.space-btw {
+    justify-content: space-between;
+}
+
+.align-center {
+    align-items: center;
+}
+
+/* ================================
+   GRID
+   ================================ */
+.grid {
+  display: grid;
+}
+
+.inline-grid {
+  display: inline-grid;
+}
+
+.grid-cols-1 {
+  grid-template-columns: repeat(1, minmax(0, 1fr));
+}
+
+.grid-cols-2 {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.grid-cols-3 {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
+.grid-cols-4 {
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+}
+
+.grid-cols-6 {
+  grid-template-columns: repeat(6, minmax(0, 1fr));
+}
+
+.grid-cols-12 {
+  grid-template-columns: repeat(12, minmax(0, 1fr));
+}
+
+.grid-rows-1 {
+  grid-template-rows: repeat(1, minmax(0, 1fr));
+}
+
+.grid-rows-2 {
+  grid-template-rows: repeat(2, minmax(0, 1fr));
+}
+
+.grid-rows-3 {
+  grid-template-rows: repeat(3, minmax(0, 1fr));
+}
+
+.place-items-center {
+  place-items: center;
+}
+
+.place-content-center {
+  place-content: center;
+}
+
+.gap-1 {
+  gap: 0.25rem;
+}
+
+.gap-2 {
+  gap: 0.5rem;
+}
+
+.gap-4 {
+  gap: 1rem;
+}
+
+.gap-8 {
+  gap: 2rem;
+}
+
+/* ================================
+   MARGIN AND PADDING 0
+   ================================ */
+.mar-0 {
+    margin: 0;
+}
+
+.pad-0 {
+    padding: 0;
+}
+
+/* ================================
+   ACCESSIBILITY
+   ================================ */
+.visually-hidden {
+    position: absolute !important;
+    height: 1px;
+    width: 1px;
+    overflow: hidden;
+    clip: rect(1px, 1px, 1px, 1px);
+    white-space: nowrap;
+}
+
+/* ================================
+   Form
+   ================================ */
+.form-container {
+    padding: var(--space-md);
+    border-radius: var(--space-md);
+}
+
+.form-input {
+    padding: var(--space-m);
+    margin-bottom: var(--space-lg);
+}
+
+.primary-button {
+    padding: var(--space-m);
+    background-color: var(--color-primary-yellow);
+    color: var(--color-neutral-1000);
+    border-radius: var(--space-sm);
+}
+
+/* ================================
+   SECTION
+   ================================ */
+
+/* Section container width */
 main > .section > div {
-  max-width: 1200px;
-  margin: auto;
-  padding: 0 24px;
+    max-width: var(--layout-width);
+    margin: auto;
+    padding: var(--section-top-btm-gap);
 }
 
-main > .section:first-of-type {
-  margin-top: 0;
+/* Section container full width */
+main > .section.full-width > div {
+    max-width: 100%;
 }
 
-@media (width >= 900px) {
-  main > .section > div {
-    padding: 0 32px;
-  }
+/* Section two column container */
+main > .section.section-two-column {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+    padding: 1rem;
 }
 
-/* section metadata */
-main .section.light,
-main .section.highlight {
-  background-color: var(--light-color);
-  margin: 0;
-  padding: 40px 0;
+main > .section.section-two-column > .left-column,
+main > .section.section-two-column > :not(.left-column) {
+    width: 100%;
+}
+
+/* Section 7:3 column container */
+main .section.flex-col-7-3 {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    margin-left: auto;
+    margin-right: auto;
+    max-width: var(--layout-width);
+}
+
+main .section.flex-col-7-3 > div {
+    flex: 0 0 100%;
+    max-width: 100%;
+}
+
+/* ================================
+   RESPONSIVE TYPOGRAPHY
+   ================================ */
+@media (width > 768px) {
+    :root {
+        --font-size-xs: 0.65rem;
+        --font-size-s: 0.75rem;
+        --font-size-sm: 0.875rem;
+        --font-size-base: 1rem;
+        --font-size-xl: 1.5rem;
+        --font-size-xxl: 2rem;
+        --section-top-btm-gap: 24px 0 40px 0;
+    }
+
+    /* From 24px to 32px */
+    h1 {
+        font-family: var(--font-medium);
+        font-weight: var(--font-weight-600);
+    }
+
+    /* Remains 18px to 24px */
+    h2 {
+        font-size: var(--font-size-xl);
+    }
+
+    /* Remains 16px to 18px */
+    h3 {
+        font-size: var(--font-size-base);
+        font-family: var(--font-bold);
+        font-weight: var(--font-weight-700);
+    }
+
+    h4 {
+        font-size: var(--font-size-base);
+    }
+
+    h5 {
+        font-size: var(--font-size-s);
+    }
+
+    h6 {
+        font-size: var(--font-size-xs);
+    }
+
+    main > .section.section-two-column {
+        grid-template-columns: 70% 30%;
+        align-items: start;
+    }
+
+    /* Left column goes in column 1 */
+    main > .section.section-two-column > .left-column {
+        grid-column: 1;
+    }
+
+    /* All other direct children go in column 2 (right side) */
+    main > .section.section-two-column > :not(.left-column) {
+        grid-column: 2;
+    }
+
+    /* Section 7:3 column */
+    main .section.flex-col-7-3 {
+        flex-direction: row;
+    }
+
+    main .section.flex-col-7-3 > div:first-child {
+        flex: 0 0 68%;
+        max-width: 68%;
+    }
+
+    main .section.flex-col-7-3 > div:last-child {
+        flex: 0 0 31%;
+        max-width: 31%;
+    }
 }
