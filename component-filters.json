@@ -94,5 +94,11 @@
   {
     "id": "video",
     "components": []
+  },
+  {
+    "id": "relatedtags",
+    "components": [
+      "relatedtag"
+    ]
   }
 ]

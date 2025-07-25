@@ -1,47 +1,71 @@
 {
-    "definitions": [
-        {
-          "title": "Related Tags",
-          "id": "relatedtags",
-          "plugins": {
-            "xwalk": {
-              "page": {
-                "resourceType": "core/franklin/components/block/v1/block",
-                "template": {
-                  "name": "Relatedtags",
-                  "model": "relatedtags"
-                }
-              }
+  "definitions": [
+    {
+      "title": "Related Tags",
+      "id": "relatedtags",
+      "plugins": {
+        "xwalk": {
+          "page": {
+            "resourceType": "core/franklin/components/block/v1/block",
+            "template": {
+              "name": "Relatedtags",
+              "filter": "relatedtags",
+              "model": "relatedtags"
             }
           }
         }
-    ],
-    "models": [
-        {
-            "id": "relatedtags",
-            "fields": [
-                {
-                    "component": "text",
-                    "valueType": "string",
-                    "name": "text",
-                    "label": "Text"
-                },
-                {
-                    "component": "aem-content",
-                    "name": "tag",
-                    "label": "Link",
-                    "valueType": "string[]",
-                    "multi": true
-                },
-                {
-                    "component": "text",
-                    "name": "tagLabel",
-                    "label": "Tag label",
-                    "valueType": "string[]",
-                    "multi": true
-                }
-            ]
+      }
+    },
+    {
+      "title": "Related Tag",
+      "id": "relatedtag",
+      "plugins": {
+        "xwalk": {
+          "page": {
+            "resourceType": "core/franklin/components/block/v1/block/item",
+            "template": {
+              "name": "Relatedtag",
+              "model": "relatedtag"
+            }
+          }
         }
-    ],
-    "filters": []
+      }
+    }
+  ],
+  "models": [
+    {
+      "id": "relatedtags",
+      "fields": [
+         {
+            "component": "text",
+            "valueType": "string",
+            "name": "text",
+            "label": "Text"
+        }
+      ]
+    },
+    {
+      "id": "relatedtag",
+      "fields": [
+        {
+            "component": "aem-content",
+            "name": "tag",
+            "label": "Link",
+            "valueType": "string"
+        },
+        {
+            "component": "text",
+            "name": "tagLabel",
+            "label": "Tag label",
+            "valueType": "string"
+        }
+      ]
+    }
+  ],
+  "filters": [
+    {
+      "id": "relatedtags",
+      "components": ["relatedtag"]
+    }
+  ]
 }
