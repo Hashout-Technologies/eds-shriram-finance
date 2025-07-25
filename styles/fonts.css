@@ -12,7 +12,7 @@
 @font-face {
     font-family: GilmerMedium;
     src: url("../fonts/GilmerMedium.woff2") format("woff2");
-    font-weight: 400;
+    font-weight: 500;
     font-style: normal;
     font-display: swap;
 }
@@ -20,7 +20,7 @@
 @font-face {
     font-family: GilmerBold;
     src: url("../fonts/GilmerBold.woff2") format("woff2");
-    font-weight: 400;
+    font-weight: 700;
     font-style: normal;
     font-display: swap;
 }
@@ -28,7 +28,7 @@
 @font-face {
     font-family: GilmerHeavy;
     src: url("../fonts/GilmerHeavy.woff2") format("woff2");
-    font-weight: 400;
+    font-weight: 900;
     font-style: normal;
     font-display: swap;
 }
