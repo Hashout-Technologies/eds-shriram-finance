@@ -38,9 +38,9 @@
     ]
   },
   {
-    "id": "category-cards",
+    "id": "category-listing",
     "components": [
-      "category-card"
+      "category-item"
     ]
   },
   {

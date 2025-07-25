@@ -206,41 +206,69 @@
     ]
   },
   {
-    "id": "category-cards",
+    "id": "category-listing",
     "fields": [
       {
-        "component": "richtext",
-        "valueType": "string",
-        "name": "title",
-        "value": "",
-        "label": "Text Content"
-      },
-      {
-        "component": "reference",
-        "name": "image",
-        "value": "",
-        "label": "Background Image",
-        "valueType": "string",
-        "multi": false
-      },
-      {
-        "component": "text",
-        "name": "imageAlt",
-        "value": "",
-        "label": "Image Alt",
-        "valueType": "string"
+        "component": "multiselect",
+        "name": "classes",
+        "label": "Style",
+        "options": [
+          {
+            "name": "Background Color",
+            "children": [
+              {
+                "name": "Dark Gray",
+                "value": "dark-gray"
+              },
+              {
+                "name": "Light Gray",
+                "value": "light-gray"
+              }
+            ]
+          }
+        ]
       }
     ]
   },
   {
-    "id": "category-card",
+    "id": "category-item",
     "fields": [
       {
-        "component": "richtext",
-        "valueType": "string",
-        "name": "title",
-        "value": "",
-        "label": "Text Content"
+        "component": "multiselect",
+        "name": "classes",
+        "label": "Style",
+        "options": [
+          {
+            "name": "Background Color",
+            "children": [
+              {
+                "name": "Dark Gray",
+                "value": "dark-gray"
+              },
+              {
+                "name": "Light Gray",
+                "value": "light-gray"
+              }
+            ]
+          },
+          {
+            "name": "Border Color",
+            "children": [
+              {
+                "name": "Yellow",
+                "value": "yellow"
+              },
+              {
+                "name": "White",
+                "value": "white"
+              },
+              {
+                "name": "Black",
+                "value": "black"
+              }
+            ]
+          }
+        ]
       },
       {
         "component": "text",
