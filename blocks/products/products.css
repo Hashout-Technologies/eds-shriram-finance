@@ -1,0 +1,51 @@
+/* Container */
+.products-container {
+  background-color: #FFFFFF;
+  border-radius: 16px;
+  padding: 24px;
+}
+
+/* Title */
+.products-container h3 {
+  font-size: 20px;
+  font-weight: 600;
+  color: #333333;
+  margin: 0 0 16px;
+  text-align: left;
+}
+
+/* Grid of cards */
+.products-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 16px;
+}
+
+/* Individual card */
+.product-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  cursor: pointer;
+  text-decoration: none;
+  color: inherit;
+}
+
+/* Icon */
+.product-item picture,
+.product-item img {
+  width: 40px;
+  height: 40px;
+  object-fit: contain;
+  margin-bottom: 8px;
+}
+
+/* Label */
+.product-title {
+  font-size: 14px;
+  font-weight: 500;
+  color: #333333;
+  line-height: 1.2;
+  margin: 0;
+}
