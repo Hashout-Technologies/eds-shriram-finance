@@ -1,0 +1,47 @@
+{
+    "definitions": [
+        {
+          "title": "Related Tags",
+          "id": "relatedtags",
+          "plugins": {
+            "xwalk": {
+              "page": {
+                "resourceType": "core/franklin/components/block/v1/block",
+                "template": {
+                  "name": "Relatedtags",
+                  "model": "relatedtags"
+                }
+              }
+            }
+          }
+        }
+    ],
+    "models": [
+        {
+            "id": "relatedtags",
+            "fields": [
+                {
+                    "component": "text",
+                    "valueType": "string",
+                    "name": "text",
+                    "label": "Text"
+                },
+                {
+                    "component": "aem-content",
+                    "name": "tag",
+                    "label": "Link",
+                    "valueType": "string[]",
+                    "multi": true
+                },
+                {
+                    "component": "text",
+                    "name": "tagLabel",
+                    "label": "Tag label",
+                    "valueType": "string[]",
+                    "multi": true
+                }
+            ]
+        }
+    ],
+    "filters": []
+}

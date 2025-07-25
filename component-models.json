@@ -570,5 +570,30 @@
         "label": "Placeholder Image Alt Text"
       }
     ]
+  },
+  {
+    "id": "relatedtags",
+    "fields": [
+      {
+        "component": "text",
+        "valueType": "string",
+        "name": "text",
+        "label": "Text"
+      },
+      {
+        "component": "aem-content",
+        "name": "tag",
+        "label": "Link",
+        "valueType": "string[]",
+        "multi": true
+      },
+      {
+        "component": "text",
+        "name": "tagLabel",
+        "label": "Tag label",
+        "valueType": "string[]",
+        "multi": true
+      }
+    ]
   }
 ]
