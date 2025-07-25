@@ -62,43 +62,6 @@
       "id": "category-item",
       "fields": [
         {
-          "component": "multiselect",
-          "name": "classes",
-          "label": "Style",
-          "options": [
-            {
-              "name": "Background Color",
-              "children": [
-                {
-                  "name": "Dark Gray",
-                  "value": "dark-gray"
-                },
-                {
-                  "name": "Light Gray",
-                  "value": "light-gray"
-                }
-              ]
-            },
-            {
-              "name": "Border Color",
-              "children": [
-                {
-                  "name": "Yellow",
-                  "value": "yellow"
-                },
-                {
-                  "name": "White",
-                  "value": "white"
-                },
-                {
-                  "name": "Black",
-                  "value": "black"
-                }
-              ]
-            }
-          ]
-        },
-        {
           "component": "text",
           "name": "categoryName",
           "value": "",
