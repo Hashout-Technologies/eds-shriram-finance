@@ -276,6 +276,11 @@
         "value": "",
         "label": "Category Name",
         "valueType": "string"
+      },
+      {
+        "component": "aem-content",
+        "name": "link",
+        "label": "Link"
       }
     ]
   },
