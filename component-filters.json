@@ -47,12 +47,7 @@
       "carousel-item"
     ]
   },
-  {
-  "id": "products",
-  "components": [
-    "product-item"
-  ]
-},
+  
   {
     "id": "columns",
     "components": [

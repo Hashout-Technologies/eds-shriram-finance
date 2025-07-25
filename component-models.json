@@ -632,80 +632,112 @@
       "value": "You may be interested in"
     },
     {
-      "component": "multiselect",
-      "name": "classes",
-      "value": "",
-      "label": "Display Options",
-      "valueType": "string",
-      "options": [
-        {
-          "name": "Layout",
-          "children": [
-            {
-              "name": "Centered",
-              "value": "centered"
-            },
-            {
-              "name": "Left Aligned",
-              "value": "left-aligned"
-            }
-          ]
-        },
-        {
-          "name": "Grid",
-          "children": [
-            {
-              "name": "2 Columns",
-              "value": "two-columns"
-            },
-            {
-              "name": "3 Columns",
-              "value": "three-columns"
-            },
-            {
-              "name": "4 Columns",
-              "value": "four-columns"
-            }
-          ]
-        }
-      ]
-    }
-  ]
-},
-{
-  "id": "product-item",
-  "fields": [
-    {
       "component": "reference",
       "valueType": "string",
-      "name": "image",
-      "label": "Product Icon/Image",
+      "name": "product1_image",
+      "label": "Product 1 Image",
       "multi": false
     },
     {
       "component": "text",
       "valueType": "string",
-      "name": "imageAlt",
-      "value": "",
-      "label": "Image Alt Text"
+      "name": "product1_title",
+      "label": "Product 1 Title"
+    },
+    {
+      "component": "aem-content",
+      "name": "product1_link",
+      "label": "Product 1 Link"
+    },
+    {
+      "component": "reference",
+      "valueType": "string",
+      "name": "product2_image",
+      "label": "Product 2 Image",
+      "multi": false
     },
     {
       "component": "text",
       "valueType": "string",
-      "name": "title",
-      "label": "Product Title",
-      "value": ""
+      "name": "product2_title",
+      "label": "Product 2 Title"
     },
     {
       "component": "aem-content",
-      "name": "link",
-      "label": "Product Link"
+      "name": "product2_link",
+      "label": "Product 2 Link"
+    },
+    {
+      "component": "reference",
+      "valueType": "string",
+      "name": "product3_image",
+      "label": "Product 3 Image",
+      "multi": false
     },
     {
       "component": "text",
-      "name": "linkTitle",
-      "label": "Link Title (for accessibility)",
-      "valueType": "string"
+      "valueType": "string",
+      "name": "product3_title",
+      "label": "Product 3 Title"
+    },
+    {
+      "component": "aem-content",
+      "name": "product3_link",
+      "label": "Product 3 Link"
+    },
+    {
+      "component": "reference",
+      "valueType": "string",
+      "name": "product4_image",
+      "label": "Product 4 Image",
+      "multi": false
+    },
+    {
+      "component": "text",
+      "valueType": "string",
+      "name": "product4_title",
+      "label": "Product 4 Title"
+    },
+    {
+      "component": "aem-content",
+      "name": "product4_link",
+      "label": "Product 4 Link"
+    },
+    {
+      "component": "reference",
+      "valueType": "string",
+      "name": "product5_image",
+      "label": "Product 5 Image",
+      "multi": false
+    },
+    {
+      "component": "text",
+      "valueType": "string",
+      "name": "product5_title",
+      "label": "Product 5 Title"
+    },
+    {
+      "component": "aem-content",
+      "name": "product5_link",
+      "label": "Product 5 Link"
+    },
+    {
+      "component": "reference",
+      "valueType": "string",
+      "name": "product6_image",
+      "label": "Product 6 Image",
+      "multi": false
+    },
+    {
+      "component": "text",
+      "valueType": "string",
+      "name": "product6_title",
+      "label": "Product 6 Title"
+    },
+    {
+      "component": "aem-content",
+      "name": "product6_link",
+      "label": "Product 6 Link"
     }
   ]
 }
