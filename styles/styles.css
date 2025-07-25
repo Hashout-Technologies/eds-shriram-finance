@@ -38,6 +38,9 @@
     --color-neutral-900: #333;
     --color-neutral-1000: #121212;
 
+    /* Border Neutral colours */
+    --border-color-neutral-900: #393939;
+
     /* Font Weights */
     --font-weight-100: 100;
     --font-weight-200: 200;
