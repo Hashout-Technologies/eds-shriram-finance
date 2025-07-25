@@ -17,14 +17,14 @@
       }
     },
     {
-      "title": "Category item",
+      "title": "Category Item",
       "id": "category-item",
       "plugins": {
         "xwalk": {
           "page": {
             "resourceType": "core/franklin/components/block/v1/block/item",
             "template": {
-              "name": "Category item",
+              "name": "Category Item",
               "model": "category-item"
             }
           }
@@ -34,44 +34,19 @@
   ],
   "models": [
     {
-      "id": "category-listing",
-      "fields": [
-        {
-          "component": "multiselect",
-          "name": "classes",
-          "label": "Style",
-          "options": [
-            {
-              "name": "Background Color",
-              "children": [
-                {
-                  "name": "Dark Gray",
-                  "value": "dark-gray"
-                },
-                {
-                  "name": "Light Gray",
-                  "value": "light-gray"
-                }
-              ]
-            }
-          ]
-        }
-      ]
-    },
-    {
       "id": "category-item",
       "fields": [
-        {
-          "component": "text",
-          "name": "categoryName",
-          "value": "",
-          "label": "Category Name",
-          "valueType": "string"
-        },
         {
           "component": "aem-content",
           "name": "link",
           "label": "Link"
+        },
+        {
+          "component": "text",
+          "name": "text",
+          "value": "",
+          "label": "Text",
+          "valueType": "string"
         }
       ]
     }

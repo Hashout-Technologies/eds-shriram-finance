@@ -192,14 +192,14 @@
           }
         },
         {
-          "title": "Category item",
+          "title": "Category Item",
           "id": "category-item",
           "plugins": {
             "xwalk": {
               "page": {
                 "resourceType": "core/franklin/components/block/v1/block/item",
                 "template": {
-                  "name": "Category item",
+                  "name": "Category Item",
                   "model": "category-item"
                 }
               }
