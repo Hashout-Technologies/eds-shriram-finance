@@ -136,6 +136,18 @@
           {
             "name": "Highlight",
             "value": "highlight"
+          },
+          {
+            "name": "Full Width",
+            "value": "full-width"
+          },
+          {
+            "name": "Two Column",
+            "value": "section-two-column"
+          },
+          {
+            "name": "Flex Column 70:30",
+            "value": "flex-col-7-3"
           }
         ]
       }
