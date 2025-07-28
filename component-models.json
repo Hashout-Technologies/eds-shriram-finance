@@ -191,6 +191,18 @@
     ]
   },
   {
+    "id": "article-listing",
+    "fields": [
+      {
+        "component": "title",
+        "name": "title",
+        "value": "",
+        "label": "Title",
+        "valueType": "string"
+      }
+    ]
+  },
+  {
     "id": "card",
     "fields": [
       {
