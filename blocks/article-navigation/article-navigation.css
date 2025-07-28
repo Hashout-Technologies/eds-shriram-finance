@@ -1,0 +1,111 @@
+/* Article Navigation Block Styling */
+.article-navigation {
+  margin: 40px 0;
+  padding: 24px 32px;
+  border: 2px solid #333;
+  border-radius: 0;
+  background: #ffffff;
+}
+
+.article-navigation .nav-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  max-width: 100%;
+}
+
+.article-navigation .nav-item {
+  display: flex;
+  align-items: center;
+  text-decoration: none;
+  color: inherit;
+  max-width: 45%;
+}
+
+.article-navigation .nav-item.prev {
+  justify-self: flex-start;
+}
+
+.article-navigation .nav-item.next {
+  justify-self: flex-end;
+  flex-direction: row-reverse;
+  text-align: right;
+}
+
+.article-navigation .nav-arrow {
+  font-size: 14px;
+  color: #666;
+  margin: 0 12px;
+  flex-shrink: 0;
+}
+
+.article-navigation .nav-content {
+  display: flex;
+  flex-direction: column;
+}
+
+.article-navigation .nav-label {
+  font-size: 14px;
+  color: #666;
+  margin-bottom: 4px;
+  font-weight: 400;
+}
+
+.article-navigation .nav-title {
+  font-size: 16px;
+  font-weight: 600;
+  color: #333;
+  line-height: 1.3;
+  margin: 0;
+}
+
+.article-navigation .nav-item.next .nav-label {
+  color: #4285f4;
+}
+
+.article-navigation .nav-item.next .nav-title {
+  color: #4285f4;
+}
+
+/* Hover effects */
+.article-navigation .nav-item:hover .nav-title {
+  text-decoration: underline;
+}
+
+/* When only one navigation item exists */
+.article-navigation .nav-container.single-item {
+  justify-content: flex-end;
+}
+
+.article-navigation .nav-container.single-item.prev-only {
+  justify-content: flex-start;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .article-navigation {
+    margin: 30px 0;
+    padding: 20px 16px;
+  }
+  
+  .article-navigation .nav-container {
+    flex-direction: column;
+    gap: 20px;
+    align-items: stretch;
+  }
+  
+  .article-navigation .nav-item {
+    max-width: 100%;
+    justify-content: flex-start;
+  }
+  
+  .article-navigation .nav-item.next {
+    flex-direction: row;
+    text-align: left;
+  }
+  
+  .article-navigation .nav-container.single-item,
+  .article-navigation .nav-container.single-item.prev-only {
+    justify-content: flex-start;
+  }
+}
