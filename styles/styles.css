@@ -4,8 +4,8 @@
 :root {
     /* Breakpoints */
     --breakpoint-tablet: 767px;
-    --layout-width: 1256px;
-    --section-top-btm-gap: 40px 0;
+    --layout-width: 1288px;
+    --section-top-btm-gap: 40px;
 
     /* Typography */
     --font-regular: "GilmerRegular", sans-serif;
@@ -528,11 +528,21 @@ main picture {
    ================================ */
 
 /* Section container width */
+main > div {
+    margin: var(--section-top-btm-gap) 16px;
+}
+
 main > .section > div {
     max-width: var(--layout-width);
     margin: auto;
-    padding: var(--section-top-btm-gap);
+    padding: 0 16px;
 }
+
+main > .section {
+    padding: var(--section-top-btm-gap) 0;
+    margin: 0;
+}
+
 
 /* Section container full width */
 main > .section.full-width > div {
@@ -578,7 +588,7 @@ main .section.flex-col-7-3 > div {
         --font-size-base: 1rem;
         --font-size-xl: 1.5rem;
         --font-size-xxl: 2rem;
-        --section-top-btm-gap: 24px 0 40px 0;
+        --section-top-btm-gap: 40px;
     }
 
     /* From 24px to 32px */
@@ -640,4 +650,29 @@ main .section.flex-col-7-3 > div {
         flex: 0 0 31%;
         max-width: 31%;
     }
+}
+
+.section.black-bg > *{
+    position: relative;
+}
+
+.black-bg{
+    position: relative;
+    background-color: var(--color-neutral-900);
+}
+
+.black-bg::before{
+    background: url("../images/bg-lightgray.svg") lightgray 50% / cover no-repeat;
+    opacity: 0.9;
+    mix-blend-mode: color-burn;
+    position: absolute;
+    content: '';
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+}
+
+.section.black-bg .default-content-wrapper > *{
+    color: var(--color-white);
 }

@@ -5,37 +5,21 @@ export default function decorate(block) {
     const label = divs[1]?.querySelector('p')?.textContent;
 
     // Hide the raw link block
-    divs[0].style.display = 'none';
-
-    // if (link && label) {
-    //   const anchor = document.createElement('a');
-    //   anchor.href = link;
-    //   anchor.className = 'category-pill';
-    //   anchor.setAttribute('aria-label', label);
-    //   anchor.innerHTML = `
-    //     <span class="pill-text">${label}</span>
-    //     <span class="pill-arrow">›</span>
-    //   `;
-
-    //   divs[1].innerHTML = '';
-    //   divs[1].appendChild(anchor);
-    // }
+    divs[0].remove();
 
     if (label) {
       const anchor = document.createElement(link ? 'a' : 'span');
       if (link) {
         anchor.href = link;
-        anchor.className = 'category-pill';
+        anchor.className = 'category-item-link';
         anchor.setAttribute('aria-label', label);
       } else {
-        anchor.className = 'category-pill disabled';
+        anchor.className = 'category-item-link disabled';
       }
 
       anchor.innerHTML = `
     <span class="pill-text">${label}</span>
-    <span class="pill-arrow">›</span>
   `;
-
       divs[1].innerHTML = '';
       divs[1].appendChild(anchor);
     }
