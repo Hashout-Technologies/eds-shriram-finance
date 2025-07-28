@@ -21,7 +21,7 @@
       "id": "article-listing",
       "fields": [
         {
-          "component": "title",
+          "component": "text",
           "name": "title",
           "value": "",
           "label": "Title",
