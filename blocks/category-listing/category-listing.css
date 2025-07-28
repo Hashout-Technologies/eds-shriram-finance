@@ -25,6 +25,7 @@
   background-color: var(--border-color-neutral-900);
   padding: 0.5rem 1rem;
   transition: background-color 0.3s;
+  white-space: nowrap;
 }
 
 .category-listing a.category-item-link:hover {
