@@ -1,0 +1,90 @@
+/* ===================================================================
+   Pixel‑Perfect “Related Articles” Block
+   =================================================================== */
+
+/* 1) reset inside the block */
+.articles-listing,
+.articles-listing * {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* 2) outer container */
+.articles-listing {
+  background-color: #ffffff;
+  border-radius: 32px;
+  padding: 48px;
+  max-width: 1120px;
+  margin: 0 auto;
+}
+
+/* 3) section title */
+.articles-listing .section-title {
+  font-family: system-ui, sans-serif;
+  font-size: 28px;
+  font-weight: 600;
+  color: #222222;
+  text-align: center;
+  margin-bottom: 32px;
+  line-height: 1.2;
+}
+
+/* 4) two‑column grid */
+.articles-listing .articles-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  column-gap: 32px;
+  row-gap: 32px;
+}
+
+/* 5) each card */
+.articles-listing .article-card {
+  display: block;
+  border-radius: 16px;
+  overflow: hidden;
+  text-decoration: none;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+
+/* 6) image */
+.articles-listing .article-image {
+  display: block;
+  width: 100%;
+  height: 160px;
+  object-fit: cover;
+  background-color: #f0e68c; /* fallback */
+}
+
+/* 7) title */
+.articles-listing .article-title {
+  font-family: system-ui, sans-serif;
+  font-size: 18px;
+  font-weight: 600;
+  color: #333333;
+  line-height: 1.4;
+  min-height: 3em; /* keep card heights uniform */
+}
+
+/* 8) mobile: one column */
+@media (max-width: 768px) {
+  .articles-listing {
+    padding: 32px 24px;
+  }
+  .articles-listing .section-title {
+    font-size: 24px;
+    margin-bottom: 24px;
+  }
+  .articles-listing .articles-grid {
+    grid-template-columns: 1fr;
+    row-gap: 24px;
+  }
+  .articles-listing .article-image {
+    height: 140px;
+  }
+  .articles-listing .article-title {
+    font-size: 16px;
+    margin: 12px 8px 0;
+  }
+}

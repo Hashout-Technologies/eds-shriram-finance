@@ -789,13 +789,6 @@
           "value": "recent"
         }
       ]
-    },
-    {
-      "component": "text",
-      "name": "sectionTitle",
-      "label": "Section Title (auto-populated)",
-      "valueType": "string",
-      "value": "Related Articles"
     }
   ]
 }
