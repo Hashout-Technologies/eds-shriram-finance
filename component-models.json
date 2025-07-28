@@ -148,6 +148,24 @@
           {
             "name": "Flex Column 70:30",
             "value": "flex-col-7-3"
+          },
+          {
+            "name": "Alignment Classes",
+            "children": [
+              {
+                "name": "Align Text Center",
+                "value": "text-center"
+              }
+            ]
+          },
+          {
+            "name": "General Classes",
+            "children": [
+              {
+                "name": "Black Background",
+                "value": "black-bg"
+              }
+            ]
           }
         ]
       }
@@ -211,6 +229,23 @@
       {
         "component": "richtext",
         "name": "content_text",
+        "value": "",
+        "label": "Text",
+        "valueType": "string"
+      }
+    ]
+  },
+  {
+    "id": "category-item",
+    "fields": [
+      {
+        "component": "aem-content",
+        "name": "link",
+        "label": "Link"
+      },
+      {
+        "component": "text",
+        "name": "text",
         "value": "",
         "label": "Text",
         "valueType": "string"
