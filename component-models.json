@@ -182,6 +182,24 @@
           {
             "name": "Align Center",
             "value": "align-center"
+          },
+          {
+            "name": "Alignment Classes",
+            "children": [
+              {
+                "name": "Align Text Center",
+                "value": "text-center"
+              }
+            ]
+          },
+          {
+            "name": "General Classes",
+            "children": [
+              {
+                "name": "Black Background",
+                "value": "black-bg"
+              }
+            ]
           }
         ]
       }
