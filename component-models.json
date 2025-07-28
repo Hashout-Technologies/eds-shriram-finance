@@ -764,5 +764,31 @@
 {
   "id": "article-navigation",
   "fields": []
+},
+{
+  "id": "articles-listing",
+  "fields": [
+    {
+      "component": "select",
+      "name": "articleType",
+      "label": "Article Type",
+      "valueType": "string",
+      "value": "related",
+      "options": [
+        {
+          "name": "Related Articles",
+          "value": "related"
+        },
+        {
+          "name": "Popular Articles",
+          "value": "popular"
+        },
+        {
+          "name": "Recent Articles",
+          "value": "recent"
+        }
+      ]
+    }
+  ]
 }
 ]
