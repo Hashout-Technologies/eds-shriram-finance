@@ -441,6 +441,11 @@ function decorateIcon(span, prefix = '') {
   img.dataset.iconName = iconName;
   img.src = `${window.hlx.codeBasePath}${prefix}/icons/${iconName}.svg`;
   img.loading = 'lazy';
+
+  // Add alt attribute for accessibility
+  const altText = span.getAttribute('aria-label') || span.title || `${iconName} icon`;
+  img.alt = altText;
+
   span.append(img);
 }
 

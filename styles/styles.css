@@ -13,11 +13,14 @@
   --font-bold: "GilmerBold", sans-serif;
   --font-heavy: "GilmerHeavy", sans-serif;
   --font-size-xs: 0.65rem;
+  --font-size-xxs: 0.625rem;
+  --font-size-xxxs: 0.6875rem;
   --font-size-s: 0.75rem;
   --font-size-sm: 0.875rem;
   --font-size-base: 1rem;
   --font-size-xl: 1.125rem;
-  --font-size-xxl: 1.5rem;
+  --font-size-xxl: 1.25rem;
+  --font-size-xxxl: 1.5rem;
 
   /* Common colors */
   --color-white: #fff;
@@ -26,7 +29,23 @@
   --color-text-secondary: #2f7ef4;
   --color-border: #ddd;
   --color-error: #d93025;
-  --color-primary-yellow: #ffcb09;
+  --color-primary-yellow: #ffcb08;
+  
+  /* Notification specific colors */
+  --color-notification-bg: #f2f2f2;
+  --color-notification-border: #e9ecef;
+  --color-notification-text: #212529;
+  --color-notification-timestamp: #808185;
+  --color-scrollbar-track: #f1f1f1;
+  --color-scrollbar-hover: #e6b800;
+  
+  /* Header specific colors */
+  --color-header-text: #1a1a1a;
+  --color-header-border: #e0e0e0;
+  --color-header-button-border: #666868;
+  --color-header-badge-bg: #212529;
+  --color-sidebar-border: #dadada;
+  --color-scrollbar-hover-alt: #e6b708;
 
   /* Neutral colours */
   --color-neutral-100: #f7f7f7;
