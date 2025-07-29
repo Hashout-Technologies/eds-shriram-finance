@@ -1,0 +1,185 @@
+.goldloan {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  grid-template-rows: auto auto;  /* Two rows: top row (image + text), bottom row (CTA) */
+  padding: 24px;
+  justify-content: center;
+  align-items: flex-start;
+  gap: 10px;
+  border-radius: 16px;
+  border: 1px solid #FFCB09;
+  background: linear-gradient(180deg, #FFFBEA 0%, #FFF 75.26%);
+  box-sizing: border-box;
+}
+
+/* Image block (first div) */
+.goldloan > div:nth-child(1) {
+  grid-column: 1;
+  grid-row: 1;
+}
+
+/* Text block (second div) */
+.goldloan > div:nth-child(2) {
+  grid-column: 2;
+  grid-row: 1;
+}
+
+/* Button block (third div) - spans full width */
+.goldloan > div:nth-child(3) {
+  grid-column: 1 / -1;
+  grid-row: 2;
+  position: relative;
+  padding-top: 20px;
+  margin-top: 10px;
+}
+
+/* Inside the third div: side-by-side layout for interest text and button */
+.goldloan > div:nth-child(3) > div {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap; /* Optional: stacks vertically on small screens */
+  gap: 10px;
+}
+
+/* Optional: reset margins for cleaner spacing */
+.goldloan > div:nth-child(3) > div p {
+  margin: 0;
+}
+
+/* Optional: Make button look styled (if needed) */
+.goldloan .button {
+  background-color: #b8860b;
+  color: #fff;
+  text-decoration: none;
+  padding: 10px 20px;
+  border-radius: 4px;
+  display: inline-block;
+}
+
+/* ✅ Responsive stacking for small screens */
+@media (width <= 768px) {
+  .goldloan {
+    grid-template-columns: 1fr;
+  }
+
+  .goldloan > div:nth-child(1),
+  .goldloan > div:nth-child(2),
+  .goldloan > div:nth-child(3) {
+    grid-column: 1;
+  }
+
+  .goldloan > div:nth-child(3) > div {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+}
+
+/* Pseudo element for the line */
+.goldloan > div:nth-child(3)::before {
+  content: '';
+  display: block;
+  height: 1px;
+  width: 100%;
+  background-color: #FFECA3;
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+.goldloan > div:nth-child(1) > div {
+  align-items: center;
+  width: 48px;
+  height: 48px;
+  padding: 8px;
+  border-radius: 56px;
+  border: 1px solid #F2F2F2;
+  background: #FFF;
+  margin-top: 0.8em;
+}
+
+.goldloan > div:nth-child(2) > div > p:first-of-type {
+  color: #333;
+  font-feature-settings: 'liga' off;
+  font-family: Gilmer, sans-serif;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 600;
+  line-height: 150%; /* 24px */
+}
+
+.goldloan > div:nth-child(2) > div > p:nth-of-type(2) {
+  color:#666;
+  font-feature-settings: 'liga' off;
+  font-family: Gilmer, sans-serif;
+  font-size: 12px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 140%; /* 16.8px */
+}
+
+.goldloan > div:nth-child(3) > div > p:first-of-type {
+  color:#333;
+  font-feature-settings: 'liga' off;
+  font-family: Gilmer, sans-serif;
+  font-size: 12px;
+  font-style: normal; 
+  font-weight: 600;
+  line-height: 140%; /* 16.8px */
+}
+
+.goldloan .button-container > a {
+  display: flex;
+  width: 140px;
+  height: 36px;
+  padding: 5px 17px;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  border-radius: 8px;
+  background: #FFCB09;
+  font-family: Gilmer, sans-serif;
+  font-size: 14px;
+  font-weight: 600;
+  color: #000;
+  text-decoration: none;
+}
+
+@media (width <= 768px) {
+  /* Stack image and text vertically */
+  .goldloan {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  /* Reset widths on inner divs */
+  .goldloan > div:nth-child(1),
+  .goldloan > div:nth-child(2),
+  .goldloan > div:nth-child(3) {
+    width: 100%;
+  }
+
+  /* Remove grid if applied */
+  .top-row {
+    display: flex;
+    flex-direction: column !important;
+    gap: 12px;
+  }
+
+  /* button is stacked or aligned */
+  .goldloan > div:nth-child(3) > div {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  /* Center button if needed */
+  .goldloan .button-container {
+    margin-top: 12px;
+  }
+
+  /* adjust image wrapper size */
+  .goldloan > div:nth-child(1) > div {
+    justify-content: flex-start;
+  }
+}

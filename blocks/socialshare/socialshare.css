@@ -1,0 +1,95 @@
+.socialshare {
+  align-items: center;
+  text-align: center;
+  padding: 24px 16px;
+  align-self: stretch;
+  border-radius: 16px;
+  background: #F7F7F7;
+}
+
+.socialshare .copied-temp-style p:last-of-type {
+  color: #fff !important;
+}
+
+.socialshare > div:nth-child(1) > div > p:first-of-type {
+  color:#666;
+  text-align: center;
+  font-feature-settings: 'liga' off;
+  font-family: Gilmer, sans-serif;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 600;
+  line-height: 140%;
+}
+
+.socialshare > div:nth-child(3) {
+  display: flex;
+  width: 320.925px;
+  padding: 8px 12px;
+  margin: 0 auto;
+  align-items: center;
+  border-radius: 12px;
+  border: 1px solid #DDD;
+  background: #FFF;
+}
+
+.socialshare .copied-temp-style div {
+  background: #4CAF50 !important;
+}
+
+.socialshare > div:nth-child(2) > div,
+.socialshare > div:nth-child(3) > div {
+  display: flex;
+  flex-direction: row; 
+  align-items: center;    
+  justify-content: center; 
+  gap: 10px;               
+}
+
+.socialshare > div:nth-child(2) > div > p:first-of-type {
+  margin-top: 7px;
+  color: #5F5F5F;
+  text-align: center;
+  font-family: Gilmer, sans-serif;
+  font-size: 14.053px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 150%;
+}
+
+.socialshare > div:nth-child(3) > span.socialshare-url {
+  display: flex;
+  padding: 5px 10px;
+  justify-content: center;
+  align-items: center;
+  gap: 8px;
+  flex-shrink: 0;
+  font-size: 0.85em;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  color: #333;
+}
+
+.socialshare > div:nth-child(3) > span.socialshare-url ~ div {
+  display: flex;
+  width: 113px;
+  justify-content: center;
+  align-items: center;
+  gap: 8px;
+  flex-shrink: 0;
+  border-radius: 8px;
+  background: #FCD400;
+}
+
+.socialshare > div:nth-child(3) > span.socialshare-url ~ div > p {
+  color: #000;
+  font-feature-settings: 'liga' off;
+  font-family: Gilmer, sans-serif;
+  font-size: 12px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 140%;
+}
+
+

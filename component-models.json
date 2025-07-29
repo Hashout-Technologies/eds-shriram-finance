@@ -677,5 +677,139 @@
         ]
       }
     ]
+  },
+  {
+      "id": "relatedtags",
+      "fields": [
+         {
+            "component": "text",
+            "valueType": "string",
+            "name": "text",
+            "label": "Text"
+        }
+      ]
+    },
+   {
+      "id": "relatedtag",
+      "fields": [
+        {
+            "component": "aem-content",
+            "name": "textContent_cta",
+            "label": "Link",
+            "valueType": "string"
+        },
+        {
+            "component": "text",
+            "name": "textContent_ctaText",
+            "label": "Tag label",
+            "valueType": "string"
+        }
+      ]
+    },
+    {
+    "id": "socialshare",
+    "fields": [
+      {
+        "component": "text",
+        "name": "title",
+        "label": "Title",
+        "valueType": "string"
+      },
+      {
+        "component": "text",
+        "name": "textContent_text",
+        "label": "Text",
+        "valueType": "string"
+      },
+      {
+        "component": "reference",
+        "valueType": "string",
+        "name": "textContent_twitter",
+        "label": "Twitter icon",
+        "multi": false
+      },
+      {
+        "component": "reference",
+        "valueType": "string",
+        "name": "textContent_facebook",
+        "label": "Facebook icon",
+        "multi": false
+      },
+      {
+        "component": "reference",
+        "valueType": "string",
+        "name": "textContent_instagram",
+        "label": "Instagram icon",
+        "multi": false
+      },
+      {
+        "component": "reference",
+        "valueType": "string",
+        "name": "textContent_linkedin",
+        "label": "Linkedin icon",
+        "multi": false
+      },
+      {
+        "component": "reference",
+        "valueType": "string",
+        "name": "copyLink_icon",
+        "label": "Copy link icon",
+        "multi": false
+      },
+      {
+        "component": "text",
+        "name": "copyLink_text",
+        "label": "Copy link label",
+        "valueType": "string"
+      }
+    ]
+  },
+  {
+    "id": "goldloan",
+    "fields": [
+      {
+        "component": "reference",
+        "valueType": "string",
+        "name": "image",
+        "label": "Image",
+        "multi": false
+      },
+      {
+        "component": "text",
+        "valueType": "string",
+        "name": "imageAlt",
+        "label": "Image alt text"
+      },
+      {
+        "component": "text",
+        "name": "textContent_title",
+        "label": "Title",
+        "valueType": "string"
+      },
+      {
+        "component": "richtext",
+        "name": "textContent_text",
+        "label": "Text",
+        "valueType": "string"
+      },
+      {
+        "component": "richtext",
+        "name": "content_text",
+        "label": "Content",
+        "valueType": "string"
+      },
+      {
+        "component": "aem-content",
+        "name": "content_cta",
+        "label": "CTA",
+        "valueType": "string"
+      },
+      {
+        "component": "text",
+        "name": "content_ctaText",
+        "label": "CTA label",
+        "valueType": "string"
+      }
+    ]
   }
 ]

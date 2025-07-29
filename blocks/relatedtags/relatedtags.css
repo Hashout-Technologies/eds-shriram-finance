@@ -1,0 +1,65 @@
+.relatedtags.block {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+}
+
+.relatedtags.block > div:first-child {
+  flex-basis: 100%;
+  margin-bottom: 10px;
+}
+
+/* Base style for tag items */
+.relatedtags.block > div:not(:first-child) {
+  display: flex;
+  align-items: center;
+  margin-right: 18px;
+  position: relative;
+  padding-left: 15px;
+}
+
+/* Remove left padding for first tag item (second child) */
+.relatedtags.block > div:nth-child(2) {
+  padding-left: 0;
+}
+
+/* Add vertical divider to left of all except the first tag */
+.relatedtags.block > div:not(:first-child, :nth-child(2))::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 1px;
+  height: 15px;
+  background-color: #000;
+}
+
+.relatedtags.block > div:first-child p {
+  color: #333;
+  font-feature-settings: 'liga' off;
+  font-family: Gilmer, sans-serif;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 600;
+  line-height: 140%;
+  margin: 0;
+}
+
+.relatedtags.block a {
+  color: #000;
+  font-family: Gilmer, sans-serif;
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+  text-decoration-line: underline;
+  text-decoration-style: solid;
+  text-decoration-skip-ink: none;
+  text-decoration-thickness: auto;
+  text-underline-offset: auto;
+  text-underline-position: from-font;
+  background-color: transparent;
+  padding: 0;
+  margin: 0;
+}
