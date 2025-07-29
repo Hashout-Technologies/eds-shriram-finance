@@ -51,14 +51,28 @@
   color: #4285f4;
 }
 
+.article-navigation .nav-title {
+  font-size: 16px;
+  font-weight: 600;  
+  line-height: 1.3;
+  margin: 0 0 8px; /* bottom-space so the label sits nicely underneath */
+  color: #333;
+}
+
+/* Cancel out any earlier text-decoration rules - place before disabled state */
+.article-navigation .nav-item .nav-label,
+.article-navigation .nav-item .nav-title {
+  text-decoration: none !important;
+}
+
 /* Disabled state - when no previous/next article available */
-.article-navigation .nav-item.disabled .nav-label {
-  color: #999;
+.article-navigation .nav-item.disabled {
+  pointer-events: none;
   cursor: not-allowed;
 }
 
-.article-navigation .nav-item.disabled {
-  pointer-events: none;
+.article-navigation .nav-item.disabled .nav-label {
+  color: #999;
   cursor: not-allowed;
 }
 
@@ -75,20 +89,7 @@
   margin-left: 8px;
 }
 
-.article-navigation .nav-title {
-  font-size: 16px;
-  font-weight: 600;  
-  line-height: 1.3;
-  margin: 0 0 8px; /* bottom-space so the label sits nicely underneath */
-  color: #333;
-}
-
 /* === Remove all underlines (even on hover) === */
-/* Cancel out any earlier text-decoration rules */
-.article-navigation .nav-item .nav-label,
-.article-navigation .nav-item .nav-title {
-  text-decoration: none !important;
-}
 
 /* Turn off the hover rules completely */
 .article-navigation .nav-item:hover .nav-label,
@@ -97,7 +98,7 @@
 }
 
 /* Responsive Design */
-@media (max-width: 768px) {
+@media (width <= 768px) {
   .article-navigation {
     margin: 40px 0;
   }

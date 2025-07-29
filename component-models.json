@@ -588,208 +588,94 @@
       },
       {
         "component": "text",
-        "name": "postedDate",
-        "label": "Posted Date",
-        "valueType": "string"
+        "name": "dates",
+        "label": "Posted/Updated Dates",
+        "valueType": "string",
+        "description": "Format: Posted Date | Updated Date"
       },
       {
         "component": "text",
-        "name": "updatedDate",
-        "label": "Updated Date",
-        "valueType": "string"
-      },
-      {
-        "component": "reference",
+        "name": "icons",
+        "label": "Icon References",
         "valueType": "string",
-        "name": "shareIcon",
-        "label": "Share Icon",
-        "multi": false
-      },
-      {
-        "component": "reference",
-        "valueType": "string",
-        "name": "viewIcon",
-        "label": "View Icon",
-        "multi": false
-      },
-      {
-        "component": "reference",
-        "valueType": "string",
-        "name": "timeIcon",
-        "label": "Time Icon",
-        "multi": false
+        "description": "Comma-separated icon references: share,view,time"
       }
     ]
   },
   {
-  "id": "products",
-  "fields": [
-    {
-      "component": "text",
-      "valueType": "string",
-      "name": "title",
-      "label": "Section Title",
-      "value": "You may be interested in"
-    },
-    {
-      "component": "reference",
-      "valueType": "string",
-      "name": "product1_image",
-      "label": "Product 1 Image",
-      "multi": false
-    },
-    {
-      "component": "text",
-      "valueType": "string",
-      "name": "product1_title",
-      "label": "Product 1 Title"
-    },
-    {
-      "component": "aem-content",
-      "name": "product1_link",
-      "label": "Product 1 Link"
-    },
-    {
-      "component": "reference",
-      "valueType": "string",
-      "name": "product2_image",
-      "label": "Product 2 Image",
-      "multi": false
-    },
-    {
-      "component": "text",
-      "valueType": "string",
-      "name": "product2_title",
-      "label": "Product 2 Title"
-    },
-    {
-      "component": "aem-content",
-      "name": "product2_link",
-      "label": "Product 2 Link"
-    },
-    {
-      "component": "reference",
-      "valueType": "string",
-      "name": "product3_image",
-      "label": "Product 3 Image",
-      "multi": false
-    },
-    {
-      "component": "text",
-      "valueType": "string",
-      "name": "product3_title",
-      "label": "Product 3 Title"
-    },
-    {
-      "component": "aem-content",
-      "name": "product3_link",
-      "label": "Product 3 Link"
-    },
-    {
-      "component": "reference",
-      "valueType": "string",
-      "name": "product4_image",
-      "label": "Product 4 Image",
-      "multi": false
-    },
-    {
-      "component": "text",
-      "valueType": "string",
-      "name": "product4_title",
-      "label": "Product 4 Title"
-    },
-    {
-      "component": "aem-content",
-      "name": "product4_link",
-      "label": "Product 4 Link"
-    },
-    {
-      "component": "reference",
-      "valueType": "string",
-      "name": "product5_image",
-      "label": "Product 5 Image",
-      "multi": false
-    },
-    {
-      "component": "text",
-      "valueType": "string",
-      "name": "product5_title",
-      "label": "Product 5 Title"
-    },
-    {
-      "component": "aem-content",
-      "name": "product5_link",
-      "label": "Product 5 Link"
-    },
-    {
-      "component": "reference",
-      "valueType": "string",
-      "name": "product6_image",
-      "label": "Product 6 Image",
-      "multi": false
-    },
-    {
-      "component": "text",
-      "valueType": "string",
-      "name": "product6_title",
-      "label": "Product 6 Title"
-    },
-    {
-      "component": "aem-content",
-      "name": "product6_link",
-      "label": "Product 6 Link"
-    }
-  ]
-},
-
-{
-  "id": "lead-form",
-  "fields": [
-    {
-      "component": "text",
-      "valueType": "string",
-      "name": "title",
-      "label": "Form Title",
-      "value": "Get a gold loan at low interest rates"
-    },
-    {
-      "component": "text",
-      "valueType": "string",
-      "name": "actionUrl",
-      "label": "Form Action URL",
-      "value": ""
-    }
-  ]
-},
-{
-  "id": "article-navigation",
-  "fields": []
-},
-
-{
-  "id": "articles-listing",
-  "fields": [
-    {
-      "component": "select",
-      "name": "articleType",
-      "label": "Article Type",
-      "valueType": "string",
-      "value": "related",
-      "options": [
-        {
-          "name": "Related Articles",
-          "value": "related"
-        },
-        {
-          "name": "Popular Articles",
-          "value": "popular"
-        },
-        {
-          "name": "Recent Articles",
-          "value": "recent"
-        }
-      ]
-    }
-  ]
-}
+    "id": "products",
+    "fields": [
+      {
+        "component": "text",
+        "valueType": "string",
+        "name": "title",
+        "label": "Section Title",
+        "value": "You may be interested in"
+      },
+      {
+        "component": "text",
+        "valueType": "number",
+        "name": "count",
+        "label": "Number of Products",
+        "value": "6",
+        "description": "Number of products to display (1-6)"
+      },
+      {
+        "component": "richtext",
+        "name": "productData",
+        "label": "Product Data",
+        "valueType": "string",
+        "description": "JSON format: [{\"image\":\"\",\"title\":\"\",\"link\":\"\"}, ...]"
+      }
+    ]
+  },
+  {
+    "id": "lead-form",
+    "fields": [
+      {
+        "component": "text",
+        "valueType": "string",
+        "name": "title",
+        "label": "Form Title",
+        "value": "Get a gold loan at low interest rates"
+      },
+      {
+        "component": "text",
+        "valueType": "string",
+        "name": "actionUrl",
+        "label": "Form Action URL",
+        "value": ""
+      }
+    ]
+  },
+  {
+    "id": "article-navigation",
+    "fields": []
+  },
+  {
+    "id": "articles-listing",
+    "fields": [
+      {
+        "component": "select",
+        "name": "articletype",
+        "label": "Article Type",
+        "valueType": "string",
+        "value": "related",
+        "options": [
+          {
+            "name": "Related Articles",
+            "value": "related"
+          },
+          {
+            "name": "Popular Articles",
+            "value": "popular"
+          },
+          {
+            "name": "Recent Articles",
+            "value": "recent"
+          }
+        ]
+      }
+    ]
+  }
 ]

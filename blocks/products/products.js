@@ -1,49 +1,6 @@
 import { createOptimizedPicture } from '../../scripts/aem.js';
 import { moveInstrumentation } from '../../scripts/scripts.js';
 
-export default function decorate(block) {
-  const rows = Array.from(block.children);
-  let titleRow = rows[0];
-  let productRows = rows;
-  let titleElement;
-
-  // Detect a standalone title row
-  if (titleRow && titleRow.children.length === 1 && titleRow.textContent.trim()) {
-    titleElement = document.createElement('h3');
-    titleElement.textContent = titleRow.textContent.trim();
-    productRows = rows.slice(1);
-  }
-
-  // Build the white container
-  const container = document.createElement('div');
-  container.className = 'products-container';
-
-  // Insert title
-  if (titleElement) {
-    container.append(titleElement);
-  } else {
-    const defaultTitle = document.createElement('h3');
-    defaultTitle.textContent = 'You may be interested in';
-    container.append(defaultTitle);
-  }
-
-  // Build grid wrapper
-  const grid = document.createElement('div');
-  grid.className = 'products-grid';
-
-  // Turn each row into a card
-  productRows.forEach(row => {
-    const item = createProductCard(row);
-    if (item) grid.append(item);
-  });
-
-  container.append(grid);
-
-  // Replace original block
-  block.textContent = '';
-  block.append(container);
-}
-
 function createProductCard(row) {
   const paras = row.querySelectorAll('p');
   if (paras.length < 2) return null;
@@ -93,4 +50,47 @@ function createProductCard(row) {
   moveInstrumentation(row, a);
 
   return a;
+}
+
+export default function decorate(block) {
+  const rows = Array.from(block.children);
+  const titleRow = rows[0];
+  let productRows = rows;
+  let titleElement;
+
+  // Detect a standalone title row
+  if (titleRow && titleRow.children.length === 1 && titleRow.textContent.trim()) {
+    titleElement = document.createElement('h3');
+    titleElement.textContent = titleRow.textContent.trim();
+    productRows = rows.slice(1);
+  }
+
+  // Build the white container
+  const container = document.createElement('div');
+  container.className = 'products-container';
+
+  // Insert title
+  if (titleElement) {
+    container.append(titleElement);
+  } else {
+    const defaultTitle = document.createElement('h3');
+    defaultTitle.textContent = 'You may be interested in';
+    container.append(defaultTitle);
+  }
+
+  // Build grid wrapper
+  const grid = document.createElement('div');
+  grid.className = 'products-grid';
+
+  // Turn each row into a card
+  productRows.forEach((row) => {
+    const item = createProductCard(row);
+    if (item) grid.append(item);
+  });
+
+  container.append(grid);
+
+  // Replace original block
+  block.textContent = '';
+  block.append(container);
 }

@@ -1,6 +1,6 @@
 /* Container */
 .products-container {
-  background-color: #FFFFFF;
+  background-color: #fff;
   border-radius: 16px;
   padding: 24px;
 }
@@ -9,7 +9,7 @@
 .products-container h3 {
   font-size: 20px;
   font-weight: 600;
-  color: #333333;
+  color: #333;
   margin: 0 0 16px;
   text-align: left;
 }
@@ -45,7 +45,8 @@
 .product-title {
   font-size: 14px;
   font-weight: 500;
-  color: #333333;
+  color: #333;
   line-height: 1.2;
   margin: 0;
 }
+

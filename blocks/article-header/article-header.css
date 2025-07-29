@@ -7,7 +7,7 @@
   gap: 24px;
   padding: 40px;
   position: relative;
-  background-color: #ffffff;
+  background-color: #fff;
   border-radius: 24px;
   overflow: hidden;
 }
@@ -37,41 +37,51 @@
 .article-header .article-header-frame .article-header-text-wrapper {
   position: relative;
   align-self: stretch;
-  margin-top: -1.00px;
-  font-family: "Gilmer", Helvetica;
+  margin-top: -1px;
+  font-family: Gilmer, Helvetica, Arial, sans-serif;
   font-weight: 700;
-  color: #333333;
+  color: #333;
   font-size: 24px;
-  letter-spacing: 0px;
+  letter-spacing: 0;
   line-height: 120%;
   font-style: normal;
 }
 
-.article-header .article-header-frame .article-header-div-3 {
+/* Clean Row-based Layout for Perfect Alignment */
+.article-header .article-header-frame .article-header-row {
   display: flex;
-  align-items: center;
   justify-content: space-between;
-  position: relative;
-  align-self: stretch;
+  align-items: center;
   width: 100%;
-  flex: 0 0 auto;
+  margin-bottom: 8px;
+  position: relative;
 }
 
-.article-header .article-header-frame .article-header-div-4 {
+.article-header .article-header-frame .article-header-left {
   display: flex;
-  width: 343px;
   align-items: center;
-  justify-content: space-between;
-  position: relative;
+  gap: 0;
+}
+
+.article-header .article-header-frame .article-header-date-item {
+  width: 180px;
+  display: flex;
+  align-items: center;
+}
+
+.article-header .article-header-frame .article-header-right {
+  display: flex;
+  align-items: center;
+  gap: 24px;
 }
 
 .article-header .article-header-frame .article-header-p {
   position: relative;
   width: fit-content;
-  margin-top: -1.00px;
-  font-family: "Gilmer-Regular", Helvetica;
+  margin-top: -1px;
+  font-family: Gilmer-Regular, Helvetica, Arial, sans-serif;
   font-weight: 400;
-  color: #333333;
+  color: #333;
   font-size: 14px;
   letter-spacing: 0;
   line-height: 21px;
@@ -79,20 +89,20 @@
 }
 
 .article-header .article-header-frame .article-header-span {
-  font-family: "Gilmer", Helvetica;
+  font-family: Gilmer, Helvetica, Arial, sans-serif;
   font-weight: 400;
-  color: #333333;
+  color: #333;
   font-size: 14px;
-  letter-spacing: 0px;
+  letter-spacing: 0;
   line-height: 150%;
   font-style: normal;
 }
 
 .article-header .article-header-frame .article-header-text-wrapper-2 {
-  font-family: "Gilmer", Helvetica;
+  font-family: Gilmer, Helvetica, Arial, sans-serif;
   font-weight: 500;
   font-style: normal;
-  letter-spacing: 0px;
+  letter-spacing: 0;
   line-height: 150%;
   font-size: 14px;
 }
@@ -106,24 +116,17 @@
 .article-header .article-header-frame .article-header-updated-july {
   position: relative;
   width: fit-content;
-  margin-top: -1.00px;
-  font-family: "Gilmer-Regular", Helvetica;
+  margin-top: -1px;
+  font-family: Gilmer-Regular, Helvetica, Arial, sans-serif;
   font-weight: 400;
-  color: #333333;
+  color: #333;
   font-size: 14px;
   letter-spacing: 0;
   line-height: 21px;
   white-space: nowrap;
 }
 
-.article-header .article-header-frame .article-header-div-5 {
-  display: inline-flex;
-  align-items: center;
-  justify-content: flex-end;
-  gap: 24px;
-  position: relative;
-  flex: 0 0 auto;
-}
+/* Removed old flex styles - now using grid layout above */
 
 .article-header .article-header-frame .article-header-group {
   position: relative;
@@ -135,9 +138,9 @@
   position: absolute;
   top: 0;
   left: 32px;
-  font-family: "Gilmer-Medium", Helvetica;
+  font-family: Gilmer-Medium, Helvetica, Arial, sans-serif;
   font-weight: 500;
-  color: #333333;
+  color: #333;
   font-size: 16px;
   letter-spacing: 0;
   line-height: 24px;
@@ -168,11 +171,11 @@
   position: absolute;
   top: 0;
   left: 29px;
-  font-family: "Gilmer", Helvetica;
+  font-family: Gilmer, Helvetica, Arial, sans-serif;
   font-weight: 500;
-  color: #333333;
+  color: #333;
   font-size: 14px;
-  letter-spacing: 0px;
+  letter-spacing: 0;
   line-height: 150%;
   white-space: nowrap;
   font-style: normal;
@@ -205,11 +208,11 @@
 .article-header .article-header-frame .article-header-text-wrapper-5 {
   position: relative;
   width: fit-content;
-  font-family: "Gilmer", Helvetica;
+  font-family: Gilmer, Helvetica, Arial, sans-serif;
   font-weight: 500;
-  color: #333333;
+  color: #333;
   font-size: 14px;
-  letter-spacing: 0px;
+  letter-spacing: 0;
   line-height: 150%;
   white-space: nowrap;
   font-style: normal;
@@ -226,24 +229,49 @@
 }
 
 .article-header .article-header-frame .article-header-frame-wrapper-2 {
-  display: inline-flex;
+  display: flex;
   align-items: center;
-  gap: 610px;
+  justify-content: space-between;
   position: relative;
-  flex: 0 0 auto;
+  width: 100%;
+  flex: 1;
 }
 
 .article-header .article-header-frame .article-header-div-7 {
   display: flex;
-  width: 752px;
   align-items: center;
-  justify-content: space-between;
   position: relative;
 }
 
+.article-header .article-header-frame .article-header-div-8 {
+  display: flex;
+  width: 343px;
+  align-items: center;
+  gap: 46px;
+  position: relative;
+}
+
+/* T&C Apply Styles */
+.article-header .article-header-frame .article-header-tnc-wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  position: relative;
+}
+
+.article-header .article-header-frame .article-header-tnc-text {
+  position: relative;
+  font-family: Gilmer, Helvetica, Arial, sans-serif;
+  font-weight: 400;
+  color: #666;
+  font-size: 14px;
+  letter-spacing: 0;
+  line-height: 150%;
+  white-space: nowrap;
+  font-style: normal;
+}
 
 /* IMAGE PART */
-
 
 /* Article Image Section Styles - Target only the picture/image */
 .default-content-wrapper picture {
@@ -253,7 +281,7 @@
   align-self: stretch;
   margin-left: 40px;
   padding: 40px;
-  background-color: #ffffff;
+  background-color: #fff;
   border-radius: 24px;
   overflow: hidden;
 }
@@ -267,12 +295,12 @@
 }
 
 /* Responsive adjustments */
-@media (max-width: 900px) {
+@media (width <= 900px) {
   .default-content-wrapper picture {
     margin-left: 20px;
     padding: 20px;
   }
-  
+
   .default-content-wrapper picture img {
     width: 100%;
     height: auto;
@@ -280,27 +308,28 @@
   }
 }
 
-@media (max-width: 600px) {
+@media (width <= 600px) {
   .default-content-wrapper picture {
     margin-left: 15px;
     padding: 15px;
   }
-  
+
   .default-content-wrapper picture img {
     height: auto;
     min-height: 200px;
   }
 }
 
-/* TEXT PART*/
-/* TO BE REMOVED LAETER TO ANOTHER CSS FILE */
+/* TEXT PART */
+
+/* TO BE REMOVED LATER TO ANOTHER CSS FILE */
 
 /* Article Text Content Styles - Create container effect without touching default-content-wrapper */
 
 /* Create visual container using background and borders on text elements */
 .default-content-wrapper p:not(:has(picture)),
 .default-content-wrapper h4 {
-  background-color: #ffffff;
+  background-color: #fff;
   padding: 20px 40px;
   margin: 0;
   width: 832px;
@@ -308,10 +337,33 @@
   position: relative;
 }
 
+/* Typography for paragraphs */
+.default-content-wrapper p:not(:has(picture)) {
+  font-family: Gilmer, Helvetica, Arial, sans-serif;
+  font-weight: 400;
+  color: #333;
+  font-size: 14px;
+  letter-spacing: 0;
+  line-height: 150%;
+  font-style: normal;
+}
+
+/* Typography for headings */
+.default-content-wrapper h4 {
+  font-family: Gilmer, Helvetica, Arial, sans-serif;
+  font-weight: 500;
+  color: #333;
+  font-size: 18px;
+  letter-spacing: 0;
+  line-height: 130%;
+  font-style: normal;
+}
+
 /* First element gets top border radius */
 .default-content-wrapper p:first-of-type:not(:has(picture)) {
   border-radius: 24px 24px 0 0;
   padding-top: 40px;
+  margin-top: 24px;
 }
 
 /* Last text element gets bottom border radius */
@@ -321,32 +373,11 @@
   padding-bottom: 40px;
 }
 
-/* If only one text element, give it full border radius */
+/* If only one text element, give it full border radius - most specific last */
 .default-content-wrapper p:first-of-type:last-of-type:not(:has(picture)) {
   border-radius: 24px;
   padding: 40px;
-}
-
-/* Typography for paragraphs */
-.default-content-wrapper p:not(:has(picture)) {
-  font-family: "Gilmer", Helvetica, Arial, sans-serif;
-  font-weight: 400;
-  color: #333333;
-  font-size: 14px;
-  letter-spacing: 0px;
-  line-height: 150%;
-  font-style: normal;
-}
-
-/* Typography for headings */
-.default-content-wrapper h4 {
-  font-family: "Gilmer", Helvetica, Arial, sans-serif;
-  font-weight: 500;
-  color: #333333;
-  font-size: 18px;
-  letter-spacing: 0px;
-  line-height: 130%;
-  font-style: normal;
+  margin-top: 24px;
 }
 
 /* Links */
@@ -359,13 +390,8 @@
   text-decoration: underline;
 }
 
-/* Add spacing between text container and other elements */
-.default-content-wrapper p:first-of-type:not(:has(picture)) {
-  margin-top: 24px;
-}
-
 /* Responsive */
-@media (max-width: 900px) {
+@media (width <= 900px) {
   .default-content-wrapper p:not(:has(picture)),
   .default-content-wrapper h4 {
     width: 100%;
@@ -373,33 +399,72 @@
     padding-left: 20px;
     padding-right: 20px;
   }
-  
+
   .default-content-wrapper p:first-of-type:not(:has(picture)) {
     padding-top: 20px;
   }
-  
+
   .default-content-wrapper p:last-of-type:not(:has(picture)),
   .default-content-wrapper h4:last-of-type {
     padding-bottom: 20px;
   }
+
+  .article-header .article-header-frame {
+    width: 100%;
+    max-width: 832px;
+    padding: 20px;
+  }
 }
 
-@media (max-width: 600px) {
+@media (width <= 600px) {
   .default-content-wrapper p:not(:has(picture)),
   .default-content-wrapper h4 {
     padding-left: 15px;
     padding-right: 15px;
   }
-  
+
   .default-content-wrapper h4 {
     font-size: 16px;
   }
-  
+
   .default-content-wrapper p:not(:has(picture)) {
     font-size: 13px;
   }
+
+  .article-header .article-header-frame {
+    padding: 15px;
+  }
+
+  .article-header .article-header-frame .article-header-text-wrapper {
+    font-size: 20px;
+  }
+
+  .article-header .article-header-frame .article-header-div-4 {
+    width: 100%;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 8px;
+  }
+
+  .article-header .article-header-frame .article-header-div-8 {
+    width: 100%;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 8px;
+  }
+
+  .article-header .article-header-frame .article-header-div-5 {
+    flex-wrap: wrap;
+    gap: 16px;
+  }
+
+  .article-header .article-header-frame .article-header-frame-wrapper-2 {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 12px;
+  }
+
+  .article-header .article-header-frame .article-header-tnc-wrapper {
+    align-self: flex-end;
+  }
 }
-
-
-
-    
