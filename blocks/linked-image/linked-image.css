@@ -1,5 +1,4 @@
 .linked-image {
-  background-color: red;
   display: inline-block;
   max-width: 100%;
 }
@@ -18,6 +17,16 @@
   max-width: 100%;
   height: auto;
   display: block;
+}
+
+/* Hide link text but keep image clickable */
+.linked-image a:not(:has(img)) {
+  display: none;
+}
+
+/* Alternative approach for browsers that don't support :has() */
+.linked-image a:empty {
+  display: none;
 }
 
 /* Responsive adjustments */

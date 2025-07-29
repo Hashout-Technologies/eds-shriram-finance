@@ -359,13 +359,6 @@
         "multi": false
       },
       {
-        "component": "text",
-        "valueType": "string",
-        "name": "alt",
-        "label": "Alt",
-        "value": ""
-      },
-      {
         "component": "aem-content",
         "name": "link",
         "label": "Link"
