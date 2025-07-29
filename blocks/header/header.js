@@ -213,8 +213,8 @@ function setupLeafNodeClick(submenuParagraph, submenuItem) {
 
   // Look for URL in various possible locations
   let url = submenuParagraph.getAttribute('data-url')
-            || submenuItem.getAttribute('data-url')
-            || submenuItem.querySelector(':scope > a')?.href;
+    || submenuItem.getAttribute('data-url')
+    || submenuItem.querySelector(':scope > a')?.href;
 
   if (!url) {
     // Generate fallback URL based on text content
@@ -282,7 +282,10 @@ function setupSubmenuHoverEvents(navSection) {
       // Show first submenu's children by default
       if (submenuItem === submenuItems[0]) {
         submenuChildren.classList.remove('submenu-children-hidden');
-        submenuChildren.classList.add('submenu-children-visible', 'submenu-visible');
+        submenuChildren.classList.add(
+          'submenu-children-visible',
+          'submenu-visible',
+        );
         showGrandchildren(submenuChildren);
         submenuItem.classList.add('active');
         updateDropdownHeight(mainDropdown);
@@ -290,7 +293,10 @@ function setupSubmenuHoverEvents(navSection) {
     } else {
       // Direct children - show them immediately
       submenuChildren.classList.remove('submenu-children-hidden');
-      submenuChildren.classList.add('submenu-children-visible', 'submenu-visible');
+      submenuChildren.classList.add(
+        'submenu-children-visible',
+        'submenu-visible',
+      );
 
       if (submenuItem === submenuItems[0]) {
         submenuItem.classList.add('active');
@@ -301,14 +307,18 @@ function setupSubmenuHoverEvents(navSection) {
     // Handle first item being a leaf node
     if (submenuItem === submenuItems[0] && !submenuChildren) {
       const firstItemWithChildren = Array.from(submenuItems).find(
-        (item) => item.querySelector(':scope > ul') && !item.classList.contains('nav-leaf'),
+        (item) => item.querySelector(':scope > ul')
+          && !item.classList.contains('nav-leaf'),
       );
 
       if (firstItemWithChildren && firstItemWithChildren !== submenuItem) {
         const firstItemChildren = firstItemWithChildren.querySelector(':scope > ul');
         if (firstItemChildren) {
           firstItemChildren.classList.remove('submenu-children-hidden');
-          firstItemChildren.classList.add('submenu-children-visible', 'submenu-visible');
+          firstItemChildren.classList.add(
+            'submenu-children-visible',
+            'submenu-visible',
+          );
           showGrandchildren(firstItemChildren);
           firstItemWithChildren.classList.add('active');
           updateDropdownHeight(mainDropdown);
@@ -348,7 +358,10 @@ function setupSubmenuHoverEvents(navSection) {
         }, 10);
       } else {
         submenuChildren.classList.remove('submenu-children-hidden');
-        submenuChildren.classList.add('submenu-children-visible', 'submenu-visible');
+        submenuChildren.classList.add(
+          'submenu-children-visible',
+          'submenu-visible',
+        );
         submenuItem.classList.add('active');
         updateDropdownHeight(mainDropdown);
       }
@@ -502,7 +515,6 @@ function extractNavigationAssets(navBrand) {
   const columnsBlock = navBrand?.querySelector('.columns');
   if (!columnsBlock) return {};
 
-  let hamburgerIcon = null;
   let brandLogo = null;
   let brandLink = null;
   let toolsContent = null;
@@ -510,13 +522,12 @@ function extractNavigationAssets(navBrand) {
   const firstColumn = columnsBlock.querySelector('div > div:first-child');
   if (firstColumn) {
     const images = firstColumn.querySelectorAll('picture');
-    if (images.length >= 2) {
-      hamburgerIcon = images[0].cloneNode(true);
-      brandLogo = images[1].cloneNode(true);
+    if (images.length >= 1) {
+      brandLogo = images[0].cloneNode(true);
     }
 
-    // Extract the brand link
-    const link = firstColumn.querySelector('a[href*="fast.com"]');
+    // Extract the brand link - look for any link in the first column
+    const link = firstColumn.querySelector('a[href]');
     if (link) {
       brandLink = link.cloneNode(true);
     }
@@ -529,14 +540,16 @@ function extractNavigationAssets(navBrand) {
   }
 
   return {
-    hamburgerIcon, brandLogo, brandLink, toolsContent,
+    brandLogo,
+    brandLink,
+    toolsContent,
   };
 }
 
 /**
  * Creates hamburger menu button
  */
-async function createHamburgerButton(hamburgerIcon) {
+async function createHamburgerButton() {
   const hamburger = document.createElement('div');
   hamburger.classList.add('nav-hamburger');
 
@@ -550,13 +563,12 @@ async function createHamburgerButton(hamburgerIcon) {
     placeholders.navOpenLabel || 'Open navigation',
   );
 
-  if (hamburgerIcon) {
-    button.append(hamburgerIcon);
-  } else {
-    const icon = document.createElement('span');
-    icon.classList.add('nav-hamburger-icon');
-    button.append(icon);
-  }
+  // Create hamburger icon using the static SVG
+  const icon = document.createElement('img');
+  icon.src = '/icons/navigation-icon.svg';
+  icon.alt = 'Navigation menu';
+  icon.setAttribute('aria-hidden', 'true');
+  button.append(icon);
 
   hamburger.append(button);
   return hamburger;
@@ -621,7 +633,9 @@ function cleanupButtonStyling(navSections) {
  * Toggles notifications panel visibility
  */
 function toggleNotifications(notificationsBlock, forceVisible = null) {
-  const container = notificationsBlock.querySelector('.notifications-container');
+  const container = notificationsBlock.querySelector(
+    '.notifications-container',
+  );
   if (!container) return;
 
   const isCurrentlyVisible = !notificationsBlock.classList.contains('notifications-block-hidden')
@@ -756,7 +770,9 @@ function processNotificationsBlock(notificationsBlock) {
   }
 
   notificationsBlock.classList.add('notifications-block-hidden');
-  const container = notificationsBlock.querySelector('.notifications-container');
+  const container = notificationsBlock.querySelector(
+    '.notifications-container',
+  );
   if (container) {
     container.classList.add('notifications-hidden');
   }
@@ -898,11 +914,13 @@ export default async function decorate(block) {
 
   // Clean up brand section
   if (navBrand) {
-    // Find the brand link - look for the link with fast.com URL
-    const brandLink = navBrand.querySelector('a[href*="fast.com"]');
-    if (brandLink) {
-      brandLink.className = '';
-      brandLink.closest('.button-container')?.classList.remove('button-container');
+    // Find the brand link - look for any link that might be the brand link
+    const existingBrandLink = navBrand.querySelector('a[href]');
+    if (existingBrandLink) {
+      existingBrandLink.className = '';
+      existingBrandLink
+        .closest('.button-container')
+        ?.classList.remove('button-container');
     }
   }
 
@@ -922,9 +940,7 @@ export default async function decorate(block) {
   }
 
   // Extract navigation assets and create structure
-  const {
-    hamburgerIcon, brandLogo, brandLink, toolsContent,
-  } = extractNavigationAssets(navBrand);
+  const { brandLogo, brandLink, toolsContent } = extractNavigationAssets(navBrand);
 
   // Setup notification icon from toolsContent
   if (toolsContent) {
@@ -935,7 +951,7 @@ export default async function decorate(block) {
   const capturedNotificationsBlock = nav.querySelector('.notifications');
 
   // Create hamburger button
-  const hamburger = await createHamburgerButton(hamburgerIcon);
+  const hamburger = await createHamburgerButton();
 
   // Create navigation structure
   const topSection = document.createElement('div');
