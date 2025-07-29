@@ -136,6 +136,14 @@
           {
             "name": "Highlight",
             "value": "highlight"
+          },
+          {
+            "name": "Twothird",
+            "value": "twothird"
+          },
+          {
+            "name": "Onethird",
+            "value": "onethird"
           }
         ]
       }
