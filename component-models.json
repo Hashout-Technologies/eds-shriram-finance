@@ -144,7 +144,19 @@
           {
             "name": "Onethird",
             "value": "onethird"
-          }
+          },
+          {
+          "name": "Article Layout Container",
+          "value": "article-layout-container"
+        },
+        {
+          "name": "Article Main Content",
+          "value": "article-main-content"
+        },
+        {
+          "name": "Article Sidebar",
+          "value": "article-sidebar"
+        }
         ]
       }
     ]
