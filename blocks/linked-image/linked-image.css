@@ -1,0 +1,28 @@
+.linked-image {
+  background-color: red;
+  display: inline-block;
+  max-width: 100%;
+}
+
+.linked-image a {
+  display: block;
+  text-decoration: none;
+  transition: opacity 0.3s ease;
+}
+
+.linked-image a:hover {
+  opacity: 0.8;
+}
+
+.linked-image img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+}
+
+/* Responsive adjustments */
+@media (width <= 768px) {
+  .linked-image {
+    width: 100%;
+  }
+} 
