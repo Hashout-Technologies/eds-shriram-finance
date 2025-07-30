@@ -5,7 +5,6 @@
   width: 832px;
   align-items: flex-end;
   gap: 24px;
-  padding: 40px;
   position: relative;
   background-color: #fff;
   border-radius: 24px;
@@ -279,8 +278,6 @@
   width: 100%;
   height: auto;
   align-self: stretch;
-  margin-left: 40px;
-  padding: 40px;
   background-color: #fff;
   border-radius: 24px;
   overflow: hidden;
@@ -330,7 +327,6 @@
 .default-content-wrapper p:not(:has(picture)),
 .default-content-wrapper h4 {
   background-color: #fff;
-  padding: 20px 40px;
   margin: 0;
   width: 832px;
   box-sizing: border-box;
