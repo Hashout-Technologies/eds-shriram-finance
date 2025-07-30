@@ -278,7 +278,11 @@ main {
 /* Main content column */
 main > .section.article-main-content {
   flex: 0 0 832px;   /* fixed width */
-  max-width: 832px;  /* ensure it doesn’t grow/shrink */
+  border-radius: 16px 16px 0 0;
+  box-shadow: 0 4px 20px rgb(0 0 0 / 10%);
+  margin-top: 40px;
+  padding-top: 32px;
+  margin-left: 32px;
 }
 
 /* Sidebar column */
