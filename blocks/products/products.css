@@ -1,3 +1,11 @@
+.products {
+  padding: 40px;
+  box-shadow: rgb(0 0 0 / 10%) 0 4px 20px;
+  border-radius: 16px;
+  margin-top: 20px;
+  margin-bottom: 20px;
+}
+
 /* Container */
 .products-container {
   background-color: #fff;
