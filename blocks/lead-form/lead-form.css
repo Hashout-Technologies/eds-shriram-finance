@@ -82,3 +82,11 @@
     font-size: 16px;
   }
 }
+
+/* Override: make lead-form fill its 408px sidebar container */
+.lead-form {
+  width: 100%;       /* span the full width of its parent */
+  max-width: none;   /* remove the 500px cap */
+  margin: 0;         /* cancel the auto-centering */
+  box-sizing: border-box; /* ensure padding is included in the width */
+}

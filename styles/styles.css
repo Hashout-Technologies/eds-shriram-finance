@@ -264,3 +264,25 @@ main .section.highlight {
   margin: 0;
   padding: 40px 0;
 }
+
+
+
+/* layout.css */
+
+/* Make the two sections children of <main> into a flex row */
+main {
+  display: flex;
+  column-gap: 16px; /* gap between the two columns */
+}
+
+/* Main content column */
+main > .section.article-main-content {
+  flex: 0 0 832px;   /* fixed width */
+  max-width: 832px;  /* ensure it doesn’t grow/shrink */
+}
+
+/* Sidebar column */
+main > .section.article-sidebar {
+  flex: 0 0 408px;   /* fixed width */
+  max-width: 408px;  /* ensure it doesn’t grow/shrink */
+}
