@@ -101,7 +101,8 @@
         "title",
         "video",
         "notifications",
-        "linked-image"
+        "linked-image",
+        "article-listing"
       ]
     }
   ]
