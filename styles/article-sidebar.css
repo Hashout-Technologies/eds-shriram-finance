@@ -1,0 +1,20 @@
+
+body.article-layout main {
+  display: flex;
+  column-gap: 16px; /* gap between the two columns */
+}
+
+/* Main content column */
+body.article-layout main > .section.article-main-content {
+  flex: 2; /* takes up 2/3 of available space */
+  border-radius: 16px 16px 0 0;
+  box-shadow: 0 4px 20px rgb(0 0 0 / 10%);
+  margin-top: 40px;
+  padding-top: 32px;
+  margin-left: 32px;
+}
+
+/* Sidebar column */
+body.article-layout main > .section.article-sidebar {
+  flex: 1; /* takes up 1/3 of available space */
+}
