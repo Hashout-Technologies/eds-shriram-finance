@@ -92,29 +92,56 @@ function getTitleFromType(type) {
 }
 
 function createArticleCard(article) {
-  const card = document.createElement('a');
-  card.href = article.url;
-  card.className = 'article-card';
+  // Create article item wrapper
+  const articleItem = document.createElement('a');
+  articleItem.href = article.url;
+  articleItem.className = 'article-item';
 
-  // Image
+  // Create article item content
+  const articleContent = document.createElement('div');
+  articleContent.className = 'article-item-content';
+
+  // Create article item inner
+  const articleInner = document.createElement('div');
+  articleInner.className = 'article-item-inner';
+
+  // Create image container
+  const imageContainer = document.createElement('div');
+  imageContainer.className = 'article-image-container';
+
+  // Create image
   const image = document.createElement('img');
   image.src = article.image;
   image.alt = article.title;
   image.className = 'article-image';
   image.loading = 'lazy';
   image.onerror = function handleImageError() {
-    this.style.background = '#f0e68c';
+    this.style.background = '#f5f5f5';
     this.alt = 'Article image';
   };
-  card.appendChild(image);
 
-  // Title
-  const title = document.createElement('h3');
-  title.className = 'article-title';
+  imageContainer.appendChild(image);
+
+  // Create title
+  const title = document.createElement('div');
+  title.className = 'article-title-small';
   title.textContent = article.title;
-  card.appendChild(title);
 
-  return card;
+  // Build the structure
+  articleInner.appendChild(imageContainer);
+  articleInner.appendChild(title);
+  articleContent.appendChild(articleInner);
+  articleItem.appendChild(articleContent);
+
+  return articleItem;
+}
+
+function chunkArray(array, chunkSize) {
+  const chunks = [];
+  for (let i = 0; i < array.length; i += chunkSize) {
+    chunks.push(array.slice(i, i + chunkSize));
+  }
+  return chunks;
 }
 
 async function loadArticles(articleType, container, loading) {
@@ -129,17 +156,32 @@ async function loadArticles(articleType, container, loading) {
     // Remove loading state
     loading.remove();
 
-    // Create articles grid
-    const grid = document.createElement('div');
-    grid.className = 'articles-grid';
+    // Create widget section full wrapper
+    const widgetSection = document.createElement('div');
+    widgetSection.className = 'widget-section-full';
 
-    // Create article cards (limit to 4)
-    articles.slice(0, 4).forEach((article) => {
-      const card = createArticleCard(article);
-      grid.appendChild(card);
+    // Group articles into pairs (matching Figma structure)
+    const articlePairs = chunkArray(articles.slice(0, 4), 2);
+
+    // Create articles grids for each pair
+    articlePairs.forEach((pair) => {
+      const articlesGrid = document.createElement('div');
+      articlesGrid.className = 'articles-grid';
+
+      // Create articles-row for each article in the pair
+      pair.forEach((article) => {
+        const articlesRow = document.createElement('div');
+        articlesRow.className = 'articles-row';
+
+        const articleCard = createArticleCard(article);
+        articlesRow.appendChild(articleCard);
+        articlesGrid.appendChild(articlesRow);
+      });
+
+      widgetSection.appendChild(articlesGrid);
     });
 
-    container.appendChild(grid);
+    container.appendChild(widgetSection);
   } catch (error) {
     // Remove loading and show error
     loading.remove();
@@ -163,13 +205,13 @@ export default function decorate(block) {
     }
   }
 
-  // Create container
+  // Create main container (matching Figma structure)
   const container = document.createElement('div');
   container.className = 'articles-listing-container';
 
   // Create section title
-  const title = document.createElement('h2');
-  title.className = 'section-title';
+  const title = document.createElement('div');
+  title.className = 'related-articles-title';
   title.textContent = getTitleFromType(articleType);
   container.appendChild(title);
 

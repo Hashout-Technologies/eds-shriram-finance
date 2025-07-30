@@ -1,8 +1,10 @@
-/* ===================================================================
-   Pixel‑Perfect "Related Articles" Block
-   =================================================================== */
+/* Articles Listing Block Styling - Updated with Figma Design */
 
-/* 1) reset inside the block */
+.articles-listing-wrapper {
+  padding: 0px !important;
+}
+
+/* Reset inside the block */
 .articles-listing,
 .articles-listing * {
   margin: 0;
@@ -10,83 +12,234 @@
   box-sizing: border-box;
 }
 
-/* 2) outer container */
+/* Main Container - matches sidebar-widget */
 .articles-listing {
-  background-color: #fff;
-  border-radius: 32px;
-  padding: 48px;
-  max-width: 1120px;
-  margin: 0 auto;
+  align-self: stretch; 
+  padding: 24px; 
+  background: white; 
+  border-radius: 16px; 
+  justify-content: center; 
+  align-items: flex-start; 
+  gap: 16px; 
+  display: inline-flex;
+  max-width: none;
 }
 
-/* 3) section title */
-.articles-listing .section-title {
-  font-family: system-ui, sans-serif;
-  font-size: 28px;
-  font-weight: 600;
-  color: #222;
-  text-align: center;
-  margin-bottom: 32px;
-  line-height: 1.2;
+.articles-listing-container {
+  flex: 1 1 0; 
+  align-self: stretch; 
+  flex-direction: column; 
+  justify-content: flex-start; 
+  align-items: flex-start; 
+  gap: 24px; 
+  display: inline-flex;
 }
 
-/* 4) two‑column grid */
+.widget-section-full {
+  align-self: stretch; 
+  flex-direction: column; 
+  justify-content: flex-start; 
+  align-items: flex-start; 
+  gap: 24px; 
+  display: flex;
+}
+
+/* Section Title */
+.articles-listing .section-title,
+.related-articles-title {
+  align-self: stretch; 
+  height: 22px; 
+  text-align: center; 
+  justify-content: center; 
+  display: flex; 
+  flex-direction: column; 
+  color: #333333; 
+  font-size: 18px; 
+  font-family: Gilmer, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; 
+  font-weight: 700; 
+  line-height: 23.40px; 
+  word-wrap: break-word;
+  margin-bottom: 0;
+}
+
+/* Articles Grid Container */
 .articles-listing .articles-grid {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: 32px;
+  align-self: stretch; 
+  justify-content: flex-start; 
+  align-items: flex-start; 
+  gap: 24px; 
+  display: inline-flex;
+  margin-bottom: 16px;
 }
 
-/* 5) each card */
-.articles-listing .article-card {
-  display: block;
-  border-radius: 16px;
-  overflow: hidden;
+.articles-listing .articles-grid:last-child {
+  margin-bottom: 0;
+}
+
+/* Articles Row */
+.articles-row {
+  flex: 1 1 0; 
+  justify-content: flex-start; 
+  align-items: flex-start; 
+  gap: 24px; 
+  display: flex;
+}
+
+/* Article Item */
+.articles-listing .article-card,
+.article-item {
+  flex: 1 1 0; 
+  flex-direction: column; 
+  justify-content: flex-start; 
+  align-items: flex-start; 
+  gap: 24px; 
+  display: inline-flex;
   text-decoration: none;
-  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  color: inherit;
+  cursor: pointer;
 }
 
-/* 6) image */
+.article-item-content {
+  align-self: stretch; 
+  flex-direction: column; 
+  justify-content: flex-start; 
+  align-items: flex-start; 
+  gap: 8px; 
+  display: flex;
+}
+
+.article-item-inner {
+  align-self: stretch; 
+  flex-direction: column; 
+  justify-content: flex-start; 
+  align-items: flex-start; 
+  gap: 10px; 
+  display: flex;
+}
+
+/* Image Container */
+.article-image-container {
+  align-self: stretch; 
+  background: linear-gradient(180deg, #F5F5F5 0%, #FFFFFF 100%); 
+  border-radius: 12px; 
+  flex-direction: column; 
+  justify-content: flex-start; 
+  align-items: flex-start; 
+  gap: 6px; 
+  display: flex;
+  overflow: hidden;
+  transition: box-shadow 0.3s ease;
+}
+
+/* Image */
 .articles-listing .article-image {
-  display: block;
-  width: 100%;
-  height: 160px;
+  width: 168px; 
+  height: 67px; 
+  border-radius: 12px;
   object-fit: cover;
-  background-color: #f0e68c; /* fallback */
+  transition: transform 0.3s ease;
+  background-color: #f5f5f5;
+  display: block;
 }
 
-/* 7) title */
-.articles-listing .article-title {
-  font-family: system-ui, sans-serif;
-  font-size: 18px;
-  font-weight: 600;
-  color: #333;
-  line-height: 1.4;
-  min-height: 3em; /* keep card heights uniform */
+/* Title */
+.articles-listing .article-title,
+.article-title-small {
+  align-self: stretch; 
+  justify-content: center; 
+  display: flex; 
+  flex-direction: column; 
+  color: #333333; 
+  font-size: 12px; 
+  font-family: Gilmer, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; 
+  font-weight: 600; 
+  line-height: 16.80px; 
+  word-wrap: break-word;
+  transition: color 0.2s ease;
+  text-align: left;
+  min-height: auto;
 }
 
-/* 8) mobile: one column */
-@media (width <= 768px) {
+/* Loading and Error States */
+.loading {
+  text-align: center;
+  padding: 20px;
+  color: #666;
+  font-family: Gilmer, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+}
+
+.error {
+  text-align: center;
+  padding: 20px;
+  color: #d32f2f;
+  font-family: Gilmer, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+}
+
+/* Hover Effects */
+.articles-listing .article-card:hover,
+.article-item:hover {
+  cursor: pointer;
+}
+
+.articles-listing .article-card:hover .article-image,
+.article-item:hover .article-image {
+  transform: scale(1.05);
+}
+
+.articles-listing .article-card:hover .article-title,
+.article-item:hover .article-title-small {
+  color: #FFCB09;
+}
+
+.articles-listing .article-card:hover .article-image-container,
+.article-item:hover .article-image-container {
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
   .articles-listing {
-    padding: 32px 24px;
+    padding: 16px;
   }
-
-  .articles-listing .section-title {
-    font-size: 24px;
-    margin-bottom: 24px;
-  }
-
+  
   .articles-listing .articles-grid {
-    grid-template-columns: 1fr;
-    gap: 24px;
+    flex-direction: column;
+    gap: 16px;
   }
-
+  
+  .articles-row {
+    flex-direction: column;
+    gap: 16px;
+  }
+  
   .articles-listing .article-image {
-    height: 140px;
+    width: 100%;
+    height: auto;
+    min-height: 67px;
   }
+  
+  .widget-section-full {
+    gap: 16px;
+  }
+}
 
-  .articles-listing .article-title {
+@media (max-width: 480px) {
+  .articles-listing {
+    padding: 16px;
+  }
+  
+  .widget-section-full {
+    gap: 16px;
+  }
+  
+  .articles-listing .articles-grid {
+    gap: 12px;
+  }
+  
+  .articles-listing .section-title,
+  .related-articles-title {
     font-size: 16px;
-    margin: 12px 8px 0;
+    line-height: 20px;
+    height: auto;
   }
 }

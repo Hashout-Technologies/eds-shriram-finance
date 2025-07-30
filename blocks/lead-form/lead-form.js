@@ -23,15 +23,23 @@ export default function decorate(block) {
     }
   }
 
-  // Create the form container
+  // Create the main form container (matching Figma structure)
   const formContainer = document.createElement('div');
   formContainer.className = 'lead-form-container';
+
+  // Create form content wrapper
+  const formContent = document.createElement('div');
+  formContent.className = 'form-content';
+
+  // Create form section
+  const formSection = document.createElement('div');
+  formSection.className = 'form-section';
 
   // Create title
   const titleElement = document.createElement('h2');
   titleElement.className = 'form-title';
   titleElement.textContent = title;
-  formContainer.appendChild(titleElement);
+  formSection.appendChild(titleElement);
 
   // Create form
   const form = document.createElement('form');
@@ -40,6 +48,10 @@ export default function decorate(block) {
   if (actionUrl) {
     form.action = actionUrl;
   }
+
+  // Create form fields container
+  const formFields = document.createElement('div');
+  formFields.className = 'form-fields';
 
   // Create form fields
   const fields = [
@@ -55,23 +67,36 @@ export default function decorate(block) {
   ];
 
   fields.forEach((field) => {
+    // Create form field wrapper (matching Figma structure)
+    const fieldWrapper = document.createElement('div');
+    fieldWrapper.className = 'form-field-wrapper';
+
+    // Create actual input element
     const input = document.createElement('input');
     input.type = field.type;
     input.name = field.name;
     input.placeholder = field.placeholder;
     input.required = field.required;
     input.className = 'form-input';
-    form.appendChild(input);
+
+    fieldWrapper.appendChild(input);
+    formFields.appendChild(fieldWrapper);
   });
 
-  // Create submit button
+  // Create submit button (keeping it as a functional button)
   const button = document.createElement('button');
   button.type = 'submit';
   button.className = 'form-button';
   button.textContent = 'Apply Now';
+
+  // Add fields and button to form
+  form.appendChild(formFields);
   form.appendChild(button);
 
-  formContainer.appendChild(form);
+  // Build the structure
+  formSection.appendChild(form);
+  formContent.appendChild(formSection);
+  formContainer.appendChild(formContent);
 
   // Move instrumentation from original block
   moveInstrumentation(block, formContainer);
