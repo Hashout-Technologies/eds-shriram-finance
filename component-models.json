@@ -164,6 +164,10 @@
               {
                 "name": "Black Background",
                 "value": "black-bg"
+              },
+              {
+                "name": "Gray Background",
+                "value": "gray-bg"
               }
             ]
           },
@@ -190,6 +194,18 @@
         "name": "text",
         "value": "",
         "label": "Text",
+        "valueType": "string"
+      }
+    ]
+  },
+  {
+    "id": "article-listing",
+    "fields": [
+      {
+        "component": "text",
+        "name": "title",
+        "value": "",
+        "label": "Title",
         "valueType": "string"
       }
     ]

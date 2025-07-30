@@ -61,6 +61,10 @@
                 {
                   "name": "Black Background",
                   "value": "black-bg"
+                },
+                {
+                  "name": "Gray Background",
+                  "value": "gray-bg"
                 }
               ]
             },
@@ -97,7 +101,8 @@
         "title",
         "video",
         "notifications",
-        "linked-image"
+        "linked-image",
+        "article-listing"
       ]
     }
   ]

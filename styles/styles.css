@@ -65,6 +65,10 @@
   --overlay-background-color: lightgrey;
   --border-color: var(--color-primary-yellow);
 
+    /* Light Colors */
+    --color-soft-gray: #E5E5E5;
+    --color-light-soft-gray: #D5D5D5;
+
     /* Border Neutral colours */
     --border-color-neutral-900: #393939;
 
@@ -79,14 +83,17 @@
     --font-weight-800: 800;
     --font-weight-900: 900;
 
-  /* Spacing */
-  --space-xs: 0.25rem;
-  --space-sm: 0.5rem;
-  --space-s: 0.75rem;
-  --space-m: 0.845rem;
-  --space-md: 1rem;
-  --space-lg: 1.5rem;
-  --space-xl: 2rem;
+    /* Spacing */
+    --space-xs: 0.25rem;
+    --space-sm: 0.5rem;
+    --space-s: 0.75rem;
+    --space-m: 0.845rem;
+    --space-md: 1rem;
+    --space-lg: 1.5rem;
+    --space-xl: 2rem;
+
+    /* Primary Colors */
+    --page-bg-color: #fff;
 }
 
 /* ================================
@@ -100,14 +107,14 @@
 
 html,
 body {
-  padding: 0;
-  margin: 0;
-  font-family: var(--font-regular);
-  font-size: var(--font-size-base);
-  color: var(--color-neutral-900);
-  background-color: var(--color-background);
-  scroll-behavior: smooth;
-  -webkit-font-smoothing: antialiased;
+    padding: 0;
+    margin: 0;
+    font-family: var(--font-regular);
+    font-size: var(--font-size-base);
+    color: var(--color-neutral-900);
+    background-color: var(--page-bg-color);
+    scroll-behavior: smooth;
+    -webkit-font-smoothing: antialiased;
 }
 
 /* ================================
@@ -702,4 +709,8 @@ main .section.flex-col-7-3>div {
 
 .section.black-bg .default-content-wrapper > *{
     color: var(--color-white);
+}
+
+main .section.gray-bg{
+    background: var(--color-soft-gray);
 }
