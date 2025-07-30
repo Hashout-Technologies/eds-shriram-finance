@@ -38,6 +38,10 @@
     --color-neutral-900: #333;
     --color-neutral-1000: #121212;
 
+    /* Light Colors */
+    --color-soft-gray: #E5E5E5;
+    --color-light-soft-gray: #D5D5D5;
+
     /* Border Neutral colours */
     --border-color-neutral-900: #393939;
 
@@ -60,6 +64,9 @@
     --space-md: 1rem;
     --space-lg: 1.5rem;
     --space-xl: 2rem;
+
+    /* Primary Colors */
+    --page-bg-color: #fff;
 }
 
 /* ================================
@@ -78,7 +85,7 @@ body {
     font-family: var(--font-regular);
     font-size: var(--font-size-base);
     color: var(--color-neutral-900);
-    background-color: var(--color-background);
+    background-color: var(--page-bg-color);
     scroll-behavior: smooth;
     -webkit-font-smoothing: antialiased;
 }
@@ -675,4 +682,8 @@ main .section.flex-col-7-3 > div {
 
 .section.black-bg .default-content-wrapper > *{
     color: var(--color-white);
+}
+
+main .section.gray-bg{
+    background: var(--color-soft-gray);
 }

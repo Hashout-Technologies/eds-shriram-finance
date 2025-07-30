@@ -61,6 +61,10 @@
                 {
                   "name": "Black Background",
                   "value": "black-bg"
+                },
+                {
+                  "name": "Gray Background",
+                  "value": "gray-bg"
                 }
               ]
             }
