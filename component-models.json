@@ -432,6 +432,54 @@
     ]
   },
   {
+    "id": "product-cards",
+    "fields": [
+      {
+        "component": "text",
+        "name": "heading-text",
+        "value": "",
+        "label": "Heading Title",
+        "valueType": "string"
+      }
+    ]
+  },
+  {
+    "id": "product-card-item",
+    "fields": [
+      {
+        "component": "text",
+        "name": "title",
+        "value": "",
+        "label": "Title",
+        "valueType": "string"
+      },
+      {
+        "component": "text",
+        "name": "description",
+        "value": "",
+        "label": "Description",
+        "valueType": "string"
+      },
+      {
+        "component": "text",
+        "name": "interest-rate",
+        "value": "",
+        "label": "Interest Rate",
+        "valueType": "string"
+      },
+      {
+        "component": "aem-content",
+        "name": "link",
+        "label": "CTA Link"
+      },
+      {
+        "component": "text",
+        "name": "cta-link-text",
+        "label": "CTA Label"
+      }
+    ]
+  },
+  {
     "id": "quote",
     "fields": [
       {
