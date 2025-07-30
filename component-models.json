@@ -166,6 +166,10 @@
                 "value": "black-bg"
               }
             ]
+          },
+          {
+            "name": "Sidebar",
+            "value": "sidebar"
           }
         ]
       }
@@ -349,6 +353,23 @@
     ]
   },
   {
+    "id": "linked-image",
+    "fields": [
+      {
+        "component": "reference",
+        "valueType": "string",
+        "name": "image",
+        "label": "Image",
+        "multi": false
+      },
+      {
+        "component": "aem-content",
+        "name": "link",
+        "label": "Link"
+      }
+    ]
+  },
+  {
     "id": "modal",
     "fields": [
       {
@@ -360,6 +381,37 @@
         "component": "text",
         "name": "linkText",
         "label": "Text"
+      }
+    ]
+  },
+  {
+    "id": "notification-item",
+    "fields": [
+      {
+        "component": "richtext",
+        "name": "message",
+        "value": "",
+        "label": "Message",
+        "valueType": "string"
+      },
+      {
+        "component": "text",
+        "name": "callToAction",
+        "value": "Invest Now",
+        "label": "Call to Action Text",
+        "valueType": "string"
+      },
+      {
+        "component": "aem-content",
+        "name": "callToActionLink",
+        "label": "Call to Action Link"
+      },
+      {
+        "component": "text",
+        "name": "timestamp",
+        "value": "",
+        "label": "Timestamp",
+        "valueType": "string"
       }
     ]
   },
