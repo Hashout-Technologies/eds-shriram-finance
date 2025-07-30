@@ -73,7 +73,7 @@
 
 .socialshare > div:nth-child(3) > span.socialshare-url ~ div {
   display: flex;
-  width: 105px;
+  width: 100px;
   justify-content: center;
   align-items: center;
   gap: 8px;

@@ -7,7 +7,7 @@ body.article-layout main {
 /* Main content column */
 body.article-layout main > .section.article-main-content {
    flex: 0 0 832px; /* takes up 2/3 of available space */
-  border-radius: 16px 16px 0 0;
+  border-radius: 16px;
   box-shadow: 0 4px 20px rgb(0 0 0 / 10%);
   margin-top: 40px;
   padding-top: 32px;
