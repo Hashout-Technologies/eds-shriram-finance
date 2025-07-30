@@ -284,7 +284,7 @@
 
 .default-content-wrapper picture img {
   position: relative;
-  width: 752px;
+  width: -webkit-fill-available;
   height: 299px;
   object-fit: cover;
   border-radius: 12px;

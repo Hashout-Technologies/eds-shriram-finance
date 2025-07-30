@@ -11,6 +11,7 @@ body.article-layout main > .section.article-main-content {
   box-shadow: 0 4px 20px rgb(0 0 0 / 10%);
   margin-top: 40px;
   padding-top: 32px;
+  padding-bottom: 32px;
   margin-left: 32px;
 }
 
