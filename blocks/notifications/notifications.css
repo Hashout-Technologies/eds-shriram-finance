@@ -1,3 +1,4 @@
+/* stylelint-disable no-descending-specificity */
 .notifications {
     position: absolute;
     top: 70%;
@@ -120,9 +121,10 @@
     background-color: var(--color-notification-bg);
 }
 
-.notification-message {
+header nav .nav-top-right .notification-message p {
     font-size: var(--font-size-sm);
     font-family: GilmerMedium, sans-serif;
+    color: var(--color-neutral-1000);
     line-height: 1.25rem;
     margin-bottom: 0.625rem;
 }
@@ -131,23 +133,20 @@
     margin-bottom: 0.75rem;
 }
 
-.notification-call-to-action a {
+header nav .nav-top-right .notification-call-to-action a {
     cursor: pointer;
     font-family: GilmerMedium, sans-serif;
-    margin-bottom: 0.625rem;
+    color: var(--color-text-secondary);
+    margin: 0.625rem 0;
     font-size: var(--font-size-sm);
     transition: color 0.2s;
-}
-
-header nav .notification-call-to-action a {
-    color: var(--color-text-secondary);
 }
 
 .notification-call-to-action a:hover {
     text-decoration: underline;
 }
 
-.notification-timestamp p {
+header nav .nav-top-right .notification-timestamp p {
     font-size: var(--font-size-sm);
     font-family: GilmerMedium, sans-serif;
     color: var(--color-notification-timestamp);

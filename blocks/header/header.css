@@ -662,9 +662,9 @@ header nav .nav-top-right p {
 
     /* Hidden by default on mobile */
     margin: 0;
-    font-size: var(--body-font-size-xs, 0.75rem);
+    font-size: var(--font-size-sm);
     color: var(--header-text);
-    font-weight: 500;
+    font-weight: var(--font-weight-500);
 }
 
 /* Contact and login buttons */
@@ -995,14 +995,33 @@ header nav .nav-sidebar .sidebar-main .accordion-wrapper .accordion details {
     border: none;
 }
 
-header nav .nav-sidebar .sidebar-main>div>p {
+header nav .nav-sidebar .sidebar-main>div>p a{
     display: flex;
-    align-items: center;
+    align-items: center ;
     gap: 1rem;
     font-size: var(--body-font-size-s);
+    font-weight: var(--font-weight-400);
     line-height: 120%;
     border-bottom: 0.0625rem solid var(--color-sidebar-border);
     padding: 0.5rem 0.75rem;
+    margin:0;
+}
+
+header nav .nav-sidebar .sidebar-main .icon{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+header nav .nav-sidebar .sidebar-main>div>p .icon img {
+    width: 2rem;
+    height: 2rem;
+}
+
+header nav .nav-sidebar .sidebar-main>div>p .icon-new img {
+    margin-left: 1rem;
+    width: 3.25rem;
+    height: 1rem;
 }
 
 header nav .nav-sidebar .sidebar-main .accordion-wrapper .accordion details:not([open]) {
@@ -1052,6 +1071,17 @@ header nav .nav-sidebar .sidebar-main .accordion-wrapper .accordion details summ
     padding: 0;
 }
 
+header nav .nav-sidebar .sidebar-main .accordion-wrapper .accordion details summary p {
+    display: flex;
+    align-items: center;
+    gap:1rem;
+}
+
+header nav .nav-sidebar .sidebar-main .accordion-wrapper .accordion details summary .icon img {
+    width: 2rem;
+    height: 2rem;
+}
+
 header nav .nav-sidebar .sidebar-main .accordion-wrapper .accordion details[open] summary {
     background-color: transparent;
 }
@@ -1066,16 +1096,17 @@ header nav .nav-sidebar .sidebar-main .accordion-wrapper .accordion details summ
 }
 
 header nav .nav-sidebar .sidebar-main .accordion-wrapper .accordion details summary::after {
-    content: "";
+    content: '';
     position: absolute;
     top: 50%;
-    right: 1.125rem;
+    left: 95%;
     transform: translateY(-50%) rotate(135deg);
     width: 0.375rem;
     height: 0.375rem;
-    border: 0.125rem solid;
-    border-width: 0.125rem 0.125rem 0 0;
+    border: 2px solid;
+    border-width: 2px 2px 0 0;
     transition: transform 0.2s;
+
 }
 
 header nav .nav-sidebar .sidebar-main .accordion-wrapper .accordion details[open] summary::after {
@@ -1095,13 +1126,13 @@ header nav .nav-sidebar .sidebar-main .accordion-wrapper .accordion details .acc
     font-family: GilmerRegular, sans-serif;
     font-size: var(--font-size-sm);
     line-height: 1.375rem;
-    color: rgb(18 18 18);
-    padding: 1.25rem 0 0.625rem 0.625rem;
+    color: var(--color-neutral-1000);
+    padding: 1.25rem 0;
     cursor: pointer;
 }
 
 header nav .nav-sidebar .sidebar-main .accordion-wrapper .accordion details .accordion-item-body ul>li a {
-    color: rgb(18 18 18);
+    color: var(--color-neutral-1000);
     font-weight: var(--font-weight-400);
 }
 
