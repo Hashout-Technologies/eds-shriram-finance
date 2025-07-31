@@ -1,9 +1,8 @@
-/* Article Header Block Styling - Updated with Figma Design */
+/* Article Header Block Styling - Updated with Figma Design and Specific Selectors */
 
+/* Article Header CSS - All selectors scoped to article-header block */
 
-/* Article Header CSS */
-
-.article-header {
+.article-header-wrapper .article-header {
   align-self: stretch; 
   flex-direction: column; 
   justify-content: flex-start; 
@@ -12,7 +11,7 @@
   display: flex;
 }
 
-.header-content {
+.article-header-wrapper .article-header .header-content {
   align-self: stretch; 
   flex-direction: column; 
   justify-content: flex-start; 
@@ -21,7 +20,7 @@
   display: flex;
 }
 
-.title-section {
+.article-header-wrapper .article-header .title-section {
   align-self: stretch; 
   flex-direction: column; 
   justify-content: flex-start; 
@@ -30,7 +29,7 @@
   display: flex;
 }
 
-.article-title {
+.article-header-wrapper .article-header .article-title {
   align-self: stretch; 
   color: #333; 
   font-size: 24px; 
@@ -40,7 +39,7 @@
   word-wrap: break-word;
 }
 
-.meta-info {
+.article-header-wrapper .article-header .meta-info {
   align-self: stretch; 
   flex-direction: column; 
   justify-content: flex-start; 
@@ -49,21 +48,21 @@
   display: flex;
 }
 
-.date-share-section {
+.article-header-wrapper .article-header .date-share-section {
   align-self: stretch; 
   justify-content: space-between; 
   align-items: center; 
   display: inline-flex;
 }
 
-.dates-container {
+.article-header-wrapper .article-header .dates-container {
   width: 343px; 
   justify-content: space-between; 
   align-items: center; 
   display: flex;
 }
 
-.posted-date {
+.article-header-wrapper .article-header .posted-date {
   color: #333; 
   font-size: 14px; 
   font-family: Gilmer, sans-serif; 
@@ -72,7 +71,7 @@
   word-wrap: break-word;
 }
 
-.date-bold {
+.article-header-wrapper .article-header .date-bold {
   color: #333; 
   font-size: 14px; 
   font-family: Gilmer, sans-serif; 
@@ -81,13 +80,13 @@
   word-wrap: break-word;
 }
 
-.updated-date-container {
+.article-header-wrapper .article-header .updated-date-container {
   width: 166px; 
   height: 21px; 
   position: relative;
 }
 
-.updated-date {
+.article-header-wrapper .article-header .updated-date {
   left: 0; 
   top: 0; 
   position: absolute; 
@@ -99,7 +98,7 @@
   word-wrap: break-word;
 }
 
-.updated-date-duplicate {
+.article-header-wrapper .article-header .updated-date-duplicate {
   left: 0; 
   top: 0; 
   position: absolute; 
@@ -111,14 +110,14 @@
   word-wrap: break-word;
 }
 
-.share-section {
+.article-header-wrapper .article-header .share-section {
   justify-content: flex-end; 
   align-items: center; 
   gap: 12px; 
   display: flex;
 }
 
-.share-text {
+.article-header-wrapper .article-header .share-text {
   color: #333; 
   font-size: 16px; 
   font-family: Gilmer, sans-serif; 
@@ -127,7 +126,9 @@
   word-wrap: break-word;
 }
 
-.share-icon, .view-icon, .read-time-icon {
+.article-header-wrapper .article-header .share-icon, 
+.article-header-wrapper .article-header .view-icon, 
+.article-header-wrapper .article-header .read-time-icon {
   width: 20px; 
   height: 20px; 
   position: relative; 
@@ -137,13 +138,13 @@
   flex-shrink: 0;
 }
 
-.icon-image {
+.article-header-wrapper .article-header .icon-image {
   width: 20px;
   height: 20px;
   object-fit: cover;
 }
 
-.share-count {
+.article-header-wrapper .article-header .share-count {
   color: #333; 
   font-size: 14px; 
   font-family: Gilmer, sans-serif; 
@@ -152,14 +153,14 @@
   word-wrap: break-word;
 }
 
-.read-time-section {
+.article-header-wrapper .article-header .read-time-section {
   justify-content: flex-start; 
   align-items: center; 
   gap: 6px; 
   display: flex;
 }
 
-.read-time-container {
+.article-header-wrapper .article-header .read-time-container {
   border-radius: 30px; 
   justify-content: center; 
   align-items: center; 
@@ -167,7 +168,7 @@
   display: flex;
 }
 
-.read-time-text {
+.article-header-wrapper .article-header .read-time-text {
   color: #333; 
   font-size: 14px; 
   font-family: Gilmer, sans-serif; 
@@ -176,7 +177,7 @@
   word-wrap: break-word;
 }
 
-.category-author-section {
+.article-header-wrapper .article-header .category-author-section {
   align-self: stretch; 
   justify-content: flex-start; 
   align-items: center; 
@@ -184,14 +185,14 @@
   display: inline-flex;
 }
 
-.category-author-wrapper {
+.article-header-wrapper .article-header .category-author-wrapper {
   justify-content: center; 
   align-items: flex-end; 
   gap: 610px; 
   display: flex;
 }
 
-.category-author-content {
+.article-header-wrapper .article-header .category-author-content {
   width: 752px; 
   justify-content: flex-start; 
   align-items: flex-end; 
@@ -199,7 +200,7 @@
   display: flex;
 }
 
-.category-section {
+.article-header-wrapper .article-header .category-section {
   color: #333; 
   font-size: 14px; 
   font-family: Gilmer, sans-serif; 
@@ -208,7 +209,7 @@
   word-wrap: break-word;
 }
 
-.category-bold {
+.article-header-wrapper .article-header .category-bold {
   color: #333; 
   font-size: 14px; 
   font-family: Gilmer, sans-serif; 
@@ -217,7 +218,7 @@
   word-wrap: break-word;
 }
 
-.author-section {
+.article-header-wrapper .article-header .author-section {
   flex: 1 1 0; 
   justify-content: flex-start; 
   align-items: center; 
@@ -225,14 +226,14 @@
   display: flex;
 }
 
-.author-content {
+.article-header-wrapper .article-header .author-content {
   flex: 1 1 0; 
   justify-content: space-between; 
   align-items: center; 
   display: flex;
 }
 
-.author-text {
+.article-header-wrapper .article-header .author-text {
   color: #333; 
   font-size: 14px; 
   font-family: Gilmer, sans-serif; 
@@ -241,7 +242,7 @@
   word-wrap: break-word;
 }
 
-.author-bold {
+.article-header-wrapper .article-header .author-bold {
   color: #333; 
   font-size: 14px; 
   font-family: Gilmer, sans-serif; 
@@ -250,7 +251,7 @@
   word-wrap: break-word;
 }
 
-.terms-text {
+.article-header-wrapper .article-header .terms-text {
   color: #333; 
   font-size: 8px; 
   font-family: Gilmer, sans-serif; 
@@ -259,19 +260,21 @@
   word-wrap: break-word;
 }
 
-/* Hover Effects for Icons */
-.share-icon:hover, .view-icon:hover, .read-time-icon:hover {
+/* Hover Effects for Icons - Scoped to article header */
+.article-header-wrapper .article-header .share-icon:hover, 
+.article-header-wrapper .article-header .view-icon:hover, 
+.article-header-wrapper .article-header .read-time-icon:hover {
   cursor: pointer;
 }
 
-.share-icon:hover .icon-image, 
-.view-icon:hover .icon-image, 
-.read-time-icon:hover .icon-image {
+.article-header-wrapper .article-header .share-icon:hover .icon-image, 
+.article-header-wrapper .article-header .view-icon:hover .icon-image, 
+.article-header-wrapper .article-header .read-time-icon:hover .icon-image {
   filter: brightness(0.8);
 }
 
-/* Figma Share Section Styles */
-.frame {
+/* Figma Share Section Styles - Scoped to article header */
+.article-header-wrapper .article-header .frame {
   display: inline-flex;
   align-items: center;
   justify-content: flex-end;
@@ -279,17 +282,17 @@
   position: relative;
 }
 
-.frame .group {
+.article-header-wrapper .article-header .frame .group {
   width: 80px;
   position: relative;
   height: 24px;
 }
-.frame .group-wrapper .img {
- 
+
+.article-header-wrapper .article-header .frame .group-wrapper .img {
   object-fit: contain;
 }
 
-.frame .text-wrapper {
+.article-header-wrapper .article-header .frame .text-wrapper {
   position: absolute;
   top: 0;
   left: 32px;
@@ -302,7 +305,7 @@
   white-space: nowrap;
 }
 
-.frame .img {
+.article-header-wrapper .article-header .frame .img {
   position: absolute;
   width: 24px;
   height: 24px;
@@ -310,19 +313,19 @@
   left: 0;
 }
 
-.frame .group-wrapper {
+.article-header-wrapper .article-header .frame .group-wrapper {
   width: 62px;
   position: relative;
   height: 24px;
 }
 
-.frame .div {
+.article-header-wrapper .article-header .frame .div {
   width: 64px;
   position: relative;
   height: 24px;
 }
 
-.frame .text-wrapper-2 {
+.article-header-wrapper .article-header .frame .text-wrapper-2 {
   position: absolute;
   top: 0;
   left: 29px;
@@ -336,7 +339,7 @@
   font-style: normal;
 }
 
-.frame .frame-wrapper {
+.article-header-wrapper .article-header .frame .frame-wrapper {
   gap: 10px;
   display: inline-flex;
   align-items: center;
@@ -344,7 +347,7 @@
   flex: 0 0 auto;
 }
 
-.frame .div-2 {
+.article-header-wrapper .article-header .frame .div-2 {
   justify-content: center;
   gap: 5px;
   border-radius: 30px;
@@ -354,13 +357,13 @@
   flex: 0 0 auto;
 }
 
-.frame .clock-timer {
+.article-header-wrapper .article-header .frame .clock-timer {
   position: relative;
   width: 24px;
   height: 24px;
 }
 
-.frame .text-wrapper-3 {
+.article-header-wrapper .article-header .frame .text-wrapper-3 {
   position: relative;
   width: fit-content;
   font-family: Gilmer, sans-serif;
@@ -373,56 +376,56 @@
   font-style: normal;
 }
 
-/* Hover effects for Figma elements */
-.frame .group:hover {
+/* Hover effects for Figma elements - Scoped to article header */
+.article-header-wrapper .article-header .frame .group:hover {
   cursor: pointer;
 }
 
-.frame .group:hover .img,
-.frame .group:hover .text-wrapper {
+.article-header-wrapper .article-header .frame .group:hover .img,
+.article-header-wrapper .article-header .frame .group:hover .text-wrapper {
   filter: brightness(0.8);
 }
 
-/* Responsive Design */
+/* Responsive Design - Scoped to article header */
 @media (width <= 768px) {
-  .category-author-wrapper {
+  .article-header-wrapper .article-header .category-author-wrapper {
     gap: 20px;
   }
   
-  .category-author-content {
+  .article-header-wrapper .article-header .category-author-content {
     width: 100%;
     flex-direction: column;
     gap: 16px;
     align-items: flex-start;
   }
   
-  .date-share-section {
+  .article-header-wrapper .article-header .date-share-section {
     flex-direction: column;
     gap: 16px;
     align-items: flex-start;
   }
   
-  .dates-container {
+  .article-header-wrapper .article-header .dates-container {
     width: 100%;
   }
   
-  .frame {
+  .article-header-wrapper .article-header .frame {
     gap: 16px;
   }
   
-  .frame .group {
+  .article-header-wrapper .article-header .frame .group {
     width: 70px;
   }
   
-  .frame .text-wrapper {
+  .article-header-wrapper .article-header .frame .text-wrapper {
     left: 28px;
   }
   
-  .frame .group-wrapper {
+  .article-header-wrapper .article-header .frame .group-wrapper {
     width: 58px;
   }
   
-  .frame .text-wrapper-2 {
+  .article-header-wrapper .article-header .frame .text-wrapper-2 {
     left: 25px;
   }
 }
