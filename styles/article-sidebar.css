@@ -29,11 +29,6 @@ body.article-layout main > .section.article-sidebar {
   gap: 16px;  
   margin-top: 80px;
   background-color: #f5f5f5;
-  padding-top: 0px !important;
-}
-
-body.article-layout main > .section.article-main-content img {
-  width: -webkit-fill-available;
-  border-radius: 16px;
+  padding-top: 0 !important;
 }
 
