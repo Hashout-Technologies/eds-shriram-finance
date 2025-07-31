@@ -5,7 +5,7 @@ export default function decorate(block) {
   const heading = children[0];
   heading.classList.add('product-cards-heading');
 
-  const wrapper = CreateElem('div', 'product-cards-wrapper', null, null);
+  const wrapper = CreateElem('div', 'product-cards-list', null, null);
 
   children.slice(1).forEach((item) => {
     item.classList.add('product-card-item');

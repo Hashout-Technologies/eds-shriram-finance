@@ -65,6 +65,10 @@
                 {
                   "name": "Gray Background",
                   "value": "gray-bg"
+                },
+                {
+                  "name": "Flex Column 80:20",
+                  "value": "flex-col-8-2"
                 }
               ]
             },
