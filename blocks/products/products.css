@@ -5,6 +5,22 @@
   margin: 0 !important;
 }
 
+.products.block {
+  width: 408px;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+  gap: 16px;
+  display: inline-flex;
+  padding: 0;
+  background: transparent;
+  border-radius: 0;
+  box-shadow: none;
+  margin: 0;
+  box-sizing: border-box;
+  max-width: none;
+}
+
 /* Main Container - matches sidebar-widget */
 .products-container {
   align-self: stretch; 
