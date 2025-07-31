@@ -1,465 +1,295 @@
-/* Article Header Specific Styles - Exact Copy with Namespaced Classes */
-.article-header .article-header-frame {
+/* Article Header Block Styling - Updated with Figma Design */
+
+
+/* Article Header CSS */
+
+.article-header {
+  align-self: stretch; 
+  flex-direction: column; 
+  justify-content: flex-start; 
+  align-items: flex-start; 
+  gap: 16px; 
   display: flex;
-  flex-direction: column;
-  width: 832px;
-  align-items: flex-end;
-  gap: 24px;
+}
+
+.header-content {
+  align-self: stretch; 
+  flex-direction: column; 
+  justify-content: flex-start; 
+  align-items: flex-start; 
+  gap: 24px; 
+  display: flex;
+}
+
+.title-section {
+  align-self: stretch; 
+  flex-direction: column; 
+  justify-content: flex-start; 
+  align-items: flex-start; 
+  gap: 16px; 
+  display: flex;
+}
+
+.article-title {
+  align-self: stretch; 
+  color: #333333; 
+  font-size: 24px; 
+  font-family: Gilmer; 
+  font-weight: 700; 
+  line-height: 28.80px; 
+  word-wrap: break-word;
+}
+
+.meta-info {
+  align-self: stretch; 
+  flex-direction: column; 
+  justify-content: flex-start; 
+  align-items: flex-start; 
+  gap: 16px; 
+  display: flex;
+}
+
+.date-share-section {
+  align-self: stretch; 
+  justify-content: space-between; 
+  align-items: center; 
+  display: inline-flex;
+}
+
+.dates-container {
+  width: 343px; 
+  justify-content: space-between; 
+  align-items: center; 
+  display: flex;
+}
+
+.posted-date {
+  color: #333333; 
+  font-size: 14px; 
+  font-family: Gilmer; 
+  font-weight: 400; 
+  line-height: 21px; 
+  word-wrap: break-word;
+}
+
+.date-bold {
+  color: #333333; 
+  font-size: 14px; 
+  font-family: Gilmer; 
+  font-weight: 600; 
+  line-height: 21px; 
+  word-wrap: break-word;
+}
+
+.updated-date-container {
+  width: 166px; 
+  height: 21px; 
   position: relative;
-  background-color: #fff;
-  border-radius: 24px;
+}
+
+.updated-date {
+  left: 0px; 
+  top: 0px; 
+  position: absolute; 
+  color: #333333; 
+  font-size: 14px; 
+  font-family: Gilmer; 
+  font-weight: 400; 
+  line-height: 21px; 
+  word-wrap: break-word;
+}
+
+.updated-date-duplicate {
+  left: 0px; 
+  top: 0px; 
+  position: absolute; 
+  color: #333333; 
+  font-size: 14px; 
+  font-family: Gilmer; 
+  font-weight: 400; 
+  line-height: 21px; 
+  word-wrap: break-word;
+}
+
+.share-section {
+  justify-content: flex-end; 
+  align-items: center; 
+  gap: 24px; 
+  display: flex;
+}
+
+.share-text {
+  color: #333333; 
+  font-size: 16px; 
+  font-family: Gilmer; 
+  font-weight: 600; 
+  line-height: 24px; 
+  word-wrap: break-word;
+}
+
+.share-icon, .view-icon, .read-time-icon {
+  width: 24px; 
+  height: 24px; 
+  position: relative; 
   overflow: hidden;
-}
-
-.article-header .article-header-frame .article-header-div {
   display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  gap: 16px;
-  position: relative;
-  align-self: stretch;
-  width: 100%;
-  flex: 0 0 auto;
-}
-
-.article-header .article-header-frame .article-header-div-2 {
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  gap: 24px;
-  position: relative;
-  align-self: stretch;
-  width: 100%;
-  flex: 0 0 auto;
-}
-
-.article-header .article-header-frame .article-header-text-wrapper {
-  position: relative;
-  align-self: stretch;
-  font-family: Gilmer, Helvetica, Arial, sans-serif;
-  font-weight: 700;
-  color: #333;
-  font-size: 24px;
-  letter-spacing: 0;
-  line-height: 120%;
-  font-style: normal;
-}
-
-/* Clean Row-based Layout for Perfect Alignment */
-.article-header .article-header-frame .article-header-row {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  width: 100%;
-  margin-bottom: 8px;
-  position: relative;
-}
-
-.article-header .article-header-frame .article-header-left {
-  display: flex;
-  align-items: center;
-  gap: 0;
-}
-
-.article-header .article-header-frame .article-header-date-item {
-  width: 180px;
-  display: flex;
-  align-items: center;
-}
-
-.article-header .article-header-frame .article-header-right {
-  display: flex;
-  align-items: center;
-  gap: 24px;
-}
-
-.article-header .article-header-frame .article-header-p {
-  position: relative;
-  width: fit-content;
-  margin-top: -1px;
-  font-family: Gilmer-Regular, Helvetica, Arial, sans-serif;
-  font-weight: 400;
-  color: #333;
-  font-size: 14px;
-  letter-spacing: 0;
-  line-height: 21px;
-  white-space: nowrap;
-}
-
-.article-header .article-header-frame .article-header-span {
-  font-family: Gilmer, Helvetica, Arial, sans-serif;
-  font-weight: 400;
-  color: #333;
-  font-size: 14px;
-  letter-spacing: 0;
-  line-height: 150%;
-  font-style: normal;
-}
-
-.article-header .article-header-frame .article-header-text-wrapper-2 {
-  font-family: Gilmer, Helvetica, Arial, sans-serif;
-  font-weight: 500;
-  font-style: normal;
-  letter-spacing: 0;
-  line-height: 150%;
-  font-size: 14px;
-}
-
-.article-header .article-header-frame .article-header-updated-july-wrapper {
-  position: relative;
-  width: 166px;
-  height: 21px;
-}
-
-.article-header .article-header-frame .article-header-updated-july {
-  position: relative;
-  width: fit-content;
-  margin-top: -1px;
-  font-family: Gilmer-Regular, Helvetica, Arial, sans-serif;
-  font-weight: 400;
-  color: #333;
-  font-size: 14px;
-  letter-spacing: 0;
-  line-height: 21px;
-  white-space: nowrap;
-}
-
-/* Removed old flex styles - now using grid layout above */
-
-.article-header .article-header-frame .article-header-group {
-  position: relative;
-  width: 80px;
-  height: 24px;
-}
-
-.article-header .article-header-frame .article-header-text-wrapper-3 {
-  position: absolute;
-  top: 0;
-  left: 32px;
-  font-family: Gilmer-Medium, Helvetica, Arial, sans-serif;
-  font-weight: 500;
-  color: #333;
-  font-size: 16px;
-  letter-spacing: 0;
-  line-height: 24px;
-  white-space: nowrap;
-}
-
-.article-header .article-header-frame .article-header-img {
-  position: absolute;
-  width: 24px;
-  height: 24px;
-  top: 0;
-  left: 0;
-}
-
-.article-header .article-header-frame .article-header-group-wrapper {
-  position: relative;
-  width: 62px;
-  height: 24px;
-}
-
-.article-header .article-header-frame .article-header-group-2 {
-  position: relative;
-  width: 64px;
-  height: 24px;
-}
-
-.article-header .article-header-frame .article-header-text-wrapper-4 {
-  position: absolute;
-  top: 0;
-  left: 29px;
-  font-family: Gilmer, Helvetica, Arial, sans-serif;
-  font-weight: 500;
-  color: #333;
-  font-size: 14px;
-  letter-spacing: 0;
-  line-height: 150%;
-  white-space: nowrap;
-  font-style: normal;
-}
-
-.article-header .article-header-frame .article-header-frame-wrapper {
-  display: inline-flex;
-  align-items: center;
-  gap: 10px;
-  position: relative;
-  flex: 0 0 auto;
-}
-
-.article-header .article-header-frame .article-header-div-6 {
-  display: inline-flex;
   align-items: center;
   justify-content: center;
-  gap: 5px;
-  position: relative;
-  flex: 0 0 auto;
-  border-radius: 30px;
 }
 
-.article-header .article-header-frame .article-header-clock-timer {
-  position: relative;
+.icon-image {
   width: 24px;
   height: 24px;
+  object-fit: contain;
 }
 
-.article-header .article-header-frame .article-header-text-wrapper-5 {
-  position: relative;
-  width: fit-content;
-  font-family: Gilmer, Helvetica, Arial, sans-serif;
-  font-weight: 500;
-  color: #333;
-  font-size: 14px;
-  letter-spacing: 0;
-  line-height: 150%;
-  white-space: nowrap;
-  font-style: normal;
+.share-count {
+  color: #333333; 
+  font-size: 14px; 
+  font-family: Gilmer; 
+  font-weight: 600; 
+  line-height: 21px; 
+  word-wrap: break-word;
 }
 
-.article-header .article-header-frame .article-header-div-wrapper {
+.read-time-section {
+  justify-content: flex-start; 
+  align-items: center; 
+  gap: 10px; 
   display: flex;
-  align-items: center;
-  gap: 18px;
-  position: relative;
-  align-self: stretch;
-  width: 100%;
-  flex: 0 0 auto;
 }
 
-.article-header .article-header-frame .article-header-frame-wrapper-2 {
+.read-time-container {
+  border-radius: 30px; 
+  justify-content: center; 
+  align-items: center; 
+  gap: 5px; 
   display: flex;
-  align-items: center;
-  justify-content: space-between;
-  position: relative;
-  width: 100%;
-  flex: 1;
 }
 
-.article-header .article-header-frame .article-header-div-7 {
+.read-time-text {
+  color: #333333; 
+  font-size: 14px; 
+  font-family: Gilmer; 
+  font-weight: 600; 
+  line-height: 21px; 
+  word-wrap: break-word;
+}
+
+.category-author-section {
+  align-self: stretch; 
+  justify-content: flex-start; 
+  align-items: center; 
+  gap: 18px; 
+  display: inline-flex;
+}
+
+.category-author-wrapper {
+  justify-content: center; 
+  align-items: flex-end; 
+  gap: 610px; 
   display: flex;
-  align-items: center;
-  position: relative;
 }
 
-.article-header .article-header-frame .article-header-div-8 {
+.category-author-content {
+  width: 752px; 
+  justify-content: flex-start; 
+  align-items: flex-end; 
+  gap: 36px; 
   display: flex;
-  width: 343px;
-  align-items: center;
-  gap: 46px;
-  position: relative;
 }
 
-/* T&C Apply Styles */
-.article-header .article-header-frame .article-header-tnc-wrapper {
+.category-section {
+  color: #333333; 
+  font-size: 14px; 
+  font-family: Gilmer; 
+  font-weight: 400; 
+  line-height: 21px; 
+  word-wrap: break-word;
+}
+
+.category-bold {
+  color: #333333; 
+  font-size: 14px; 
+  font-family: Gilmer; 
+  font-weight: 600; 
+  line-height: 21px; 
+  word-wrap: break-word;
+}
+
+.author-section {
+  flex: 1 1 0; 
+  justify-content: flex-start; 
+  align-items: center; 
+  gap: 8px; 
   display: flex;
-  align-items: center;
-  justify-content: flex-end;
-  position: relative;
 }
 
-.article-header .article-header-frame .article-header-tnc-text {
-  position: relative;
-  font-family: Gilmer, Helvetica, Arial, sans-serif;
-  font-weight: 400;
-  color: #666;
-  font-size: 14px;
-  letter-spacing: 0;
-  line-height: 150%;
-  white-space: nowrap;
-  font-style: normal;
+.author-content {
+  flex: 1 1 0; 
+  justify-content: space-between; 
+  align-items: center; 
+  display: flex;
 }
 
-/* IMAGE PART */
-
-/* Article Image Section Styles - Target only the picture/image */
-.default-content-wrapper picture {
-  position: relative;
-  width: 100%;
-  height: auto;
-  align-self: stretch;
-  background-color: #fff;
-  border-radius: 24px;
-  overflow: hidden;
+.author-text {
+  color: #333333; 
+  font-size: 14px; 
+  font-family: Gilmer; 
+  font-weight: 400; 
+  line-height: 21px; 
+  word-wrap: break-word;
 }
 
-.default-content-wrapper picture img {
-  position: relative;
-  width: -webkit-fill-available;
-  height: 299px;
-  object-fit: cover;
-  border-radius: 12px;
+.author-bold {
+  color: #333333; 
+  font-size: 14px; 
+  font-family: Gilmer; 
+  font-weight: 600; 
+  line-height: 21px; 
+  word-wrap: break-word;
 }
 
-/* Responsive adjustments */
-@media (width <= 900px) {
-  .default-content-wrapper picture {
-    margin-left: 20px;
-    padding: 20px;
+.terms-text {
+  color: #333333; 
+  font-size: 8px; 
+  font-family: Gilmer; 
+  font-weight: 400; 
+  line-height: 11.20px; 
+  word-wrap: break-word;
+}
+
+/* Hover Effects for Icons */
+.share-icon:hover, .view-icon:hover, .read-time-icon:hover {
+  cursor: pointer;
+}
+
+.share-icon:hover .icon-image, 
+.view-icon:hover .icon-image, 
+.read-time-icon:hover .icon-image {
+  filter: brightness(0.8);
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .category-author-wrapper {
+    gap: 20px;
   }
-
-  .default-content-wrapper picture img {
-    width: 100%;
-    height: auto;
-    max-width: 752px;
-  }
-}
-
-@media (width <= 600px) {
-  .default-content-wrapper picture {
-    margin-left: 15px;
-    padding: 15px;
-  }
-
-  .default-content-wrapper picture img {
-    height: auto;
-    min-height: 200px;
-  }
-}
-
-/* TEXT PART */
-
-/* TO BE REMOVED LATER TO ANOTHER CSS FILE */
-
-/* Article Text Content Styles - Create container effect without touching default-content-wrapper */
-
-/* Create visual container using background and borders on text elements */
-.default-content-wrapper p:not(:has(picture)),
-.default-content-wrapper h4 {
-  background-color: #fff;
-  margin: 0;
-  width: 832px;
-  box-sizing: border-box;
-  position: relative;
-}
-
-/* Typography for paragraphs */
-.default-content-wrapper p:not(:has(picture)) {
-  font-family: Gilmer, Helvetica, Arial, sans-serif;
-  font-weight: 400;
-  color: #333;
-  font-size: 14px;
-  letter-spacing: 0;
-  line-height: 150%;
-  font-style: normal;
-}
-
-/* Typography for headings */
-.default-content-wrapper h4 {
-  font-family: Gilmer, Helvetica, Arial, sans-serif;
-  font-weight: 500;
-  color: #333;
-  font-size: 18px;
-  letter-spacing: 0;
-  line-height: 130%;
-  font-style: normal;
-}
-
-/* First element gets top border radius */
-.default-content-wrapper p:first-of-type:not(:has(picture)) {
-  border-radius: 24px 24px 0 0;
-  padding-top: 40px;
-  margin-top: 24px;
-}
-
-/* Last text element gets bottom border radius */
-.default-content-wrapper p:last-of-type:not(:has(picture)),
-.default-content-wrapper h4:last-of-type {
-  border-radius: 0 0 24px 24px;
-  padding-bottom: 40px;
-}
-
-/* If only one text element, give it full border radius - most specific last */
-.default-content-wrapper p:first-of-type:last-of-type:not(:has(picture)) {
-  border-radius: 24px;
-  padding: 40px;
-  margin-top: 24px;
-}
-
-/* Links */
-.default-content-wrapper p:not(:has(picture)) a {
-  color: #2f7ef4;
-  text-decoration: none;
-}
-
-.default-content-wrapper p:not(:has(picture)) a:hover {
-  text-decoration: underline;
-}
-
-/* Responsive */
-@media (width <= 900px) {
-  .default-content-wrapper p:not(:has(picture)),
-  .default-content-wrapper h4 {
-    width: 100%;
-    max-width: 832px;
-    padding-left: 20px;
-    padding-right: 20px;
-  }
-
-  .default-content-wrapper p:first-of-type:not(:has(picture)) {
-    padding-top: 20px;
-  }
-
-  .default-content-wrapper p:last-of-type:not(:has(picture)),
-  .default-content-wrapper h4:last-of-type {
-    padding-bottom: 20px;
-  }
-
-  .article-header .article-header-frame {
-    width: 100%;
-    max-width: 832px;
-    padding: 20px;
-  }
-}
-
-@media (width <= 600px) {
-  .default-content-wrapper p:not(:has(picture)),
-  .default-content-wrapper h4 {
-    padding-left: 15px;
-    padding-right: 15px;
-  }
-
-  .default-content-wrapper h4 {
-    font-size: 16px;
-  }
-
-  .default-content-wrapper p:not(:has(picture)) {
-    font-size: 13px;
-  }
-
-  .article-header .article-header-frame {
-    padding: 15px;
-  }
-
-  .article-header .article-header-frame .article-header-text-wrapper {
-    font-size: 20px;
-  }
-
-  .article-header .article-header-frame .article-header-div-4 {
+  
+  .category-author-content {
     width: 100%;
     flex-direction: column;
-    align-items: flex-start;
-    gap: 8px;
-  }
-
-  .article-header .article-header-frame .article-header-div-8 {
-    width: 100%;
-    flex-direction: column;
-    align-items: flex-start;
-    gap: 8px;
-  }
-
-  .article-header .article-header-frame .article-header-div-5 {
-    flex-wrap: wrap;
     gap: 16px;
-  }
-
-  .article-header .article-header-frame .article-header-frame-wrapper-2 {
-    flex-direction: column;
     align-items: flex-start;
-    gap: 12px;
   }
-
-  .article-header .article-header-frame .article-header-tnc-wrapper {
-    align-self: flex-end;
+  
+  .date-share-section {
+    flex-direction: column;
+    gap: 16px;
+    align-items: flex-start;
+  }
+  
+  .dates-container {
+    width: 100%;
   }
 }

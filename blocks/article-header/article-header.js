@@ -14,97 +14,169 @@ export default function decorate(block) {
   const viewIcon = rows[5]?.querySelector('img');
   const timeIcon = rows[6]?.querySelector('img');
 
-  // Create the exact HTML structure with namespaced classes
-  const frame = document.createElement('div');
-  frame.className = 'article-header-frame';
+  // Create the exact Figma HTML structure
+  const articleHeader = document.createElement('div');
+  articleHeader.className = 'article-header';
 
-  frame.innerHTML = `
-    <div class="article-header-div">
-      <div class="article-header-div-2">
-        <div class="article-header-div">
-          <div class="article-header-div">
-            <p class="article-header-text-wrapper">${title}</p>
-            <div class="article-header-div">
-              <div class="article-header-row">
-                <div class="article-header-left">
-                  <div class="article-header-date-item">
-                    <p class="article-header-p">
-                      <span class="article-header-span">Posted: </span> <span class="article-header-text-wrapper-2">${postedDate}</span>
-                    </p>
-                  </div>
-                  <div class="article-header-date-item">
-                    <p class="article-header-p">
-                      <span class="article-header-span">Updated: </span> <span class="article-header-text-wrapper-2">${updatedDate}</span>
-                    </p>
-                  </div>
-                </div>
-                <div class="article-header-right">
-                  <div class="article-header-group" style="cursor: pointer;">
-                    <div class="article-header-text-wrapper-3">Share</div>
-                    <img class="article-header-img article-header-share-icon" src="" />
-                  </div>
-                  <div class="article-header-group-wrapper">
-                    <div class="article-header-group-2">
-                      <div class="article-header-text-wrapper-4">2202</div>
-                      <img class="article-header-img article-header-view-icon" src="" />
-                    </div>
-                  </div>
-                  <div class="article-header-frame-wrapper">
-                    <div class="article-header-div-6">
-                      <img class="article-header-clock-timer article-header-time-icon" src="" />
-                      <div class="article-header-text-wrapper-5">3 Min</div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <div class="article-header-row">
-                <div class="article-header-left">
-                  <div class="article-header-date-item">
-                    <p class="article-header-p">
-                      <span class="article-header-span">Category: </span> <span class="article-header-text-wrapper-2">Gold Loan</span>
-                    </p>
-                  </div>
-                  <div class="article-header-date-item">
-                    <p class="article-header-p">
-                      <span class="article-header-span">Written by: </span> <span class="article-header-text-wrapper-2">${author}</span>
-                    </p>
-                  </div>
-                </div>
-                <div class="article-header-right">
-                  <div class="article-header-tnc-wrapper">
-                    <div class="article-header-tnc-text">*T&C Apply</div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  `;
+  const headerContent = document.createElement('div');
+  headerContent.className = 'header-content';
 
-  // Set the icon sources from AEM data
+  const titleSection = document.createElement('div');
+  titleSection.className = 'title-section';
+
+  const articleTitle = document.createElement('div');
+  articleTitle.className = 'article-title';
+  articleTitle.textContent = title;
+
+  const metaInfo = document.createElement('div');
+  metaInfo.className = 'meta-info';
+
+  // Date and Share Section
+  const dateShareSection = document.createElement('div');
+  dateShareSection.className = 'date-share-section';
+
+  const datesContainer = document.createElement('div');
+  datesContainer.className = 'dates-container';
+
+  const postedDateDiv = document.createElement('div');
+  postedDateDiv.className = 'posted-date';
+  postedDateDiv.innerHTML = `Posted: <span class="date-bold">${postedDate}</span>`;
+
+  const updatedDateContainer = document.createElement('div');
+  updatedDateContainer.className = 'updated-date-container';
+
+  const updatedDateDiv = document.createElement('div');
+  updatedDateDiv.className = 'updated-date';
+  updatedDateDiv.innerHTML = `Updated: <span class="date-bold">${updatedDate}</span>`;
+
+  const updatedDateDuplicate = document.createElement('div');
+  updatedDateDuplicate.className = 'updated-date-duplicate';
+  updatedDateDuplicate.innerHTML = `Updated: <span class="date-bold">${updatedDate}</span>`;
+
+  updatedDateContainer.appendChild(updatedDateDiv);
+  updatedDateContainer.appendChild(updatedDateDuplicate);
+
+  datesContainer.appendChild(postedDateDiv);
+  datesContainer.appendChild(updatedDateContainer);
+
+  // Share Section
+  const shareSection = document.createElement('div');
+  shareSection.className = 'share-section';
+
+  const shareText = document.createElement('div');
+  shareText.className = 'share-text';
+  shareText.textContent = 'Share';
+
+  const shareIconDiv = document.createElement('div');
+  shareIconDiv.className = 'share-icon';
+  shareIconDiv.style.cursor = 'pointer';
+
+  const shareImg = document.createElement('img');
+  shareImg.alt = 'Share';
+  shareImg.className = 'icon-image';
   if (shareIcon) {
-    const shareImg = frame.querySelector('.article-header-share-icon');
     shareImg.src = shareIcon.src;
-    shareImg.alt = 'Share';
   }
+  shareIconDiv.appendChild(shareImg);
 
+  const shareCount = document.createElement('div');
+  shareCount.className = 'share-count';
+  shareCount.textContent = '2202';
+
+  const viewIconDiv = document.createElement('div');
+  viewIconDiv.className = 'view-icon';
+
+  const viewImg = document.createElement('img');
+  viewImg.alt = 'Views';
+  viewImg.className = 'icon-image';
   if (viewIcon) {
-    const viewImg = frame.querySelector('.article-header-view-icon');
     viewImg.src = viewIcon.src;
-    viewImg.alt = 'Views';
   }
+  viewIconDiv.appendChild(viewImg);
 
+  const readTimeSection = document.createElement('div');
+  readTimeSection.className = 'read-time-section';
+
+  const readTimeContainer = document.createElement('div');
+  readTimeContainer.className = 'read-time-container';
+
+  const readTimeIconDiv = document.createElement('div');
+  readTimeIconDiv.className = 'read-time-icon';
+
+  const timeImg = document.createElement('img');
+  timeImg.alt = 'Read time';
+  timeImg.className = 'icon-image';
   if (timeIcon) {
-    const timeImg = frame.querySelector('.article-header-time-icon');
     timeImg.src = timeIcon.src;
-    timeImg.alt = 'Reading time';
   }
+  readTimeIconDiv.appendChild(timeImg);
+
+  const readTimeText = document.createElement('div');
+  readTimeText.className = 'read-time-text';
+  readTimeText.textContent = '3 Min';
+
+  readTimeContainer.appendChild(readTimeIconDiv);
+  readTimeContainer.appendChild(readTimeText);
+  readTimeSection.appendChild(readTimeContainer);
+
+  shareSection.appendChild(shareText);
+  shareSection.appendChild(shareIconDiv);
+  shareSection.appendChild(shareCount);
+  shareSection.appendChild(viewIconDiv);
+  shareSection.appendChild(readTimeSection);
+
+  dateShareSection.appendChild(datesContainer);
+  dateShareSection.appendChild(shareSection);
+
+  // Category and Author Section
+  const categoryAuthorSection = document.createElement('div');
+  categoryAuthorSection.className = 'category-author-section';
+
+  const categoryAuthorWrapper = document.createElement('div');
+  categoryAuthorWrapper.className = 'category-author-wrapper';
+
+  const categoryAuthorContent = document.createElement('div');
+  categoryAuthorContent.className = 'category-author-content';
+
+  const categorySection = document.createElement('div');
+  categorySection.className = 'category-section';
+  categorySection.innerHTML = 'Category: <span class="category-bold">Gold Loan</span>';
+
+  const authorSection = document.createElement('div');
+  authorSection.className = 'author-section';
+
+  const authorContent = document.createElement('div');
+  authorContent.className = 'author-content';
+
+  const authorText = document.createElement('div');
+  authorText.className = 'author-text';
+  authorText.innerHTML = `Written by: <span class="author-bold">${author}</span>`;
+
+  const termsText = document.createElement('div');
+  termsText.className = 'terms-text';
+  termsText.textContent = '*T&C Apply';
+
+  authorContent.appendChild(authorText);
+  authorContent.appendChild(termsText);
+  authorSection.appendChild(authorContent);
+
+  categoryAuthorContent.appendChild(categorySection);
+  categoryAuthorContent.appendChild(authorSection);
+  categoryAuthorWrapper.appendChild(categoryAuthorContent);
+  categoryAuthorSection.appendChild(categoryAuthorWrapper);
+
+  // Build the complete structure
+  metaInfo.appendChild(dateShareSection);
+  metaInfo.appendChild(categoryAuthorSection);
+
+  titleSection.appendChild(articleTitle);
+  titleSection.appendChild(metaInfo);
+
+  headerContent.appendChild(titleSection);
+  articleHeader.appendChild(headerContent);
 
   // Helper function to show user feedback
   function showCopyFeedback() {
-    // Create a temporary toast-like notification
     const notification = document.createElement('div');
     notification.textContent = 'Link copied to clipboard!';
     notification.style.cssText = `
@@ -121,7 +193,6 @@ export default function decorate(block) {
     `;
     document.body.appendChild(notification);
 
-    // Remove notification after 3 seconds
     setTimeout(() => {
       if (notification.parentNode) {
         notification.parentNode.removeChild(notification);
@@ -130,32 +201,27 @@ export default function decorate(block) {
   }
 
   // Add click functionality to share
-  const shareGroup = frame.querySelector('.article-header-group');
-  if (shareGroup) {
-    shareGroup.style.cursor = 'pointer';
-    shareGroup.onclick = () => {
-      if (navigator.share) {
-        navigator.share({
-          title,
-          url: window.location.href,
+  shareIconDiv.onclick = () => {
+    if (navigator.share) {
+      navigator.share({
+        title,
+        url: window.location.href,
+      });
+    } else {
+      navigator.clipboard.writeText(window.location.href)
+        .then(() => {
+          showCopyFeedback();
+        })
+        .catch(() => {
+          showCopyFeedback();
         });
-      } else {
-        navigator.clipboard.writeText(window.location.href)
-          .then(() => {
-            showCopyFeedback();
-          })
-          .catch(() => {
-            // Fallback for older browsers - silently fail
-            showCopyFeedback();
-          });
-      }
-    };
-  }
+    }
+  };
 
   // Clear the block and add new content
   block.textContent = '';
-  block.appendChild(frame);
+  block.appendChild(articleHeader);
 
   // Move instrumentation for tracking
-  moveInstrumentation(block, frame);
+  moveInstrumentation(block, articleHeader);
 }
