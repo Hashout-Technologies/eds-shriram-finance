@@ -32,3 +32,12 @@ body.article-layout main > .section.article-sidebar {
   padding-top: 0 !important;
 }
 
+/* Target each wrapper inside article-main-content */
+.article-main-content .article-header-wrapper,
+.article-main-content .default-content-wrapper,
+.article-main-content .goldloan-wrapper,
+.article-main-content .socialshare-wrapper,
+.article-main-content .article-navigation-wrapper,
+.article-main-content .relatedtags-wrapper {
+  padding: 0 40px !important;
+}
