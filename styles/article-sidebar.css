@@ -30,3 +30,8 @@ body.article-layout main > .section.article-sidebar {
   margin-top: 80px;
 }
 
+body.article-layout main > .section.article-main-content img {
+  width: -webkit-fill-available;
+  border-radius: 16px;
+}
+
