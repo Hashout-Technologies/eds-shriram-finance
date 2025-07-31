@@ -199,7 +199,7 @@
     ]
   },
   {
-    "id": "article-listing",
+    "id": "articles-category-cards",
     "fields": [
       {
         "component": "text",
