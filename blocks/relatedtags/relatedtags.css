@@ -35,7 +35,7 @@
   background-color: #000;
 }
 
-.relatedtags.block > div:first-child p {
+.relatedtags.block > div p {
   color: #333;
   font-feature-settings: 'liga' off;
   font-family: Gilmer, sans-serif;

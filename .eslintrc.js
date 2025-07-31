@@ -21,6 +21,8 @@ module.exports = {
     'xwalk/max-cells': ['error', {
       goldloan: 7,
       socialshare: 8,
+      'article-header': 7,
+      products: 7,
     }],
   },
 };

@@ -1,8 +1,8 @@
 /* Products Block Styling - Updated with Figma Design */
 
 .products-wrapper {
-  padding: 0px !important;
-  margin: 0px !important;
+  padding: 0 !important;
+  margin: 0 !important;
 }
 
 /* Main Container - matches sidebar-widget */
@@ -52,7 +52,7 @@
   justify-content: center; 
   display: flex; 
   flex-direction: column; 
-  color: #333333; 
+  color: #333; 
   font-size: 18px; 
   font-family: Gilmer, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; 
   font-weight: 700; 
@@ -133,7 +133,7 @@
 .bl-text,
 .ucl-text {
   text-align: center; 
-  color: #333333; 
+  color: #333; 
   font-size: 14px; 
   font-family: Gilmer, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; 
   font-weight: 600; 
@@ -185,7 +185,7 @@
 }
 
 /* Responsive Design */
-@media (max-width: 768px) {
+@media (width <= 768px) {
   .products-container {
     padding: 16px;
   }
@@ -211,7 +211,7 @@
   }
 }
 
-@media (max-width: 480px) {
+@media (width <= 480px) {
   .product-item,
   .interest-item,
   .interest-item-center {

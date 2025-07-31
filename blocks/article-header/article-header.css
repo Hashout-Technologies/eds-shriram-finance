@@ -32,9 +32,9 @@
 
 .article-title {
   align-self: stretch; 
-  color: #333333; 
+  color: #333; 
   font-size: 24px; 
-  font-family: Gilmer; 
+  font-family: Gilmer, sans-serif; 
   font-weight: 700; 
   line-height: 28.80px; 
   word-wrap: break-word;
@@ -64,18 +64,18 @@
 }
 
 .posted-date {
-  color: #333333; 
+  color: #333; 
   font-size: 14px; 
-  font-family: Gilmer; 
+  font-family: Gilmer, sans-serif; 
   font-weight: 400; 
   line-height: 21px; 
   word-wrap: break-word;
 }
 
 .date-bold {
-  color: #333333; 
+  color: #333; 
   font-size: 14px; 
-  font-family: Gilmer; 
+  font-family: Gilmer, sans-serif; 
   font-weight: 600; 
   line-height: 21px; 
   word-wrap: break-word;
@@ -88,24 +88,24 @@
 }
 
 .updated-date {
-  left: 0px; 
-  top: 0px; 
+  left: 0; 
+  top: 0; 
   position: absolute; 
-  color: #333333; 
+  color: #333; 
   font-size: 14px; 
-  font-family: Gilmer; 
+  font-family: Gilmer, sans-serif; 
   font-weight: 400; 
   line-height: 21px; 
   word-wrap: break-word;
 }
 
 .updated-date-duplicate {
-  left: 0px; 
-  top: 0px; 
+  left: 0; 
+  top: 0; 
   position: absolute; 
-  color: #333333; 
+  color: #333; 
   font-size: 14px; 
-  font-family: Gilmer; 
+  font-family: Gilmer, sans-serif; 
   font-weight: 400; 
   line-height: 21px; 
   word-wrap: break-word;
@@ -119,9 +119,9 @@
 }
 
 .share-text {
-  color: #333333; 
+  color: #333; 
   font-size: 16px; 
-  font-family: Gilmer; 
+  font-family: Gilmer, sans-serif; 
   font-weight: 600; 
   line-height: 24px; 
   word-wrap: break-word;
@@ -144,9 +144,9 @@
 }
 
 .share-count {
-  color: #333333; 
+  color: #333; 
   font-size: 14px; 
-  font-family: Gilmer; 
+  font-family: Gilmer, sans-serif; 
   font-weight: 600; 
   line-height: 21px; 
   word-wrap: break-word;
@@ -168,9 +168,9 @@
 }
 
 .read-time-text {
-  color: #333333; 
+  color: #333; 
   font-size: 14px; 
-  font-family: Gilmer; 
+  font-family: Gilmer, sans-serif; 
   font-weight: 600; 
   line-height: 21px; 
   word-wrap: break-word;
@@ -200,18 +200,18 @@
 }
 
 .category-section {
-  color: #333333; 
+  color: #333; 
   font-size: 14px; 
-  font-family: Gilmer; 
+  font-family: Gilmer, sans-serif; 
   font-weight: 400; 
   line-height: 21px; 
   word-wrap: break-word;
 }
 
 .category-bold {
-  color: #333333; 
+  color: #333; 
   font-size: 14px; 
-  font-family: Gilmer; 
+  font-family: Gilmer, sans-serif; 
   font-weight: 600; 
   line-height: 21px; 
   word-wrap: break-word;
@@ -233,27 +233,27 @@
 }
 
 .author-text {
-  color: #333333; 
+  color: #333; 
   font-size: 14px; 
-  font-family: Gilmer; 
+  font-family: Gilmer, sans-serif; 
   font-weight: 400; 
   line-height: 21px; 
   word-wrap: break-word;
 }
 
 .author-bold {
-  color: #333333; 
+  color: #333; 
   font-size: 14px; 
-  font-family: Gilmer; 
+  font-family: Gilmer, sans-serif; 
   font-weight: 600; 
   line-height: 21px; 
   word-wrap: break-word;
 }
 
 .terms-text {
-  color: #333333; 
+  color: #333; 
   font-size: 8px; 
-  font-family: Gilmer; 
+  font-family: Gilmer, sans-serif; 
   font-weight: 400; 
   line-height: 11.20px; 
   word-wrap: break-word;
@@ -271,7 +271,7 @@
 }
 
 /* Responsive Design */
-@media (max-width: 768px) {
+@media (width <= 768px) {
   .category-author-wrapper {
     gap: 20px;
   }
