@@ -391,4 +391,10 @@ main .section.highlight {
   padding: 40px 0;
 }
 
-
+/* Targetting image in article info page */
+body.article-layout .default-content-wrapper p picture img[width="556"][height="221"] {
+  width: 752px !important;
+  height: 299px !important;
+  border-radius: 16px !important;
+  object-fit: cover !important;
+}
