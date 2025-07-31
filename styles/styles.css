@@ -715,3 +715,57 @@ main .section.flex-col-7-3>div {
 main .section.gray-bg{
     background: var(--color-soft-gray);
 }
+
+main .section.flex-col-8-2 {
+    display: flex;
+    max-width: var(--layout-width);
+    margin: 0 auto;
+    flex-direction: column;
+    gap: 1.5rem;
+}
+
+main .section.flex-col-8-2>div {
+    flex: 0 0 100%;
+    max-width: 100%;
+    margin: unset;
+}
+
+@media (width >= 900px){
+  main .section.flex-col-8-2{
+      flex-direction: row;
+      gap: 0;
+  }
+
+  main .section.flex-col-8-2>div:first-child {
+      flex: 0 0 70%;
+      max-width: 70%;
+  }
+
+  main .section.flex-col-8-2 > div:last-child {
+      flex: 0 0 30%;
+      max-width: 30%;
+      padding-left: 0;
+  }
+}
+
+@media (width >= 1200px){
+  main .section.flex-col-8-2{
+      flex-direction: row;
+      gap: 0;
+  }
+
+  main .section.flex-col-8-2>div:first-child {
+      flex: 0 0 76%;
+      max-width: 76%;
+  }
+
+  main .section.flex-col-8-2 > div:last-child {
+      flex: 0 0 24%;
+      max-width: 24%;
+      padding-left: 0;
+  }
+}
+
+body.articles-page main{
+  background: var(--color-soft-gray);
+}

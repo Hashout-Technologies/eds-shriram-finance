@@ -2,11 +2,11 @@
     color: var(--color-neutral-900);
     font-size: 1.125rem;
     font-style: normal;
-    font-weight: 700;
+    font-weight: var(--font-weight-700);
     line-height: 130%
 }
 
-.product-cards .product-cards-wrapper {
+.product-cards .product-cards-list {
     display: flex;
     flex-direction: column;
     gap: 1rem;
@@ -23,7 +23,7 @@
     color: var(--color-neutral-900);
     font-size: 0.875rem;
     font-style: normal;
-    font-weight: 700;
+    font-weight: var(--font-weight-700);
     line-height: 150%;
     margin-bottom: 0.1875rem;
 }
@@ -32,7 +32,7 @@
     color: var(--color-neutral-900);
     font-size: 0.625rem;
     font-style: normal;
-    font-weight: 400;
+    font-weight: var(--font-weight-400);
     line-height: 140%;
     margin-bottom: 0;
 }
@@ -48,7 +48,7 @@
 .product-cards .product-card-interest-rate p {
     color: var(--color-neutral-900);
     font-size: 0.75rem;
-    font-weight: 700;
+    font-weight: var(--font-weight-700);
     line-height: 140%;
     margin-bottom: 0;
 }
@@ -66,7 +66,7 @@
 .product-cards .product-card-cta-link a {
     color: var(--color-neutral-1000);
     font-size: 0.75rem;
-    font-weight: 600;
+    font-weight: var(--font-weight-600);
     line-height: 150%;
     display: flex;
     padding: 0.3125rem 1.0625rem;
@@ -90,4 +90,9 @@
     .product-cards .bottom-content {
         margin-top: 1.5rem;
     }
+}
+
+main .section.flex-col-8-2 .fragment-wrapper .product-cards-wrapper{
+  border-top: 1px solid var(--color-neutral-500);
+  padding-top: 1.5rem;
 }

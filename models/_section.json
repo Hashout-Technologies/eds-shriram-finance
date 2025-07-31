@@ -65,6 +65,10 @@
                 {
                   "name": "Gray Background",
                   "value": "gray-bg"
+                },
+                {
+                  "name": "Flex Column 80:20",
+                  "value": "flex-col-8-2"
                 }
               ]
             },
@@ -103,7 +107,8 @@
         "notifications",
         "linked-image",
         "articles-category-cards",
-        "product-cards"
+        "product-cards",
+        "category-links"
       ]
     }
   ]

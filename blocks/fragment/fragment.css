@@ -15,3 +15,10 @@
 .fragment.block {
   display: none;
 }
+
+/* custom style */
+.section.flex-col-8-2.gray-bg .fragment-wrapper .section.category-links-container.product-cards-container{
+  border-radius: 1rem;
+  background: var(--color-white);
+  padding: 1rem 1rem 1.5rem;
+}

@@ -168,6 +168,10 @@
               {
                 "name": "Gray Background",
                 "value": "gray-bg"
+              },
+              {
+                "name": "Flex Column 80:20",
+                "value": "flex-col-8-2"
               }
             ]
           },
@@ -252,6 +256,33 @@
         "value": "",
         "label": "Text",
         "valueType": "string"
+      }
+    ]
+  },
+  {
+    "id": "category-links",
+    "fields": [
+      {
+        "component": "text",
+        "name": "heading-text",
+        "value": "",
+        "label": "Heading Title",
+        "valueType": "string"
+      }
+    ]
+  },
+  {
+    "id": "category-links-item",
+    "fields": [
+      {
+        "component": "aem-content",
+        "name": "link",
+        "label": "Category Link"
+      },
+      {
+        "component": "text",
+        "name": "category-text",
+        "label": "Category Text"
       }
     ]
   },
