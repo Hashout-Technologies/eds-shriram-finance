@@ -99,7 +99,7 @@ export default async function decorate(block) {
   const title = block.children[0]?.querySelector('p');
   title?.classList.add('title');
   try {
-    const response = await fetch('/blocks/article-listing/articles-details.json');
+    const response = await fetch('/blocks/articles-category-cards/articles-details.json');
     const json = await response.json();
     const articles = json?.data?.articleList?.items || [];
 
