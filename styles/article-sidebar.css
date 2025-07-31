@@ -5,13 +5,18 @@ body.article-layout main {
   background-color: #f5f5f5;
 }
 
+@media(width >= 1280px) {
+  body.article-layout main {
+    justify-content: center;
+  }
+}
+
 /* Main content column */
 body.article-layout main > .section.article-main-content {
   flex: 0 0 832px; /* takes up 2/3 of available space */
   border-radius: 16px;
   padding-top: 32px;
   padding-bottom: 32px;
-  margin-left: 65px;
   margin-top: 80px;
   background-color: #fff;
 }
