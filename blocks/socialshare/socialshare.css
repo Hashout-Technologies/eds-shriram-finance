@@ -92,4 +92,8 @@
   line-height: 140%;
 }
 
+.socialshare > div:nth-child(3) > span.socialshare-url ~ div > p img {
+  border-radius: unset;
+}
+
 
