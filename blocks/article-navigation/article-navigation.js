@@ -14,50 +14,106 @@ export default function decorate(block) {
     available: true,
   };
 
-  // Create navigation container
-  const navContainer = document.createElement('div');
-  navContainer.className = 'nav-container';
+  // Create Figma structure
+  const frame = document.createElement('div');
+  frame.className = 'frame';
 
-  // Create previous article link (or placeholder)
-  const prevLink = document.createElement(prevArticle.available ? 'a' : 'div');
+  const mainDiv = document.createElement('div');
+  mainDiv.className = 'div';
+
+  // Previous article section (left)
+  const prevSection = document.createElement(prevArticle.available ? 'a' : 'div');
   if (prevArticle.available) {
-    prevLink.href = prevArticle.url;
+    prevSection.href = prevArticle.url;
   }
-  prevLink.className = `nav-item prev${prevArticle.available ? '' : ' disabled'}`;
+  prevSection.className = `div-2${prevArticle.available ? '' : ' disabled'}`;
+  prevSection.style.textDecoration = 'none';
+  prevSection.style.color = 'inherit';
 
-  const prevLabel = document.createElement('div');
-  prevLabel.className = 'nav-label';
-  prevLabel.innerHTML = '<span class="nav-arrow">‹</span>Previous Article';
-
-  const prevTitle = document.createElement('h4');
-  prevTitle.className = 'nav-title';
+  const prevTitle = document.createElement('p');
+  prevTitle.className = 'text-wrapper';
   prevTitle.textContent = prevArticle.title;
 
-  prevLink.appendChild(prevLabel);
-  prevLink.appendChild(prevTitle);
-  navContainer.appendChild(prevLink);
+  // Remove pagination-buttons wrapper - put hyperlink-buttons directly
+  const prevHyperlinkButtons = document.createElement('div');
+  prevHyperlinkButtons.className = 'hyperlink-buttons';
 
-  // Create next article link (or placeholder)
-  const nextLink = document.createElement(nextArticle.available ? 'a' : 'div');
+  const prevIconContainer = document.createElement('div');
+  prevIconContainer.className = 'next-right';
+
+  const prevIcon = document.createElement('img');
+  prevIcon.className = 'vector';
+  prevIcon.src = '../../icons/chevron-next-article-info.svg';
+  prevIcon.alt = 'Previous';
+  prevIcon.style.transform = 'scaleX(1)';
+
+  const prevLabel = document.createElement('div');
+  prevLabel.className = 'label';
+  prevLabel.textContent = 'Previous Article';
+
+  prevIconContainer.appendChild(prevIcon);
+  prevHyperlinkButtons.appendChild(prevIconContainer);
+  prevHyperlinkButtons.appendChild(prevLabel);
+
+  prevSection.appendChild(prevTitle);
+  prevSection.appendChild(prevHyperlinkButtons);
+
+  // Next article section (right)
+  const nextSection = document.createElement(nextArticle.available ? 'a' : 'div');
   if (nextArticle.available) {
-    nextLink.href = nextArticle.url;
+    nextSection.href = nextArticle.url;
   }
-  nextLink.className = `nav-item next${nextArticle.available ? '' : ' disabled'}`;
+  nextSection.className = `div-3${nextArticle.available ? '' : ' disabled'}`;
+  nextSection.style.textDecoration = 'none';
+  nextSection.style.color = 'inherit';
 
-  const nextLabel = document.createElement('div');
-  nextLabel.className = 'nav-label';
-  nextLabel.innerHTML = 'Next Article<span class="nav-arrow">›</span>';
-
-  const nextTitle = document.createElement('h4');
-  nextTitle.className = 'nav-title';
+  const nextTitle = document.createElement('p');
+  nextTitle.className = 'text-wrapper';
   nextTitle.textContent = nextArticle.title;
 
-  nextLink.appendChild(nextLabel);
-  nextLink.appendChild(nextTitle);
-  navContainer.appendChild(nextLink);
+  // Remove pagination-buttons wrapper - put hyperlink-buttons directly
+  const nextHyperlinkButtons = document.createElement('div');
+  nextHyperlinkButtons.className = 'hyperlink-buttons';
+
+  const nextLabel = document.createElement('div');
+  nextLabel.className = 'label-2';
+  nextLabel.textContent = 'Next Article';
+
+  const nextIconContainer = document.createElement('div');
+  nextIconContainer.className = 'vector-wrapper';
+
+  const nextIcon = document.createElement('img');
+  nextIcon.className = 'img';
+  nextIcon.src = '../../icons/chevron-next-article-info.svg';
+  nextIcon.alt = 'Next';
+
+  nextIconContainer.appendChild(nextIcon);
+  nextHyperlinkButtons.appendChild(nextLabel);
+  nextHyperlinkButtons.appendChild(nextIconContainer);
+
+  nextSection.appendChild(nextTitle);
+  nextSection.appendChild(nextHyperlinkButtons);
+
+  // Build complete structure
+  mainDiv.appendChild(prevSection);
+  mainDiv.appendChild(nextSection);
+  frame.appendChild(mainDiv);
+
+  // Handle disabled states
+  if (!prevArticle.available) {
+    prevSection.style.pointerEvents = 'none';
+    prevSection.style.cursor = 'not-allowed';
+    prevLabel.style.color = '#999';
+  }
+
+  if (!nextArticle.available) {
+    nextSection.style.pointerEvents = 'none';
+    nextSection.style.cursor = 'not-allowed';
+    nextLabel.style.color = '#999';
+  }
 
   // Move instrumentation and replace content
-  moveInstrumentation(block, navContainer);
+  moveInstrumentation(block, frame);
   block.textContent = '';
-  block.appendChild(navContainer);
+  block.appendChild(frame);
 }

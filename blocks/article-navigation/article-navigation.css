@@ -120,3 +120,185 @@
     margin-left: 0;
   }
 }
+
+/* Figma Article Navigation Styles */
+.article-navigation .frame {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 8px;
+  position: relative;
+}
+
+.article-navigation .frame .div {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  align-self: stretch;
+  width: 100%;
+  position: relative;
+  flex: 0 0 auto;
+}
+
+.article-navigation .frame .div-2 {
+  display: inline-flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: center;
+  gap: 8px;
+  position: relative;
+  flex: 0 0 auto;
+}
+
+.article-navigation .frame .text-wrapper {
+  position: relative;
+  width: 296px;
+  margin-top: -1.00px;
+  font-family: Gilmer, Helvetica;
+  font-weight: 700;
+  color: rgba(51, 51, 51, 1);
+  font-size: 12px;
+  letter-spacing: 0px;
+  line-height: 139.99999976158142%;
+  font-style: normal;
+  margin: 0px;
+}
+
+.article-navigation .frame .pagination-buttons {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  position: relative;
+  flex: 0 0 auto;
+  background-color: #ffffff;
+  border-radius: 6px;
+  margin: 0;
+  padding: 0;
+}
+
+.article-navigation .frame .hyperlink-buttons {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  position: relative;
+  flex: 0 0 auto;
+  margin: 0;
+  padding: 0;
+}
+
+.article-navigation .frame .next-right {
+  position: relative;
+  width: 16px;
+  height: 16px;
+  transform: rotate(180deg);
+}
+
+.article-navigation .frame .vector {
+  position: absolute;
+  width: 16px;
+  height: 16px;
+  top: 0px;
+  left: 0px;
+  transform: rotate(-180deg);
+}
+
+.article-navigation .frame .label {
+  position: relative;
+  width: fit-content;
+  margin-top: -1.00px;
+  font-family: Gilmer, Helvetica;
+  font-weight: 500;
+  color: rgba(170, 170, 170, 1);
+  font-size: 12px;
+  text-align: center;
+  letter-spacing: 0px;
+  line-height: 150%;
+  white-space: nowrap;
+  font-style: normal;
+}
+
+.article-navigation .frame .div-3 {
+  display: inline-flex;
+  flex-direction: column;
+  align-items: flex-end;
+  justify-content: center;
+  gap: 8px;
+  position: relative;
+  flex: 0 0 auto;
+}
+
+.article-navigation .frame .label-2 {
+  position: relative;
+  width: fit-content;
+  margin-top: -1.00px;
+  font-family: Gilmer, Helvetica;
+  font-weight: 500;
+  color: rgba(47, 126, 244, 1);
+  font-size: 12px;
+  text-align: center;
+  letter-spacing: 0px;
+  line-height: 150%;
+  white-space: nowrap;
+  font-style: normal;
+}
+
+.article-navigation .frame .vector-wrapper {
+  position: relative;
+  width: 16px;
+  height: 16px;
+}
+
+.article-navigation .frame .img {
+  position: absolute;
+  width: 16px;
+  height: 16px;
+  top: 0px;
+  left: 0px;
+}
+
+/* Hover effects for Figma navigation */
+.article-navigation .frame .div-2:hover .text-wrapper,
+.article-navigation .frame .div-3:hover .text-wrapper {
+  color: rgba(47, 126, 244, 1);
+}
+
+.article-navigation .frame .div-2:hover .label,
+.article-navigation .frame .div-3:hover .label-2 {
+  color: rgba(47, 126, 244, 1);
+}
+
+/* Disabled states for Figma structure */
+.article-navigation .frame .div-2.disabled,
+.article-navigation .frame .div-3.disabled {
+  pointer-events: none;
+  cursor: not-allowed;
+}
+
+.article-navigation .frame .div-2.disabled .text-wrapper,
+.article-navigation .frame .div-3.disabled .text-wrapper {
+  color: #999;
+}
+
+.article-navigation .frame .div-2.disabled .label,
+.article-navigation .frame .div-3.disabled .label-2 {
+  color: #999 !important;
+}
+
+/* Responsive adjustments for Figma structure */
+@media (width <= 768px) {
+  .article-navigation .frame .div {
+    flex-direction: column;
+    gap: 30px;
+    align-items: stretch;
+  }
+  
+  .article-navigation .frame .div-2,
+  .article-navigation .frame .div-3 {
+    align-items: flex-start !important;
+    text-align: left !important;
+  }
+  
+  .article-navigation .frame .text-wrapper {
+    width: 100%;
+  }
+}
