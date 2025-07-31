@@ -11,7 +11,7 @@ const renderJsonCards = (data, index) => {
     ? createOptimizedPicture(data.articleImage, data.title, index === 0 ? 'eager' : 'lazy', [{ width: '270' }], true)
     : '';
   return `
-      <a href="${data.cardLink}" class="article-item-card">
+      <a href="${data.cardLink}" class="article-card-content">
         <div class="article-item-image">${optimizedPic?.outerHTML || ''}</div>
         <div class="article-item-content">
           <p class="article-item-title">${data.title}</p>
@@ -99,7 +99,7 @@ export default async function decorate(block) {
   const title = block.children[0]?.querySelector('p');
   title?.classList.add('title');
   try {
-    const response = await fetch('/blocks/article-listing/articles-details.json');
+    const response = await fetch('/blocks/articles-category-cards/articles-details.json');
     const json = await response.json();
     const articles = json?.data?.articleList?.items || [];
 
@@ -120,9 +120,9 @@ export default async function decorate(block) {
     const start = (currentPage - 1) * perPage;
     const paginated = articles.slice(start, start + perPage);
 
-    const articleListsWrapper = CreateElem('div', 'article-listing-wrapper', null, null);
+    const articleListsWrapper = CreateElem('div', 'articles-cards-list', null, null);
     paginated.forEach((item, index) => {
-      const articleListingItem = CreateElem('div', 'article-listing-item', null, null);
+      const articleListingItem = CreateElem('div', 'articles-card-item', null, null);
       articleListingItem.innerHTML = renderJsonCards(item, index);
       articleListsWrapper.appendChild(articleListingItem);
     });
