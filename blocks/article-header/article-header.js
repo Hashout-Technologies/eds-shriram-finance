@@ -59,71 +59,77 @@ export default function decorate(block) {
   datesContainer.appendChild(postedDateDiv);
   datesContainer.appendChild(updatedDateContainer);
 
-  // Share Section
+  // Share Section - Updated with Figma structure
   const shareSection = document.createElement('div');
-  shareSection.className = 'share-section';
+  shareSection.className = 'frame';
+
+  // Share Group (Text + Icon)
+  const shareGroup = document.createElement('div');
+  shareGroup.className = 'group';
+  shareGroup.style.cursor = 'pointer';
 
   const shareText = document.createElement('div');
-  shareText.className = 'share-text';
+  shareText.className = 'text-wrapper';
   shareText.textContent = 'Share';
 
-  const shareIconDiv = document.createElement('div');
-  shareIconDiv.className = 'share-icon';
-  shareIconDiv.style.cursor = 'pointer';
-
   const shareImg = document.createElement('img');
+  shareImg.className = 'img';
   shareImg.alt = 'Share';
-  shareImg.className = 'icon-image';
   if (shareIcon) {
     shareImg.src = shareIcon.src;
   }
-  shareIconDiv.appendChild(shareImg);
+
+  shareGroup.appendChild(shareText);
+  shareGroup.appendChild(shareImg);
+
+  // Views Group (Count + Icon)
+  const viewsGroupWrapper = document.createElement('div');
+  viewsGroupWrapper.className = 'group-wrapper';
+
+  const viewsGroup = document.createElement('div');
+  viewsGroup.className = 'div';
 
   const shareCount = document.createElement('div');
-  shareCount.className = 'share-count';
+  shareCount.className = 'text-wrapper-2';
   shareCount.textContent = '2202';
 
-  const viewIconDiv = document.createElement('div');
-  viewIconDiv.className = 'view-icon';
-
   const viewImg = document.createElement('img');
+  viewImg.className = 'img';
   viewImg.alt = 'Views';
-  viewImg.className = 'icon-image';
   if (viewIcon) {
     viewImg.src = viewIcon.src;
   }
-  viewIconDiv.appendChild(viewImg);
 
-  const readTimeSection = document.createElement('div');
-  readTimeSection.className = 'read-time-section';
+  viewsGroup.appendChild(shareCount);
+  viewsGroup.appendChild(viewImg);
+  viewsGroupWrapper.appendChild(viewsGroup);
 
-  const readTimeContainer = document.createElement('div');
-  readTimeContainer.className = 'read-time-container';
+  // Time Group (Icon + Text)
+  const timeGroupWrapper = document.createElement('div');
+  timeGroupWrapper.className = 'frame-wrapper';
 
-  const readTimeIconDiv = document.createElement('div');
-  readTimeIconDiv.className = 'read-time-icon';
+  const timeGroup = document.createElement('div');
+  timeGroup.className = 'div-2';
 
   const timeImg = document.createElement('img');
-  timeImg.alt = 'Read time';
-  timeImg.className = 'icon-image';
+  timeImg.className = 'clock-timer';
+  timeImg.alt = 'Time';
   if (timeIcon) {
     timeImg.src = timeIcon.src;
   }
-  readTimeIconDiv.appendChild(timeImg);
 
   const readTimeText = document.createElement('div');
-  readTimeText.className = 'read-time-text';
+  readTimeText.className = 'text-wrapper-3';
   readTimeText.textContent = '3 Min';
 
-  readTimeContainer.appendChild(readTimeIconDiv);
-  readTimeContainer.appendChild(readTimeText);
-  readTimeSection.appendChild(readTimeContainer);
+  timeGroup.appendChild(timeImg);
+  timeGroup.appendChild(readTimeText);
+  timeGroupWrapper.appendChild(timeGroup);
 
-  shareSection.appendChild(shareText);
-  shareSection.appendChild(shareIconDiv);
-  shareSection.appendChild(shareCount);
-  shareSection.appendChild(viewIconDiv);
-  shareSection.appendChild(readTimeSection);
+  // Append all groups to share section
+  shareSection.appendChild(shareGroup);
+  shareSection.appendChild(viewsGroupWrapper);
+  shareSection.appendChild(timeGroupWrapper);
 
   dateShareSection.appendChild(datesContainer);
   dateShareSection.appendChild(shareSection);
@@ -201,7 +207,7 @@ export default function decorate(block) {
   }
 
   // Add click functionality to share
-  shareIconDiv.onclick = () => {
+  shareGroup.onclick = () => {
     if (navigator.share) {
       navigator.share({
         title,
