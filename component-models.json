@@ -256,6 +256,33 @@
     ]
   },
   {
+    "id": "category-links",
+    "fields": [
+      {
+        "component": "text",
+        "name": "heading-text",
+        "value": "",
+        "label": "Heading Title",
+        "valueType": "string"
+      }
+    ]
+  },
+  {
+    "id": "category-item",
+    "fields": [
+      {
+        "component": "aem-content",
+        "name": "link",
+        "label": "Category Link"
+      },
+      {
+        "component": "text",
+        "name": "category-text",
+        "label": "Category Text"
+      }
+    ]
+  },
+  {
     "id": "category-item",
     "fields": [
       {

@@ -103,7 +103,8 @@
         "notifications",
         "linked-image",
         "article-listing",
-        "product-cards"
+        "product-cards",
+        "category-links"
       ]
     }
   ]

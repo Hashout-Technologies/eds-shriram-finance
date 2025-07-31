@@ -30,7 +30,8 @@
       "notifications",
       "linked-image",
       "article-listing",
-      "product-cards"
+      "product-cards",
+      "category-links"
     ]
   },
   {
@@ -49,6 +50,12 @@
     "id": "carousel",
     "components": [
       "carousel-item"
+    ]
+  },
+  {
+    "id": "category-links",
+    "components": [
+      "category-item"
     ]
   },
   {
