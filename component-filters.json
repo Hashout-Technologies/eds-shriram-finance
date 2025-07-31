@@ -55,7 +55,7 @@
   {
     "id": "category-links",
     "components": [
-      "category-item"
+      "category-links-item"
     ]
   },
   {

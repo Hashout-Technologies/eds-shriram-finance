@@ -268,7 +268,7 @@
     ]
   },
   {
-    "id": "category-item",
+    "id": "category-links-item",
     "fields": [
       {
         "component": "aem-content",

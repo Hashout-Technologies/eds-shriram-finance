@@ -207,16 +207,16 @@
           }
         },
         {
-          "title": "Category Item",
-          "id": "category-item",
+          "title": "Category Links Item",
+          "id": "category-links-item",
           "plugins": {
             "xwalk": {
               "page": {
                 "resourceType": "core/franklin/components/block/v1/block/item",
                 "template": {
-                  "name": "Category Item",
-                  "model": "category-item",
-                  "filter": "category-item"
+                  "name": "Category Links Item",
+                  "model": "category-links-item",
+                  "filter": "category-links-item"
                 }
               }
             }
