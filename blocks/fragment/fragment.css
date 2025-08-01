@@ -12,9 +12,6 @@
   padding-bottom: 0;
 }
 
-.fragment.block {
-  display: none;
-}
 
 /* custom style */
 .section.flex-col-8-2.gray-bg .fragment-wrapper .section.category-links-container.product-cards-container{
