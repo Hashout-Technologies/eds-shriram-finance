@@ -4,8 +4,9 @@
 :root {
     /* Breakpoints */
     --breakpoint-tablet: 767px;
-    --layout-width: 1288px;
+    --layout-width: 80.5rem;       /* 1288px */
     --section-top-btm-gap: 40px;
+    --nav-height: 4rem;
 
   /* Typography */
   --font-regular: "GilmerRegular", sans-serif;
@@ -708,7 +709,15 @@ main .section.flex-col-7-3>div {
     height: 100%;
 }
 
-.section.black-bg .default-content-wrapper > *{
+main .section.black-bg  h1,
+main .section.black-bg  h2,
+main .section.black-bg  h3,
+main .section.black-bg  h4,
+main .section.black-bg  h5,
+main .section.black-bg  h6,
+main .section.black-bg  p,
+main .section.black-bg  a,
+main .section.black-bg > *{
     color: var(--color-white);
 }
 
@@ -746,6 +755,10 @@ main .section.flex-col-8-2>div {
       max-width: 30%;
       padding-left: 0;
   }
+  
+  :root {
+      --nav-height: 6.5rem;
+    }
 }
 
 @media (width >= 1200px){

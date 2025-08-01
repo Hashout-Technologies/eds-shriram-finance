@@ -565,7 +565,7 @@ async function createHamburgerButton() {
 
   // Create hamburger icon using the static SVG
   const icon = document.createElement('img');
-  icon.src = '/icons/navigation-icon.svg';
+  icon.src = '../../icons/navigation-icon.svg';
   icon.alt = 'Navigation menu';
   icon.setAttribute('aria-hidden', 'true');
   button.append(icon);
