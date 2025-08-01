@@ -3,16 +3,20 @@ import { moveInstrumentation } from '../../scripts/scripts.js';
 export default function decorate(block) {
   const rows = [...block.children];
 
-  // Extract data from AEM structure
-  const title = rows[0]?.querySelector('p')?.textContent || 'Government Policies and Gold Loan Regulations';
-  const author = rows[1]?.querySelector('p')?.textContent || 'Shriram Finance';
-  const postedDate = rows[2]?.querySelector('p')?.textContent || '16th July, 2025';
-  const updatedDate = rows[3]?.querySelector('p')?.textContent || '16th July, 2025';
+  // Extract data from AEM structure - only what's authorable
+  const title = rows[0]?.querySelector('p')?.textContent || '';
+  const author = rows[1]?.querySelector('p')?.textContent || '';
+  const postedDate = rows[2]?.querySelector('p')?.textContent || '';
+  const updatedDate = rows[3]?.querySelector('p')?.textContent || '';
 
   // Extract icon images
   const shareIcon = rows[4]?.querySelector('img');
   const viewIcon = rows[5]?.querySelector('img');
   const timeIcon = rows[6]?.querySelector('img');
+
+  // Create wrapper to match CSS selectors
+  const wrapper = document.createElement('div');
+  wrapper.className = 'article-header-wrapper';
 
   // Create the exact Figma HTML structure
   const articleHeader = document.createElement('div');
@@ -89,9 +93,9 @@ export default function decorate(block) {
   const viewsGroup = document.createElement('div');
   viewsGroup.className = 'div';
 
-  const shareCount = document.createElement('div');
-  shareCount.className = 'text-wrapper-2';
-  shareCount.textContent = '2202';
+  const shareCountElement = document.createElement('div');
+  shareCountElement.className = 'text-wrapper-2';
+  shareCountElement.textContent = '2202';
 
   const viewImg = document.createElement('img');
   viewImg.className = 'img';
@@ -100,7 +104,7 @@ export default function decorate(block) {
     viewImg.src = viewIcon.src;
   }
 
-  viewsGroup.appendChild(shareCount);
+  viewsGroup.appendChild(shareCountElement);
   viewsGroup.appendChild(viewImg);
   viewsGroupWrapper.appendChild(viewsGroup);
 
@@ -180,6 +184,7 @@ export default function decorate(block) {
 
   headerContent.appendChild(titleSection);
   articleHeader.appendChild(headerContent);
+  wrapper.appendChild(articleHeader);
 
   // Helper function to show user feedback
   function showCopyFeedback() {
@@ -226,8 +231,8 @@ export default function decorate(block) {
 
   // Clear the block and add new content
   block.textContent = '';
-  block.appendChild(articleHeader);
+  block.appendChild(wrapper);
 
   // Move instrumentation for tracking
-  moveInstrumentation(block, articleHeader);
+  moveInstrumentation(block, wrapper);
 }
