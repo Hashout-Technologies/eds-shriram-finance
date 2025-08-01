@@ -1,3 +1,4 @@
+/* stylelint-disable comment-empty-line-before */
 /* stylelint-disable no-descending-specificity */
 
 /* ==========================================================================
@@ -354,7 +355,7 @@ header nav .nav-sections ul>li>ul>li {
     }
 
     /* Main navigation items */
-    header nav .nav-bottom-section .nav-sections ul:first-child {
+    header nav .nav-bottom-section .nav-sections .default-content-wrapper > ul:first-child {
         display: flex;
         justify-content: space-between;
     }
@@ -677,7 +678,7 @@ header nav .nav-top-right p:nth-child(3) a {
     gap: 0.5rem;
     opacity: 1;
     border-radius: var(--header-radius);
-    border: 0.0625rem solid var(--color-header-button-border);
+    /* border: 0.0625rem solid var(--color-header-button-border); */
     color: var(--header-text);
     font-weight: var(--font-weight-600);
     font-size: var(--font-size-s);
