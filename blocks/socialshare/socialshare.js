@@ -45,7 +45,6 @@ export default function decorate(block) {
     thirdDiv.addEventListener('click', () => {
       navigator.clipboard.writeText(currentURL).then(() => {
         thirdDiv.setAttribute('aria-label', 'Link copied!');
-        thirdDiv.style.opacity = '0.6';
 
         // ✅ Change background of the correct <div>
         const targetDiv = thirdDiv.querySelector('div:last-of-type');
@@ -53,10 +52,16 @@ export default function decorate(block) {
           targetDiv.style.background = '#4CAF50'; // green
         }
 
+        const iconPara = thirdDiv.querySelector('div:last-of-type > p:first-of-type');
+        if (iconPara) {
+          iconPara.innerHTML = '<img src="/icons/tick.svg" alt="check icon" width="16" height="16" />';
+        }
+
         // ✅ Change the text from "Copy link" to "Link Copied"
         const textPara = thirdDiv.querySelector('div:last-of-type > p:last-of-type');
         if (textPara) {
           textPara.textContent = 'Link Copied';
+          textPara.style.color = '#fff';
         }
       });
     });

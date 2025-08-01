@@ -60,6 +60,6 @@
   text-underline-offset: auto;
   text-underline-position: from-font;
   background-color: transparent;
-  padding: 0;
+  padding: 1px;
   margin: 0;
 }

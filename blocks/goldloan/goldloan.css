@@ -30,7 +30,6 @@
   grid-row: 2;
   position: relative;
   padding-top: 20px;
-  margin-top: 10px;
 }
 
 /* Inside the third div: side-by-side layout for interest text and button */
@@ -143,6 +142,7 @@
   font-weight: 600;
   color: #000;
   text-decoration: none;
+  margin: 0;
 }
 
 @media (width <= 768px) {
