@@ -32,7 +32,7 @@
   background-color: var(--border-color-neutral-900);
 }
 
-.category-item-link::after{
+.category-listing .category-item-link::after{
   content: '';
   background: url('../../icons/arrow-right-yellow.svg');
   background-repeat: no-repeat;

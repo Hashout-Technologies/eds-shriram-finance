@@ -44,14 +44,14 @@
     margin-right: 0.25rem;
 }
 
-.category-item-link{
+.category-links .category-item-link{
     display: flex;
     justify-content: space-between;
     gap: 0.5rem;
     align-items: center;
 }
 
-.category-item-count{
+.category-links .category-item-count{
     display: flex;
     padding: 0.375rem;
     justify-content: center;
