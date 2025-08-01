@@ -41,17 +41,10 @@ export default function decorate(block) {
   const prevIconContainer = document.createElement('div');
   prevIconContainer.className = 'next-right';
 
-  const prevIcon = document.createElement('img');
-  prevIcon.className = 'vector';
-  prevIcon.src = '../../icons/chevron-next-article-info.svg';
-  prevIcon.alt = 'Previous';
-  prevIcon.style.transform = 'scaleX(1)';
-
   const prevLabel = document.createElement('div');
   prevLabel.className = 'label';
   prevLabel.textContent = 'Previous Article';
 
-  prevIconContainer.appendChild(prevIcon);
   prevHyperlinkButtons.appendChild(prevIconContainer);
   prevHyperlinkButtons.appendChild(prevLabel);
 
@@ -82,12 +75,6 @@ export default function decorate(block) {
   const nextIconContainer = document.createElement('div');
   nextIconContainer.className = 'vector-wrapper';
 
-  const nextIcon = document.createElement('img');
-  nextIcon.className = 'img';
-  nextIcon.src = '../../icons/chevron-next-article-info.svg';
-  nextIcon.alt = 'Next';
-
-  nextIconContainer.appendChild(nextIcon);
   nextHyperlinkButtons.appendChild(nextLabel);
   nextHyperlinkButtons.appendChild(nextIconContainer);
 

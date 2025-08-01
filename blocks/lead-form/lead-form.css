@@ -124,14 +124,7 @@
   word-wrap: break-word;
 }
 
-.lead-form .form-input:focus {
-  border: 2px solid #FFCB09;
-  outline: none;
-}
 
-.lead-form .form-input:hover {
-  border-color: #999;
-}
 
 .lead-form .form-button {
   align-self: stretch; 
@@ -155,10 +148,6 @@
   line-height: 21px; 
   word-wrap: break-word;
   margin-top: 0;
-}
-
-.lead-form .form-button:hover {
-  opacity: 0.9;
 }
 
 /* Responsive Design */
