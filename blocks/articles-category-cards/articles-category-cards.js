@@ -95,6 +95,17 @@ const renderPagination = (totalPages, currentPage) => {
   return wrapper;
 };
 
+const renderFallback = () => {
+  const fallback = CreateElem('div', 'no-results-wrapper', null, null);
+  fallback.innerHTML = `
+    <div class="fallback-image">
+      <img src="../../images/no-record.svg" alt="No articles found"/>
+    </div>
+    <p class="fallback-message">Article not found</p>
+  `;
+  return fallback;
+};
+
 export default async function decorate(block) {
   const title = block.children[0]?.querySelector('p');
   title?.classList.add('title');
@@ -107,14 +118,7 @@ export default async function decorate(block) {
     const perPage = 9;
     const totalPages = Math.ceil(articles.length / perPage);
     if (currentPage > totalPages || currentPage < 1) {
-      const fallback = CreateElem('div', 'no-results-wrapper', null, null);
-      fallback.innerHTML = `
-        <div class="fallback-image">
-          <img src="/images/no-record.svg" alt="No articles found" loading="eager" />
-        </div>
-        <p class="fallback-message">Article not found</p>
-      `;
-      block.appendChild(fallback);
+      block.appendChild(renderFallback());
       return;
     }
     const start = (currentPage - 1) * perPage;
@@ -132,6 +136,6 @@ export default async function decorate(block) {
       block.appendChild(renderPagination(totalPages, currentPage));
     }
   } catch (e) {
-    block.innerHTML = '';
+    block.appendChild(renderFallback());
   }
 }
