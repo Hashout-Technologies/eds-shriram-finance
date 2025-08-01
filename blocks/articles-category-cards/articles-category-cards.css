@@ -273,7 +273,7 @@
         display: flex;
     }
 
-    .article-listing-container .articles-category-cards .pagination-wrapper .pagination-list li.pagination-ellipsis{
+    .articles-category-cards .pagination-wrapper .pagination-list li.pagination-ellipsis{
         display: none;
     }
 
