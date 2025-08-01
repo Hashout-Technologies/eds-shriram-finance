@@ -36,7 +36,7 @@ export default function decorate(block) {
                   </div>
                 </div>
                 <div class="frame">
-                  <div class="group" style="cursor: pointer;">
+                  <div class="group">
                     <div class="text-wrapper">Share</div>
                     <img class="img" alt="Share" src="${shareIconSrc}" />
                   </div>
@@ -74,54 +74,8 @@ export default function decorate(block) {
     </div>
   `;
 
-  // Helper function to show user feedback
-  function showCopyFeedback() {
-    const notification = document.createElement('div');
-    notification.textContent = 'Link copied to clipboard!';
-    notification.style.cssText = `
-      position: fixed;
-      top: 20px;
-      right: 20px;
-      background: #4CAF50;
-      color: white;
-      padding: 12px 24px;
-      border-radius: 4px;
-      z-index: 1000;
-      font-family: Arial, sans-serif;
-      box-shadow: 0 2px 8px rgba(0,0,0,0.2);
-    `;
-    document.body.appendChild(notification);
-
-    setTimeout(() => {
-      if (notification.parentNode) {
-        notification.parentNode.removeChild(notification);
-      }
-    }, 3000);
-  }
-
   // Clear the block and set new content
   block.innerHTML = htmlTemplate;
-
-  // Add click functionality to share after HTML is set
-  const shareGroup = block.querySelector('.group');
-  if (shareGroup) {
-    shareGroup.onclick = () => {
-      if (navigator.share) {
-        navigator.share({
-          title,
-          url: window.location.href,
-        });
-      } else {
-        navigator.clipboard.writeText(window.location.href)
-          .then(() => {
-            showCopyFeedback();
-          })
-          .catch(() => {
-            showCopyFeedback();
-          });
-      }
-    };
-  }
 
   // Move instrumentation for tracking
   moveInstrumentation(block, block.querySelector('.article-header-wrapper'));
