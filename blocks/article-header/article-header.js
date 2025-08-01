@@ -4,10 +4,10 @@ export default function decorate(block) {
   const rows = [...block.children];
 
   // Extract data from AEM structure
-  const title = rows[0]?.querySelector('p')?.textContent || '';
-  const author = rows[1]?.querySelector('p')?.textContent || '';
-  const postedDate = rows[2]?.querySelector('p')?.textContent || '';
-  const updatedDate = rows[3]?.querySelector('p')?.textContent || '';
+  const title = rows[0]?.querySelector('p')?.textContent;
+  const author = rows[1]?.querySelector('p')?.textContent;
+  const postedDate = rows[2]?.querySelector('p')?.textContent;
+  const updatedDate = rows[3]?.querySelector('p')?.textContent;
 
   // Extract icon images
   const shareIcon = rows[4]?.querySelector('img');
