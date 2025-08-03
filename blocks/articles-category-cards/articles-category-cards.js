@@ -11,7 +11,7 @@ const renderJsonCards = (data, index) => {
     ? createOptimizedPicture(data.articleImage, data.title, index === 0 ? 'eager' : 'lazy', [{ width: '270' }], true)
     : '';
   return `
-      <a href="${data.cardLink}" class="article-card-content">
+      <a href="${data.cardLink}" class="article-card-content" target="_blank">
         <div class="article-item-image">${optimizedPic?.outerHTML || ''}</div>
         <div class="article-item-content">
           <p class="article-item-title">${data.title}</p>
