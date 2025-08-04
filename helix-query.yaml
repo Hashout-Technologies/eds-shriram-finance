@@ -3,7 +3,7 @@ version: 1
 indices:
   pages:
     include:
-      - '/**'
+      - '/articles/personal-loan/**'
     exclude:
       - '/**.json'
     target: /query-index.json
@@ -11,6 +11,9 @@ indices:
       lastModified:
         select: none
         value: parseTimestamp(headers["last-modified"], "ddd, DD MMM YYYY hh:mm:ss GMT")
-      robots:
-        select: head > meta[name="robots"]
+      title:
+        select: head > meta[name="title"]
+        value: attribute(el, "content")
+      description:
+        select: head > meta[name="description"]
         value: attribute(el, "content")
