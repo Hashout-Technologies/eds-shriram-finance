@@ -1,7 +1,7 @@
 /* ================================
    CSS VARIABLES
    ================================ */
-:root {
+   :root {
     /* Breakpoints */
     --breakpoint-tablet: 767px;
     --layout-width: 80.5rem;       /* 1288px */

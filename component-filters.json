@@ -25,6 +25,8 @@
       "tabs",
       "table",
       "text",
+      "image",
+      "button",
       "title",
       "video",
       "notifications",

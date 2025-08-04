@@ -178,6 +178,32 @@
           {
             "name": "Sidebar",
             "value": "sidebar"
+          },
+          {
+            "name": "Align Center",
+            "value": "align-center"
+          },
+          {
+            "name": "Alignment Classes",
+            "children": [
+              {
+                "name": "Align Text Center",
+                "value": "text-center"
+              }
+            ]
+          },
+          {
+            "name": "General Classes",
+            "children": [
+              {
+                "name": "Black Background",
+                "value": "black-bg"
+              }
+            ]
+          },
+          {
+            "name": "Align Center",
+            "value": "align-center"
           }
         ]
       }
@@ -215,14 +241,53 @@
     ]
   },
   {
+    "id": "cards",
+    "fields": [
+      {
+        "component": "select",
+        "name": "classes",
+        "value": "",
+        "label": "Cards layout options",
+        "description": "",
+        "valueType": "string",
+        "options": [
+          {
+            "name": "Four column(default)",
+            "value": ""
+          },
+          {
+            "name": "Three column",
+            "value": "three-column"
+          },
+          {
+            "name": "Two column",
+            "value": "two-column"
+          }
+        ]
+      }
+    ]
+  },
+  {
     "id": "card",
     "fields": [
+      {
+        "component": "aem-content",
+        "name": "link",
+        "label": "Redirect to"
+      },
       {
         "component": "reference",
         "valueType": "string",
         "name": "image",
         "label": "Image",
         "multi": false
+      },
+      {
+        "component": "text",
+        "valueType": "string",
+        "name": "imageAlt",
+        "label": "Image alt text",
+        "required": true
       },
       {
         "component": "richtext",
