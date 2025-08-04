@@ -6,7 +6,7 @@ indices:
       - '/**'
     exclude:
       - '/**.json'
-    target: /query-index.json
+    target: https://docs.google.com/spreadsheets/d/1FuFRkTAEYCAzv4jGLVdlj48R3J-RWwU4nEUi3jWpZok
     properties:
       lastModified:
         select: none
