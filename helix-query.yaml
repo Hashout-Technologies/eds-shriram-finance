@@ -6,11 +6,17 @@ indices:
       - '/**'
     exclude:
       - '/**.json'
-    target: https://docs.google.com/spreadsheets/d/1FuFRkTAEYCAzv4jGLVdlj48R3J-RWwU4nEUi3jWpZok
+    target: /query-index.json
     properties:
       lastModified:
         select: none
         value: parseTimestamp(headers["last-modified"], "ddd, DD MMM YYYY hh:mm:ss GMT")
       robots:
         select: head > meta[name="robots"]
+        value: attribute(el, "content")
+      title:
+        select: head > meta[name="title"]
+        value: attribute(el, "content")
+      description:
+        select: head > meta[name="description"]
         value: attribute(el, "content")
