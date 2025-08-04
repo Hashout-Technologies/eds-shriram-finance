@@ -1,5 +1,5 @@
 export default function decorate(block) {
-  const icons = block.querySelectorAll('.socialshare picture img');
+  const icons = block.querySelectorAll('.socialshare > div:nth-child(2) picture img');
   const currentURL = window.location.href;
   const encodedURL = encodeURIComponent(currentURL);
   const shareLinks = [
