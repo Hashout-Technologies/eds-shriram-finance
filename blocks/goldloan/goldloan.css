@@ -2,13 +2,13 @@
   display: grid;
   grid-template-columns: auto 1fr;
   grid-template-rows: auto auto;  /* Two rows: top row (image + text), bottom row (CTA) */
-  padding: 24px;
+  padding: 1.5rem;
   justify-content: center;
   align-items: flex-start;
-  gap: 10px;
-  border-radius: 16px;
-  border: 1px solid #FFCB09;
-  background: linear-gradient(180deg, #FFFBEA 0%, #FFF 75.26%);
+  gap: 0.625rem;
+  border-radius: 1rem;
+  border: 0.063rem solid var(--color-golden-yellow);
+  background: linear-gradient(180deg, #FFFBEA 0%, var(--color-white) 75.26%);
   box-sizing: border-box;
 }
 
@@ -29,7 +29,7 @@
   grid-column: 1 / -1;
   grid-row: 2;
   position: relative;
-  padding-top: 20px;
+  padding-top: 1.25rem;
 }
 
 /* Inside the third div: side-by-side layout for interest text and button */
@@ -38,7 +38,7 @@
   justify-content: space-between;
   align-items: center;
   flex-wrap: wrap; /* Optional: stacks vertically on small screens */
-  gap: 10px;
+  gap: 0.625rem;
 }
 
 /* Optional: reset margins for cleaner spacing */
@@ -49,10 +49,10 @@
 /* Optional: Make button look styled (if needed) */
 .goldloan .button {
   background-color: #b8860b;
-  color: #fff;
+  color: var(--color-white);
   text-decoration: none;
-  padding: 10px 20px;
-  border-radius: 4px;
+  padding: 0.625rem 1.25rem;
+  border-radius: 0.25rem;
   display: inline-block;
 }
 
@@ -78,7 +78,7 @@
 .goldloan > div:nth-child(3)::before {
   content: '';
   display: block;
-  height: 1px;
+  height: 0.063rem;
   width: 100%;
   background-color: #FFECA3;
   position: absolute;
@@ -88,59 +88,59 @@
 
 .goldloan > div:nth-child(1) > div {
   align-items: center;
-  width: 48px;
-  height: 48px;
-  padding: 8px;
-  border-radius: 56px;
-  border: 1px solid #F2F2F2;
-  background: #FFF;
+  width: 3rem;
+  height: 3rem;
+  padding: 0.5rem;
+  border-radius: 3.5rem;
+  border: 0.063rem solid var(--light-color);
+  background: var(--color-white);
   margin-top: 0.8em;
 }
 
 .goldloan > div:nth-child(2) > div > p:first-of-type {
-  color: #333;
+  color: var(--color-neutral-900);
   font-feature-settings: 'liga' off;
-  font-family: Gilmer, sans-serif;
-  font-size: 16px;
+  font-family: var(--font-regular), sans-serif;
+  font-size: 1rem;
   font-style: normal;
-  font-weight: 600;
+  font-weight: var(--color-neutral-600);
   line-height: 150%; /* 24px */
 }
 
 .goldloan > div:nth-child(2) > div > p:nth-of-type(2) {
-  color:#666;
+  color: var(--color-neutral-800);
   font-feature-settings: 'liga' off;
-  font-family: Gilmer, sans-serif;
-  font-size: 12px;
+  font-family: var(--font-regular), sans-serif;
+  font-size: 0.75rem;
   font-style: normal;
-  font-weight: 400;
+  font-weight: var(--font-weight-400);
   line-height: 140%; /* 16.8px */
 }
 
 .goldloan > div:nth-child(3) > div > p:first-of-type {
-  color:#333;
+  color: var(--color-neutral-900);
   font-feature-settings: 'liga' off;
-  font-family: Gilmer, sans-serif;
-  font-size: 12px;
+  font-family: var(--font-regular), sans-serif;
+  font-size: 0.75rem;
   font-style: normal; 
-  font-weight: 600;
+  font-weight: var(--color-neutral-600);
   line-height: 140%; /* 16.8px */
 }
 
 .goldloan .button-container > a {
   display: flex;
-  width: 140px;
-  height: 36px;
-  padding: 5px 17px;
+  width: 8.75rem;
+  height: 2.25rem;
+  padding: 0.313rem 1.063rem;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  border-radius: 8px;
-  background: #FFCB09;
-  font-family: Gilmer, sans-serif;
-  font-size: 14px;
-  font-weight: 600;
-  color: #000;
+  border-radius: 0.5rem;
+  background: var(--color-golden-yellow);
+  font-family: var(--font-regular), sans-serif;
+  font-size: 0.875rem;
+  font-weight: var(--color-neutral-600);
+  color: var(--color-black);
   text-decoration: none;
   margin: 0;
 }
@@ -164,7 +164,7 @@
   .top-row {
     display: flex;
     flex-direction: column !important;
-    gap: 12px;
+    gap: 0.75rem;
   }
 
   /* button is stacked or aligned */
@@ -175,7 +175,7 @@
 
   /* Center button if needed */
   .goldloan .button-container {
-    margin-top: 12px;
+    margin-top: 0.75rem;
   }
 
   /* adjust image wrapper size */
