@@ -181,14 +181,65 @@
     ]
   },
   {
+    "id": "articles-category-cards",
+    "fields": [
+      {
+        "component": "text",
+        "name": "title",
+        "value": "",
+        "label": "Title",
+        "valueType": "string"
+      }
+    ]
+  },
+  {
+    "id": "cards",
+    "fields": [
+      {
+        "component": "select",
+        "name": "classes",
+        "value": "",
+        "label": "Cards layout options",
+        "description": "",
+        "valueType": "string",
+        "options": [
+          {
+            "name": "Four column(default)",
+            "value": ""
+          },
+          {
+            "name": "Three column",
+            "value": "three-column"
+          },
+          {
+            "name": "Two column",
+            "value": "two-column"
+          }
+        ]
+      }
+    ]
+  },
+  {
     "id": "card",
     "fields": [
+      {
+        "component": "aem-content",
+        "name": "link",
+        "label": "Redirect to"
+      },
       {
         "component": "reference",
         "valueType": "string",
         "name": "image",
         "label": "Image",
         "multi": false
+      },
+      {
+        "component": "text",
+        "valueType": "string",
+        "name": "imageAlt",
+        "label": "Image alt text",
+        "required": true
       },
       {
         "component": "richtext",
@@ -219,6 +270,50 @@
       {
         "component": "richtext",
         "name": "content_text",
+        "value": "",
+        "label": "Text",
+        "valueType": "string"
+      }
+    ]
+  },
+  {
+    "id": "category-links",
+    "fields": [
+      {
+        "component": "text",
+        "name": "heading-text",
+        "value": "",
+        "label": "Heading Title",
+        "valueType": "string"
+      }
+    ]
+  },
+  {
+    "id": "category-links-item",
+    "fields": [
+      {
+        "component": "aem-content",
+        "name": "link",
+        "label": "Category Link"
+      },
+      {
+        "component": "text",
+        "name": "category-text",
+        "label": "Category Text"
+      }
+    ]
+  },
+  {
+    "id": "category-item",
+    "fields": [
+      {
+        "component": "aem-content",
+        "name": "link",
+        "label": "Link"
+      },
+      {
+        "component": "text",
+        "name": "text",
         "value": "",
         "label": "Text",
         "valueType": "string"
@@ -322,6 +417,23 @@
     ]
   },
   {
+    "id": "linked-image",
+    "fields": [
+      {
+        "component": "reference",
+        "valueType": "string",
+        "name": "image",
+        "label": "Image",
+        "multi": false
+      },
+      {
+        "component": "aem-content",
+        "name": "link",
+        "label": "Link"
+      }
+    ]
+  },
+  {
     "id": "modal",
     "fields": [
       {
@@ -333,6 +445,85 @@
         "component": "text",
         "name": "linkText",
         "label": "Text"
+      }
+    ]
+  },
+  {
+    "id": "notification-item",
+    "fields": [
+      {
+        "component": "richtext",
+        "name": "message",
+        "value": "",
+        "label": "Message",
+        "valueType": "string"
+      },
+      {
+        "component": "text",
+        "name": "callToAction",
+        "value": "Invest Now",
+        "label": "Call to Action Text",
+        "valueType": "string"
+      },
+      {
+        "component": "aem-content",
+        "name": "callToActionLink",
+        "label": "Call to Action Link"
+      },
+      {
+        "component": "text",
+        "name": "timestamp",
+        "value": "",
+        "label": "Timestamp",
+        "valueType": "string"
+      }
+    ]
+  },
+  {
+    "id": "product-cards",
+    "fields": [
+      {
+        "component": "text",
+        "name": "heading-text",
+        "value": "",
+        "label": "Heading Title",
+        "valueType": "string"
+      }
+    ]
+  },
+  {
+    "id": "product-card-item",
+    "fields": [
+      {
+        "component": "text",
+        "name": "title",
+        "value": "",
+        "label": "Title",
+        "valueType": "string"
+      },
+      {
+        "component": "text",
+        "name": "description",
+        "value": "",
+        "label": "Description",
+        "valueType": "string"
+      },
+      {
+        "component": "text",
+        "name": "interest-rate",
+        "value": "",
+        "label": "Interest Rate",
+        "valueType": "string"
+      },
+      {
+        "component": "aem-content",
+        "name": "link",
+        "label": "CTA Link"
+      },
+      {
+        "component": "text",
+        "name": "cta-link-text",
+        "label": "CTA Label"
       }
     ]
   },

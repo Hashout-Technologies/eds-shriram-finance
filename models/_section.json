@@ -33,6 +33,48 @@
             {
               "name": "Highlight",
               "value": "highlight"
+            },
+            {
+              "name": "Full Width",
+              "value": "full-width"
+            },
+            {
+              "name": "Two Column",
+              "value": "section-two-column"
+            },
+            {
+              "name": "Flex Column 70:30",
+              "value": "flex-col-7-3"
+            },
+            {
+              "name": "Alignment Classes",
+              "children": [
+                {
+                  "name": "Align Text Center",
+                  "value": "text-center"
+                }
+              ]
+            },
+            {
+              "name": "General Classes",
+              "children": [
+                {
+                  "name": "Black Background",
+                  "value": "black-bg"
+                },
+                {
+                  "name": "Gray Background",
+                  "value": "gray-bg"
+                },
+                {
+                  "name": "Flex Column 80:20",
+                  "value": "flex-col-8-2"
+                }
+              ]
+            },
+            {
+              "name": "Sidebar",
+              "value": "sidebar"
             }
           ]
         }
@@ -43,14 +85,30 @@
     {
       "id": "section",
       "components": [
-        "text",
-        "image",
+        "accordion",
         "button",
-        "title",
-        "hero",
         "cards",
+        "carousel",
         "columns",
-        "fragment"
+        "fragment",
+        "category-listing",
+        "embed",
+        "fragment",
+        "form",
+        "hero",
+        "image",
+        "quote",
+        "search",
+        "tabs",
+        "table",
+        "text",
+        "title",
+        "video",
+        "notifications",
+        "linked-image",
+        "articles-category-cards",
+        "product-cards",
+        "category-links"
       ]
     }
   ]

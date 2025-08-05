@@ -19,10 +19,7 @@ module.exports = {
     'linebreak-style': ['error', 'unix'], // enforce unix linebreaks
     'no-param-reassign': [2, { props: false }], // allow modifying properties of param
     'xwalk/max-cells': ['error', {
-      goldloan: 7,
-      socialshare: 8,
-      'article-header': 7,
-      products: 7,
+      'product-card-item': 5,
     }],
   },
 };

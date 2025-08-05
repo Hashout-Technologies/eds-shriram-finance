@@ -1,5 +1,5 @@
 mountpoints:
   /:
-    url: "https://author-p43719-e1463462.adobeaemcloud.com/bin/franklin.delivery/Hashout-Technologies/eds-shriram-finance/main"
+    url: "https://author-p160254-e1712400.adobeaemcloud.com/bin/franklin.delivery/Hashout-Technologies/eds-shriram-finance/main"
     type: "markup"
     suffix: ".html"

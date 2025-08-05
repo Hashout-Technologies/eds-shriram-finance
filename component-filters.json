@@ -13,6 +13,8 @@
       "cards",
       "carousel",
       "columns",
+      "fragment",
+      "category-listing",
       "embed",
       "fragment",
       "form",
@@ -23,6 +25,8 @@
       "tabs",
       "table",
       "text",
+      "image",
+      "button",
       "title",
       "video",
       "article-header",
@@ -67,7 +71,20 @@
       "text",
       "image",
       "button",
-      "title"
+      "title",
+      "linked-image"
+    ]
+  },
+  {
+    "id": "notifications",
+    "components": [
+      "notification-item"
+    ]
+  },
+  {
+    "id": "product-cards",
+    "components": [
+      "product-card-item"
     ]
   },
   {
