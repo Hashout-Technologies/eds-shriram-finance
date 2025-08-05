@@ -16,12 +16,12 @@
 /* Main Container - matches sidebar-widget */
 .articles-listing {
   align-self: stretch; 
-  padding: 24px; 
-  background: white; 
-  border-radius: 16px; 
+  padding: 1.5rem; 
+  background: var(--color-white); 
+  border-radius: 1rem; 
   justify-content: center; 
   align-items: flex-start; 
-  gap: 16px; 
+  gap: 1rem; 
   display: inline-flex;
   max-width: none;
 }
@@ -32,7 +32,7 @@
   flex-direction: column; 
   justify-content: flex-start; 
   align-items: flex-start; 
-  gap: 24px; 
+  gap: 1.5rem; 
   display: inline-flex;
 }
 
@@ -41,7 +41,7 @@
   flex-direction: column; 
   justify-content: flex-start; 
   align-items: flex-start; 
-  gap: 24px; 
+  gap: 1.5rem; 
   display: flex;
 }
 
@@ -49,16 +49,16 @@
 .articles-listing .section-title,
 .related-articles-title {
   align-self: stretch; 
-  height: 22px; 
+  height: 1.375rem; 
   text-align: center; 
   justify-content: center; 
   display: flex; 
   flex-direction: column; 
-  color: #333; 
-  font-size: 18px; 
+  color: var(--color-neutral-900); 
+  font-size: 1.125rem; 
   font-family: Gilmer, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; 
   font-weight: 700; 
-  line-height: 23.40px; 
+  line-height: 1.4625rem; 
   word-wrap: break-word;
   margin-bottom: 0;
 }
@@ -68,9 +68,9 @@
   align-self: stretch; 
   justify-content: flex-start; 
   align-items: flex-start; 
-  gap: 24px; 
+  gap: 1.5rem; 
   display: inline-flex;
-  margin-bottom: 16px;
+  margin-bottom: 1rem;
 }
 
 .articles-listing .articles-grid:last-child {
@@ -82,7 +82,7 @@
   flex: 1 1 0; 
   justify-content: flex-start; 
   align-items: flex-start; 
-  gap: 24px; 
+  gap: 1.5rem; 
   display: flex;
 }
 
@@ -93,7 +93,7 @@
   flex-direction: column; 
   justify-content: flex-start; 
   align-items: flex-start; 
-  gap: 24px; 
+  gap: 1.5rem; 
   display: inline-flex;
   text-decoration: none;
   color: inherit;
@@ -105,7 +105,7 @@
   flex-direction: column; 
   justify-content: flex-start; 
   align-items: flex-start; 
-  gap: 8px; 
+  gap: 0.5rem; 
   display: flex;
 }
 
@@ -114,19 +114,19 @@
   flex-direction: column; 
   justify-content: flex-start; 
   align-items: flex-start; 
-  gap: 10px; 
+  gap: 0.625rem; 
   display: flex;
 }
 
 /* Image Container */
 .article-image-container {
   align-self: stretch; 
-  background: linear-gradient(180deg, #F5F5F5 0%, #FFF 100%); 
-  border-radius: 12px; 
+  background: linear-gradient(180deg, var(--color-article-bg) 0%, var(--color-white) 100%); 
+  border-radius: 0.75rem; 
   flex-direction: column; 
   justify-content: flex-start; 
   align-items: flex-start; 
-  gap: 6px; 
+  gap: 0.375rem; 
   display: flex;
   overflow: hidden;
   transition: box-shadow 0.3s ease;
@@ -134,12 +134,12 @@
 
 /* Image */
 .articles-listing .article-image {
-  width: 168px; 
-  height: 67px; 
-  border-radius: 12px;
+  width: 10.5rem; 
+  height: 4.1875rem; 
+  border-radius: 0.75rem;
   object-fit: cover;
   transition: transform 0.3s ease;
-  background-color: #f5f5f5;
+  background-color: var(--color-article-bg);
   display: block;
 }
 
@@ -150,11 +150,11 @@
   justify-content: center; 
   display: flex; 
   flex-direction: column; 
-  color: #333; 
-  font-size: 12px; 
+  color: var(--color-neutral-900); 
+  font-size: 0.75rem; 
   font-family: Gilmer, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; 
   font-weight: 600; 
-  line-height: 16.80px; 
+  line-height: 1.05rem; 
   word-wrap: break-word;
   transition: color 0.2s ease;
   text-align: left;
@@ -164,15 +164,15 @@
 /* Loading and Error States */
 .loading {
   text-align: center;
-  padding: 20px;
-  color: #666;
+  padding: 1.25rem;
+  color: var(--color-neutral-800);
   font-family: Gilmer, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
 }
 
 .error {
   text-align: center;
-  padding: 20px;
-  color: #d32f2f;
+  padding: 1.25rem;
+  color: var(--color-error);
   font-family: Gilmer, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
 }
 
@@ -192,61 +192,61 @@
 
 .articles-listing .article-card:hover .article-title,
 .article-item:hover .article-title-small {
-  color: #FFCB09;
+  color: var(--color-golden-yellow);
 }
 
 .article-item:hover .article-image-container {
-  box-shadow: 0 4px 12px rgb(0 0 0 / 10%);
+  box-shadow: 0 0.25rem 0.75rem rgb(0 0 0 / 10%);
 }
 
 .articles-listing .article-card:hover .article-image-container {
-  box-shadow: 0 4px 12px rgb(0 0 0 / 10%);
+  box-shadow: 0 0.25rem 0.75rem rgb(0 0 0 / 10%);
 }
 
 /* Responsive Design */
-@media (width <= 768px) {
+@media (width <= 48rem) {
   .articles-listing {
-    padding: 16px;
+    padding: 1rem;
   }
   
   .articles-listing .articles-grid {
     flex-direction: column;
-    gap: 16px;
+    gap: 1rem;
   }
   
   .articles-row {
     flex-direction: column;
-    gap: 16px;
+    gap: 1rem;
   }
   
   .articles-listing .article-image {
     width: 100%;
     height: auto;
-    min-height: 67px;
+    min-height: 4.1875rem;
   }
   
   .widget-section-full {
-    gap: 16px;
+    gap: 1rem;
   }
 }
 
-@media (width <= 480px) {
+@media (width <= 30rem) {
   .articles-listing {
-    padding: 16px;
+    padding: 1rem;
   }
   
   .widget-section-full {
-    gap: 16px;
+    gap: 1rem;
   }
   
   .articles-listing .articles-grid {
-    gap: 12px;
+    gap: 0.75rem;
   }
   
   .articles-listing .section-title,
   .related-articles-title {
-    font-size: 16px;
-    line-height: 20px;
+    font-size: 1rem;
+    line-height: 1.25rem;
     height: auto;
   }
 }

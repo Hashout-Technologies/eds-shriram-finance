@@ -1,11 +1,10 @@
-
 body.article-layout main {
   display: flex;
-  column-gap: 16px; /* gap between the two columns */
-  background-color: #f5f5f5;
+  column-gap: 1rem; /* gap between the two columns */
+  background-color: var(--color-article-bg);
 }
 
-@media(width >= 1280px) {
+@media(width >= 80rem) {
   body.article-layout main {
     justify-content: center;
   }
@@ -13,22 +12,22 @@ body.article-layout main {
 
 /* Main content column */
 body.article-layout main > .section.article-main-content {
-  flex: 0 0 832px; /* takes up 2/3 of available space */
-  border-radius: 16px;
-  padding-top: 32px;
-  padding-bottom: 32px;
-  margin-top: 80px;
-  background-color: #fff;
+  flex: 0 0 52rem; /* takes up 2/3 of available space */
+  border-radius: 1rem;
+  padding-top: 2rem;
+  padding-bottom: 2rem;
+  margin-top: 5rem;
+  background-color: var(--color-white);
 }
 
 /* Sidebar column */
 body.article-layout main > .section.article-sidebar {
-  flex: 0 0 408px; /* takes up 1/3 of available space */
+  flex: 0 0 25.5rem; /* takes up 1/3 of available space */
   display: flex;
   flex-direction: column;
-  gap: 16px;  
-  margin-top: 80px;
-  background-color: #f5f5f5;
+  gap: 1rem;  
+  margin-top: 5rem;
+  background-color: var(--color-article-bg);
   padding-top: 0 !important;
 }
 
@@ -39,5 +38,5 @@ body.article-layout main > .section.article-sidebar {
 .article-main-content .socialshare-wrapper,
 .article-main-content .article-navigation-wrapper,
 .article-main-content .relatedtags-wrapper {
-  padding: 0 40px !important;
+  padding: 0 2.5rem !important;
 }

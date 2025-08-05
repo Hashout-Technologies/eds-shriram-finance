@@ -123,6 +123,11 @@
 
     /* Primary Colors */
     --page-bg-color: #fff;
+
+    /* Article info page colors */
+    --color-nav-link: #4285f4;   
+    --color-disabled: #999;
+    --color-article-bg: #f5f5f5;         
 }
 
 /* fallback fonts */
@@ -393,8 +398,8 @@ main .section.highlight {
 
 /* Targetting image in article info page */
 body.article-layout .default-content-wrapper p picture img[width="556"][height="221"] {
-  width: 752px !important;
-  height: 299px !important;
-  border-radius: 16px !important;
+  width: 47rem !important;
+  height: 18.6875rem !important;
+  border-radius: 1rem !important;
   object-fit: cover !important;
 }
