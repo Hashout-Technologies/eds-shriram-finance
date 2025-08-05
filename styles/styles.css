@@ -1,12 +1,47 @@
+/*
+ * Copyright 2020 Adobe. All rights reserved.
+ * This file is licensed to you under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License. You may obtain a copy
+ * of the License at http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software distributed under
+ * the License is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR REPRESENTATIONS
+ * OF ANY KIND, either express or implied. See the License for the specific language
+ * governing permissions and limitations under the License.
+ */
+
+@import url("./article-sidebar.css");
+
 /* ================================
    CSS VARIABLES
    ================================ */
-   :root {
-    /* Breakpoints */
-    --breakpoint-tablet: 767px;
-    --layout-width: 80.5rem;       /* 1288px */
-    --section-top-btm-gap: 40px;
-    --nav-height: 4rem;
+:root {
+  /* Breakpoints */
+  --breakpoint-tablet: 767px;
+  --layout-width: 80.5rem;       /* 1288px */
+  --section-top-btm-gap: 40px;
+
+  /* fonts */
+  --body-font-family: roboto, roboto-fallback, sans-serif;
+  --heading-font-family: roboto-condensed, roboto-condensed-fallback, sans-serif;
+
+  /* body sizes */
+  --body-font-size-m: 22px;
+  --body-font-size-s: 19px;
+  --body-font-size-xs: 17px;
+
+  /* heading sizes */
+  --heading-font-size-xxl: 55px;
+  --heading-font-size-xl: 44px;
+  --heading-font-size-l: 34px;
+  --heading-font-size-m: 27px;
+  --heading-font-size-s: 24px;
+  --heading-font-size-xs: 22px;
+
+  /* nav heights */
+  --nav-height: 64px;
+  --breadcrumbs-height: 34px;
+  --header-height: var(--nav-height);
 
   /* Typography */
   --font-regular: "GilmerRegular", sans-serif;
@@ -67,47 +102,77 @@
   --overlay-background-color: lightgrey;
   --border-color: var(--color-primary-yellow);
 
-    /* Light Colors */
-    --color-soft-gray: #E5E5E5;
-    --color-light-soft-gray: #D5D5D5;
+  /* Light Colors */
+  --color-soft-gray: #E5E5E5;
+  --color-light-soft-gray: #D5D5D5;
 
-    /* Border Neutral colours */
-    --border-color-neutral-900: #393939;
+  /* Border Neutral colours */
+  --border-color-neutral-900: #393939;
 
-    /* Font Weights */
-    --font-weight-100: 100;
-    --font-weight-200: 200;
-    --font-weight-300: 300;
-    --font-weight-400: 400;
-    --font-weight-500: 500;
-    --font-weight-600: 600;
-    --font-weight-700: 700;
-    --font-weight-800: 800;
-    --font-weight-900: 900;
+  /* Font Weights */
+  --font-weight-100: 100;
+  --font-weight-200: 200;
+  --font-weight-300: 300;
+  --font-weight-400: 400;
+  --font-weight-500: 500;
+  --font-weight-600: 600;
+  --font-weight-700: 700;
+  --font-weight-800: 800;
+  --font-weight-900: 900;
 
-    /* Spacing */
-    --space-xs: 0.25rem;
-    --space-sm: 0.5rem;
-    --space-s: 0.75rem;
-    --space-m: 0.845rem;
-    --space-md: 1rem;
-    --space-lg: 1.5rem;
-    --space-xl: 2rem;
+  /* Spacing */
+  --space-xs: 0.25rem;
+  --space-sm: 0.5rem;
+  --space-s: 0.75rem;
+  --space-m: 0.845rem;
+  --space-md: 1rem;
+  --space-lg: 1.5rem;
+  --space-xl: 2rem;
 
-    /* Primary Colors */
-    --page-bg-color: #fff;
+  /* Primary Colors */
+  --page-bg-color: #fff;
+
+  /* Article info page colors */
+  --color-nav-link: #4285f4;   
+  --color-disabled: #999;
+  --color-article-bg: #f5f5f5;         
+}
+
+/* fallback fonts */
+@font-face {
+  font-family: roboto-condensed-fallback;
+  size-adjust: 88.82%;
+  src: local('Arial');
+}
+
+@font-face {
+  font-family: roboto-fallback;
+  size-adjust: 99.529%;
+  src: local('Arial');
+}
+
+@media (width >= 900px) {
+  :root {
+    /* body sizes */
+    --body-font-size-m: 18px;
+    --body-font-size-s: 16px;
+    --body-font-size-xs: 14px;
+
+    /* heading sizes */
+    --heading-font-size-xxl: 45px;
+    --heading-font-size-xl: 36px;
+    --heading-font-size-l: 28px;
+    --heading-font-size-m: 22px;
+    --heading-font-size-s: 20px;
+    --heading-font-size-xs: 18px;
+
+    --nav-height: 6.5rem;
+  }
 }
 
 /* ================================
    RESET & BOX MODEL
    ================================ */
-*,
-*::before,
-*::after {
-  box-sizing: border-box;
-}
-
-html,
 *,
 *::before,
 *::after {
@@ -150,6 +215,13 @@ footer .footer[data-block-status="loaded"] {
   }
 }
 
+body.articles-page main{
+  background: var(--color-soft-gray);
+}
+
+/* ================================
+   TYPOGRAPHY
+   ================================ */
 h1,
 h2,
 h3,
@@ -168,35 +240,8 @@ h1 {
   font-size: var(--font-size-xxl);
   font-family: var(--font-regular);
   font-weight: var(--font-weight-400);
-  margin: 0 0 var(--space-md);
-  line-height: 1.4;
-  font-family: var(--font-medium);
-  font-weight: var(--font-weight-600);
-  color: var(--color-neutral-900);
 }
 
-h1 {
-  font-size: var(--font-size-xxl);
-  font-family: var(--font-regular);
-  font-weight: var(--font-weight-400);
-}
-
-h2 {
-  font-size: var(--font-size-xl);
-  font-family: var(--font-bold);
-  font-weight: var(--font-weight-700);
-}
-
-h3 {
-  font-size: var(--font-size-base);
-}
-
-h4 {
-  font-size: var(--font-size-sm);
-}
-
-h5 {
-  font-size: var(--font-size-s);
 h2 {
   font-size: var(--font-size-xl);
   font-family: var(--font-bold);
@@ -219,6 +264,13 @@ h6 {
   font-size: var(--font-size-xs);
 }
 
+p {
+  font-size: var(--font-size-sm);
+  font-weight: var(--font-weight-400);
+  margin: 0 0 var(--space-md);
+  line-height: 1.5;
+}
+
 dl,
 pre,
 blockquote {
@@ -234,16 +286,6 @@ small {
   font-size: var(--font-size-sm);
 }
 
-ul,
-ol {
-  margin: 0 0 var(--space-md) var(--space-lg);
-  padding: 0;
-}
-
-li {
-  margin-bottom: var(--space-xs);
-}
-
 code,
 pre {
   font-size: var(--body-font-size-s);
@@ -255,41 +297,6 @@ pre {
   background-color: var(--light-color);
   overflow-x: auto;
   white-space: pre;
-}
-
-main > div {
-  margin: 40px 16px;
-}
-
-input,
-textarea,
-select,
-button {
-  font: inherit;
-}
-
-/* links */
-a {
-  color: var(--color-text-secondary);
-  font-size: var(--font-size-sm);
-  font-family: var(--font-medium);
-  text-decoration: none;
-  font-style: normal;
-  cursor: pointer;
-}
-
-a:hover,
-a:focus {
-  text-decoration: none;
-  color: var(--link-color);
-}
-
-strong {
-  font-family: var(--font-bold);
-}
-
-small {
-  font-size: var(--font-size-sm);
 }
 
 /* ================================
@@ -326,9 +333,15 @@ td {
    FORMS
    ================================ */
 input,
-select,
 textarea,
+select,
 button {
+  font: inherit;
+}
+
+input,
+select,
+textarea {
   font-family: var(--font-medium);
   font-size: var(--font-size-base);
   border: 1px solid var(--color-border);
@@ -347,33 +360,86 @@ textarea:focus {
 }
 
 /* ================================
+   LINKS
+   ================================ */
+a:any-link {
+  color: var(--color-text-secondary);
+  font-size: var(--font-size-sm);
+  font-family: var(--font-medium);
+  text-decoration: none;
+  font-style: normal;
+  cursor: pointer;
+  overflow-wrap: break-word;
+}
+
+a:hover,
+a:focus {
+  color: var(--link-color);
+  text-decoration: underline;
+}
+
+/* ================================
    BUTTONS
    ================================ */
+a.button:any-link,
 button {
-  padding: var(--space-sm) var(--space-md);
+  box-sizing: border-box;
+  display: inline-block;
+  max-width: 100%;
+  margin: 12px 0;
+  border: 2px solid transparent;
+  border-radius: 2.4em;
+  padding: 0.5em 1.2em;
+  font-family: var(--body-font-family);
+  font-style: normal;
   font-weight: 500;
-  border: none;
-  border-radius: 4px;
+  line-height: 1.25;
+  text-align: center;
+  text-decoration: none;
+  background-color: var(--link-color);
+  color: var(--background-color);
   cursor: pointer;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
   transition: background-color 0.3s ease;
 }
 
+a.button:hover,
+a.button:focus,
+button:hover,
+button:focus {
+  background-color: var(--link-hover-color);
+  cursor: pointer;
+}
+
+button:disabled,
+button:disabled:hover {
+  background-color: var(--light-color);
+  cursor: unset;
+}
+
+a.button.secondary,
+button.secondary {
+  background-color: unset;
+  border: 2px solid currentcolor;
+  color: var(--text-color);
+}
+
 button.primary {
-  background-color: var(--color-primary);
-  color: #fff;
+  background-color: var(--color-primary-yellow);
+  color: var(--color-neutral-1000);
 }
 
 button.primary:hover {
-  background-color: #036;
+  background-color: var(--color-scrollbar-hover);
 }
 
-button.secondary {
-  background-color: var(--color-secondary);
-  color: var(--color-primary);
-}
-
-button.secondary:hover {
-  background-color: #cde;
+.primary-button {
+  padding: var(--space-m);
+  background-color: var(--color-primary-yellow);
+  color: var(--color-neutral-1000);
+  border-radius: var(--space-sm);
 }
 
 /* ================================
@@ -384,6 +450,7 @@ button.secondary:hover {
 main img,
 main picture img {
   max-width: 100%;
+  width: auto;
   height: auto;
   display: block;
   border-style: none;
@@ -395,6 +462,17 @@ main picture {
   margin: 0;
   padding: 0;
   line-height: 0;
+}
+
+.icon {
+  display: inline-block;
+  height: 24px;
+  width: 24px;
+}
+
+.icon img {
+  height: 100%;
+  width: 100%;
 }
 
 /* ================================
@@ -442,15 +520,12 @@ main picture {
   border: 1px solid var(--color-border, #ddd);
 }
 
-.icon {
-  display: inline-block;
-  height: 24px;
-  width: 24px;
-}
-
-.icon img {
-  height: 100%;
-  width: 100%;
+/* Targetting image in article info page */
+body.article-layout .default-content-wrapper p picture img[width="556"][height="221"] {
+  width: 47rem !important;
+  height: 18.6875rem !important;
+  border-radius: 1rem !important;
+  object-fit: cover !important;
 }
 
 /* ================================
@@ -518,6 +593,14 @@ main picture {
 
 .mb-lg {
   margin-bottom: var(--space-lg);
+}
+
+.mar-0 {
+  margin: 0;
+}
+
+.pad-0 {
+  padding: 0;
 }
 
 /* ================================
@@ -615,17 +698,6 @@ main picture {
 }
 
 /* ================================
-   MARGIN AND PADDING 0
-   ================================ */
-.mar-0 {
-  margin: 0;
-}
-
-.pad-0 {
-  padding: 0;
-}
-
-/* ================================
    ACCESSIBILITY
    ================================ */
 .visually-hidden {
@@ -650,15 +722,8 @@ main picture {
   margin-bottom: var(--space-lg);
 }
 
-.primary-button {
-  padding: var(--space-m);
-  background-color: var(--color-primary-yellow);
-  color: var(--color-neutral-1000);
-  border-radius: var(--space-sm);
-}
-
 /* ================================
-   SECTION
+   SECTIONS
    ================================ */
 
 /* Section container width */
@@ -666,17 +731,34 @@ main > div {
     margin: var(--section-top-btm-gap) 16px;
 }
 
-main > .section > div {
-    max-width: var(--layout-width);
-    margin: auto;
-    padding: 0 16px;
-}
-
 main > .section {
-    padding: var(--section-top-btm-gap) 0;
-    margin: 0;
+  margin: 40px 0;
+  padding: var(--section-top-btm-gap) 0;
 }
 
+main > .section > div {
+  max-width: var(--layout-width);
+  margin: auto;
+  padding: 0 24px;
+}
+
+main > .section:first-of-type {
+  margin-top: 0;
+}
+
+@media (width >= 900px) {
+  main > .section > div {
+    padding: 0 32px;
+  }
+}
+
+/* section metadata */
+main .section.light,
+main .section.highlight {
+  background-color: var(--light-color);
+  margin: 0;
+  padding: 40px 0;
+}
 
 /* Section container full width */
 main>.section.full-width>div {
@@ -711,8 +793,59 @@ main .section.flex-col-7-3>div {
   max-width: 100%;
 }
 
+main .section.flex-col-8-2 {
+    display: flex;
+    max-width: var(--layout-width);
+    margin: 0 auto;
+    flex-direction: column;
+    gap: 1.5rem;
+}
+
+main .section.flex-col-8-2>div {
+    flex: 0 0 100%;
+    max-width: 100%;
+    margin: unset;
+}
+
+.section.black-bg > *{
+    position: relative;
+}
+
+.black-bg{
+    position: relative;
+    background-color: var(--color-neutral-900);
+}
+
+.black-bg::before{
+    background: url("../images/bg-lightgray.svg") lightgray 50% / cover no-repeat;
+    opacity: 0.9;
+    mix-blend-mode: color-burn;
+    position: absolute;
+    content: '';
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+}
+
+main .section.black-bg  h1,
+main .section.black-bg  h2,
+main .section.black-bg  h3,
+main .section.black-bg  h4,
+main .section.black-bg  h5,
+main .section.black-bg  h6,
+main .section.black-bg  p,
+main .section.black-bg  a,
+main .section.black-bg > *{
+    color: var(--color-white);
+}
+
+main .section.gray-bg{
+    background: var(--color-soft-gray);
+}
+
 /* ================================
-   RESPONSIVE TYPOGRAPHY
+   RESPONSIVE TYPOGRAPHY & LAYOUT
    ================================ */
 @media (width > 768px) {
     :root {
@@ -780,64 +913,11 @@ main .section.flex-col-7-3>div {
     max-width: 68%;
   }
 
-    main .section.flex-col-7-3 > div:last-child {
-        flex: 0 0 31%;
-        max-width: 31%;
-    }
-}
+  main .section.flex-col-7-3 > div:last-child {
+    flex: 0 0 31%;
+    max-width: 31%;
+  }
 
-.section.black-bg > *{
-    position: relative;
-}
-
-.black-bg{
-    position: relative;
-    background-color: var(--color-neutral-900);
-}
-
-.black-bg::before{
-    background: url("../images/bg-lightgray.svg") lightgray 50% / cover no-repeat;
-    opacity: 0.9;
-    mix-blend-mode: color-burn;
-    position: absolute;
-    content: '';
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-}
-
-main .section.black-bg  h1,
-main .section.black-bg  h2,
-main .section.black-bg  h3,
-main .section.black-bg  h4,
-main .section.black-bg  h5,
-main .section.black-bg  h6,
-main .section.black-bg  p,
-main .section.black-bg  a,
-main .section.black-bg > *{
-    color: var(--color-white);
-}
-
-main .section.gray-bg{
-    background: var(--color-soft-gray);
-}
-
-main .section.flex-col-8-2 {
-    display: flex;
-    max-width: var(--layout-width);
-    margin: 0 auto;
-    flex-direction: column;
-    gap: 1.5rem;
-}
-
-main .section.flex-col-8-2>div {
-    flex: 0 0 100%;
-    max-width: 100%;
-    margin: unset;
-}
-
-@media (width >= 900px){
   main .section.flex-col-8-2{
       flex-direction: row;
       gap: 0;
@@ -853,10 +933,6 @@ main .section.flex-col-8-2>div {
       max-width: 30%;
       padding-left: 0;
   }
-  
-  :root {
-      --nav-height: 6.5rem;
-    }
 }
 
 @media (width >= 1200px){
@@ -877,13 +953,3 @@ main .section.flex-col-8-2>div {
   }
 }
 
-body.articles-page main{
-  background: var(--color-soft-gray);
-}
-/* Targetting image in article info page */
-body.article-layout .default-content-wrapper p picture img[width="556"][height="221"] {
-  width: 47rem !important;
-  height: 18.6875rem !important;
-  border-radius: 1rem !important;
-  object-fit: cover !important;
-}
