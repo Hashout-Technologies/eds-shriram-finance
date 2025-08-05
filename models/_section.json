@@ -108,7 +108,15 @@
         "linked-image",
         "articles-category-cards",
         "product-cards",
-        "category-links"
+        "category-links",
+        "article-header",
+        "products",
+        "lead-form",
+        "article-navigation",
+        "articles-listing",
+        "gold-loan",
+        "relatedtags",
+        "social-share"
       ]
     }
   ]

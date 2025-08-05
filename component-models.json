@@ -1144,7 +1144,7 @@
     ]
   },
   {
-    "id": "goldloan",
+    "id": "gold-loan",
     "fields": [
       {
         "component": "reference",
