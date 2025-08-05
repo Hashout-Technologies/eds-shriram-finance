@@ -29,11 +29,15 @@
       "button",
       "title",
       "video",
-      "notifications",
-      "linked-image",
-      "articles-category-cards",
-      "product-cards",
-      "category-links"
+      "article-header",
+      "products",
+      "lead-form",
+      "article-navigation",
+      "articles-listing",
+      "goldloan",
+      "relatedtags",
+      "socialshare",
+      "section"
     ]
   },
   {
@@ -54,18 +58,7 @@
       "carousel-item"
     ]
   },
-  {
-    "id": "category-links",
-    "components": [
-      "category-links-item"
-    ]
-  },
-  {
-    "id": "category-listing",
-    "components": [
-      "category-item"
-    ]
-  },
+  
   {
     "id": "columns",
     "components": [
@@ -127,5 +120,11 @@
   {
     "id": "video",
     "components": []
+  },
+  {
+    "id": "relatedtags",
+    "components": [
+      "relatedtag"
+    ]
   }
 ]

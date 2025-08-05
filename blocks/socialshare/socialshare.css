@@ -1,0 +1,99 @@
+.socialshare {
+  align-items: center;
+  text-align: center;
+  padding: 1.5rem 1rem;
+  align-self: stretch;
+  border-radius: 1rem;
+  background: var(--color-neutral-100);
+}
+
+.socialshare .copied-temp-style p:last-of-type {
+  color: var(--color-white) !important;
+}
+
+.socialshare > div:nth-child(1) > div > p:first-of-type {
+  color: var(--color-neutral-800);
+  text-align: center;
+  font-feature-settings: 'liga' off;
+  font-family: var(--font-regular), sans-serif;
+  font-size: 1rem;
+  font-style: normal;
+  font-weight: var(--font-weight-600);
+  line-height: 140%;
+}
+
+.socialshare > div:nth-child(3) {
+  display: flex;
+  width: 20.058rem;
+  padding: 0.5rem 0.75rem;
+  margin: 0 auto;
+  align-items: center;
+  border-radius: 0.75rem;
+  border: 0.063rem solid var(--color-border);
+  background: var(--color-white);
+}
+
+.socialshare .copied-temp-style div {
+  background: #4CAF50 !important;
+}
+
+.socialshare > div:nth-child(2) > div,
+.socialshare > div:nth-child(3) > div {
+  display: flex;
+  flex-direction: row; 
+  align-items: center;    
+  justify-content: center; 
+  gap: 0.625rem;               
+}
+
+.socialshare > div:nth-child(2) > div > p:first-of-type {
+  margin-top: 0.438rem;
+  color: #5F5F5F;
+  text-align: center;
+  font-family: var(--font-regular), sans-serif;
+  font-size: 0.878rem;
+  font-style: normal;
+  font-weight: var(--font-weight-400);
+  line-height: 150%;
+}
+
+.socialshare > div:nth-child(3) > span.socialshare-url {
+  display: flex;
+  padding: 0.313rem 0.625rem;
+  justify-content: center;
+  align-items: center;
+  gap: 0.5rem;
+  flex-shrink: 0;
+  font-size: 0.85em;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  color: var(--color-neutral-900);
+}
+
+.socialshare > div:nth-child(3) > span.socialshare-url ~ div {
+  display: flex;
+  width: 6.25rem;
+  justify-content: center;
+  align-items: center;
+  gap: 0.5rem;
+  flex-shrink: 0;
+  border-radius: 0.5rem;
+  background: #FCD400;
+}
+
+.socialshare > div:nth-child(3) > span.socialshare-url ~ div > p {
+  color: var(--color-black);
+  font-feature-settings: 'liga' off;
+  font-family: var(--font-regular), sans-serif;
+  font-size: 0.75rem;
+  font-style: normal;
+  font-weight: var(--font-weight-400);
+  line-height: 140%;
+}
+
+.socialshare > div:nth-child(3) > span.socialshare-url ~ div > p img {
+  border-radius: unset;
+}
+
+
