@@ -258,7 +258,12 @@ function setupSubmenuHoverEvents(navSection) {
 
     // Handle leaf nodes (items without children)
     if (!submenuChildren) {
-      submenuItem.classList.add('nav-leaf');
+      // Only add nav-leaf class if parent ul doesn't have nav-mixed-content class
+      if (!mainDropdown.classList.contains('nav-mixed-content')) {
+        submenuItem.classList.add('nav-leaf');
+      } else {
+        submenuItem.classList.add('nav-mixed-leaf');
+      }
 
       const directAnchor = submenuItem.querySelector(':scope > a');
       if (directAnchor) return; // Styling handled by CSS

@@ -355,7 +355,7 @@ header nav .nav-sections ul>li>ul>li {
     }
 
     /* Main navigation items */
-    header nav .nav-bottom-section .nav-sections .default-content-wrapper > ul:first-child {
+    header nav .nav-bottom-section .nav-sections .default-content-wrapper>ul:first-child {
         display: flex;
         justify-content: space-between;
     }
@@ -414,7 +414,7 @@ header nav .nav-sections ul>li>ul>li {
         position: absolute;
         left: 50%;
         transform: translateX(-50%);
-        top: 0;
+        top: 100%;
         width: 78.5rem;
         max-width: calc(100vw - 2rem);
         border-bottom: 0.25rem solid var(--header-accent);
@@ -436,12 +436,15 @@ header nav .nav-sections ul>li>ul>li {
         color: var(--header-text);
         cursor: pointer;
         width: 15rem;
-        background: transparent url("/icons/right-arrow.svg") no-repeat;
-        background-position: 100% center;
         position: relative;
         transition: color 0.2s ease;
         padding: 0.9375rem 1.5625rem;
         margin: 0;
+    }
+
+    header nav .nav-sections .default-content-wrapper>ul>li>ul>li:not(.nav-mixed-leaf)>p {
+        background: transparent url("/icons/right-arrow.svg") no-repeat;
+        background-position: 100% center;
     }
 
     /* Leaf node submenu items */
@@ -996,25 +999,38 @@ header nav .nav-sidebar .sidebar-main .accordion-wrapper .accordion details {
     border: none;
 }
 
-header nav .nav-sidebar .sidebar-main>div>p a{
+header nav .nav-sidebar .sidebar-main>div>p a {
     display: flex;
-    align-items: center ;
+    align-items: center;
     gap: 1rem;
     font-size: var(--body-font-size-s);
     font-weight: var(--font-weight-400);
     line-height: 120%;
     border-bottom: 0.0625rem solid var(--color-sidebar-border);
     padding: 0.5rem 0.75rem;
-    margin:0;
+    margin: 0;
 }
 
-header nav .nav-sidebar .sidebar-main .icon{
+header nav .nav-sidebar .sidebar-main .default-content-wrapper>ul>li {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    font-size: var(--body-font-size-s);
+    font-weight: var(--font-weight-400);
+    line-height: 120%;
+    border-bottom: 0.0625rem solid var(--color-sidebar-border);
+    padding: 0.5rem 0.75rem;
+    margin-left: -1.5rem;
+}
+
+header nav .nav-sidebar .sidebar-main .icon {
     display: flex;
     align-items: center;
     justify-content: center;
 }
 
-header nav .nav-sidebar .sidebar-main>div>p .icon img {
+header nav .nav-sidebar .sidebar-main>div>p .icon img,
+header nav .nav-sidebar .sidebar-main .default-content-wrapper>ul>li .icon img {
     width: 2rem;
     height: 2rem;
 }
@@ -1075,7 +1091,7 @@ header nav .nav-sidebar .sidebar-main .accordion-wrapper .accordion details summ
 header nav .nav-sidebar .sidebar-main .accordion-wrapper .accordion details summary p {
     display: flex;
     align-items: center;
-    gap:1rem;
+    gap: 1rem;
 }
 
 header nav .nav-sidebar .sidebar-main .accordion-wrapper .accordion details summary .icon img {
