@@ -24,7 +24,7 @@ module.exports = {
       'article-header': 7,
       'social-share': 8,
       'products': 19,
-      'goldloan': 7,
+      'gold-loan': 7,
     }],
   },
 };
