@@ -150,6 +150,18 @@
             "value": "flex-col-7-3"
           },
           {
+            "name": "Article Layout Container",
+            "value": "article-layout-container"
+          },
+          {
+            "name": "Article Main Content",
+            "value": "article-main-content"
+          },
+          {
+            "name": "Article Sidebar",
+            "value": "article-sidebar"
+          },
+          {
             "name": "Alignment Classes",
             "children": [
               {
@@ -827,6 +839,355 @@
         "name": "placeholder_imageAlt",
         "value": "",
         "label": "Placeholder Image Alt Text"
+      }
+    ]
+  },
+  {
+    "id": "article-header",
+    "fields": [
+      {
+        "component": "text",
+        "name": "title",
+        "label": "Article Title",
+        "valueType": "string"
+      },
+      {
+        "component": "text",
+        "name": "author",
+        "label": "Written by",
+        "valueType": "string"
+      },
+      {
+        "component": "text",
+        "name": "postedDate",
+        "label": "Posted Date",
+        "valueType": "string"
+      },
+      {
+        "component": "text",
+        "name": "updatedDate",
+        "label": "Updated Date",
+        "valueType": "string"
+      },
+      {
+        "component": "reference",
+        "valueType": "string",
+        "name": "shareIcon",
+        "label": "Share Icon",
+        "multi": false
+      },
+      {
+        "component": "reference",
+        "valueType": "string",
+        "name": "viewIcon",
+        "label": "View Icon",
+        "multi": false
+      },
+      {
+        "component": "reference",
+        "valueType": "string",
+        "name": "timeIcon",
+        "label": "Time Icon",
+        "multi": false
+      }
+    ]
+  },
+  {
+  "id": "products",
+  "fields": [
+    {
+      "component": "text",
+      "valueType": "string",
+      "name": "title",
+      "label": "Section Title",
+      "value": "You may be interested in"
+    },
+    {
+      "component": "reference",
+      "valueType": "string",
+      "name": "product1_image",
+      "label": "Product 1 Image",
+      "multi": false
+    },
+    {
+      "component": "text",
+      "valueType": "string",
+      "name": "product1_title",
+      "label": "Product 1 Title"
+    },
+    {
+      "component": "aem-content",
+      "name": "product1_link",
+      "label": "Product 1 Link"
+    },
+    {
+      "component": "reference",
+      "valueType": "string",
+      "name": "product2_image",
+      "label": "Product 2 Image",
+      "multi": false
+    },
+    {
+      "component": "text",
+      "valueType": "string",
+      "name": "product2_title",
+      "label": "Product 2 Title"
+    },
+    {
+      "component": "aem-content",
+      "name": "product2_link",
+      "label": "Product 2 Link"
+    },
+    {
+      "component": "reference",
+      "valueType": "string",
+      "name": "product3_image",
+      "label": "Product 3 Image",
+      "multi": false
+    },
+    {
+      "component": "text",
+      "valueType": "string",
+      "name": "product3_title",
+      "label": "Product 3 Title"
+    },
+    {
+      "component": "aem-content",
+      "name": "product3_link",
+      "label": "Product 3 Link"
+    },
+    {
+      "component": "reference",
+      "valueType": "string",
+      "name": "product4_image",
+      "label": "Product 4 Image",
+      "multi": false
+    },
+    {
+      "component": "text",
+      "valueType": "string",
+      "name": "product4_title",
+      "label": "Product 4 Title"
+    },
+    {
+      "component": "aem-content",
+      "name": "product4_link",
+      "label": "Product 4 Link"
+    },
+    {
+      "component": "reference",
+      "valueType": "string",
+      "name": "product5_image",
+      "label": "Product 5 Image",
+      "multi": false
+    },
+    {
+      "component": "text",
+      "valueType": "string",
+      "name": "product5_title",
+      "label": "Product 5 Title"
+    },
+    {
+      "component": "aem-content",
+      "name": "product5_link",
+      "label": "Product 5 Link"
+    },
+    {
+      "component": "reference",
+      "valueType": "string",
+      "name": "product6_image",
+      "label": "Product 6 Image",
+      "multi": false
+    },
+    {
+      "component": "text",
+      "valueType": "string",
+      "name": "product6_title",
+      "label": "Product 6 Title"
+    },
+    {
+      "component": "aem-content",
+      "name": "product6_link",
+      "label": "Product 6 Link"
+    }
+  ]
+},
+  {
+    "id": "lead-form",
+    "fields": [
+      {
+        "component": "text",
+        "valueType": "string",
+        "name": "title",
+        "label": "Form Title",
+        "value": "Get a gold loan at low interest rates"
+      },
+      {
+        "component": "text",
+        "valueType": "string",
+        "name": "actionUrl",
+        "label": "Form Action URL",
+        "value": ""
+      }
+    ]
+  },
+  {
+    "id": "articles-listing",
+    "fields": [
+      {
+        "component": "select",
+        "name": "articletype",
+        "label": "Article Type",
+        "valueType": "string",
+        "value": "related",
+        "options": [
+          {
+            "name": "Related Articles",
+            "value": "related"
+          },
+          {
+            "name": "Popular Articles",
+            "value": "popular"
+          },
+          {
+            "name": "Recent Articles",
+            "value": "recent"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "relatedtags",
+    "fields": [
+      {
+        "component": "text",
+        "valueType": "string",
+        "name": "text",
+        "label": "Text"
+      }
+    ]
+  },
+   {
+    "id": "relatedtag",
+    "fields": [
+      {
+        "component": "aem-content",
+        "name": "textContent_cta",
+        "label": "Link",
+        "valueType": "string"
+      },
+      {
+        "component": "text",
+        "name": "textContent_ctaText",
+        "label": "Tag label",
+        "valueType": "string"
+      }
+    ]
+  },
+    {
+    "id": "social-share",
+    "fields": [
+      {
+        "component": "text",
+        "name": "title",
+        "label": "Title",
+        "valueType": "string"
+      },
+      {
+        "component": "text",
+        "name": "textContent_text",
+        "label": "Text",
+        "valueType": "string"
+      },
+      {
+        "component": "reference",
+        "valueType": "string",
+        "name": "textContent_twitter",
+        "label": "Twitter icon",
+        "multi": false
+      },
+      {
+        "component": "reference",
+        "valueType": "string",
+        "name": "textContent_facebook",
+        "label": "Facebook icon",
+        "multi": false
+      },
+      {
+        "component": "reference",
+        "valueType": "string",
+        "name": "textContent_instagram",
+        "label": "Instagram icon",
+        "multi": false
+      },
+      {
+        "component": "reference",
+        "valueType": "string",
+        "name": "textContent_linkedin",
+        "label": "Linkedin icon",
+        "multi": false
+      },
+      {
+        "component": "reference",
+        "valueType": "string",
+        "name": "copyLink_icon",
+        "label": "Copy link icon",
+        "multi": false
+      },
+      {
+        "component": "text",
+        "name": "copyLink_text",
+        "label": "Copy link label",
+        "valueType": "string"
+      }
+    ]
+  },
+  {
+    "id": "goldloan",
+    "fields": [
+      {
+        "component": "reference",
+        "valueType": "string",
+        "name": "image",
+        "label": "Image",
+        "multi": false
+      },
+      {
+        "component": "text",
+        "valueType": "string",
+        "name": "imageAlt",
+        "label": "Image alt text"
+      },
+      {
+        "component": "text",
+        "name": "textContent_title",
+        "label": "Title",
+        "valueType": "string"
+      },
+      {
+        "component": "richtext",
+        "name": "textContent_text",
+        "label": "Text",
+        "valueType": "string"
+      },
+      {
+        "component": "richtext",
+        "name": "content_text",
+        "label": "Content",
+        "valueType": "string"
+      },
+      {
+        "component": "aem-content",
+        "name": "content_cta",
+        "label": "CTA",
+        "valueType": "string"
+      },
+      {
+        "component": "text",
+        "name": "content_ctaText",
+        "label": "CTA label",
+        "valueType": "string"
       }
     ]
   }

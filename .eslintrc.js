@@ -1,3 +1,4 @@
+/* eslint-disable quote-props */
 module.exports = {
   root: true,
   extends: [
@@ -20,6 +21,10 @@ module.exports = {
     'no-param-reassign': [2, { props: false }], // allow modifying properties of param
     'xwalk/max-cells': ['error', {
       'product-card-item': 5,
+      'article-header': 7,
+      'social-share': 8,
+      'products': 19,
+      'goldloan': 7,
     }],
   },
 };

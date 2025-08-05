@@ -96,6 +96,11 @@
 
     /* Primary Colors */
     --page-bg-color: #fff;
+
+    /* Article info page colors */
+  --color-nav-link: #4285f4;   
+  --color-disabled: #999;
+  --color-article-bg: #f5f5f5;
 }
 
 /* ================================
@@ -168,6 +173,13 @@ p {
   font-weight: var(--font-weight-400);
   margin: 0 0 var(--space-md);
   line-height: 1.5;
+}
+
+dl,
+pre,
+blockquote {
+  margin-top: 0.8em;
+  margin-bottom: 0.25em;
 }
 
 /* links */
@@ -613,6 +625,13 @@ main .section.flex-col-7-3>div {
   max-width: 100%;
 }
 
+main .section.light,
+main .section.highlight {
+  background-color: var(--light-color);
+  margin: 0;
+  padding: 40px 0;
+}
+
 /* ================================
    RESPONSIVE TYPOGRAPHY
    ================================ */
@@ -779,6 +798,59 @@ main .section.flex-col-8-2>div {
   }
 }
 
+/* ================================
+   Template
+   ================================ */
 body.articles-page main{
   background: var(--color-soft-gray);
+}
+
+body.article-layout main {
+  display: flex;
+  column-gap: 1rem;
+  background-color: var(--color-article-bg);
+}
+
+@media(width >= 80rem) {
+  body.article-layout main {
+    justify-content: center;
+  }
+}
+
+/* Main content column */
+body.article-layout main > .section.article-main-content {
+  flex: 0 0 52rem;
+  border-radius: 1rem;
+  padding-top: 2rem;
+  padding-bottom: 2rem;
+  margin-top: 5rem;
+  background-color: var(--color-white);
+}
+
+/* Sidebar column */
+body.article-layout main > .section.article-sidebar {
+  flex: 0 0 25.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;  
+  margin-top: 5rem;
+  background-color: var(--color-article-bg);
+  padding-top: 0 !important;
+}
+
+/* Target each wrapper inside article-main-content */
+.article-main-content .article-header-wrapper,
+.article-main-content .default-content-wrapper,
+.article-main-content .goldloan-wrapper,
+.article-main-content .socialshare-wrapper,
+.article-main-content .article-navigation-wrapper,
+.article-main-content .relatedtags-wrapper {
+  padding: 0 2.5rem !important;
+}
+
+body.article-layout .default-content-wrapper p picture img[width="556"][height="221"] {
+  width: 47rem !important;
+  height: 18.6875rem !important;
+  border-radius: 1rem !important;
+  object-fit: cover !important;
 }
