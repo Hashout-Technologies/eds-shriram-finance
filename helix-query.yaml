@@ -3,7 +3,7 @@ version: 1
 indices:
   pages:
     include:
-      - '/articles/personal-loan/**'
+      - '/articles/**'
     exclude:
       - '/**.json'
     target: /query-index.json
