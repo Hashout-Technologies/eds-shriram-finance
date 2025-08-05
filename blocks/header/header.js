@@ -1,6 +1,6 @@
 import { fetchPlaceholders, getMetadata } from '../../scripts/aem.js';
 import { loadFragment } from '../fragment/fragment.js';
-
+import setupGoldPriceDropdown from './gold-price.js';
 // Constants
 const DESKTOP_BREAKPOINT = '(min-width: 900px)';
 const NAV_CLASSES = ['brand', 'sections', 'tools'];
@@ -1089,4 +1089,6 @@ export default async function decorate(block) {
     const breadcrumbs = await buildBreadcrumbs();
     navWrapper.append(breadcrumbs);
   }
+
+  setupGoldPriceDropdown();
 }
