@@ -18,8 +18,5 @@ indices:
         select: head > meta[property="og:description"]
         value: attribute(el, "content")
       image:
-        select: .article-header-wrapper + .default-content-wrapper img:first-child
+        select: .article-header + p img
         value: attribute(el, "src")
-      test:
-        select: .article-header-wrapper
-        value: innerHTML(el)
