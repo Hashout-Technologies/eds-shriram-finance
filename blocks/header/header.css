@@ -4,7 +4,7 @@
 /* ==========================================================================
    CSS Custom Properties
    ========================================================================== */
-@import url('./gold-price.css');
+@import url('../../components/goldPrice-api/gold-price.css');
 
 :root {
     --header-bg: var(--background-color, var(--color-white));
