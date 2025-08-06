@@ -3,9 +3,12 @@
     color: var(--color-neutral-900);
     font-size: 1.5rem;
     font-style: normal;
-    font-weight: var(--font-weight-600);
+    font-weight: var(--font-weight-medium);
     line-height: 120%;
     margin-bottom: 1.5rem;
+    min-height: 3rem;
+    display: flex;
+    align-items: center;
 }
 
 .articles-category-cards .articles-cards-list {
@@ -33,7 +36,7 @@
     color: var(--color-neutral-900);
     font-size: 1rem;
     font-style: normal;
-    font-weight: var(--font-weight-600);
+    font-weight: var(--font-weight-medium);
     line-height: 140%;
     display: -webkit-box;
     -webkit-box-orient: vertical;
@@ -46,7 +49,7 @@
     color: var(--color-neutral-800);
     font-size: 0.75rem;
     font-style: normal;
-    font-weight: var(--font-weight-400);
+    font-weight: var(--font-weight-regular);
     line-height: 140%;
     display: -webkit-box;
     -webkit-box-orient: vertical;
@@ -68,7 +71,7 @@
     color: var(--color-text-secondary);
     font-size: 0.875rem;
     font-style: normal;
-    font-weight:var(--font-weight-600);
+    font-weight:var(--font-weight-medium);
     line-height: 150%;
 }
 
@@ -99,7 +102,7 @@
     color: var(--color-neutral-900);
     font-size: 0.625rem;
     font-style: normal;
-    font-weight: var(--font-weight-400);
+    font-weight: var(--font-weight-regular);
 }
 
 .articles-category-cards .article-item-meta {
@@ -117,7 +120,7 @@
     width: 1.5rem;
     height: 1.5rem;
     display: inline-block;
-    vertical-align: middle;
+    vertical-align: bottom;
 }
 
 .articles-category-cards .estimated-readtime {
@@ -165,7 +168,7 @@
     color: var(--color-neutral-600);
     font-size: 0.875rem;
     font-style: normal;
-    font-weight: var(--font-weight-600);
+    font-weight: var(--font-weight-medium);
     line-height: 150%;
 }
 

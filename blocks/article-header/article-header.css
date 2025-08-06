@@ -28,9 +28,8 @@
 .article-header-wrapper .article-header .article-title {
   align-self: stretch; 
   color: var(--color-neutral-900); 
-  font-size: 1.5rem; 
-  font-family: Gilmer, sans-serif; 
-  font-weight: 700; 
+  font-size: 1.5rem;  
+  font-weight: var(--font-weight-bold); 
   line-height: 1.8rem; 
   word-wrap: break-word;
 }
@@ -60,18 +59,16 @@
 
 .article-header-wrapper .article-header .posted-date {
   color: var(--color-neutral-900); 
-  font-size: 0.875rem; 
-  font-family: Gilmer, sans-serif; 
-  font-weight: 400; 
+  font-size: 0.875rem;  
+  font-weight: var(--font-weight-regular); 
   line-height: 1.3125rem; 
   word-wrap: break-word;
 }
 
 .article-header-wrapper .article-header .date-bold {
   color: var(--color-neutral-900); 
-  font-size: 0.875rem; 
-  font-family: Gilmer, sans-serif; 
-  font-weight: 600; 
+  font-size: 0.875rem;  
+  font-weight: var(--font-weight-medium); 
   line-height: 1.3125rem; 
   word-wrap: break-word;
 }
@@ -88,8 +85,7 @@
   position: absolute; 
   color: var(--color-neutral-900); 
   font-size: 0.875rem; 
-  font-family: Gilmer, sans-serif; 
-  font-weight: 400; 
+  font-weight: var(--font-weight-regular); 
   line-height: 1.3125rem; 
   word-wrap: break-word;
 }
@@ -99,9 +95,8 @@
   top: 0; 
   position: absolute; 
   color: var(--color-neutral-900); 
-  font-size: 0.875rem; 
-  font-family: Gilmer, sans-serif; 
-  font-weight: 400; 
+  font-size: 0.875rem;  
+  font-weight: var(--font-weight-regular); 
   line-height: 1.3125rem; 
   word-wrap: break-word;
 }
@@ -115,9 +110,8 @@
 
 .article-header-wrapper .article-header .share-text {
   color: var(--color-neutral-900); 
-  font-size: 1rem; 
-  font-family: Gilmer, sans-serif; 
-  font-weight: 600; 
+  font-size: 1rem;  
+  font-weight: var(--font-weight-medium); 
   line-height: 1.5rem; 
   word-wrap: break-word;
 }
@@ -142,9 +136,8 @@
 
 .article-header-wrapper .article-header .share-count {
   color: var(--color-neutral-900); 
-  font-size: 0.875rem; 
-  font-family: Gilmer, sans-serif; 
-  font-weight: 600; 
+  font-size: 0.875rem;  
+  font-weight: var(--font-weight-medium); 
   line-height: 1.3125rem; 
   word-wrap: break-word;
 }
@@ -166,9 +159,8 @@
 
 .article-header-wrapper .article-header .read-time-text {
   color: var(--color-neutral-900); 
-  font-size: 0.875rem; 
-  font-family: Gilmer, sans-serif; 
-  font-weight: 600; 
+  font-size: 0.875rem;  
+  font-weight: var(--font-weight-medium); 
   line-height: 1.3125rem; 
   word-wrap: break-word;
 }
@@ -198,18 +190,16 @@
 
 .article-header-wrapper .article-header .category-section {
   color: var(--color-neutral-900); 
-  font-size: 0.875rem; 
-  font-family: Gilmer, sans-serif; 
-  font-weight: 400; 
+  font-size: 0.875rem;  
+  font-weight: var(--font-weight-regular); 
   line-height: 1.3125rem; 
   word-wrap: break-word;
 }
 
 .article-header-wrapper .article-header .category-bold {
   color: var(--color-neutral-900); 
-  font-size: 0.875rem; 
-  font-family: Gilmer, sans-serif; 
-  font-weight: 600; 
+  font-size: 0.875rem;  
+  font-weight: var(--font-weight-medium); 
   line-height: 1.3125rem; 
   word-wrap: break-word;
 }
@@ -232,26 +222,23 @@
 .article-header-wrapper .article-header .author-text {
   color: var(--color-neutral-900); 
   font-size: 0.875rem; 
-  font-family: Gilmer, sans-serif; 
-  font-weight: 400; 
+  font-weight: var(--font-weight-regular); 
   line-height: 1.3125rem; 
   word-wrap: break-word;
 }
 
 .article-header-wrapper .article-header .author-bold {
   color: var(--color-neutral-900); 
-  font-size: 0.875rem; 
-  font-family: Gilmer, sans-serif; 
-  font-weight: 600; 
+  font-size: 0.875rem;  
+  font-weight: var(--font-weight-medium); 
   line-height: 1.3125rem; 
   word-wrap: break-word;
 }
 
 .article-header-wrapper .article-header .terms-text {
   color: var(--color-neutral-900); 
-  font-size: 0.5rem; 
-  font-family: Gilmer, sans-serif; 
-  font-weight: 400; 
+  font-size: 0.5rem;  
+  font-weight: var(--font-weight-regular); 
   line-height: 0.7rem; 
   word-wrap: break-word;
 }
@@ -287,8 +274,7 @@
   position: absolute;
   top: 0;
   left: 2rem;
-  font-family: Gilmer, sans-serif;
-  font-weight: 500;
+  font-weight: var(--font-weight-medium);
   color: var(--color-neutral-900);
   font-size: 1rem;
   letter-spacing: 0;
@@ -324,14 +310,13 @@
   position: absolute;
   top: 0;
   left: 1.8125rem;
-  font-family: Gilmer, sans-serif;
-  font-weight: 500;
   color: var(--color-neutral-900);
   font-size: 0.875rem;
   letter-spacing: 0;
   line-height: 150%;
   white-space: nowrap;
   font-style: normal;
+  font-weight: var(--font-weight-medium);
 }
 
 .article-header-wrapper .article-header .frame .frame-wrapper {
@@ -361,8 +346,7 @@
 .article-header-wrapper .article-header .frame .text-wrapper-3 {
   position: relative;
   width: fit-content;
-  font-family: Gilmer, sans-serif;
-  font-weight: 500;
+  font-weight: var(--font-weight-medium);
   color: var(--color-neutral-900);
   font-size: 0.875rem;
   letter-spacing: 0;
