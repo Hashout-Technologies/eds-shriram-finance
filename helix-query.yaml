@@ -23,3 +23,6 @@ indices:
       image:
         select: head > meta[property="og:image"]
         value: attribute(el, "content")
+      firstImage:
+        select: .article-header-wrapper + .default-content-wrapper img:first-child
+        value: attribute(el, "src")
