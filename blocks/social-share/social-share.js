@@ -31,7 +31,7 @@ export default function decorate(block) {
       const urlDisplay = document.createElement('span');
       urlDisplay.textContent = currentURL;
       urlDisplay.className = 'socialshare-url';
-      urlDisplay.style.maxWidth = '12.5rem';
+      urlDisplay.style.width = '10.625rem';
       urlDisplay.style.overflow = 'hidden';
       urlDisplay.style.textOverflow = 'ellipsis';
       urlDisplay.style.whiteSpace = 'nowrap';

@@ -58,8 +58,6 @@
   text-decoration-skip-ink: none;
   text-decoration-thickness: auto;
   text-underline-offset: auto;
-  text-underline-position: from-font;
   background-color: transparent;
-  padding: 0.063rem;
   margin: 0;
 }

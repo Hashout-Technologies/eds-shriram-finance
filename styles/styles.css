@@ -811,6 +811,12 @@ body.article-layout main {
   background-color: var(--color-article-bg);
 }
 
+@media(width <= 47.938rem) {
+  body.article-layout main {
+    display: block;
+  } 
+}
+
 @media(width >= 80rem) {
   body.article-layout main {
     justify-content: center;
