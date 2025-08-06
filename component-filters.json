@@ -40,7 +40,7 @@
       "article-navigation",
       "articles-listing",
       "gold-loan",
-      "relatedtags",
+      "related-tags",
       "social-share"
     ]
   },
@@ -137,9 +137,9 @@
     "components": []
   },
   {
-    "id": "relatedtags",
+    "id": "related-tags",
     "components": [
-      "relatedtag"
+      "related-tag-link"
     ]
   }
 ]
