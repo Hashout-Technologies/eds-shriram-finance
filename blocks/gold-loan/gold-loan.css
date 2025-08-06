@@ -151,6 +151,8 @@
     display: flex;
     flex-direction: column;
     align-items: flex-start;
+    padding: 1rem;
+    margin-bottom: 1rem;
   }
 
   /* Reset widths on inner divs */
@@ -181,5 +183,9 @@
   /* adjust image wrapper size */
   .gold-loan > div:nth-child(1) > div {
     justify-content: flex-start;
+  }
+
+  .gold-loan .button-container > a {
+    width: 16.5rem;
   }
 }
