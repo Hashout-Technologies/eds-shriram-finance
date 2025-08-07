@@ -93,6 +93,10 @@
 --color-price-separator: #999;
 --color-price-error: #e74c3c;
   --color-medium-gray: #5f5f5f;
+  
+
+  /* Gold Price Header z value */ 
+  --header-z-nav: 1000;
 
   /* Font faimly */
   --font-primary: "Gilmer", sans-serif;
