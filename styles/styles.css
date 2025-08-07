@@ -870,3 +870,29 @@ body.article-layout .default-content-wrapper p picture img[width="556"][height="
   border-radius: 1rem !important;
   object-fit: cover !important;
 }
+
+@media(width <= 47.938rem) {
+  body.article-layout main {
+    display: block;
+    padding-top: 0.5rem;
+  }
+
+  body.article-layout .default-content-wrapper p picture img[width="556"][height="221"] {
+    width: 18.5rem !important;
+    height: 7.375rem !important;
+    border-radius: 0.75rem !important;
+  }
+
+  .article-main-content .article-header-wrapper,
+  .article-main-content .default-content-wrapper,
+  .article-main-content .goldloan-wrapper,
+  .article-main-content .socialshare-wrapper,
+  .article-main-content .article-navigation-wrapper,
+  .article-main-content .relatedtags-wrapper {
+    padding: 0 1rem !important;
+  }
+
+  body.article-layout main > .section.article-main-content {
+    margin: 1rem;
+  }
+}

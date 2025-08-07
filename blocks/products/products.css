@@ -232,4 +232,8 @@
     width: calc(50% - 0.5rem);
     min-width: 6.25rem;
   }
+
+  .products.block {
+    width: 20.5rem;
+  }
 }

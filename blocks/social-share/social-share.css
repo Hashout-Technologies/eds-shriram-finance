@@ -90,3 +90,18 @@
   width: 1rem;
   height: 1rem;
 }
+
+@media(width <= 47.938rem) {
+  .social-share > div:nth-child(3) {
+    min-width: 16.5rem;
+    display: block;
+  }
+
+  .social-share > div:nth-child(3) > span.socialshare-url ~ div {
+    width: 15rem;
+  }
+
+  .social-share > div:nth-child(3) > span.socialshare-url {
+    width: 15rem !important;
+  }
+}
