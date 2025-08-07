@@ -5,7 +5,7 @@
 .category-links .category-list-heading p {
     color: var(--color-neutral-900);
     font-size: 1.125rem;
-    font-weight: var(--font-weight-700);
+    font-weight: var(--font-weight-bold);
     line-height: 130%;
     margin-bottom: 1.5rem;
 }
@@ -17,7 +17,7 @@
 }
 
 .category-links .category-item:not(:last-child) {
-    border-bottom: 1px solid var(--light-color);
+    position: relative;
     padding-bottom: 0.75rem;
 }
 
@@ -28,10 +28,13 @@
 .category-links .category-item-link a {
     color: var(--color-neutral-900);
     font-size: 0.75rem;
-    font-weight: var(--font-weight-600);
+    font-weight: var(--font-weight-medium);
     line-height: 140%;
     display: flex;
     align-items: center;
+    padding: 0;
+    text-align: left;
+    background-color: transparent;
 }
 
 .category-links .category-item-link a::before {
@@ -60,9 +63,24 @@
     background:  var(--color-neutral-100);
     color:  var(--color-neutral-900);
     font-size: 0.75rem;
-    font-weight: var(--font-weight-600);
+    font-weight: var(--font-weight-medium);
     line-height: 140%;
     min-width: 2.5rem;
+}
+
+.category-links .category-item-link a:hover,
+.category-links .category-item-link a:focus{
+    background-color: unset;
+}
+
+.category-links .category-item:not(:last-child)::after{
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 1px;
+    background-color: var(--light-color);
 }
 
 @media (width <=48rem) {

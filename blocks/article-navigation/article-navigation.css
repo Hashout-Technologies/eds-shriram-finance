@@ -46,14 +46,14 @@
   display: flex;
   align-items: center;
   font-size: 1rem;
-  margin: 0; /* And since nav-label is now at the bottom, clear its bottom margin */
-  font-weight: 400;
+  margin: 0;
+  font-weight: var(--font-weight-regular);
   color: var(--color-nav-link);
 }
 
 .article-navigation .nav-title {
   font-size: 1rem;
-  font-weight: 600;  
+  font-weight: var(--font-weight-medium);  
   line-height: 1.3;
   margin: 0 0 0.5rem; /* bottom-space so the label sits nicely underneath */
   color: var(--color-neutral-900);
@@ -153,8 +153,7 @@
 .article-navigation .frame .text-wrapper {
   position: relative;
   width: 18.5rem;
-  font-family: Gilmer, Helvetica, sans-serif;
-  font-weight: 700;
+  font-weight: var(--font-weight-bold);
   color: var(--color-neutral-900);
   font-size: 0.75rem;
   letter-spacing: 0;
@@ -205,12 +204,12 @@
   transform: rotate(-180deg);
 }
 
-.article-navigation .frame .label {
+.article-navigation .frame .label,
+.article-navigation .frame .label-2 {
   position: relative;
   width: fit-content;
   margin-top: -0.0625rem;
-  font-family: Gilmer, Helvetica, sans-serif;
-  font-weight: 500;
+  font-weight: var(--font-weight-medium);
   color: var(--color-text-secondary);
   font-size: 0.75rem;
   text-align: center;
@@ -228,21 +227,6 @@
   gap: 0.5rem;
   position: relative;
   flex: 0 0 auto;
-}
-
-.article-navigation .frame .label-2 {
-  position: relative;
-  width: fit-content;
-  margin-top: -0.0625rem;
-  font-family: Gilmer, Helvetica, sans-serif;
-  font-weight: 500;
-  color: var(--color-text-secondary);
-  font-size: 0.75rem;
-  text-align: center;
-  letter-spacing: 0;
-  line-height: 150%;
-  white-space: nowrap;
-  font-style: normal;
 }
 
 .article-navigation .frame .vector-wrapper {

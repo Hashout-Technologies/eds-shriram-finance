@@ -1058,7 +1058,7 @@
     ]
   },
   {
-    "id": "relatedtags",
+    "id": "related-tags",
     "fields": [
       {
         "component": "text",
@@ -1069,7 +1069,7 @@
     ]
   },
    {
-    "id": "relatedtag",
+    "id": "related-tag-link",
     "fields": [
       {
         "component": "aem-content",

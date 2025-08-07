@@ -9,8 +9,8 @@ indices:
     target: /query-index.json
     properties:
       lastModified:
-        select: none
-        value: parseTimestamp(headers["last-modified"], "ddd, DD MMM YYYY hh:mm:ss GMT")
+        select: .article-header > div:nth-child(3) > div
+        value: textContent(el)
       title:
         select: head > meta[property="og:title"]
         value: attribute(el, "content")
