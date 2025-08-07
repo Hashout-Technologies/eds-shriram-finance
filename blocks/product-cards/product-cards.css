@@ -75,7 +75,7 @@
     justify-content: center;
     align-items: center;
     border-radius: 0.5rem;
-    background: var(--color-golden-yellow);
+    background: var(--color-golden-yellow-1);
     min-width: 7.9375rem;
     height: 100%;
 }

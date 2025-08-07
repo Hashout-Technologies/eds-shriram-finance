@@ -1001,6 +1001,7 @@ header nav .nav-sidebar .sidebar-main>div>p a {
     border-bottom: 0.0625rem solid var(--color-sidebar-border);
     padding: 0.5rem 0.75rem;
     margin: 0;
+    background-color: transparent;
 }
 
 header nav .nav-sidebar .sidebar-main .default-content-wrapper>ul>li {

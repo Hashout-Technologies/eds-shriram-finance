@@ -188,7 +188,7 @@
 
 .articles-listing .article-card:hover .article-title,
 .article-item:hover .article-title-small {
-  color: var(--color-golden-yellow);
+  color: var(--color-golden-yellow-1);
 }
 
 .article-item:hover .article-image-container {
