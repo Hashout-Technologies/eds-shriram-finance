@@ -124,7 +124,7 @@ header nav[aria-expanded="true"] .nav-bottom-section {
 
     header nav .nav-bottom-section>div {
         width: 100%;
-        max-width: 78.5rem;
+        max-width: var(--layout-width);
         margin: auto;
     }
 }
@@ -320,7 +320,7 @@ header nav .nav-sections ul>li>ul>li {
 
     header nav .nav-sections ul {
         display: flex;
-        gap: 1.5rem;
+        /* gap: 1.5rem; */
         margin: auto;
     }
 
@@ -339,7 +339,7 @@ header nav .nav-sections ul>li>ul>li {
         content: "";
         display: inline-block;
         position: absolute;
-        top: 0.15rem;
+        top: 0.2rem;
         right: 0;
         transform: rotate(135deg);
         width: 0.375rem;
@@ -373,8 +373,8 @@ header nav .nav-sections ul>li>ul>li {
         left: 50%;
         transform: translateX(-50%);
         top: 100%;
-        width: 78.5rem;
-        max-width: calc(100vw - 2rem);
+        width: 100%;
+        max-width: var(--layout-width);
         border-bottom: 0.25rem solid var(--header-accent);
         z-index: var(--header-z-dropdown);
         border-radius: 0 0 1rem 1rem;
@@ -401,6 +401,7 @@ header nav .nav-sections ul>li>ul>li {
         padding: 0.5rem 0;
         min-height: auto;
         z-index: var(--header-z-dropdown);
+         border-bottom: 0.25rem solid var(--header-accent);
     }
 
     /* Mixed content dropdown styling */
@@ -487,7 +488,7 @@ header nav .nav-sections ul>li>ul>li {
         color: var(--header-text);
         font-weight: var(--font-weight-regular);
         display: block;
-        padding: 0.625rem 1.25rem;
+        padding: 1.5rem 1rem;
         width: 100%;
         font-size: var(--font-size-sm);
         transition: color 0.2s ease;
@@ -496,6 +497,7 @@ header nav .nav-sections ul>li>ul>li {
 
     header nav .nav-sections .default-content-wrapper>ul>li>ul>li.nav-leaf>a:hover {
         text-decoration: underline;
+        background-color: var(--header-light);
     }
 
     /* Sub-category containers */
@@ -518,6 +520,7 @@ header nav .nav-sections ul>li>ul>li {
     header nav .nav-sections .default-content-wrapper>ul>li>ul>li.active>p {
         color: var(--header-text);
         background-color: var(--header-light);
+        border:1px dashed red;
     }
 
     header nav .nav-sections .default-content-wrapper>ul>li>ul>li>p::after {
@@ -559,7 +562,7 @@ header nav .nav-sections ul>li>ul>li {
     /* Deep nested submenu containers */
     header nav .nav-sections .default-content-wrapper>ul>li>ul>li>ul>li>ul {
         display: none;
-        margin-top: 0.9375rem;
+        margin-top: 2rem;
         padding-left: 1.25rem;
     }
 
@@ -578,6 +581,9 @@ header nav .nav-sections ul>li>ul>li {
         color: rgb(33 37 41);
         padding-right: 1.625rem;
         cursor: pointer;
+        width: 100%;
+        white-space: normal;
+        overflow-wrap: break-word;
     }
 
     header nav .nav-sections .default-content-wrapper>ul>li>ul>li>ul>li>ul>li a:hover {
@@ -948,8 +954,7 @@ header nav .nav-sidebar .sidebar-main::-webkit-scrollbar-thumb:hover {
 /* Desktop sidebar adjustments */
 @media (width >=900px) {
     header nav .nav-sidebar {
-        width: 18.75rem;
-        left: -25rem;
+        width: 24.625rem;
     }
 
     header nav .nav-sidebar .sidebar-main {
@@ -1108,7 +1113,7 @@ header nav .nav-sidebar .sidebar-main .accordion-wrapper .accordion details summ
     width: 0.375rem;
     height: 0.375rem;
     border: 2px solid;
-    border-width: 2px 2px 0 0;
+    border-width: 1px 1px 0 0;
     transition: transform 0.2s;
 
 }
