@@ -1,6 +1,6 @@
 import { fetchPlaceholders, getMetadata } from '../../scripts/aem.js';
 import { loadFragment } from '../fragment/fragment.js';
-
+import setupGoldPriceDropdown, { preloadGoldPriceData } from '../../components/gold-price-api/gold-price.js';
 // Constants
 const DESKTOP_BREAKPOINT = '(min-width: 900px)';
 const NAV_CLASSES = ['brand', 'sections', 'tools'];
@@ -897,6 +897,9 @@ function createSidebarMain(sidebar) {
  * Main decoration function - loads and sets up the header navigation
  */
 export default async function decorate(block) {
+  // Preload gold price data immediately for better UX
+  preloadGoldPriceData();
+
   // Load navigation fragment
   const navMeta = getMetadata('nav');
   const navPath = navMeta ? new URL(navMeta, window.location).pathname : '/nav';
@@ -1117,4 +1120,6 @@ export default async function decorate(block) {
     const breadcrumbs = await buildBreadcrumbs();
     navWrapper.append(breadcrumbs);
   }
+
+  setupGoldPriceDropdown();
 }
