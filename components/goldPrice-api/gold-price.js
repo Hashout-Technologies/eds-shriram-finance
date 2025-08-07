@@ -1,8 +1,8 @@
 import { fetchWithCache } from '../../scripts/utils.js';
-import { getApiDomain } from '../../scripts/config.js';
-import { 
-  GOLD_PRICE_API, 
-  GOLD_PRICE_CACHE 
+import getApiDomain from '../../scripts/config.js';
+import {
+  GOLD_PRICE_API,
+  GOLD_PRICE_CACHE,
 } from '../../scripts/constants.js';
 
 /**
@@ -11,7 +11,7 @@ import {
 const goldPriceState = {
   isLoading: false,
   dropdownElement: null,
-  apiUrl: null, 
+  apiUrl: null,
   signalId: GOLD_PRICE_API.SIGNAL_ID,
   cacheKey: GOLD_PRICE_CACHE.STORAGE_KEY,
   cacheDuration: GOLD_PRICE_CACHE.DURATION_MINUTES,
@@ -23,7 +23,6 @@ const goldPriceState = {
 function initializeApiUrl() {
   const domain = getApiDomain();
   goldPriceState.apiUrl = `${domain}${GOLD_PRICE_API.ENDPOINT}`;
-
 }
 
 function formatPrice(priceInPaise) {
@@ -86,10 +85,7 @@ function displayPrices(data) {
   `;
 }
 
-
-
 async function handleMouseEnter() {
-
   try {
     const cachedData = localStorage.getItem(goldPriceState.cacheKey);
     if (cachedData) {
@@ -115,7 +111,7 @@ async function loadPriceData() {
   }
 
   goldPriceState.isLoading = true;
-  
+
   // Only show loading if we don't have any cached data to display
   try {
     const cachedData = localStorage.getItem(goldPriceState.cacheKey);
@@ -139,7 +135,7 @@ async function loadPriceData() {
       { signal_id: goldPriceState.signalId },
       { 'Content-Type': 'application/json' },
       goldPriceState.cacheDuration,
-      'POST'
+      'POST',
     );
 
     // Handle API response
@@ -161,7 +157,6 @@ function attachEventListeners() {
   if (!goldPriceState.dropdownElement) return;
 
   goldPriceState.dropdownElement.addEventListener('mouseenter', handleMouseEnter);
-  goldPriceState.dropdownElement.addEventListener('mouseleave', handleMouseLeave);
 }
 
 function createDropdownStructure() {
@@ -203,12 +198,12 @@ function createDropdownStructure() {
 function initGoldPriceDropdown() {
   // Initialize API URL based on environment
   initializeApiUrl();
-  
+
   const dropdownElement = createDropdownStructure();
   if (!dropdownElement) return null;
 
   attachEventListeners();
-  
+
   // Preload data immediately for better UX
   loadPriceData();
 
@@ -219,16 +214,12 @@ function initGoldPriceDropdown() {
   };
 }
 
-/**
- * Preload gold price data (can be called on page load for best UX)
- * @returns {Promise<void>}
- */
 export function preloadGoldPriceData() {
   // Initialize API URL if not already set
   if (!goldPriceState.apiUrl) {
     initializeApiUrl();
   }
-  
+
   // Load data in background
   return loadPriceData();
 }

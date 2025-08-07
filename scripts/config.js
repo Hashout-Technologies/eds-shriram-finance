@@ -1,7 +1,5 @@
-
 const API_DOMAIN = 'https://uatapigw.shriramfinance.in';
 
-
-export function getApiDomain() {
+export default function getApiDomain() {
   return API_DOMAIN;
 }
