@@ -18,7 +18,6 @@
     --header-z-nav: 1000;
     --header-z-dropdown: 100;
     --header-z-sidebar: 99999;
-    --header-z-overlay: 99998;
 }
 
 /* ==========================================================================
@@ -36,6 +35,12 @@ header nav {
     display: flex;
     flex-direction: column;
     margin: auto;
+    position: relative;
+    z-index: var(--header-z-nav);
+}
+
+/* Header content wrapper for blur effect */
+header nav .nav-header-content {
     position: relative;
     z-index: var(--header-z-nav);
 }
@@ -322,7 +327,6 @@ header nav .nav-sections ul>li>ul>li {
 
     header nav .nav-sections ul {
         display: flex;
-        /* gap: 1.5rem; */
         margin: auto;
     }
 
@@ -609,7 +613,6 @@ header nav .nav-sections ul>li>ul>li {
 
     /* Dropdown containers */
     header nav .nav-sections .default-content-wrapper>ul>li {
-        /* position: relative; */
         display: flex;
         align-items: center;
     }
@@ -680,7 +683,6 @@ header nav .nav-top-right p:nth-child(3) a {
     gap: 0.5rem;
     opacity: 1;
     border-radius: var(--header-radius);
-    /* border: 0.0625rem solid var(--color-header-button-border); */
     color: var(--header-text);
     font-weight: var(--font-weight-medium);
     font-size: var(--font-size-s);
@@ -815,24 +817,6 @@ header nav .nav-top-right .notification-icon .notification-badge {
      Sidebar - Mobile First
      ========================================================================== */
 
-/* Sidebar Overlay */
-.sidebar-overlay {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-color: rgb(0 0 0 / 50%);
-    z-index: var(--header-z-overlay);
-    opacity: 0;
-    transition: opacity 0.3s ease;
-    cursor: pointer;
-}
-
-.sidebar-overlay:not(:empty) {
-    opacity: 1;
-}
-
 /* Sidebar Container */
 header nav .nav-sidebar {
     width: 70%;
@@ -847,13 +831,13 @@ header nav .nav-sidebar {
     box-shadow: 0.3125rem 0.625rem 0.625rem var(--color-black);
     transform: translateX(0);
     display: none;
-
-    /* Hidden by default */
 }
 
+/* Ensure sidebar appears above blurred header content and is positioned correctly */
 header nav .nav-sidebar.sidebar-open {
     left: 0;
     transform: translateX(0);
+    z-index: 100000;
 }
 
 header nav .nav-sidebar.sidebar-initialized {
@@ -962,12 +946,12 @@ header nav .nav-sidebar .sidebar-main::-webkit-scrollbar-thumb:hover {
 
     header nav .nav-sidebar .sidebar-main {
         font-size: var(--font-size-sm);
-        padding: 0 1.25rem;
+        padding: 15px 30px 15px 55px;
         gap: 0.5rem;
     }
 
     header nav .nav-sidebar .sidebar-header {
-        padding: 1.25rem 1.5rem;
+        padding: 15px 30px 15px 55px;
     }
 
     header nav .nav-sidebar .sidebar-close-button {
@@ -1165,6 +1149,49 @@ header nav .nav-sidebar .sidebar-main .accordion-wrapper .accordion details[open
 body.sidebar-open {
     overflow-y: hidden;
 }
+
+/* Page blur effect when sidebar is open */
+body.page-blur {
+    transition: filter 0.3s ease;
+    pointer-events: none;
+}
+
+/* Overlay effect when sidebar is open */
+body.page-blur main,
+body.page-blur footer,
+body.page-blur header nav .nav-header-content {
+    position: relative;
+}
+
+body.page-blur main::before,
+body.page-blur footer::before,
+body.page-blur header nav .nav-header-content::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgb(0 0 0 / 30%);
+    z-index: 1;
+    pointer-events: none;
+}
+
+/* Re-enable sidebar and hamburger interactions */
+body.page-blur header nav .nav-sidebar {
+    filter: none;
+    pointer-events: auto;
+}
+
+body.page-blur header nav .nav-hamburger {
+    filter: none;
+    pointer-events: auto;
+    position: relative;
+}
+
+
+
+
 
 /* Submenu children display states */
 header nav .nav-sections .default-content-wrapper>ul>li>ul>li>ul.submenu-children-hidden {
