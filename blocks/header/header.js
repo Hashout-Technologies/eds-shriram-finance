@@ -100,6 +100,16 @@ const toggleSidebar = async (nav, sidebar, forceExpanded = null) => {
     }
   }
 
+  // Toggle body blur effect
+  const { body } = document;
+  if (shouldExpand) {
+    body.classList.add('sidebar-open');
+    body.classList.add('page-blur');
+  } else {
+    body.classList.remove('sidebar-open');
+    body.classList.remove('page-blur');
+  }
+
   // Update button label
   const labelKey = shouldExpand ? 'navCloseLabel' : 'navOpenLabel';
   const defaultLabel = shouldExpand ? 'Close sidebar' : 'Open sidebar';
@@ -998,9 +1008,14 @@ export default async function decorate(block) {
     bottomSection.append(navSections);
   }
 
+  // Create header content wrapper for blur effect
+  const headerContentWrapper = document.createElement('div');
+  headerContentWrapper.classList.add('nav-header-content');
+  headerContentWrapper.append(topSection, bottomSection);
+
   // Rebuild navigation structure
   nav.textContent = '';
-  nav.append(topSection, bottomSection);
+  nav.append(headerContentWrapper);
 
   // Create sidebar section if it exists
   let sidebarSection = null;
@@ -1036,6 +1051,19 @@ export default async function decorate(block) {
 
   // Add hamburger click event listener
   hamburger.addEventListener('click', () => toggleSidebar(nav, sidebarSection));
+
+  // Add click outside handler for sidebar (works on both mobile and desktop)
+  if (sidebarSection) {
+    document.addEventListener('click', (e) => {
+      const isSidebarOpen = nav.getAttribute('aria-expanded') === 'true';
+      const clickedInsideSidebar = sidebarSection.contains(e.target);
+      const clickedOnHamburger = hamburger.contains(e.target);
+
+      if (isSidebarOpen && !clickedInsideSidebar && !clickedOnHamburger) {
+        toggleSidebar(nav, sidebarSection, false);
+      }
+    });
+  }
 
   // Initialize sidebar state and responsive behavior
   if (sidebarSection) {
