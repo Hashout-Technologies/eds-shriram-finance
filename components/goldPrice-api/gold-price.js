@@ -1,20 +1,30 @@
-import { FetchData } from '../../scripts/utils.js';
-import { API_CONFIG, CACHE_CONFIG } from '../../scripts/constants.js';
+import { fetchWithCache } from '../../scripts/utils.js';
+import { getApiDomain } from '../../scripts/config.js';
+import { 
+  GOLD_PRICE_API, 
+  GOLD_PRICE_CACHE 
+} from '../../scripts/constants.js';
 
 /**
  * Gold Price Dropdown - Function-based implementation
  */
 const goldPriceState = {
-  cache: {
-    data: null,
-    timestamp: null,
-    duration: CACHE_CONFIG.duration,
-  },
   isLoading: false,
   dropdownElement: null,
-  apiUrl: `${API_CONFIG.baseUrl}/dts-web/lending/api/v2/product/services`,
-  signalId: API_CONFIG.signalId,
+  apiUrl: null, 
+  signalId: GOLD_PRICE_API.SIGNAL_ID,
+  cacheKey: GOLD_PRICE_CACHE.STORAGE_KEY,
+  cacheDuration: GOLD_PRICE_CACHE.DURATION_MINUTES,
 };
+
+/**
+ * Initialize API URL using the simple domain config
+ */
+function initializeApiUrl() {
+  const domain = getApiDomain();
+  goldPriceState.apiUrl = `${domain}${GOLD_PRICE_API.ENDPOINT}`;
+
+}
 
 function formatPrice(priceInPaise) {
   const priceInRupees = parseFloat(priceInPaise) / 100;
@@ -76,60 +86,72 @@ function displayPrices(data) {
   `;
 }
 
-function isCacheValid() {
-  return goldPriceState.cache.data
-         && goldPriceState.cache.timestamp
-         && (Date.now() - goldPriceState.cache.timestamp) < goldPriceState.cache.duration;
-}
 
-function handleMouseLeave() {
-  // Handle mouse leave if needed
-}
 
 async function handleMouseEnter() {
-  // Display cached data if available, otherwise show error
-  if (goldPriceState.cache.data) {
-    displayPrices(goldPriceState.cache.data);
-  } else if (!goldPriceState.isLoading) {
-    displayError();
+
+  try {
+    const cachedData = localStorage.getItem(goldPriceState.cacheKey);
+    if (cachedData) {
+      const parsedCache = JSON.parse(cachedData);
+      if (parsedCache.data && parsedCache.data.code === 200) {
+        displayPrices(parsedCache.data.data);
+        return;
+      }
+    }
+  } catch (error) {
+    console.warn('Error reading cached data on hover:', error);
+  }
+
+  // If no cached data and not currently loading, show loading state
+  if (!goldPriceState.isLoading) {
+    displayLoading();
   }
 }
 
 async function loadPriceData() {
-  if (isCacheValid()) {
-    // Don't display here - only when user hovers
+  if (goldPriceState.isLoading) {
     return;
   }
 
   goldPriceState.isLoading = true;
-  displayLoading();
-
+  
+  // Only show loading if we don't have any cached data to display
   try {
-    const result = await FetchData(
-      goldPriceState.apiUrl,
-      null, // No URL parameters
-      { 'Content-Type': 'application/json' },
-      JSON.stringify({ signal_id: goldPriceState.signalId }),
-      'POST',
-    );
-
-    // Handle FetchData's error return (null)
-    if (!result) {
-      throw new Error('API request failed');
-    }
-
-    if (result.code === 200 && result.data) {
-      goldPriceState.cache.data = result.data;
-      goldPriceState.cache.timestamp = Date.now();
-      // eslint-disable-next-line no-console
-      console.log('Gold prices loaded and cached');
-    } else {
-      throw new Error(result.message || 'Invalid response format');
+    const cachedData = localStorage.getItem(goldPriceState.cacheKey);
+    if (!cachedData) {
+      displayLoading();
     }
   } catch (error) {
-    // eslint-disable-next-line no-console
+    displayLoading();
+  }
+
+  try {
+    // Initialize API URL if not already set
+    if (!goldPriceState.apiUrl) {
+      initializeApiUrl();
+    }
+
+    // Use fetchWithCache function with caching
+    const result = await fetchWithCache(
+      goldPriceState.apiUrl,
+      goldPriceState.cacheKey,
+      { signal_id: goldPriceState.signalId },
+      { 'Content-Type': 'application/json' },
+      goldPriceState.cacheDuration,
+      'POST'
+    );
+
+    // Handle API response
+    if (result && result.code === 200 && result.data) {
+      displayPrices(result.data);
+      console.log('Gold prices loaded successfully');
+    } else {
+      throw new Error(result?.message || 'Invalid response format');
+    }
+  } catch (error) {
     console.error('Failed to fetch gold prices:', error);
-    // Keep cached data if available
+    displayError();
   } finally {
     goldPriceState.isLoading = false;
   }
@@ -153,7 +175,6 @@ function createDropdownStructure() {
   });
 
   if (!goldPriceElement) {
-    // eslint-disable-next-line no-console
     console.warn('Gold Price element not found');
     return null;
   }
@@ -180,11 +201,15 @@ function createDropdownStructure() {
 }
 
 function initGoldPriceDropdown() {
+  // Initialize API URL based on environment
+  initializeApiUrl();
+  
   const dropdownElement = createDropdownStructure();
   if (!dropdownElement) return null;
 
   attachEventListeners();
-  // Call API immediately when dropdown is created
+  
+  // Preload data immediately for better UX
   loadPriceData();
 
   return {
@@ -192,6 +217,20 @@ function initGoldPriceDropdown() {
     loadData: loadPriceData,
     state: goldPriceState,
   };
+}
+
+/**
+ * Preload gold price data (can be called on page load for best UX)
+ * @returns {Promise<void>}
+ */
+export function preloadGoldPriceData() {
+  // Initialize API URL if not already set
+  if (!goldPriceState.apiUrl) {
+    initializeApiUrl();
+  }
+  
+  // Load data in background
+  return loadPriceData();
 }
 
 // Default export function for header.js to use
@@ -202,7 +241,6 @@ export default function setupGoldPriceDropdown() {
       const goldPriceDropdown = initGoldPriceDropdown();
       return goldPriceDropdown;
     } catch (error) {
-      // eslint-disable-next-line no-console
       console.error('Gold Price Dropdown failed:', error);
       return null;
     }
