@@ -62,6 +62,7 @@ header nav .nav-top-section {
     width: 100%;
     max-width: var(--layout-width);
     margin: auto;
+    padding: 0 1rem;
 }
 
 header nav .nav-top-left {
@@ -84,6 +85,7 @@ header nav .nav-top-right>div {
 @media (width >=900px) {
     header nav .nav-top-section {
         gap: 2rem;
+        padding: 0;
     }
 
     header nav .nav-top-left {
@@ -390,10 +392,9 @@ header nav .nav-sections ul>li>ul>li {
     header nav .nav-sections .default-content-wrapper>ul>li[aria-expanded="true"]>ul:has(> li.nav-leaf):not(.nav-mixed-content) {
         display: block;
         position: absolute;
-        width: auto;
-        min-width: 17.5rem;
-        left: 10%;
-        transform: translateX(-30%);
+        width: 15.125rem;
+        left: 50%;
+        transform: translateX(-50%);
         top: 2.5rem;
         background: var(--color-white);
         border-radius: 0 0 0.5rem 0.5rem;
@@ -401,7 +402,7 @@ header nav .nav-sections ul>li>ul>li {
         padding: 0.5rem 0;
         min-height: auto;
         z-index: var(--header-z-dropdown);
-         border-bottom: 0.25rem solid var(--header-accent);
+        border-bottom: 0.25rem solid var(--header-accent);
     }
 
     /* Mixed content dropdown styling */
@@ -483,19 +484,17 @@ header nav .nav-sections ul>li>ul>li {
 
     /* Direct anchor tags in leaf nodes */
     header nav .nav-sections .default-content-wrapper>ul>li>ul>li.nav-leaf>a {
-        background: none;
-        text-decoration: none;
         color: var(--header-text);
         font-weight: var(--font-weight-regular);
         display: block;
-        padding: 1.5rem 1rem;
-        width: 100%;
+        padding: 0.9375rem 1.5625rem;
         font-size: var(--font-size-sm);
         transition: color 0.2s ease;
         cursor: pointer;
     }
 
-    header nav .nav-sections .default-content-wrapper>ul>li>ul>li.nav-leaf>a:hover {
+    header nav .nav-sections .default-content-wrapper>ul>li>ul>li.nav-leaf>a:hover,
+    header nav .nav-sections .nav-maxied-leaf a:hover {
         text-decoration: underline;
         background-color: var(--header-light);
     }
@@ -520,7 +519,6 @@ header nav .nav-sections ul>li>ul>li {
     header nav .nav-sections .default-content-wrapper>ul>li>ul>li.active>p {
         color: var(--header-text);
         background-color: var(--header-light);
-        border:1px dashed red;
     }
 
     header nav .nav-sections .default-content-wrapper>ul>li>ul>li>p::after {
@@ -588,12 +586,16 @@ header nav .nav-sections ul>li>ul>li {
 
     header nav .nav-sections .default-content-wrapper>ul>li>ul>li>ul>li>ul>li a:hover {
         color: var(--header-text);
+        font-weight: var(--font-weight-medium);
         text-decoration: underline;
     }
 
     /* Hover effects for submenu items */
-    header nav .nav-sections .default-content-wrapper>ul>li>ul>li:hover>p {
+    header nav .nav-sections .default-content-wrapper>ul>li>ul>li:hover>p,
+     header nav .nav-sections .default-content-wrapper>ul>li>ul>li:hover>p a {
         color: var(--header-text);
+        font-weight: var(--font-weight-medium);
+        background-color: var(--header-light);
     }
 
     header nav .nav-bottom-section .nav-sections ul>li:hover {
@@ -874,6 +876,7 @@ header nav .nav-sidebar .sidebar-header {
     align-items: center;
     justify-content: center;
     gap: 1rem;
+    padding: 0.5rem 1rem;
 }
 
 /* Sidebar Close Button */
@@ -1002,6 +1005,7 @@ header nav .nav-sidebar .sidebar-main>div>p a {
     padding: 0.5rem 0.75rem;
     margin: 0;
     background-color: transparent;
+    border-radius: 0;
 }
 
 header nav .nav-sidebar .sidebar-main .default-content-wrapper>ul>li {
@@ -1110,8 +1114,8 @@ header nav .nav-sidebar .sidebar-main .accordion-wrapper .accordion details summ
     top: 50%;
     left: 95%;
     transform: translateY(-50%) rotate(135deg);
-    width: 0.375rem;
-    height: 0.375rem;
+    width: 0.475rem;
+    height: 0.475rem;
     border: 2px solid;
     border-width: 1px 1px 0 0;
     transition: transform 0.2s;
