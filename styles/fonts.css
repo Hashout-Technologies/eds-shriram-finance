@@ -2,7 +2,7 @@
    FONT-FACE DECLARATIONS
    ================================ */
 @font-face {
-    font-family: GilmerRegular;
+    font-family: Gilmer;
     src: url("../fonts/GilmerRegular.woff2") format("woff2");
     font-weight: 400;
     font-style: normal;
@@ -10,15 +10,15 @@
 }
 
 @font-face {
-    font-family: GilmerMedium;
+    font-family: Gilmer;
     src: url("../fonts/GilmerMedium.woff2") format("woff2");
-    font-weight: 500;
+    font-weight: 600;
     font-style: normal;
     font-display: swap;
 }
 
 @font-face {
-    font-family: GilmerBold;
+    font-family: Gilmer;
     src: url("../fonts/GilmerBold.woff2") format("woff2");
     font-weight: 700;
     font-style: normal;
@@ -26,7 +26,7 @@
 }
 
 @font-face {
-    font-family: GilmerHeavy;
+    font-family: Gilmer;
     src: url("../fonts/GilmerHeavy.woff2") format("woff2");
     font-weight: 900;
     font-style: normal;

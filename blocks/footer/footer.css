@@ -55,14 +55,13 @@ footer .accordion details[open] .accordion-item-body {
 footer .accordion details p {
     margin-bottom: 0;
     padding-left: 0;
-    font-family: var(--font-regular);
     font-size: var(--font-size-sm);
-    font-weight: var(--font-weight-600);
+    font-weight: var(--font-weight-medium);
     line-height: 120%;
 }
 
 footer .accordion details summary p {
-    color: var(--neutrals-100, #f7f7f7);
+    color: var(--color-neutral-100);
     margin: 1rem 0;
 }
 
@@ -74,7 +73,7 @@ footer .accordion-wrapper .accordion details summary::after {
     transform: translateY(-50%) rotate(135deg);
     width: 0.575rem;
     height: 0.575rem;
-    border: 2px solid var(--neutrals-100, #f7f7f7);
+    border: 2px solid var(--color-neutral-100);
     border-width: 2px 2px 0 0;
     transition: transform 0.2s;
 }
@@ -83,8 +82,8 @@ footer .accordion-container .default-content-wrapper {
     display: flex;
     align-items: center;
     padding: 1rem 0;
-    border-bottom: 1px solid var(--neutrals-800, #666);
-    color: var(--neutrals-100, #f7f7f7);
+    border-bottom: 1px solid var(--color-neutral-800);
+    color: var(--color-neutral-100);
 }
 
 footer .accordion-container .default-content-wrapper h5 {
@@ -92,16 +91,16 @@ footer .accordion-container .default-content-wrapper h5 {
 }
 
 footer .accordion-container .default-content-wrapper h5 a {
-    color: var(--neutrals-100, #f7f7f7);
+    color: var(--color-neutral-100);
     font-size: var(--font-size-sm);
-    font-weight: var(--font-weight-600);
+    font-weight: var(--font-weight-medium);
     text-decoration: none;
 }
 
 footer .accordion-container .default-content-wrapper p a {
-    color: var(--neutrals-100, #f7f7f7);
+    color: var(--color-neutral-100);
     font-size: var(--font-size-s);
-    font-weight: var(--font-weight-400);
+    font-weight: var(--font-weight-regular);
     text-decoration: none;
 }
 
@@ -127,18 +126,18 @@ footer .accordion .accordion-item-body ul:has(ul) ul {
 }
 
 footer .columns-wrapper .columns div > div > ul > li > p {
-    color: var(--neutrals-100, #f7f7f7);
+    color: var(--color-neutral-100);
     font-size: var(--font-size-s);
-    font-weight: var(--font-weight-400);
+    font-weight: var(--font-weight-regular);
     line-height: 120%;
     margin-bottom: 0.5rem;
 }
 
 footer .section:last-child .default-content-wrapper p {
     margin-top: 2rem;
-    color: var(--neutrals-100, #f7f7f7);
+    color: var(--color-neutral-100);
     font-size: var(--font-size-s);
-    font-weight: var(--font-weight-400);
+    font-weight: var(--font-weight-regular);
     line-height: 120%;
 }
 
@@ -147,7 +146,7 @@ footer .columns-wrapper .columns div > div {
     align-items: start;
     justify-content: start;
     gap: 1rem;
-    color: var(--neutrals-100, #f7f7f7);
+    color: var(--color-neutral-100);
     padding-top: 1rem;
 }
 
@@ -164,9 +163,9 @@ footer .columns-wrapper .columns div > div > ul ul {
 
 footer .accordion .accordion-item-body ul > li a,
 footer .columns-wrapper .columns div > div > ul ul > li > a {
-    color: var(--neutrals-100, #f7f7f7);
+    color: var(--color-neutral-100);
     font-size: var(--font-size-s);
-    font-weight: var(--font-weight-400);
+    font-weight: var(--font-weight-regular);
     line-height: 120%;
 }
 
@@ -215,7 +214,7 @@ footer .columns-wrapper:last-child .columns div > div:first-child {
 footer .columns-wrapper:last-child .columns div > div:first-child p {
     margin-bottom: 0;
     font-size: var(--font-size-s);
-    font-weight: var(--font-weight-400);
+    font-weight: var(--font-weight-regular);
     line-height: 150%;
 }
 
@@ -229,8 +228,8 @@ footer .columns-wrapper:last-child .columns div > div:last-child p,
 footer .columns-wrapper:last-child .columns div > div:last-child p > a {
     margin-bottom: 0;
     font-size: var(--font-size-s);
-    font-weight: var(--font-weight-400);
-    color: var(--neutrals-100, #f7f7f7);
+    font-weight: var(--font-weight-regular);
+    color: var(--color-neutral-100);
     line-height: 120%;
 }
 
@@ -335,7 +334,7 @@ footer
     footer .accordion .accordion-item-body ul ul > li:first-child {
         font-weight: bold;
         margin-bottom: 0.5rem;
-        color: var(--neutrals-100, #f7f7f7);
+        color: var(--color-neutral-100);
     }
 
     /* Style links in columns */
@@ -353,12 +352,13 @@ footer
         background: none;
         border: none;
         padding: 0;
-        color: var(--neutrals-100, #f7f7f7);
+        color: var(--color-neutral-100);
         text-decoration: none;
         font-size: 0.9rem;
         line-height: 1.4;
         margin: 0.5rem 0;
         display: block;
+        text-align: left;
     }
 
     footer .accordion .accordion-item-body .button:hover {
@@ -369,7 +369,7 @@ footer
     /* Style strong elements (category headers) */
     footer .accordion .accordion-item-body strong {
         font-weight: bold;
-        color: var(--neutrals-100, #f7f7f7);
+        color: var(--color-neutral-100);
         display: block;
         margin-bottom: 0.5rem;
     }
