@@ -1,18 +1,44 @@
 import { moveInstrumentation } from '../../scripts/scripts.js';
+import { fetchWithCache } from '../../scripts/utils.js';
 
-export default function decorate(block) {
-  // For testing, show both articles - in real implementation this would be dynamic
-  const prevArticle = {
-    title: 'Government Policies and Gold Loan Regulations',
-    url: '/articles/government-policies',
-    available: true,
-  };
+export default async function decorate(block) {
+  // Fetch articles data from JSON
+  const articlesData = await fetchWithCache(
+    '/query-index.json', // relative so no CORS issues if hosted same origin
+    'articlesQueryIndex', // cache key
+    null,
+    {},
+    60,
+    'GET',
+  );
 
-  const nextArticle = {
-    title: 'What Kind of Gold Assets Can I Get a Loan for?',
-    url: '/articles/gold-assets',
-    available: true,
-  };
+  const articles = articlesData?.data || [];
+
+  // Get the current page path
+  const currentPath = window.location.pathname.replace(/\/$/, '');
+
+  // Find the index of the current article
+  const currentIndex = articles.findIndex((article) => article.path.replace(/\/$/, '') === currentPath);
+
+  let prevArticle = { available: false };
+  let nextArticle = { available: false };
+
+  if (currentIndex !== -1) {
+    if (currentIndex > 0) {
+      prevArticle = {
+        title: articles[currentIndex - 1].title,
+        url: articles[currentIndex - 1].path,
+        available: true,
+      };
+    }
+    if (currentIndex < articles.length - 1) {
+      nextArticle = {
+        title: articles[currentIndex + 1].title,
+        url: articles[currentIndex + 1].path,
+        available: true,
+      };
+    }
+  }
 
   // Create Figma structure
   const frame = document.createElement('div');
