@@ -69,44 +69,27 @@ function handleEventListeners(nav, isExpanded) {
 }
 
 /**
- * Closes all accordion items globally or within a specific sidebar
- * @param {Element|null} sidebar - Optional sidebar element to close accordions within
+ * Closes accordion items in a specific area or globally
+ * @param {Element|null} target - Optional target element to close accordions within
  */
-function closeAllAccordionItems(sidebar = null) {
-  if (sidebar) {
-    // Close accordion items in specific sidebar
-    const accordionItems = sidebar.querySelectorAll('details[open]');
-    accordionItems.forEach((item) => {
-      item.removeAttribute('open');
-    });
-  } else {
-    // Close all accordion items globally
-    const allAccordionItems = document.querySelectorAll('details[open]');
-    allAccordionItems.forEach((item) => {
-      item.removeAttribute('open');
-    });
-  }
+function closeAccordionItems(target = null) {
+  const items = target
+    ? target.querySelectorAll('details[open]')
+    : document.querySelectorAll('details[open]');
+
+  items.forEach((item) => item.removeAttribute('open'));
 }
 
 /**
- * Sets up global accordion management for the header
- * This ensures sidebar accordions integrate with the global accordion system
- * When an accordion outside the sidebar is opened, sidebar accordions are automatically closed
+ * Sets up global accordion management for sidebar integration
  */
 function setupGlobalAccordionManagement() {
   if (window.headerAccordionListenerSet) return;
 
-  // Listen for global accordion events to ensure sidebar accordions work with global system
   document.addEventListener(GLOBAL_ACCORDION_EVENT, (event) => {
-    const { openedItem } = event.detail;
-
-    // If the opened item is not in the sidebar, close all sidebar accordions
     const sidebar = document.querySelector('.nav-sidebar');
-    if (sidebar && !sidebar.contains(openedItem)) {
-      const sidebarAccordionItems = sidebar.querySelectorAll('details[open]');
-      sidebarAccordionItems.forEach((item) => {
-        item.removeAttribute('open');
-      });
+    if (sidebar && !sidebar.contains(event.detail.openedItem)) {
+      closeAccordionItems(sidebar);
     }
   });
 
@@ -136,8 +119,8 @@ const toggleSidebar = async (nav, sidebar, forceExpanded = null) => {
         sidebar.classList.add('sidebar-open');
       }, 10);
     } else {
-      // Close all accordion items when sidebar is closing
-      closeAllAccordionItems(sidebar);
+      // Close accordion items when sidebar is closing
+      closeAccordionItems(sidebar);
 
       sidebar.classList.remove('sidebar-open');
       // Wait for animation to complete before hiding
@@ -170,24 +153,18 @@ const toggleSidebar = async (nav, sidebar, forceExpanded = null) => {
 };
 
 /**
- * Hides all grandchildren (deeper nested levels) within a children container
+ * Toggles grandchildren visibility
+ * @param {Element} container - Container with grandchildren
+ * @param {boolean} show - Whether to show or hide grandchildren
  */
-function hideGrandchildren(childrenContainer) {
-  const grandchildren = childrenContainer.querySelectorAll('li > ul');
-  grandchildren.forEach((grandchild) => {
-    grandchild.classList.remove('grandchildren-visible');
-    grandchild.classList.add('grandchildren-hidden');
-  });
-}
+function toggleGrandchildren(container, show) {
+  const grandchildren = container.querySelectorAll('li > ul');
+  const visibleClass = 'grandchildren-visible';
+  const hiddenClass = 'grandchildren-hidden';
 
-/**
- * Shows all grandchildren (deeper nested levels) within a children container
- */
-function showGrandchildren(childrenContainer) {
-  const grandchildren = childrenContainer.querySelectorAll('li > ul');
   grandchildren.forEach((grandchild) => {
-    grandchild.classList.remove('grandchildren-hidden');
-    grandchild.classList.add('grandchildren-visible');
+    grandchild.classList.toggle(visibleClass, show);
+    grandchild.classList.toggle(hiddenClass, !show);
   });
 }
 
@@ -342,7 +319,7 @@ function setupSubmenuHoverEvents(navSection) {
       // Initially hide all submenu children and their grandchildren
       submenuChildren.classList.remove('submenu-children-visible');
       submenuChildren.classList.add('submenu-children-hidden');
-      hideGrandchildren(submenuChildren);
+      toggleGrandchildren(submenuChildren, false);
 
       // Show first submenu's children by default
       if (submenuItem === submenuItems[0]) {
@@ -351,7 +328,7 @@ function setupSubmenuHoverEvents(navSection) {
           'submenu-children-visible',
           'submenu-visible',
         );
-        showGrandchildren(submenuChildren);
+        toggleGrandchildren(submenuChildren, true);
         submenuItem.classList.add('active');
         updateDropdownHeight(mainDropdown);
       }
@@ -384,7 +361,7 @@ function setupSubmenuHoverEvents(navSection) {
             'submenu-children-visible',
             'submenu-visible',
           );
-          showGrandchildren(firstItemChildren);
+          toggleGrandchildren(firstItemChildren, true);
           firstItemWithChildren.classList.add('active');
           updateDropdownHeight(mainDropdown);
         }
@@ -399,7 +376,7 @@ function setupSubmenuHoverEvents(navSection) {
         if (children) {
           children.classList.remove('submenu-children-visible');
           children.classList.add('submenu-children-hidden');
-          hideGrandchildren(children);
+          toggleGrandchildren(children, false);
         }
         if (!item.classList.contains('nav-leaf')) {
           item.classList.remove('active');
@@ -411,7 +388,7 @@ function setupSubmenuHoverEvents(navSection) {
       if (containsGrandchildren) {
         submenuChildren.classList.remove('submenu-children-hidden');
         submenuChildren.classList.add('submenu-children-visible');
-        showGrandchildren(submenuChildren);
+        toggleGrandchildren(submenuChildren, true);
         submenuItem.classList.add('active');
         updateDropdownHeight(mainDropdown);
 
