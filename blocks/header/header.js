@@ -1,9 +1,11 @@
 import { fetchPlaceholders, getMetadata } from '../../scripts/aem.js';
 import { loadFragment } from '../fragment/fragment.js';
 import setupGoldPriceDropdown, { preloadGoldPriceData } from '../../components/gold-price-api/gold-price.js';
+
 // Constants
 const DESKTOP_BREAKPOINT = '(min-width: 900px)';
 const NAV_CLASSES = ['brand', 'sections', 'tools'];
+const GLOBAL_ACCORDION_EVENT = 'globalAccordionToggle';
 
 // Media query for desktop detection
 const isDesktop = window.matchMedia(DESKTOP_BREAKPOINT);
@@ -67,6 +69,34 @@ function handleEventListeners(nav, isExpanded) {
 }
 
 /**
+ * Closes accordion items in a specific area or globally
+ * @param {Element|null} target - Optional target element to close accordions within
+ */
+function closeAccordionItems(target = null) {
+  const items = target
+    ? target.querySelectorAll('details[open]')
+    : document.querySelectorAll('details[open]');
+
+  items.forEach((item) => item.removeAttribute('open'));
+}
+
+/**
+ * Sets up global accordion management for sidebar integration
+ */
+function setupGlobalAccordionManagement() {
+  if (window.headerAccordionListenerSet) return;
+
+  document.addEventListener(GLOBAL_ACCORDION_EVENT, (event) => {
+    const sidebar = document.querySelector('.nav-sidebar');
+    if (sidebar && !sidebar.contains(event.detail.openedItem)) {
+      closeAccordionItems(sidebar);
+    }
+  });
+
+  window.headerAccordionListenerSet = true;
+}
+
+/**
  * Toggles the sidebar visibility and accessibility
  */
 const toggleSidebar = async (nav, sidebar, forceExpanded = null) => {
@@ -89,6 +119,9 @@ const toggleSidebar = async (nav, sidebar, forceExpanded = null) => {
         sidebar.classList.add('sidebar-open');
       }, 10);
     } else {
+      // Close accordion items when sidebar is closing
+      closeAccordionItems(sidebar);
+
       sidebar.classList.remove('sidebar-open');
       // Wait for animation to complete before hiding
       setTimeout(() => {
@@ -120,24 +153,18 @@ const toggleSidebar = async (nav, sidebar, forceExpanded = null) => {
 };
 
 /**
- * Hides all grandchildren (deeper nested levels) within a children container
+ * Toggles grandchildren visibility
+ * @param {Element} container - Container with grandchildren
+ * @param {boolean} show - Whether to show or hide grandchildren
  */
-function hideGrandchildren(childrenContainer) {
-  const grandchildren = childrenContainer.querySelectorAll('li > ul');
-  grandchildren.forEach((grandchild) => {
-    grandchild.classList.remove('grandchildren-visible');
-    grandchild.classList.add('grandchildren-hidden');
-  });
-}
+function toggleGrandchildren(container, show) {
+  const grandchildren = container.querySelectorAll('li > ul');
+  const visibleClass = 'grandchildren-visible';
+  const hiddenClass = 'grandchildren-hidden';
 
-/**
- * Shows all grandchildren (deeper nested levels) within a children container
- */
-function showGrandchildren(childrenContainer) {
-  const grandchildren = childrenContainer.querySelectorAll('li > ul');
   grandchildren.forEach((grandchild) => {
-    grandchild.classList.remove('grandchildren-hidden');
-    grandchild.classList.add('grandchildren-visible');
+    grandchild.classList.toggle(visibleClass, show);
+    grandchild.classList.toggle(hiddenClass, !show);
   });
 }
 
@@ -292,7 +319,7 @@ function setupSubmenuHoverEvents(navSection) {
       // Initially hide all submenu children and their grandchildren
       submenuChildren.classList.remove('submenu-children-visible');
       submenuChildren.classList.add('submenu-children-hidden');
-      hideGrandchildren(submenuChildren);
+      toggleGrandchildren(submenuChildren, false);
 
       // Show first submenu's children by default
       if (submenuItem === submenuItems[0]) {
@@ -301,7 +328,7 @@ function setupSubmenuHoverEvents(navSection) {
           'submenu-children-visible',
           'submenu-visible',
         );
-        showGrandchildren(submenuChildren);
+        toggleGrandchildren(submenuChildren, true);
         submenuItem.classList.add('active');
         updateDropdownHeight(mainDropdown);
       }
@@ -334,7 +361,7 @@ function setupSubmenuHoverEvents(navSection) {
             'submenu-children-visible',
             'submenu-visible',
           );
-          showGrandchildren(firstItemChildren);
+          toggleGrandchildren(firstItemChildren, true);
           firstItemWithChildren.classList.add('active');
           updateDropdownHeight(mainDropdown);
         }
@@ -349,7 +376,7 @@ function setupSubmenuHoverEvents(navSection) {
         if (children) {
           children.classList.remove('submenu-children-visible');
           children.classList.add('submenu-children-hidden');
-          hideGrandchildren(children);
+          toggleGrandchildren(children, false);
         }
         if (!item.classList.contains('nav-leaf')) {
           item.classList.remove('active');
@@ -361,7 +388,7 @@ function setupSubmenuHoverEvents(navSection) {
       if (containsGrandchildren) {
         submenuChildren.classList.remove('submenu-children-hidden');
         submenuChildren.classList.add('submenu-children-visible');
-        showGrandchildren(submenuChildren);
+        toggleGrandchildren(submenuChildren, true);
         submenuItem.classList.add('active');
         updateDropdownHeight(mainDropdown);
 
@@ -897,6 +924,9 @@ function createSidebarMain(sidebar) {
  * Main decoration function - loads and sets up the header navigation
  */
 export default async function decorate(block) {
+  // Setup global accordion management
+  setupGlobalAccordionManagement();
+
   // Preload gold price data immediately for better UX
   preloadGoldPriceData();
 
