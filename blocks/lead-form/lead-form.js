@@ -3,7 +3,7 @@ import { moveInstrumentation } from '../../scripts/scripts.js';
 export default function decorate(block) {
   const rows = [...block.children];
 
-  // Read configuration from the block structure
+  // Read configuration from existing DOM structure - don't replace anything
   let title = 'Get a gold loan at low interest rates';
   let actionUrl = '';
   let ctaButtonText = 'Apply Now';
@@ -14,55 +14,61 @@ export default function decorate(block) {
   let showEmploymentTypeField = false;
 
   // Extract values from the existing row structure
-  // Row 0: Title
   if (rows[0] && rows[0].querySelector('p')) {
     const titleText = rows[0].querySelector('p').textContent.trim();
     if (titleText) title = titleText;
   }
 
-  // Row 1: Action URL
   if (rows[1] && rows[1].querySelector('p')) {
     const urlText = rows[1].querySelector('p').textContent.trim();
     if (urlText) actionUrl = urlText;
   }
 
-  // Row 2: CTA Button Text
   if (rows[2] && rows[2].querySelector('p')) {
     const ctaText = rows[2].querySelector('p').textContent.trim();
     if (ctaText) ctaButtonText = ctaText;
   }
 
-  // Row 3: Show Name Field
   if (rows[3] && rows[3].querySelector('p')) {
     const nameFieldText = rows[3].querySelector('p').textContent.trim();
     showNameField = nameFieldText.toLowerCase() === 'true';
   }
 
-  // Row 4: Show Mobile Field
   if (rows[4] && rows[4].querySelector('p')) {
     const mobileFieldText = rows[4].querySelector('p').textContent.trim();
     showMobileField = mobileFieldText.toLowerCase() === 'true';
   }
 
-  // Row 5: Show Pincode Field
   if (rows[5] && rows[5].querySelector('p')) {
     const pincodeFieldText = rows[5].querySelector('p').textContent.trim();
     showPincodeField = pincodeFieldText.toLowerCase() === 'true';
   }
 
-  // Row 6: Show Indian Resident Field
   if (rows[6] && rows[6].querySelector('p')) {
     const indianResidentText = rows[6].querySelector('p').textContent.trim();
     showIndianResidentField = indianResidentText.toLowerCase() === 'true';
   }
 
-  // Row 7: Show Employment Type Field
   if (rows[7] && rows[7].querySelector('p')) {
     const employmentTypeText = rows[7].querySelector('p').textContent.trim();
     showEmploymentTypeField = employmentTypeText.toLowerCase() === 'true';
   }
 
-  // Create the form HTML structure
+  // Transform the existing first row's <p> into the form title (don't replace it)
+  if (rows[0] && rows[0].querySelector('p')) {
+    const titleP = rows[0].querySelector('p');
+    titleP.className = 'form-title';
+    titleP.textContent = title;
+  }
+
+  // Hide configuration rows (rows 1-7) but don't remove them
+  for (let i = 1; i < rows.length; i++) {
+    if (rows[i]) {
+      rows[i].style.display = 'none';
+    }
+  }
+
+  // Create form container and add it after the title row
   const formContainer = document.createElement('div');
   formContainer.className = 'lead-form-container';
 
@@ -71,12 +77,6 @@ export default function decorate(block) {
 
   const formSection = document.createElement('div');
   formSection.className = 'form-section';
-
-  // Create title
-  const titleElement = document.createElement('h2');
-  titleElement.className = 'form-title';
-  titleElement.textContent = title;
-  formSection.appendChild(titleElement);
 
   // Create form
   const form = document.createElement('form');
@@ -93,7 +93,6 @@ export default function decorate(block) {
   // Define field configurations
   const fieldConfigurations = [
     {
-      key: 'name',
       name: 'name',
       placeholder: 'Name*',
       type: 'text',
@@ -101,7 +100,6 @@ export default function decorate(block) {
       show: showNameField
     },
     {
-      key: 'mobile',
       name: 'mobile',
       placeholder: 'Mobile Number*',
       type: 'tel',
@@ -109,7 +107,6 @@ export default function decorate(block) {
       show: showMobileField
     },
     {
-      key: 'pincode',
       name: 'pincode',
       placeholder: 'Pincode*',
       type: 'text',
@@ -117,7 +114,6 @@ export default function decorate(block) {
       show: showPincodeField
     },
     {
-      key: 'indianResident',
       name: 'indianResident',
       label: 'Are you an Indian Resident*',
       type: 'select',
@@ -130,7 +126,6 @@ export default function decorate(block) {
       ]
     },
     {
-      key: 'employmentType',
       name: 'employmentType',
       label: 'Employment Type*',
       type: 'select',
@@ -147,23 +142,19 @@ export default function decorate(block) {
     }
   ];
 
-  // Create form fields based on configuration
+  // Create form fields
   fieldConfigurations.forEach((fieldConfig) => {
     if (!fieldConfig.show) return;
 
-    // Create form field wrapper
     const fieldWrapper = document.createElement('div');
     fieldWrapper.className = 'form-field-wrapper';
 
     if (fieldConfig.type === 'select') {
-      // Create select element
       const select = document.createElement('select');
       select.name = fieldConfig.name;
-      select.id = fieldConfig.name;
       select.required = fieldConfig.required;
       select.className = 'form-select';
 
-      // Add options
       fieldConfig.options.forEach((option) => {
         const optionElement = document.createElement('option');
         optionElement.value = option.value;
@@ -177,7 +168,6 @@ export default function decorate(block) {
 
       fieldWrapper.appendChild(select);
     } else {
-      // Create input element
       const input = document.createElement('input');
       input.type = fieldConfig.type;
       input.name = fieldConfig.name;
@@ -204,19 +194,8 @@ export default function decorate(block) {
   formContent.appendChild(formSection);
   formContainer.appendChild(formContent);
 
-  // Clear the block content but preserve the structure for authoring
-  const blockClone = block.cloneNode(true);
-  
-  // Clear block content and add form
-  block.innerHTML = '';
+  // Add the form after the title row, don't replace anything
   block.appendChild(formContainer);
-  
-  // For authoring mode, preserve the original structure
-  if (document.body.classList.contains('editor') || window.location.href.includes('editor')) {
-    // Keep original rows for authoring
-    blockClone.style.display = 'none';
-    block.appendChild(blockClone);
-  }
 
   // Move instrumentation
   moveInstrumentation(block, formContainer);
