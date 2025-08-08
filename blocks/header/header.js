@@ -1,9 +1,11 @@
 import { fetchPlaceholders, getMetadata } from '../../scripts/aem.js';
 import { loadFragment } from '../fragment/fragment.js';
 import setupGoldPriceDropdown, { preloadGoldPriceData } from '../../components/gold-price-api/gold-price.js';
+
 // Constants
 const DESKTOP_BREAKPOINT = '(min-width: 900px)';
 const NAV_CLASSES = ['brand', 'sections', 'tools'];
+const GLOBAL_ACCORDION_EVENT = 'globalAccordionToggle';
 
 // Media query for desktop detection
 const isDesktop = window.matchMedia(DESKTOP_BREAKPOINT);
@@ -67,6 +69,51 @@ function handleEventListeners(nav, isExpanded) {
 }
 
 /**
+ * Closes all accordion items globally or within a specific sidebar
+ * @param {Element|null} sidebar - Optional sidebar element to close accordions within
+ */
+function closeAllAccordionItems(sidebar = null) {
+  if (sidebar) {
+    // Close accordion items in specific sidebar
+    const accordionItems = sidebar.querySelectorAll('details[open]');
+    accordionItems.forEach((item) => {
+      item.removeAttribute('open');
+    });
+  } else {
+    // Close all accordion items globally
+    const allAccordionItems = document.querySelectorAll('details[open]');
+    allAccordionItems.forEach((item) => {
+      item.removeAttribute('open');
+    });
+  }
+}
+
+/**
+ * Sets up global accordion management for the header
+ * This ensures sidebar accordions integrate with the global accordion system
+ * When an accordion outside the sidebar is opened, sidebar accordions are automatically closed
+ */
+function setupGlobalAccordionManagement() {
+  if (window.headerAccordionListenerSet) return;
+
+  // Listen for global accordion events to ensure sidebar accordions work with global system
+  document.addEventListener(GLOBAL_ACCORDION_EVENT, (event) => {
+    const { openedItem } = event.detail;
+
+    // If the opened item is not in the sidebar, close all sidebar accordions
+    const sidebar = document.querySelector('.nav-sidebar');
+    if (sidebar && !sidebar.contains(openedItem)) {
+      const sidebarAccordionItems = sidebar.querySelectorAll('details[open]');
+      sidebarAccordionItems.forEach((item) => {
+        item.removeAttribute('open');
+      });
+    }
+  });
+
+  window.headerAccordionListenerSet = true;
+}
+
+/**
  * Toggles the sidebar visibility and accessibility
  */
 const toggleSidebar = async (nav, sidebar, forceExpanded = null) => {
@@ -89,6 +136,9 @@ const toggleSidebar = async (nav, sidebar, forceExpanded = null) => {
         sidebar.classList.add('sidebar-open');
       }, 10);
     } else {
+      // Close all accordion items when sidebar is closing
+      closeAllAccordionItems(sidebar);
+
       sidebar.classList.remove('sidebar-open');
       // Wait for animation to complete before hiding
       setTimeout(() => {
@@ -897,6 +947,9 @@ function createSidebarMain(sidebar) {
  * Main decoration function - loads and sets up the header navigation
  */
 export default async function decorate(block) {
+  // Setup global accordion management
+  setupGlobalAccordionManagement();
+
   // Preload gold price data immediately for better UX
   preloadGoldPriceData();
 
