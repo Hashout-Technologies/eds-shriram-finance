@@ -18,43 +18,6 @@ export function CreateElem(type, className, id, text) {
   return elem;
 }
 
-function applyArticlesFilterAndSort(apiResponse) {
-  if (!apiResponse?.data) return apiResponse;
-
-  const currentPath = window.location.pathname;
-  const parts = currentPath.split('/').filter(Boolean);
-
-  let filtered = apiResponse.data.filter((item) => {
-    const itemParts = item.path.split('/').filter(Boolean);
-
-    // Exclude /articles
-    if (item.path === '/articles') return false;
-
-    // Exclude /articles/{category}
-    if (itemParts.length === 2) return false;
-
-    // Exclude /articles/{category}/{year}
-    if (itemParts.length === 3 && /^\d{4}$/.test(itemParts[2])) return false;
-
-    return true;
-  });
-
-  // Category-specific filtering
-  if (parts.length === 2 && parts[0] === 'articles') {
-    const category = parts[1];
-    filtered = filtered.filter((item) => item.path.startsWith(`/articles/${category}/`));
-  }
-
-  // Sort by lastModified (recent first)
-  filtered.sort((a, b) => {
-    const dateA = new Date(a.lastModified || 0);
-    const dateB = new Date(b.lastModified || 0);
-    return dateB - dateA;
-  });
-
-  return { ...apiResponse, data: filtered };
-}
-
 export async function fetchWithCache(url, cacheKey, body, headers, cacheDurationMinutes = 60, method = 'POST') {
   try {
     // Check localStorage for cached data
@@ -97,12 +60,7 @@ export async function fetchWithCache(url, cacheKey, body, headers, cacheDuration
       throw new Error(`HTTP error! status: ${response.status}`);
     }
 
-    let apiResponse = await response.json();
-
-    // 4️⃣ Apply filtering/sorting **only when first saving**
-    if (cacheKey === 'articlesQueryIndex') {
-      apiResponse = applyArticlesFilterAndSort(apiResponse);
-    }
+    const apiResponse = await response.json();
 
     // Create storage object with timestamp
     const cacheObject = {
