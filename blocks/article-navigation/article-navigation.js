@@ -99,10 +99,12 @@ export default async function decorate(block) {
   const prevIconContainer = document.createElement('div');
   prevIconContainer.className = 'next-right';
 
-  const prevLabel = document.createElement(prevArticle.available ? 'div' : '');
+  const prevLabel = document.createElement('div');
   if (prevArticle.available) {
     prevLabel.className = 'label';
     prevLabel.textContent = 'Previous Article';
+  } else {
+    prevLabel.style.visibility = 'hidden'; // or skip appending it entirely
   }
 
   prevHyperlinkButtons.appendChild(prevIconContainer);
@@ -128,10 +130,12 @@ export default async function decorate(block) {
   const nextHyperlinkButtons = document.createElement('div');
   nextHyperlinkButtons.className = 'hyperlink-buttons';
 
-  const nextLabel = document.createElement(nextArticle.available ? 'div' : '');
+  const nextLabel = document.createElement('div');
   if (nextArticle.available) {
     nextLabel.className = 'label-2';
     nextLabel.textContent = 'Next Article';
+  } else {
+    nextLabel.style.visibility = 'hidden';
   }
 
   const nextIconContainer = document.createElement('div');
