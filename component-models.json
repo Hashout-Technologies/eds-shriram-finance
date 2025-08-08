@@ -1016,50 +1016,97 @@
   "id": "lead-form",
   "fields": [
     {
-      "component": "text",
-      "valueType": "string",
+      "component": "richtext",
       "name": "title",
-      "label": "Form Title"
+      "label": "Form Title",
+      "description": "The main heading for the form"
+    },
+    {
+      "component": "select",
+      "name": "showNameField",
+      "label": "Show Name Field",
+      "options": [
+        {
+          "name": "Hide",
+          "value": "false"
+        },
+        {
+          "name": "Show",
+          "value": "true"
+        }
+      ]
+    },
+    {
+      "component": "select",
+      "name": "showMobileField", 
+      "label": "Show Mobile Number Field",
+      "options": [
+        {
+          "name": "Hide",
+          "value": "false"
+        },
+        {
+          "name": "Show",
+          "value": "true"
+        }
+      ]
+    },
+    {
+      "component": "select",
+      "name": "showPincodeField",
+      "label": "Show Pincode Field",
+      "options": [
+        {
+          "name": "Hide",
+          "value": "false"
+        },
+        {
+          "name": "Show",
+          "value": "true"
+        }
+      ]
     },
     {
       "component": "text",
-      "valueType": "string",
-      "name": "actionUrl", 
-      "label": "Form Action URL"
+      "name": "actionUrl",
+      "label": "Form Submission URL",
+      "description": "Where the form data should be sent"
     },
     {
       "component": "text",
-      "valueType": "string",
-      "name": "ctaText",
-      "label": "Button Text"
+      "name": "buttonText",
+      "label": "Button Text",
+      "description": "Text for the submit button"
     },
     {
-      "component": "text",
-      "valueType": "string",
-      "name": "placeholder1",
-      "label": "Placeholder 1"
+      "component": "select",
+      "name": "showIndianResidentField",
+      "label": "Show Indian Resident Field",
+      "options": [
+        {
+          "name": "Hide",
+          "value": "false"
+        },
+        {
+          "name": "Show",
+          "value": "true"
+        }
+      ]
     },
     {
-      "component": "text",
-      "valueType": "string", 
-      "name": "placeholder2",
-      "label": "Placeholder 2"
-    },
-    {
-      "component": "text",
-      "valueType": "string",
-      "name": "placeholder3", 
-      "label": "Placeholder 3"
-    },
-    {
-      "component": "boolean",
-      "name": "showIndianResident",
-      "label": "Show Indian Resident Field"
-    },
-    {
-      "component": "boolean",
-      "name": "showEmploymentType", 
-      "label": "Show Employment Type Field"
+      "component": "select", 
+      "name": "showEmploymentTypeField",
+      "label": "Show Employment Type Field",
+      "options": [
+        {
+          "name": "Hide",
+          "value": "false"
+        },
+        {
+          "name": "Show", 
+          "value": "true"
+        }
+      ]
     }
   ]
 },
