@@ -7,24 +7,32 @@ const getPageFromUrl = () => {
 };
 
 const renderJsonCards = (data, index) => {
-  const optimizedPic = data.articleImage
-    ? createOptimizedPicture(data.articleImage, data.title, index === 0 ? 'eager' : 'lazy', [{ width: '270' }], true)
+  const optimizedPic = data.image
+    ? createOptimizedPicture(
+      data.image,
+      data.title,
+      index === 0 ? 'eager' : 'lazy',
+      [{ width: '270' }],
+      true,
+    )
     : '';
+
   return `
-      <a href="${data.cardLink}" class="article-card-content" target="_blank">
-        <div class="article-item-image">${optimizedPic?.outerHTML || ''}</div>
-        <div class="article-item-content">
-          <p class="article-item-title">${data.title}</p>
-          <p class="article-item-subtitle">${data.description}</p>
-          <div class="article-item-meta">
-            <div class="meta-info">
-              <span class="published-time"><img src="/icons/clock.svg" alt="clock">${data.publishedDuration}</span>
-              <span class="estimated-readtime">3 Min</span>
-            </div>
-            <span class="read-more">Read more</span>
+    <a href="${data.path}" class="article-card-content">
+      <div class="article-item-image">${optimizedPic?.outerHTML || ''}</div>
+      <div class="article-item-content">
+        <p class="article-item-title">${data.title}</p>
+        <p class="article-item-subtitle">${data.description}</p>
+        <div class="article-item-meta">
+          <div class="meta-info">
+            <span class="published-time"><img src="/icons/clock.svg" alt="clock">${data.lastModified}</span>
+            <span class="estimated-readtime">3 Min Read</span>
           </div>
+          <span class="read-more">Read more</span>
         </div>
-      </a>`;
+      </div>
+    </a>
+  `;
 };
 
 const getPageLink = (page) => (page === 1 ? window.location.pathname : `?page=${page}`);
@@ -83,9 +91,10 @@ const renderPagination = (totalPages, currentPage) => {
 
   const mobileCountLi = CreateElem('li', 'pagination-mobile-count', null, null);
   mobileCountLi.innerHTML = `
-  <span class="page-count">
-    <span class="current">${currentPage}</span> / <span class="total">${totalPages}</span>
-  </span>`;
+    <span class="page-count">
+      <span class="current">${currentPage}</span> / <span class="total">${totalPages}</span>
+    </span>
+  `;
   ul.appendChild(mobileCountLi);
 
   ul.appendChild(createPageItem('Next', currentPage + 1, currentPage === totalPages));
@@ -110,7 +119,7 @@ export default async function decorate(block) {
   title?.classList.add('title');
 
   try {
-    const json = await fetchWithCache(
+    const response = await fetchWithCache(
       'https://article-cards--eds-shriram-finance--hashout-technologies.aem.live/query-index.json',
       'articlesQueryIndex',
       null,
@@ -119,44 +128,21 @@ export default async function decorate(block) {
       'GET',
     );
 
-    let articles = json?.data || [];
+    let articles = response?.data || [];
 
-    console.log('Fetched raw articles count:', articles.length);
-
-    // ✅ Filter out only category landing & year landing pages
-    articles = articles.filter((item) => {
-      const parts = item.path.split('/').filter(Boolean);
-      if (item.path === '/articles') return false;
-      if (parts.length === 2 && parts[0] === 'articles') return false; // /articles/category
-      if (parts.length === 3 && parts[0] === 'articles' && /^\d{4}$/.test(parts[2])) return false; // /articles/category/year
-      return true;
-    });
-
-    console.log('Articles after filtering:', articles.length);
-
-    // ✅ Remove duplicates
-    const seenPaths = new Set();
-    articles = articles.filter((article) => {
-      if (seenPaths.has(article.path)) return false;
-      seenPaths.add(article.path);
-      return true;
-    });
-
-    // ✅ Map to card data format
-    articles = articles.map((item) => ({
-      cardLink: item.path, // keep relative
-      articleImage: item.image || '',
-      title: item.title || '',
-      description: item.description || '',
-      publishedDuration: item.lastModified || '',
-      estimatedReadTime: '',
-    }));
+    // 📌 Category-specific filtering here
+    const currentPath = window.location.pathname;
+    const parts = currentPath.split('/').filter(Boolean);
+    if (parts.length === 2 && parts[0] === 'articles') {
+      const category = parts[1];
+      articles = articles.filter((item) => item.path.startsWith(`/articles/${category}/`));
+    }
 
     const currentPage = getPageFromUrl();
     const perPage = 9;
     const totalPages = Math.ceil(articles.length / perPage);
 
-    if (articles.length === 0 || currentPage > totalPages || currentPage < 1) {
+    if (currentPage > totalPages || currentPage < 1) {
       block.appendChild(renderFallback());
       return;
     }
@@ -172,12 +158,11 @@ export default async function decorate(block) {
     });
 
     block.appendChild(articleListsWrapper);
-
     if (totalPages > 1) {
       block.appendChild(renderPagination(totalPages, currentPage));
     }
   } catch (e) {
-    console.error('Error fetching or rendering articles:', e);
+    console.error(e);
     block.appendChild(renderFallback());
   }
 }
