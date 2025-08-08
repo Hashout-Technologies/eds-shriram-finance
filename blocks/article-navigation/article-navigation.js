@@ -12,7 +12,18 @@ export default async function decorate(block) {
     'GET',
   );
 
-  const articles = articlesData?.data || [];
+  const allArticles = articlesData?.data || [];
+
+  // Helper function to check if the path is a landing or category page
+  function isLandingOrCategory(path) {
+    return (
+      path === '/articles'
+      || /^\/articles\/[^/]+$/.test(path) // matches /articles/{category}
+    );
+  }
+
+  // 1️⃣ Filter out landing and category pages first
+  const articles = allArticles.filter((article) => !isLandingOrCategory(article.path));
 
   // Get the current page path
   const currentPath = window.location.pathname.replace(/\/$/, '');
@@ -23,37 +34,20 @@ export default async function decorate(block) {
   let prevArticle = { available: false };
   let nextArticle = { available: false };
 
-  // Helper function to check if the path is a landing or category page
-  function isLandingOrCategory(path) {
-    return (
-      path === '/articles'
-      || /^\/articles\/[^/]+$/.test(path) // matches /articles/{category}
-    );
-  }
-
   if (currentIndex !== -1) {
-    // Previous valid article
-    for (let i = currentIndex - 1; i >= 0; i -= 1) {
-      if (!isLandingOrCategory(articles[i].path)) {
-        prevArticle = {
-          title: articles[i].title,
-          url: articles[i].path,
-          available: true,
-        };
-        break;
-      }
+    if (currentIndex > 0) {
+      prevArticle = {
+        title: articles[currentIndex - 1].title,
+        url: articles[currentIndex - 1].path,
+        available: true,
+      };
     }
-
-    // Next valid article
-    for (let i = currentIndex + 1; i < articles.length; i += 1) {
-      if (!isLandingOrCategory(articles[i].path)) {
-        nextArticle = {
-          title: articles[i].title,
-          url: articles[i].path,
-          available: true,
-        };
-        break;
-      }
+    if (currentIndex < articles.length - 1) {
+      nextArticle = {
+        title: articles[currentIndex + 1].title,
+        url: articles[currentIndex + 1].path,
+        available: true,
+      };
     }
   }
 
