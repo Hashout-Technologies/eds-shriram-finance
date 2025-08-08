@@ -1012,59 +1012,54 @@
     }
   ]
 },
-  {
+ {
   "id": "lead-form",
   "fields": [
     {
       "component": "text",
       "valueType": "string",
       "name": "title",
-      "label": "Form Title",
-      "value": "Get a gold loan at low interest rates"
+      "label": "Form Title"
     },
     {
       "component": "text",
       "valueType": "string",
-      "name": "actionUrl",
-      "label": "Form Action URL",
-      "value": ""
+      "name": "actionUrl", 
+      "label": "Form Action URL"
     },
     {
       "component": "text",
       "valueType": "string",
-      "name": "ctaButtonText",
-      "label": "CTA Button Text",
-      "value": "Apply Now"
+      "name": "ctaText",
+      "label": "Button Text"
+    },
+    {
+      "component": "text",
+      "valueType": "string",
+      "name": "placeholder1",
+      "label": "Placeholder 1"
+    },
+    {
+      "component": "text",
+      "valueType": "string", 
+      "name": "placeholder2",
+      "label": "Placeholder 2"
+    },
+    {
+      "component": "text",
+      "valueType": "string",
+      "name": "placeholder3", 
+      "label": "Placeholder 3"
     },
     {
       "component": "boolean",
-      "name": "showNameField",
-      "label": "Show Name Field",
-      "value": true
+      "name": "showIndianResident",
+      "label": "Show Indian Resident Field"
     },
     {
       "component": "boolean",
-      "name": "showMobileField",
-      "label": "Show Mobile Number Field",
-      "value": true
-    },
-    {
-      "component": "boolean",
-      "name": "showPincodeField",
-      "label": "Show Pincode Field",
-      "value": true
-    },
-    {
-      "component": "boolean",
-      "name": "showIndianResidentField",
-      "label": "Show Indian Resident Field",
-      "value": false
-    },
-    {
-      "component": "boolean",
-      "name": "showEmploymentTypeField",
-      "label": "Show Employment Type Field",
-      "value": false
+      "name": "showEmploymentType", 
+      "label": "Show Employment Type Field"
     }
   ]
 },
