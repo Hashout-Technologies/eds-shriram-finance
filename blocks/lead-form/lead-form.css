@@ -89,6 +89,15 @@
   display: flex;
 }
 
+/* Show/hide field classes */
+.form-field-wrapper.hide {
+  display: none !important;
+}
+
+.form-field-wrapper.show {
+  display: flex !important;
+}
+
 .lead-form .form-input {
   align-self: stretch; 
   height: 3rem; 
