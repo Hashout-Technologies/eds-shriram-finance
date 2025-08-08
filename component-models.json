@@ -1037,33 +1037,34 @@
       "value": "Apply Now"
     },
     {
-      "component": "multiselect",
-      "name": "formFields",
-      "label": "Form Fields to Show",
-      "valueType": "string",
-      "value": "name,mobile,pincode",
-      "options": [
-        {
-          "name": "Name",
-          "value": "name"
-        },
-        {
-          "name": "Mobile Number",
-          "value": "mobile"
-        },
-        {
-          "name": "Pin Code",
-          "value": "pincode"
-        },
-        {
-          "name": "Are you an Indian Resident",
-          "value": "indianResident"
-        },
-        {
-          "name": "Employment Type",
-          "value": "employmentType"
-        }
-      ]
+      "component": "boolean",
+      "name": "showNameField",
+      "label": "Show Name Field",
+      "value": true
+    },
+    {
+      "component": "boolean",
+      "name": "showMobileField",
+      "label": "Show Mobile Number Field",
+      "value": true
+    },
+    {
+      "component": "boolean",
+      "name": "showPincodeField",
+      "label": "Show Pincode Field",
+      "value": true
+    },
+    {
+      "component": "boolean",
+      "name": "showIndianResidentField",
+      "label": "Show Indian Resident Field",
+      "value": false
+    },
+    {
+      "component": "boolean",
+      "name": "showEmploymentTypeField",
+      "label": "Show Employment Type Field",
+      "value": false
     }
   ]
 },

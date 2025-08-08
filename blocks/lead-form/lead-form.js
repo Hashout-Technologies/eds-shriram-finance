@@ -3,46 +3,61 @@ import { moveInstrumentation } from '../../scripts/scripts.js';
 export default function decorate(block) {
   const rows = [...block.children];
 
-  // Extract configuration from the rows
+  // Extract configuration from the rows (simple row-based approach)
   let title = 'Get a gold loan at low interest rates'; // Default
   let actionUrl = '';
   let ctaButtonText = 'Apply Now'; // Default
-  let selectedFields = ['name', 'mobile', 'pincode']; // Default fields
+  let showNameField = true;
+  let showMobileField = true;
+  let showPincodeField = true;
+  let showIndianResidentField = false;
+  let showEmploymentTypeField = false;
 
-  // Parse the configuration from block rows
-  // Row 1: Title
-  if (rows[0] && rows[0].children[0]) {
-    const titleContent = rows[0].children[0].textContent.trim();
-    if (titleContent) {
-      title = titleContent;
+  // Parse configuration from block rows
+  // Expected format: Label | Value pairs
+  rows.forEach(row => {
+    if (row.children.length >= 2) {
+      const label = row.children[0].textContent.trim().toLowerCase();
+      const value = row.children[1].textContent.trim();
+      
+      switch (label) {
+        case 'title':
+        case 'form title':
+          if (value) title = value;
+          break;
+        case 'actionurl':
+        case 'form action url':
+          if (value) actionUrl = value;
+          break;
+        case 'ctabuttontext':
+        case 'cta button text':
+          if (value) ctaButtonText = value;
+          break;
+        case 'shownamefield':
+        case 'show name field':
+          showNameField = value.toLowerCase() === 'true';
+          break;
+        case 'showmobilefield':
+        case 'show mobile number field':
+          showMobileField = value.toLowerCase() === 'true';
+          break;
+        case 'showpincodefield':
+        case 'show pincode field':
+          showPincodeField = value.toLowerCase() === 'true';
+          break;
+        case 'showindianresidentfield':
+        case 'show indian resident field':
+          showIndianResidentField = value.toLowerCase() === 'true';
+          break;
+        case 'showemploymenttypefield':
+        case 'show employment type field':
+          showEmploymentTypeField = value.toLowerCase() === 'true';
+          break;
+      }
     }
-  }
+  });
 
-  // Row 2: Action URL
-  if (rows[1] && rows[1].children[0]) {
-    const urlContent = rows[1].children[0].textContent.trim();
-    if (urlContent) {
-      actionUrl = urlContent;
-    }
-  }
-
-  // Row 3: CTA Button Text
-  if (rows[2] && rows[2].children[0]) {
-    const ctaContent = rows[2].children[0].textContent.trim();
-    if (ctaContent) {
-      ctaButtonText = ctaContent;
-    }
-  }
-
-  // Row 4: Selected Fields (comma-separated)
-  if (rows[3] && rows[3].children[0]) {
-    const fieldsContent = rows[3].children[0].textContent.trim();
-    if (fieldsContent) {
-      selectedFields = fieldsContent.split(',').map(field => field.trim());
-    }
-  }
-
-  // Create the main form container (matching Figma structure)
+  // Create the main form container
   const formContainer = document.createElement('div');
   formContainer.className = 'lead-form-container';
 
@@ -79,26 +94,30 @@ export default function decorate(block) {
       placeholder: 'Name*', 
       type: 'text', 
       required: true,
+      show: showNameField
     },
     mobile: {
       name: 'mobile', 
       placeholder: 'Mobile Number*', 
       type: 'tel', 
       required: true,
+      show: showMobileField
     },
     pincode: {
       name: 'pincode', 
       placeholder: 'Pincode*', 
       type: 'text', 
       required: true,
+      show: showPincodeField
     },
     indianResident: {
       name: 'indianResident',
       label: 'Are you an Indian Resident*',
       type: 'select',
       required: true,
+      show: showIndianResidentField,
       options: [
-        { value: '', text: 'Select an option' },
+        { value: '', text: 'Are you an Indian Resident*' },
         { value: 'yes', text: 'Yes' },
         { value: 'no', text: 'No' }
       ]
@@ -108,8 +127,9 @@ export default function decorate(block) {
       label: 'Employment Type*',
       type: 'select',
       required: true,
+      show: showEmploymentTypeField,
       options: [
-        { value: '', text: 'Select employment type' },
+        { value: '', text: 'Employment Type*' },
         { value: 'self-employed-business', text: 'Self Employed Business' },
         { value: 'doctor', text: 'Doctor' },
         { value: 'chartered-accountant', text: 'Chartered Accountant' },
@@ -119,39 +139,36 @@ export default function decorate(block) {
     }
   };
 
-  // Create form fields based on selection
-  selectedFields.forEach((fieldKey) => {
+  // Create form fields based on configuration
+  Object.keys(fieldConfigurations).forEach((fieldKey) => {
     const fieldConfig = fieldConfigurations[fieldKey];
-    if (!fieldConfig) return;
+    if (!fieldConfig.show) return;
 
     // Create form field wrapper
     const fieldWrapper = document.createElement('div');
     fieldWrapper.className = 'form-field-wrapper';
 
     if (fieldConfig.type === 'select') {
-      // Create label for select fields
-      const label = document.createElement('label');
-      label.className = 'form-label';
-      label.textContent = fieldConfig.label;
-      label.setAttribute('for', fieldConfig.name);
-      fieldWrapper.appendChild(label);
-
-      // Create select element
+      // Create select element with placeholder as first option
       const select = document.createElement('select');
       select.name = fieldConfig.name;
       select.id = fieldConfig.name;
       select.required = fieldConfig.required;
       select.className = 'form-select';
 
-      // Add options
-      fieldConfig.options.forEach((option) => {
+      // Add placeholder as first disabled option
+      const placeholderOption = document.createElement('option');
+      placeholderOption.value = '';
+      placeholderOption.textContent = fieldConfig.label;
+      placeholderOption.disabled = true;
+      placeholderOption.selected = true;
+      select.appendChild(placeholderOption);
+
+      // Add actual options (skip first placeholder option)
+      fieldConfig.options.slice(1).forEach((option) => {
         const optionElement = document.createElement('option');
         optionElement.value = option.value;
         optionElement.textContent = option.text;
-        if (option.value === '') {
-          optionElement.disabled = true;
-          optionElement.selected = true;
-        }
         select.appendChild(optionElement);
       });
 
