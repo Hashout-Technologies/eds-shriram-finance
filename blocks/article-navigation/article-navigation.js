@@ -24,14 +24,14 @@ export default async function decorate(block) {
   let nextArticle = { available: false };
 
   if (currentIndex !== -1) {
-    if (currentIndex > 0) {
+    if (currentIndex > 0 && !articles[currentIndex - 1].path.match(/^\/articles\/[^/]+$/)) {
       prevArticle = {
         title: articles[currentIndex - 1].title,
         url: articles[currentIndex - 1].path,
         available: true,
       };
     }
-    if (currentIndex < articles.length - 1) {
+    if (currentIndex < articles.length - 1 && !articles[currentIndex - 1].path.match(/^\/articles\/[^/]+$/)) {
       nextArticle = {
         title: articles[currentIndex + 1].title,
         url: articles[currentIndex + 1].path,
@@ -67,9 +67,11 @@ export default async function decorate(block) {
   const prevIconContainer = document.createElement('div');
   prevIconContainer.className = 'next-right';
 
-  const prevLabel = document.createElement('div');
-  prevLabel.className = 'label';
-  prevLabel.textContent = 'Previous Article';
+  const prevLabel = document.createElement(prevArticle.available ? 'div' : '');
+  if (prevArticle.available) {
+    prevLabel.className = 'label';
+    prevLabel.textContent = 'Previous Article';
+  }
 
   prevHyperlinkButtons.appendChild(prevIconContainer);
   prevHyperlinkButtons.appendChild(prevLabel);
@@ -94,9 +96,11 @@ export default async function decorate(block) {
   const nextHyperlinkButtons = document.createElement('div');
   nextHyperlinkButtons.className = 'hyperlink-buttons';
 
-  const nextLabel = document.createElement('div');
-  nextLabel.className = 'label-2';
-  nextLabel.textContent = 'Next Article';
+  const nextLabel = document.createElement(nextArticle.available ? 'div' : '');
+  if (nextArticle.available) {
+    nextLabel.className = 'label-2';
+    nextLabel.textContent = 'Next Article';
+  }
 
   const nextIconContainer = document.createElement('div');
   nextIconContainer.className = 'vector-wrapper';
