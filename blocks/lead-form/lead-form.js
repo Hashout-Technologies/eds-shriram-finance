@@ -3,62 +3,59 @@ import { moveInstrumentation } from '../../scripts/scripts.js';
 export default function decorate(block) {
   const rows = [...block.children];
 
-  // Read configuration from existing DOM structure - don't replace anything
-  let title = 'Get a gold loan at low interest rates';
+  // Read configuration from existing DOM structure - NO defaults
+  let title = '';
   let actionUrl = '';
-  let ctaButtonText = 'Apply Now';
+  let ctaButtonText = '';
   let showNameField = true;
   let showMobileField = true;
   let showPincodeField = true;
   let showIndianResidentField = false;
   let showEmploymentTypeField = false;
 
-  // Extract values from the existing row structure
+  // Extract values from the existing row structure - only if they exist
   if (rows[0] && rows[0].querySelector('p')) {
-    const titleText = rows[0].querySelector('p').textContent.trim();
-    if (titleText) title = titleText;
+    title = rows[0].querySelector('p').textContent.trim();
   }
 
   if (rows[1] && rows[1].querySelector('p')) {
-    const urlText = rows[1].querySelector('p').textContent.trim();
-    if (urlText) actionUrl = urlText;
+    actionUrl = rows[1].querySelector('p').textContent.trim();
   }
 
   if (rows[2] && rows[2].querySelector('p')) {
-    const ctaText = rows[2].querySelector('p').textContent.trim();
-    if (ctaText) ctaButtonText = ctaText;
+    ctaButtonText = rows[2].querySelector('p').textContent.trim();
   }
 
   if (rows[3] && rows[3].querySelector('p')) {
     const nameFieldText = rows[3].querySelector('p').textContent.trim();
-    showNameField = nameFieldText.toLowerCase() === 'true';
+    if (nameFieldText) showNameField = nameFieldText.toLowerCase() === 'true';
   }
 
   if (rows[4] && rows[4].querySelector('p')) {
     const mobileFieldText = rows[4].querySelector('p').textContent.trim();
-    showMobileField = mobileFieldText.toLowerCase() === 'true';
+    if (mobileFieldText) showMobileField = mobileFieldText.toLowerCase() === 'true';
   }
 
   if (rows[5] && rows[5].querySelector('p')) {
     const pincodeFieldText = rows[5].querySelector('p').textContent.trim();
-    showPincodeField = pincodeFieldText.toLowerCase() === 'true';
+    if (pincodeFieldText) showPincodeField = pincodeFieldText.toLowerCase() === 'true';
   }
 
   if (rows[6] && rows[6].querySelector('p')) {
     const indianResidentText = rows[6].querySelector('p').textContent.trim();
-    showIndianResidentField = indianResidentText.toLowerCase() === 'true';
+    if (indianResidentText) showIndianResidentField = indianResidentText.toLowerCase() === 'true';
   }
 
   if (rows[7] && rows[7].querySelector('p')) {
     const employmentTypeText = rows[7].querySelector('p').textContent.trim();
-    showEmploymentTypeField = employmentTypeText.toLowerCase() === 'true';
+    if (employmentTypeText) showEmploymentTypeField = employmentTypeText.toLowerCase() === 'true';
   }
 
   // Transform the existing first row's <p> into the form title (don't replace it)
   if (rows[0] && rows[0].querySelector('p')) {
     const titleP = rows[0].querySelector('p');
     titleP.className = 'form-title';
-    titleP.textContent = title;
+    // Don't change the text content - let it be whatever is in the DOM
   }
 
   // Hide configuration rows (rows 1-7) but don't remove them
@@ -181,15 +178,21 @@ export default function decorate(block) {
     formFields.appendChild(fieldWrapper);
   });
 
-  // Create submit button
-  const button = document.createElement('button');
-  button.type = 'submit';
-  button.className = 'form-button';
-  button.textContent = ctaButtonText;
+  // Create submit button only if CTA text exists
+  if (ctaButtonText) {
+    const button = document.createElement('button');
+    button.type = 'submit';
+    button.className = 'form-button';
+    button.textContent = ctaButtonText;
+    
+    // Build form structure
+    form.appendChild(formFields);
+    form.appendChild(button);
+  } else {
+    // Just add fields if no CTA text
+    form.appendChild(formFields);
+  }
 
-  // Build form structure
-  form.appendChild(formFields);
-  form.appendChild(button);
   formSection.appendChild(form);
   formContent.appendChild(formSection);
   formContainer.appendChild(formContent);
