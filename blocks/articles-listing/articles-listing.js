@@ -13,7 +13,7 @@ function getTitleFromType(type) {
 function createArticleCard(article) {
   // Create article item wrapper
   const articleItem = document.createElement('a');
-  articleItem.href = article.url;
+  articleItem.href = article.path;
   articleItem.className = 'article-item';
 
   // Create article item content
