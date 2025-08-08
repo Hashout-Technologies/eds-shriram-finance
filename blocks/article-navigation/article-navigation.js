@@ -97,7 +97,11 @@ export default async function decorate(block) {
   prevHyperlinkButtons.className = 'hyperlink-buttons';
 
   const prevIconContainer = document.createElement('div');
-  prevIconContainer.className = 'next-right';
+  if (prevArticle.available) {
+    prevIconContainer.className = 'next-right';
+  } else {
+    prevIconContainer.style.visibility = 'hidden';
+  }
 
   const prevLabel = document.createElement('div');
   if (prevArticle.available) {
@@ -139,7 +143,11 @@ export default async function decorate(block) {
   }
 
   const nextIconContainer = document.createElement('div');
-  nextIconContainer.className = 'vector-wrapper';
+  if (nextArticle.available) {
+    nextIconContainer.className = 'vector-wrapper';
+  } else {
+    nextIconContainer.style.visibility = 'hidden';
+  }
 
   nextHyperlinkButtons.appendChild(nextLabel);
   nextHyperlinkButtons.appendChild(nextIconContainer);
