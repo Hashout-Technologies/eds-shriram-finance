@@ -18,6 +18,13 @@ export function CreateElem(type, className, id, text) {
   return elem;
 }
 
+function parseCustomDate(dateStr) {
+  if (!dateStr) return new Date(0); // fallback for missing date
+  // Remove ordinal suffixes like 1st, 2nd, 3rd, 21st, etc.
+  const cleaned = dateStr.replace(/(\d+)(st|nd|rd|th)/, '$1');
+  return new Date(cleaned);
+}
+
 export async function fetchWithCache(url, cacheKey, body, headers, cacheDurationMinutes = 60, method = 'POST') {
   try {
     // Check localStorage for cached data
@@ -62,15 +69,10 @@ export async function fetchWithCache(url, cacheKey, body, headers, cacheDuration
 
     const apiResponse = await response.json();
 
-    // Apply sorting ONLY when saving to cache for articlesQueryIndex
     if (cacheKey === 'articlesQueryIndex' && apiResponse?.data) {
       apiResponse.data = apiResponse.data
         .filter((item) => item.path !== '/articles') // remove main listing
-        .sort((a, b) => {
-          const dateA = new Date(a.lastModified);
-          const dateB = new Date(b.lastModified);
-          return dateB - dateA; // newest first
-        });
+        .sort((a, b) => parseCustomDate(b.lastModified) - parseCustomDate(a.lastModified));
     }
 
     // Create storage object with timestamp
