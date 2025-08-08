@@ -23,10 +23,18 @@ export default async function decorate(block) {
   let prevArticle = { available: false };
   let nextArticle = { available: false };
 
+  // Helper function to check if the path is a landing or category page
+  function isLandingOrCategory(path) {
+    return (
+      path === '/articles'
+      || /^\/articles\/[^/]+$/.test(path) // matches /articles/{category}
+    );
+  }
+
   if (currentIndex !== -1) {
-    // Find previous valid article
+    // Previous valid article
     for (let i = currentIndex - 1; i >= 0; i -= 1) {
-      if (!articles[i].path.match(/^\/articles\/[^/]+$/)) {
+      if (!isLandingOrCategory(articles[i].path)) {
         prevArticle = {
           title: articles[i].title,
           url: articles[i].path,
@@ -35,9 +43,10 @@ export default async function decorate(block) {
         break;
       }
     }
-    // Find next valid article
+
+    // Next valid article
     for (let i = currentIndex + 1; i < articles.length; i += 1) {
-      if (!articles[i].path.match(/^\/articles\/[^/]+$/)) {
+      if (!isLandingOrCategory(articles[i].path)) {
         nextArticle = {
           title: articles[i].title,
           url: articles[i].path,
