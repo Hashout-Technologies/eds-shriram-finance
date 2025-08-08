@@ -126,7 +126,7 @@ export default async function decorate(block) {
     // ✅ Filter out only category landing & year landing pages
     articles = articles.filter((item) => {
       const parts = item.path.split('/').filter(Boolean);
-      if (item === '/articles') return false;
+      if (item.path === '/articles') return false;
       if (parts.length === 2 && parts[0] === 'articles') return false; // /articles/category
       if (parts.length === 3 && parts[0] === 'articles' && /^\d{4}$/.test(parts[2])) return false; // /articles/category/year
       return true;
