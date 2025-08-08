@@ -8,31 +8,23 @@ const getPageFromUrl = () => {
 
 const renderJsonCards = (data, index) => {
   const optimizedPic = data.image
-    ? createOptimizedPicture(
-      data.image,
-      data.title,
-      index === 0 ? 'eager' : 'lazy',
-      [{ width: '270' }],
-      true,
-    )
+    ? createOptimizedPicture(data.image, data.title, index === 0 ? 'eager' : 'lazy', [{ width: '270' }], true)
     : '';
-
   return `
-    <a href="${data.path}" class="article-card-content">
-      <div class="article-item-image">${optimizedPic?.outerHTML || ''}</div>
-      <div class="article-item-content">
-        <p class="article-item-title">${data.title}</p>
-        <p class="article-item-subtitle">${data.description}</p>
-        <div class="article-item-meta">
-          <div class="meta-info">
-            <span class="published-time"><img src="/icons/clock.svg" alt="clock">${data.lastModified}</span>
-            <span class="estimated-readtime">3 Min Read</span>
+      <a href="${data.path}" class="article-card-content" target="_blank">
+        <div class="article-item-image">${optimizedPic?.outerHTML || ''}</div>
+        <div class="article-item-content">
+          <p class="article-item-title">${data.title}</p>
+          <p class="article-item-subtitle">${data.description}</p>
+          <div class="article-item-meta">
+            <div class="meta-info">
+              <span class="published-time"><img src="/icons/clock.svg" alt="clock">${data.lastModified}</span>
+              <span class="estimated-readtime">3 Min</span>
+            </div>
+            <span class="read-more">Read more</span>
           </div>
-          <span class="read-more">Read more</span>
         </div>
-      </div>
-    </a>
-  `;
+      </a>`;
 };
 
 const getPageLink = (page) => (page === 1 ? window.location.pathname : `?page=${page}`);
@@ -52,6 +44,7 @@ const renderPagination = (totalPages, currentPage) => {
       link.classList.add('active');
       link.addEventListener('click', (e) => e.preventDefault());
     }
+
     if (disabled) {
       link.classList.add('disabled');
       li.classList.add('disabled');
@@ -91,10 +84,9 @@ const renderPagination = (totalPages, currentPage) => {
 
   const mobileCountLi = CreateElem('li', 'pagination-mobile-count', null, null);
   mobileCountLi.innerHTML = `
-    <span class="page-count">
-      <span class="current">${currentPage}</span> / <span class="total">${totalPages}</span>
-    </span>
-  `;
+  <span class="page-count">
+    <span class="current">${currentPage}</span> / <span class="total">${totalPages}</span>
+  </span>`;
   ul.appendChild(mobileCountLi);
 
   ul.appendChild(createPageItem('Next', currentPage + 1, currentPage === totalPages));
@@ -119,8 +111,8 @@ export default async function decorate(block) {
   title?.classList.add('title');
 
   try {
-    const response = await fetchWithCache(
-      'https://article-cards--eds-shriram-finance--hashout-technologies.aem.live/query-index.json',
+    const json = await fetchWithCache(
+      'https://main--eds-shriram-finance--hashout-technologies.aem.live/query-index.json',
       'articlesQueryIndex',
       null,
       {},
@@ -128,15 +120,32 @@ export default async function decorate(block) {
       'GET',
     );
 
-    let articles = response?.data || [];
+    let articles = json?.data || [];
 
-    // 📌 Category-specific filtering here
-    const currentPath = window.location.pathname;
-    const parts = currentPath.split('/').filter(Boolean);
-    if (parts.length === 2 && parts[0] === 'articles') {
-      const category = parts[1];
+    // Remove unwanted pages: /articles, /articles/{category}, /articles/{category}/{year}
+    articles = articles.filter((item) => {
+      const parts = item.path.split('/').filter(Boolean);
+
+      if (item.path === '/articles') return false;
+      if (parts.length === 2 && parts[0] === 'articles') return false;
+      if (parts.length === 3 && parts[0] === 'articles' && /^\d{4}$/.test(parts[2])) return false;
+
+      return true;
+    });
+
+    // If on a category page, filter for that category only
+    const currentPath = window.location.pathname.split('/').filter(Boolean);
+    if (currentPath.length === 2 && currentPath[0] === 'articles') {
+      const category = currentPath[1];
       articles = articles.filter((item) => item.path.startsWith(`/articles/${category}/`));
     }
+
+    // Sort by lastModified (newest first)
+    articles.sort((a, b) => {
+      const dateA = new Date(a.lastModified || 0);
+      const dateB = new Date(b.lastModified || 0);
+      return dateB - dateA;
+    });
 
     const currentPage = getPageFromUrl();
     const perPage = 9;
@@ -158,6 +167,7 @@ export default async function decorate(block) {
     });
 
     block.appendChild(articleListsWrapper);
+
     if (totalPages > 1) {
       block.appendChild(renderPagination(totalPages, currentPage));
     }
