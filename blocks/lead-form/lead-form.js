@@ -9,7 +9,7 @@ export default function decorate(block) {
   let showPincode = false;
   let showIndianResident = false;
   let showEmploymentType = false;
-  let buttonText = '';
+  let buttonText = 'Apply Now'; // DEFAULT
 
   // Row 1: Name field toggle
   try {
@@ -44,11 +44,11 @@ export default function decorate(block) {
     }
   } catch (e) { console.log('Row 3 error:', e); }
 
-  // Row 5: Button text (authorable)
+  // Row 5: Button text (authorable) - defaults to "Apply Now"
   try {
     if (block.children[5] && block.children[5].children[0]) {
       const p = block.children[5].children[0].querySelector('p');
-      if (p) {
+      if (p && p.textContent.trim().length > 0) {
         buttonText = p.textContent.trim();
         console.log('Button Text:', buttonText);
       }
@@ -157,10 +157,8 @@ export default function decorate(block) {
   formHTML += `
             </div>`;
 
-  // Add button only if button text is provided
-  if (buttonText && buttonText.length > 0) {
-    formHTML += `<button type="submit" class="form-button">${buttonText}</button>`;
-  }
+  // Always add button with text (either custom or default "Apply Now")
+  formHTML += `<button type="submit" class="form-button">${buttonText}</button>`;
 
   formHTML += `
           </form>

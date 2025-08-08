@@ -1012,7 +1012,7 @@
     }
   ]
 },
- {
+{
   "id": "lead-form",
   "fields": [
     {
@@ -1025,6 +1025,7 @@
       "component": "select",
       "name": "showNameField",
       "label": "Show Name Field",
+      "value": "false",
       "options": [
         {
           "name": "Hide",
@@ -1040,6 +1041,7 @@
       "component": "select",
       "name": "showMobileField", 
       "label": "Show Mobile Number Field",
+      "value": "false",
       "options": [
         {
           "name": "Hide",
@@ -1055,6 +1057,7 @@
       "component": "select",
       "name": "showPincodeField",
       "label": "Show Pincode Field",
+      "value": "false",
       "options": [
         {
           "name": "Hide",
@@ -1076,12 +1079,14 @@
       "component": "text",
       "name": "buttonText",
       "label": "Button Text",
-      "description": "Text for the submit button (leave empty to hide button)"
+      "value": "Apply Now",
+      "description": "Text for the submit button (defaults to 'Apply Now')"
     },
     {
       "component": "select",
       "name": "showIndianResidentField",
       "label": "Show Indian Resident Field",
+      "value": "false",
       "options": [
         {
           "name": "Hide",
@@ -1097,6 +1102,7 @@
       "component": "select", 
       "name": "showEmploymentTypeField",
       "label": "Show Employment Type Field",
+      "value": "false",
       "options": [
         {
           "name": "Hide",
