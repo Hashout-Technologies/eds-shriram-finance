@@ -1,27 +1,17 @@
 import { createOptimizedPicture } from '../../scripts/aem.js';
-import { CreateElem, FetchData } from '../../scripts/utils.js';
-
-const API_URL = 'https://article-cards--eds-shriram-finance--hashout-technologies.aem.live/query-index.json';
+import { CreateElem, fetchWithCache } from '../../scripts/utils.js';
 
 const getPageFromUrl = () => {
   const params = new URLSearchParams(window.location.search);
   return parseInt(params.get('page'), 10) || 1;
 };
 
-function parseCustomDate(dateStr) {
-  if (!dateStr) return 0; // if empty, push to end of list
-  // Remove ordinal suffixes like "st", "nd", "rd", "th"
-  const cleaned = dateStr.replace(/(\d+)(st|nd|rd|th)/, '$1');
-  const parsed = Date.parse(cleaned);
-  return isNaN(parsed) ? 0 : parsed;
-}
-
 const renderJsonCards = (data, index) => {
   const optimizedPic = data.articleImage
     ? createOptimizedPicture(data.articleImage, data.title, index === 0 ? 'eager' : 'lazy', [{ width: '270' }], true)
     : '';
   return `
-      <a href="${data.cardLink}" class="article-card-content">
+      <a href="${data.cardLink}" class="article-card-content" target="_blank">
         <div class="article-item-image">${optimizedPic?.outerHTML || ''}</div>
         <div class="article-item-content">
           <p class="article-item-title">${data.title}</p>
@@ -29,7 +19,7 @@ const renderJsonCards = (data, index) => {
           <div class="article-item-meta">
             <div class="meta-info">
               <span class="published-time"><img src="/icons/clock.svg" alt="clock">${data.publishedDuration}</span>
-              <span class="estimated-readtime">3 Min</span>
+              <span class="estimated-readtime">${data.estimatedReadTime}</span>
             </div>
             <span class="read-more">Read more</span>
           </div>
@@ -120,36 +110,52 @@ export default async function decorate(block) {
   title?.classList.add('title');
 
   try {
-    const json = await FetchData(API_URL, null, {}, null, 'GET');
-    const articlesRaw = json?.data || [];
+    const json = await fetchWithCache(
+      'https://article-cards--eds-shriram-finance--hashout-technologies.aem.live/query-index.json',
+      'articlesQueryIndex',
+      null,
+      {},
+      60,
+      'GET',
+    );
 
-    // Filter out:
-    // 1. The /articles root listing page
-    // 2. Category landing pages: /articles/{category}
-    // 3. Year landing pages: /articles/{category}/{year}
-    const articles = articlesRaw.filter((item) => {
+    let articles = json?.data || [];
+
+    console.log('Fetched raw articles count:', articles.length);
+
+    // ✅ Filter out only category landing & year landing pages
+    articles = articles.filter((item) => {
       const parts = item.path.split('/').filter(Boolean);
-
-      // Exclude /articles
-      if (item.path === '/articles') return false;
-
-      // Exclude /articles/{category} (2 parts)
-      if (parts.length === 2) return false;
-
-      // Exclude /articles/{category}/{year} (year is 4 digits)
-      if (parts.length === 3 && /^\d{4}$/.test(parts[2])) return false;
-
+      if (parts.length === 2 && parts[0] === 'articles') return false; // /articles/category
+      if (parts.length === 3 && parts[0] === 'articles' && /^\d{4}$/.test(parts[2])) return false; // /articles/category/year
       return true;
     });
 
-    // Sort by parsed lastModified date
-    articles.sort((a, b) => parseCustomDate(b.lastModified) - parseCustomDate(a.lastModified));
+    console.log('Articles after filtering:', articles.length);
+
+    // ✅ Remove duplicates
+    const seenPaths = new Set();
+    articles = articles.filter((article) => {
+      if (seenPaths.has(article.path)) return false;
+      seenPaths.add(article.path);
+      return true;
+    });
+
+    // ✅ Map to card data format
+    articles = articles.map((item) => ({
+      cardLink: item.path, // keep relative
+      articleImage: item.image || '',
+      title: item.title || '',
+      description: item.description || '',
+      publishedDuration: item.lastModified || '',
+      estimatedReadTime: '',
+    }));
 
     const currentPage = getPageFromUrl();
     const perPage = 9;
     const totalPages = Math.ceil(articles.length / perPage);
 
-    if (currentPage > totalPages || currentPage < 1) {
+    if (articles.length === 0 || currentPage > totalPages || currentPage < 1) {
       block.appendChild(renderFallback());
       return;
     }
@@ -160,23 +166,17 @@ export default async function decorate(block) {
     const articleListsWrapper = CreateElem('div', 'articles-cards-list', null, null);
     paginated.forEach((item, index) => {
       const articleListingItem = CreateElem('div', 'articles-card-item', null, null);
-      articleListingItem.innerHTML = renderJsonCards({
-        articleImage: item.image || '',
-        title: item.title,
-        description: item.description,
-        publishedDuration: item.lastModified || '',
-        estimatedReadTime: '3 Min',
-        cardLink: item.path, // relative link
-      }, index);
+      articleListingItem.innerHTML = renderJsonCards(item, index);
       articleListsWrapper.appendChild(articleListingItem);
     });
 
     block.appendChild(articleListsWrapper);
+
     if (totalPages > 1) {
       block.appendChild(renderPagination(totalPages, currentPage));
     }
   } catch (e) {
-    console.error('Error loading articles:', e);
+    console.error('Error fetching or rendering articles:', e);
     block.appendChild(renderFallback());
   }
 }
