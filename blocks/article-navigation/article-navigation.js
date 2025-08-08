@@ -14,6 +14,10 @@ export default async function decorate(block) {
 
   const allArticles = articlesData?.data || [];
 
+  function normalizePath(path) {
+    return path.replace(/\/$/, '').toLowerCase();
+  }
+
   // Helper function to check if the path is a landing or category page
   function isLandingOrCategory(path) {
     return (
@@ -23,14 +27,24 @@ export default async function decorate(block) {
     );
   }
 
+  const currentPath = normalizePath(window.location.pathname);
+
+  // 1️⃣ Find current index in the *full* list (before filtering)
+  const currentIndexFull = allArticles.findIndex(
+    (a) => normalizePath(a.path) === currentPath,
+  );
+
+  if (currentIndexFull === -1) {
+    console.warn('Current page not found in articles list:', currentPath);
+  }
+
   // 1️⃣ Filter out landing and category pages first
   const articles = allArticles.filter((article) => !isLandingOrCategory(article.path));
 
-  // Get the current page path
-  const currentPath = window.location.pathname.replace(/\/$/, '');
-
-  // Find the index of the current article
-  const currentIndex = articles.findIndex((article) => article.path.replace(/\/$/, '') === currentPath);
+  // 3️⃣ Find index in filtered list
+  const currentIndex = articles.findIndex(
+    (a) => normalizePath(a.path) === currentPath,
+  );
 
   let prevArticle = { available: false };
   let nextArticle = { available: false };
@@ -51,6 +65,12 @@ export default async function decorate(block) {
       };
     }
   }
+
+  console.log('Current path:', currentPath);
+  console.log('Filtered articles:', articles.map((a) => a.path));
+  console.log('Current index in filtered:', currentIndex);
+  console.log('Prev:', prevArticle);
+  console.log('Next:', nextArticle);
 
   // Create Figma structure
   const frame = document.createElement('div');
