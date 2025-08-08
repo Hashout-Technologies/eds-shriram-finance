@@ -18,7 +18,8 @@ export default async function decorate(block) {
   function isLandingOrCategory(path) {
     return (
       path === '/articles'
-      || /^\/articles\/[^/]+$/.test(path) // matches /articles/{category}
+      || /^\/articles\/[^/]+$/.test(path)
+      || /^\/articles\/[^/]+\/\d{4}$/.test(path)
     );
   }
 
