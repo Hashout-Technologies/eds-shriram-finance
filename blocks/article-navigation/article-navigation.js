@@ -26,7 +26,7 @@ export default async function decorate(block) {
   if (currentIndex !== -1) {
     // Find previous valid article
     for (let i = currentIndex - 1; i >= 0; i -= 1) {
-      if (articles[i].path.match(/^\/articles\/[^/]+\/[^/]+$/)) {
+      if (!articles[i].path.match(/^\/articles\/[^/]+$/)) {
         prevArticle = {
           title: articles[i].title,
           url: articles[i].path,
@@ -35,10 +35,9 @@ export default async function decorate(block) {
         break;
       }
     }
-
     // Find next valid article
     for (let i = currentIndex + 1; i < articles.length; i += 1) {
-      if (articles[i].path.match(/^\/articles\/[^/]+\/[^/]+$/)) {
+      if (!articles[i].path.match(/^\/articles\/[^/]+$/)) {
         nextArticle = {
           title: articles[i].title,
           url: articles[i].path,
