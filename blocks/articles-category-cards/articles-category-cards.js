@@ -1,5 +1,5 @@
 import { createOptimizedPicture } from '../../scripts/aem.js';
-import { CreateElem } from '../../scripts/utils.js';
+import { CreateElem, fetchWithCache } from '../../scripts/utils.js';
 
 const getPageFromUrl = () => {
   const params = new URLSearchParams(window.location.search);
@@ -44,7 +44,6 @@ const renderPagination = (totalPages, currentPage) => {
       link.classList.add('active');
       link.addEventListener('click', (e) => e.preventDefault());
     }
-
     if (disabled) {
       link.classList.add('disabled');
       li.classList.add('disabled');
@@ -109,18 +108,58 @@ const renderFallback = () => {
 export default async function decorate(block) {
   const title = block.children[0]?.querySelector('p');
   title?.classList.add('title');
+
   try {
-    const response = await fetch('/blocks/articles-category-cards/articles-details.json');
-    const json = await response.json();
-    const articles = json?.data?.articleList?.items || [];
+    const json = await fetchWithCache(
+      'https://main--eds-shriram-finance--hashout-technologies.aem.live/query-index.json',
+      'articlesQueryIndex',
+      null,
+      {},
+      60,
+      'GET',
+    );
+
+    let articles = json?.data || [];
+
+    console.log('Fetched raw articles count:', articles.length);
+
+    // ✅ Filter out only category landing & year landing pages
+    articles = articles.filter((item) => {
+      const parts = item.path.split('/').filter(Boolean);
+      if (parts.length === 2 && parts[0] === 'articles') return false; // /articles/category
+      if (parts.length === 3 && parts[0] === 'articles' && /^\d{4}$/.test(parts[2])) return false; // /articles/category/year
+      return true;
+    });
+
+    console.log('Articles after filtering:', articles.length);
+
+    // ✅ Remove duplicates
+    const seenPaths = new Set();
+    articles = articles.filter((article) => {
+      if (seenPaths.has(article.path)) return false;
+      seenPaths.add(article.path);
+      return true;
+    });
+
+    // ✅ Map to card data format
+    articles = articles.map((item) => ({
+      cardLink: item.path, // keep relative
+      articleImage: item.image || '',
+      title: item.title || '',
+      description: item.description || '',
+      publishedDuration: item.lastModified || '',
+      estimatedReadTime: '',
+    }));
 
     const currentPage = getPageFromUrl();
     const perPage = 9;
     const totalPages = Math.ceil(articles.length / perPage);
-    if (currentPage > totalPages || currentPage < 1) {
+
+    if (articles.length === 0 || currentPage > totalPages || currentPage < 1) {
       block.appendChild(renderFallback());
       return;
     }
+
     const start = (currentPage - 1) * perPage;
     const paginated = articles.slice(start, start + perPage);
 
@@ -132,10 +171,12 @@ export default async function decorate(block) {
     });
 
     block.appendChild(articleListsWrapper);
+
     if (totalPages > 1) {
       block.appendChild(renderPagination(totalPages, currentPage));
     }
   } catch (e) {
+    console.error('Error fetching or rendering articles:', e);
     block.appendChild(renderFallback());
   }
 }
