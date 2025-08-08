@@ -163,8 +163,7 @@ export default async function decorate(block) {
     // If on category page, filter for that category
     if (isCategoryPage) {
       articles = articles.filter(
-        (item) => item.path.startsWith(`/articles/${currentCategory}/`)
-          || item.path === `/articles/${currentCategory}`,
+        (item) => item.path.startsWith(`/articles/${currentCategory}/`),
       );
     }
 

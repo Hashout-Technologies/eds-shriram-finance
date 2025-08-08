@@ -62,6 +62,17 @@ export async function fetchWithCache(url, cacheKey, body, headers, cacheDuration
 
     const apiResponse = await response.json();
 
+    // Apply sorting ONLY when saving to cache for articlesQueryIndex
+    if (cacheKey === 'articlesQueryIndex' && apiResponse?.data) {
+      apiResponse.data = apiResponse.data
+        .filter((item) => item.path !== '/articles') // remove main listing
+        .sort((a, b) => {
+          const dateA = new Date(a.lastModified);
+          const dateB = new Date(b.lastModified);
+          return dateB - dateA; // newest first
+        });
+    }
+
     // Create storage object with timestamp
     const cacheObject = {
       storedTime: currentTime,
