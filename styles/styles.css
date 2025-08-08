@@ -4,7 +4,7 @@
    :root {
     /* Breakpoints */
     --breakpoint-tablet: 48rem;     /* 768px */
-    --layout-width: 80.5rem;       /* 1288px */
+    --layout-width: 78.5rem;       /* 1256px */
     --section-top-btm-gap: 2.5rem;
     --nav-height: 4rem;
 
