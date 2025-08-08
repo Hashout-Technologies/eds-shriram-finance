@@ -1,5 +1,7 @@
 import { createOptimizedPicture } from '../../scripts/aem.js';
-import { CreateElem, fetchWithCache } from '../../scripts/utils.js';
+import { CreateElem, FetchData } from '../../scripts/utils.js';
+
+const API_URL = 'https://article-cards--eds-shriram-finance--hashout-technologies.aem.live/query-index.json';
 
 const getPageFromUrl = () => {
   const params = new URLSearchParams(window.location.search);
@@ -11,7 +13,7 @@ const renderJsonCards = (data, index) => {
     ? createOptimizedPicture(data.articleImage, data.title, index === 0 ? 'eager' : 'lazy', [{ width: '270' }], true)
     : '';
   return `
-      <a href="${data.cardLink}" class="article-card-content" target="_blank">
+      <a href="${data.cardLink}" class="article-card-content">
         <div class="article-item-image">${optimizedPic?.outerHTML || ''}</div>
         <div class="article-item-content">
           <p class="article-item-title">${data.title}</p>
@@ -19,7 +21,7 @@ const renderJsonCards = (data, index) => {
           <div class="article-item-meta">
             <div class="meta-info">
               <span class="published-time"><img src="/icons/clock.svg" alt="clock">${data.publishedDuration}</span>
-              <span class="estimated-readtime">${data.estimatedReadTime}</span>
+              <span class="estimated-readtime">3 Min</span>
             </div>
             <span class="read-more">Read more</span>
           </div>
@@ -44,6 +46,7 @@ const renderPagination = (totalPages, currentPage) => {
       link.classList.add('active');
       link.addEventListener('click', (e) => e.preventDefault());
     }
+
     if (disabled) {
       link.classList.add('disabled');
       li.classList.add('disabled');
@@ -110,52 +113,24 @@ export default async function decorate(block) {
   title?.classList.add('title');
 
   try {
-    const json = await fetchWithCache(
-      'https://article-cards--eds-shriram-finance--hashout-technologies.aem.live/query-index.json',
-      'articlesQueryIndex',
-      null,
-      {},
-      60,
-      'GET',
-    );
+    // Fetch data
+    const json = await FetchData(API_URL, null, {}, null, 'GET');
+    const articlesRaw = json?.data || [];
 
-    let articles = json?.data || [];
-
-    console.log('Fetched raw articles count:', articles.length);
-
-    // ✅ Filter out only category landing & year landing pages
-    articles = articles.filter((item) => {
+    // Filter out category and year pages
+    const articles = articlesRaw.filter((item) => {
       const parts = item.path.split('/').filter(Boolean);
-      if (parts.length === 2 && parts[0] === 'articles') return false; // /articles/category
-      if (parts.length === 3 && parts[0] === 'articles' && /^\d{4}$/.test(parts[2])) return false; // /articles/category/year
-      return true;
+      return parts.length > 2; // /articles/{category}/{slug}
     });
 
-    console.log('Articles after filtering:', articles.length);
-
-    // ✅ Remove duplicates
-    const seenPaths = new Set();
-    articles = articles.filter((article) => {
-      if (seenPaths.has(article.path)) return false;
-      seenPaths.add(article.path);
-      return true;
-    });
-
-    // ✅ Map to card data format
-    articles = articles.map((item) => ({
-      cardLink: item.path, // keep relative
-      articleImage: item.image || '',
-      title: item.title || '',
-      description: item.description || '',
-      publishedDuration: item.lastModified || '',
-      estimatedReadTime: '',
-    }));
+    // Sort by lastModified (most recent first)
+    articles.sort((a, b) => new Date(b.lastModified) - new Date(a.lastModified));
 
     const currentPage = getPageFromUrl();
     const perPage = 9;
     const totalPages = Math.ceil(articles.length / perPage);
 
-    if (articles.length === 0 || currentPage > totalPages || currentPage < 1) {
+    if (currentPage > totalPages || currentPage < 1) {
       block.appendChild(renderFallback());
       return;
     }
@@ -166,17 +141,23 @@ export default async function decorate(block) {
     const articleListsWrapper = CreateElem('div', 'articles-cards-list', null, null);
     paginated.forEach((item, index) => {
       const articleListingItem = CreateElem('div', 'articles-card-item', null, null);
-      articleListingItem.innerHTML = renderJsonCards(item, index);
+      articleListingItem.innerHTML = renderJsonCards({
+        articleImage: item.image || '',
+        title: item.title,
+        description: item.description,
+        publishedDuration: item.lastModified,
+        estimatedReadTime: '3 Min',
+        cardLink: item.path, // relative
+      }, index);
       articleListsWrapper.appendChild(articleListingItem);
     });
 
     block.appendChild(articleListsWrapper);
-
     if (totalPages > 1) {
       block.appendChild(renderPagination(totalPages, currentPage));
     }
   } catch (e) {
-    console.error('Error fetching or rendering articles:', e);
+    console.error(e);
     block.appendChild(renderFallback());
   }
 }
