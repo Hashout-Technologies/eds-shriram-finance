@@ -24,19 +24,27 @@ export default async function decorate(block) {
   let nextArticle = { available: false };
 
   if (currentIndex !== -1) {
-    if (currentIndex > 0 && !articles[currentIndex - 1].path.match(/^\/articles\/[^/]+$/)) {
-      prevArticle = {
-        title: articles[currentIndex - 1].title,
-        url: articles[currentIndex - 1].path,
-        available: true,
-      };
+    // Find previous valid article
+    for (let i = currentIndex - 1; i >= 0; i--) {
+      if (!articles[i].path.match(/^\/articles\/[^/]+$/)) {
+        prevArticle = {
+          title: articles[i].title,
+          url: articles[i].path,
+          available: true,
+        };
+        break;
+      }
     }
-    if (currentIndex < articles.length - 1 && !articles[currentIndex - 1].path.match(/^\/articles\/[^/]+$/)) {
-      nextArticle = {
-        title: articles[currentIndex + 1].title,
-        url: articles[currentIndex + 1].path,
-        available: true,
-      };
+    // Find next valid article
+    for (let i = currentIndex + 1; i < articles.length; i++) {
+      if (!articles[i].path.match(/^\/articles\/[^/]+$/)) {
+        nextArticle = {
+          title: articles[i].title,
+          url: articles[i].path,
+          available: true,
+        };
+        break;
+      }
     }
   }
 
