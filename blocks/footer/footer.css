@@ -5,7 +5,7 @@ footer {
     font-size: var(--body-font-size-xs);
 }
 
-footer .footer > div {
+footer .footer>div {
     margin: auto;
     max-width: 78.5rem;
     padding: 2.5rem 1rem;
@@ -25,7 +25,7 @@ footer.accordion-wrapper .accordion details {
     border: none;
 }
 
-footer .accordion-wrapper .accordion details + details {
+footer .accordion-wrapper .accordion details+details {
     margin-top: 0;
 }
 
@@ -125,7 +125,7 @@ footer .accordion .accordion-item-body ul:has(ul) ul {
     justify-content: space-between;
 }
 
-footer .columns-wrapper .columns div > div > ul > li > p {
+footer .columns-wrapper .columns div>div>ul>li>p {
     color: var(--color-neutral-100);
     font-size: var(--font-size-s);
     font-weight: var(--font-weight-regular);
@@ -141,7 +141,7 @@ footer .section:last-child .default-content-wrapper p {
     line-height: 120%;
 }
 
-footer .columns-wrapper .columns div > div {
+footer .columns-wrapper .columns div>div {
     display: flex;
     align-items: start;
     justify-content: start;
@@ -150,35 +150,41 @@ footer .columns-wrapper .columns div > div {
     padding-top: 1rem;
 }
 
-footer .columns-wrapper .columns div > div > ul {
+footer .columns-wrapper .columns div>div:has(>ul) {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+}
+
+footer .columns-wrapper .columns div>div>ul {
     list-style: none;
     margin: 0;
 }
 
-footer .columns-wrapper .columns div > div > ul ul {
+footer .columns-wrapper .columns div>div>ul ul {
     list-style: none;
     margin: 0;
     padding: 0;
 }
 
-footer .accordion .accordion-item-body ul > li a,
-footer .columns-wrapper .columns div > div > ul ul > li > a {
+footer .accordion .accordion-item-body ul>li a,
+footer .columns-wrapper .columns div>div>ul ul>li>a {
     color: var(--color-neutral-100);
     font-size: var(--font-size-s);
     font-weight: var(--font-weight-regular);
     line-height: 120%;
 }
 
-footer .accordion .accordion-item-body ul > li a {
+footer .accordion .accordion-item-body ul>li a {
     text-decoration: none;
-    margin: 1rem 0;
+
+    /* margin: 1rem 0; */
 }
 
-footer .accordion .accordion-item-body ul > li a:hover {
+footer .accordion .accordion-item-body ul>li a:hover {
     color: var(--color-primary-yellow);
 }
 
-footer .columns-wrapper .columns div > div > ul ul > li > a {
+footer .columns-wrapper .columns div>div>ul ul>li>a {
     margin: 0;
     padding: 0;
 }
@@ -187,68 +193,88 @@ footer .accordion .accordion-item-body ul:has(ul) ul ul {
     display: flex;
     flex-direction: column;
     justify-content: space-between;
+  
 }
 
-footer .columns-wrapper .columns div > div > ul:nth-child(2) ul {
+footer .columns-wrapper .columns div>div>ul:nth-child(2) ul {
     padding-bottom: 1.5rem;
 }
 
-footer .columns-wrapper .columns div > div > ul:nth-child(3) ul {
+footer .columns-wrapper .columns div>div>ul:nth-child(3) ul {
     display: flex;
     gap: 1rem;
+
+    /* border: 1px dashed red; */
 }
 
-footer .columns-wrapper:last-child .columns div > div {
+footer .columns-wrapper .columns div>div>ul:nth-child(3) +p {
+    display: flex;
+    justify-content: end;
+
+    /* border: 1px dashed red; */
+}
+
+footer .columns-wrapper:last-child .columns div>div {
     display: flex;
     flex-direction: column;
     gap: 0;
     padding-top: 0;
 }
 
-footer .columns-wrapper:last-child .columns div > div:first-child {
+footer .columns-wrapper:last-child .columns div>div:first-child {
     justify-content: start;
     align-items: start;
     gap: 0.625rem;
 }
 
-footer .columns-wrapper:last-child .columns div > div:first-child p {
+
+footer .columns-wrapper:last-child .columns div>div:first-child p {
     margin-bottom: 0;
     font-size: var(--font-size-s);
     font-weight: var(--font-weight-regular);
     line-height: 150%;
 }
 
-footer .columns-wrapper:last-child .columns div > div:last-child {
+footer .columns-wrapper:last-child .columns div>div:last-child {
     justify-content: start;
     align-items: end;
     gap: 0;
 }
 
-footer .columns-wrapper:last-child .columns div > div:last-child p,
-footer .columns-wrapper:last-child .columns div > div:last-child p > a {
+footer .columns-wrapper:last-child .columns div>div:last-child p:first-child {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    margin:1rem 0;
+}
+
+footer .columns-wrapper:last-child .columns div>div:last-child p:last-child {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+}
+
+footer .columns-wrapper:last-child .columns div>div:last-child p,
+footer .columns-wrapper:last-child .columns div>div:last-child p>a {
     margin-bottom: 0;
     font-size: var(--font-size-s);
     font-weight: var(--font-weight-regular);
     color: var(--color-neutral-100);
     line-height: 120%;
+
 }
 
-footer .columns-2-cols > div:first-child > div:first-child > p:first-child {
+footer .columns-2-cols>div:first-child>div:first-child>p:first-child:has(>picture) {
     display: none;
 }
 
-footer
-    .columns-wrapper:not(:last-child)
-    .columns-2-cols:last-child
-    > div:first-child
-    > div:first-child
-    > p:nth-child(2) {
+footer .columns-wrapper:not(:last-child) .columns-2-cols:last-child>div:first-child>div:first-child>p:nth-child(2) {
     display: none;
 }
 
 /* Desktop styles for column layout */
 @media (width >=900px) {
-    footer .footer > div {
+    footer .footer>div {
         padding: 2.5rem 0;
     }
 
@@ -268,27 +294,44 @@ footer
         align-items: start;
     }
 
-    footer .columns-2-cols > div:first-child > div:first-child > p:first-child {
+    footer .columns-wrapper .columns div>div:has(>ul) {
+        display: flex;
+        gap: 1rem;
+    }
+
+    footer .columns-2-cols>div:first-child>div:first-child>p:first-child {
         display: block;
     }
 
-    footer
-        .columns-wrapper:not(:last-child)
-        .columns-2-cols:last-child
-        > div:first-child
-        > div:first-child
-        > p:nth-child(2) {
+    footer .columns-wrapper:not(:last-child) .columns-2-cols:last-child>div:first-child>div:first-child>p:nth-child(2) {
         display: block;
-        margin-left: -3.5rem;
     }
 
-    footer .columns-wrapper .columns div > div {
+    footer .columns-wrapper:last-child .columns div>div:last-child p:first-child {
+        display: flex;
+        justify-content: space-between;
+        width: 90%;
+    }
+
+    footer .columns-wrapper:last-child .columns div>div:last-child p:last-child {
+        display: flex;
+        justify-content: end;
+        width: 100%;
+    }
+
+    footer .columns-wrapper .columns div>div:first-child {
+        align-items: center;
+        justify-content: start;
+        gap: 1rem;
+    }
+
+    footer .columns-wrapper .columns div>div:last-child {
         align-items: center;
         justify-content: space-between;
         gap: 1rem;
     }
 
-    footer .accordion .accordion-item-body > ul {
+    footer .accordion .accordion-item-body>ul {
         width: 100%;
         margin-bottom: 0;
         list-style: none;
@@ -300,13 +343,13 @@ footer
         margin-bottom: 0;
     }
 
-    footer .columns-wrapper .columns div > div ul {
+    footer .columns-wrapper .columns div>div ul {
         margin: 0;
         padding: 0;
     }
 
     /* Remove absolute positioning and use proper grid layout */
-    footer .accordion .accordion-item-body ul > li > ul {
+    footer .accordion .accordion-item-body ul>li>ul {
         list-style: none;
         margin-top: 0.5rem;
         margin-bottom: 1rem;
@@ -318,29 +361,28 @@ footer
         margin-top: 0.5rem;
     }
 
-    footer .accordion .accordion-item-body ul > li > ul > li > ul {
+    footer .accordion .accordion-item-body ul>li>ul>li>ul {
         list-style: none;
         margin-top: 0.5rem;
         margin-bottom: 1rem;
     }
 
-    footer .accordion .accordion-item-body ul > li > ul > li > ul > li > ul {
+    footer .accordion .accordion-item-body ul>li>ul>li>ul>li>ul {
         list-style: none;
         margin-top: 0.5rem;
-        margin-bottom: 1rem;
     }
 
     /* Style subcategory headers */
-    footer .accordion .accordion-item-body ul ul > li:first-child {
+    footer .accordion .accordion-item-body ul ul>li:first-child {
         font-weight: bold;
         margin-bottom: 0.5rem;
         color: var(--color-neutral-100);
     }
 
     /* Style links in columns */
-    footer .accordion .accordion-item-body ul > li a {
+    footer .accordion .accordion-item-body ul>li a {
         display: block;
-        margin: 0.5rem 0;
+        margin-bottom: 1rem;
     }
 
     /* Remove button styling for cleaner look */
@@ -354,7 +396,7 @@ footer
         padding: 0;
         color: var(--color-neutral-100);
         text-decoration: none;
-        font-size: 0.9rem;
+        font-size: var(--font-size-base);
         line-height: 1.4;
         margin: 0.5rem 0;
         display: block;
@@ -367,10 +409,12 @@ footer
     }
 
     /* Style strong elements (category headers) */
-    footer .accordion .accordion-item-body strong {
-        font-weight: bold;
+    footer .accordion .accordion-item-body strong,
+    footer .accordion .accordion-item-body>ul>li>strong>a {
+        font-weight: var(--font-weight-medium);
         color: var(--color-neutral-100);
         display: block;
         margin-bottom: 0.5rem;
+        font-size: var(--font-size-base);
     }
 }
