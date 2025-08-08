@@ -112,7 +112,7 @@ export default async function decorate(block) {
 
   try {
     const json = await fetchWithCache(
-      'https://main--eds-shriram-finance--hashout-technologies.aem.live/query-index.json',
+      'https://article-cards--eds-shriram-finance--hashout-technologies.aem.live/query-index.json',
       'articlesQueryIndex',
       null,
       {},
