@@ -1013,24 +1013,60 @@
   ]
 },
   {
-    "id": "lead-form",
-    "fields": [
-      {
-        "component": "text",
-        "valueType": "string",
-        "name": "title",
-        "label": "Form Title",
-        "value": "Get a gold loan at low interest rates"
-      },
-      {
-        "component": "text",
-        "valueType": "string",
-        "name": "actionUrl",
-        "label": "Form Action URL",
-        "value": ""
-      }
-    ]
-  },
+  "id": "lead-form",
+  "fields": [
+    {
+      "component": "text",
+      "valueType": "string",
+      "name": "title",
+      "label": "Form Title",
+      "value": "Get a gold loan at low interest rates"
+    },
+    {
+      "component": "text",
+      "valueType": "string",
+      "name": "actionUrl",
+      "label": "Form Action URL",
+      "value": ""
+    },
+    {
+      "component": "text",
+      "valueType": "string",
+      "name": "ctaButtonText",
+      "label": "CTA Button Text",
+      "value": "Apply Now"
+    },
+    {
+      "component": "multiselect",
+      "name": "formFields",
+      "label": "Form Fields to Show",
+      "valueType": "string",
+      "value": "name,mobile,pincode",
+      "options": [
+        {
+          "name": "Name",
+          "value": "name"
+        },
+        {
+          "name": "Mobile Number",
+          "value": "mobile"
+        },
+        {
+          "name": "Pin Code",
+          "value": "pincode"
+        },
+        {
+          "name": "Are you an Indian Resident",
+          "value": "indianResident"
+        },
+        {
+          "name": "Employment Type",
+          "value": "employmentType"
+        }
+      ]
+    }
+  ]
+},
   {
     "id": "articles-listing",
     "fields": [
