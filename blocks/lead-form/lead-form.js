@@ -3,7 +3,7 @@ import { moveInstrumentation } from '../../scripts/scripts.js';
 export default function decorate(block) {
   const rows = [...block.children];
 
-  // Read configuration from existing DOM structure - NO defaults
+  // Read from actual DOM structure - handle empty divs properly
   let title = '';
   let actionUrl = '';
   let ctaButtonText = '';
@@ -13,193 +13,160 @@ export default function decorate(block) {
   let showIndianResidentField = false;
   let showEmploymentTypeField = false;
 
-  // Extract values from the existing row structure - only if they exist
-  if (rows[0] && rows[0].querySelector('p')) {
-    title = rows[0].querySelector('p').textContent.trim();
-  }
-
-  if (rows[1] && rows[1].querySelector('p')) {
-    actionUrl = rows[1].querySelector('p').textContent.trim();
-  }
-
-  if (rows[2] && rows[2].querySelector('p')) {
-    ctaButtonText = rows[2].querySelector('p').textContent.trim();
-  }
-
-  if (rows[3] && rows[3].querySelector('p')) {
-    const nameFieldText = rows[3].querySelector('p').textContent.trim();
-    if (nameFieldText) showNameField = nameFieldText.toLowerCase() === 'true';
-  }
-
-  if (rows[4] && rows[4].querySelector('p')) {
-    const mobileFieldText = rows[4].querySelector('p').textContent.trim();
-    if (mobileFieldText) showMobileField = mobileFieldText.toLowerCase() === 'true';
-  }
-
-  if (rows[5] && rows[5].querySelector('p')) {
-    const pincodeFieldText = rows[5].querySelector('p').textContent.trim();
-    if (pincodeFieldText) showPincodeField = pincodeFieldText.toLowerCase() === 'true';
-  }
-
-  if (rows[6] && rows[6].querySelector('p')) {
-    const indianResidentText = rows[6].querySelector('p').textContent.trim();
-    if (indianResidentText) showIndianResidentField = indianResidentText.toLowerCase() === 'true';
-  }
-
-  if (rows[7] && rows[7].querySelector('p')) {
-    const employmentTypeText = rows[7].querySelector('p').textContent.trim();
-    if (employmentTypeText) showEmploymentTypeField = employmentTypeText.toLowerCase() === 'true';
-  }
-
-  // Transform the existing first row's <p> into the form title (don't replace it)
-  if (rows[0] && rows[0].querySelector('p')) {
+  // Row 0: Title - has <p>Get a gold loan at low interest rates</p>
+  if (rows[0]) {
     const titleP = rows[0].querySelector('p');
-    titleP.className = 'form-title';
-    // Don't change the text content - let it be whatever is in the DOM
-  }
-
-  // Hide configuration rows (rows 1-7) but don't remove them
-  for (let i = 1; i < rows.length; i++) {
-    if (rows[i]) {
-      rows[i].style.display = 'none';
+    if (titleP) {
+      title = titleP.textContent.trim();
+      titleP.className = 'form-title'; // Transform existing p to form title
     }
   }
 
-  // Create form container and add it after the title row
-  const formContainer = document.createElement('div');
-  formContainer.className = 'lead-form-container';
+  // Rows 1-5: Empty divs - skip them
+  // Row 6: Has <p>true</p>
+  if (rows[6]) {
+    const row6P = rows[6].querySelector('p');
+    if (row6P && row6P.textContent.trim()) {
+      showIndianResidentField = row6P.textContent.trim().toLowerCase() === 'true';
+    }
+  }
 
-  const formContent = document.createElement('div');
-  formContent.className = 'form-content';
+  // Row 7: Has <p>false</p>
+  if (rows[7]) {
+    const row7P = rows[7].querySelector('p');
+    if (row7P && row7P.textContent.trim()) {
+      showEmploymentTypeField = row7P.textContent.trim().toLowerCase() === 'true';
+    }
+  }
 
-  const formSection = document.createElement('div');
-  formSection.className = 'form-section';
+  // Hide the configuration rows (6, 7) but keep title row visible
+  if (rows[6]) rows[6].style.display = 'none';
+  if (rows[7]) rows[7].style.display = 'none';
 
-  // Create form
+  // Create form and add after existing content
   const form = document.createElement('form');
   form.className = 'lead-form-form';
   form.method = 'POST';
-  if (actionUrl) {
-    form.action = actionUrl;
-  }
 
-  // Create form fields container
   const formFields = document.createElement('div');
   formFields.className = 'form-fields';
 
-  // Define field configurations
-  const fieldConfigurations = [
-    {
-      name: 'name',
-      placeholder: 'Name*',
-      type: 'text',
-      required: true,
-      show: showNameField
-    },
-    {
-      name: 'mobile',
-      placeholder: 'Mobile Number*',
-      type: 'tel',
-      required: true,
-      show: showMobileField
-    },
-    {
-      name: 'pincode',
-      placeholder: 'Pincode*',
-      type: 'text',
-      required: true,
-      show: showPincodeField
-    },
-    {
-      name: 'indianResident',
-      label: 'Are you an Indian Resident*',
-      type: 'select',
-      required: true,
-      show: showIndianResidentField,
-      options: [
-        { value: '', text: 'Are you an Indian Resident*' },
-        { value: 'yes', text: 'Yes' },
-        { value: 'no', text: 'No' }
-      ]
-    },
-    {
-      name: 'employmentType',
-      label: 'Employment Type*',
-      type: 'select',
-      required: true,
-      show: showEmploymentTypeField,
-      options: [
-        { value: '', text: 'Employment Type*' },
-        { value: 'self-employed-business', text: 'Self Employed Business' },
-        { value: 'doctor', text: 'Doctor' },
-        { value: 'chartered-accountant', text: 'Chartered Accountant' },
-        { value: 'architect', text: 'Architect' },
-        { value: 'engineer', text: 'Engineer' }
-      ]
-    }
-  ];
-
-  // Create form fields
-  fieldConfigurations.forEach((fieldConfig) => {
-    if (!fieldConfig.show) return;
-
-    const fieldWrapper = document.createElement('div');
-    fieldWrapper.className = 'form-field-wrapper';
-
-    if (fieldConfig.type === 'select') {
-      const select = document.createElement('select');
-      select.name = fieldConfig.name;
-      select.required = fieldConfig.required;
-      select.className = 'form-select';
-
-      fieldConfig.options.forEach((option) => {
-        const optionElement = document.createElement('option');
-        optionElement.value = option.value;
-        optionElement.textContent = option.text;
-        if (option.value === '') {
-          optionElement.disabled = true;
-          optionElement.selected = true;
-        }
-        select.appendChild(optionElement);
-      });
-
-      fieldWrapper.appendChild(select);
-    } else {
-      const input = document.createElement('input');
-      input.type = fieldConfig.type;
-      input.name = fieldConfig.name;
-      input.placeholder = fieldConfig.placeholder;
-      input.required = fieldConfig.required;
-      input.className = 'form-input';
-
-      fieldWrapper.appendChild(input);
-    }
-
-    formFields.appendChild(fieldWrapper);
-  });
-
-  // Create submit button only if CTA text exists
-  if (ctaButtonText) {
-    const button = document.createElement('button');
-    button.type = 'submit';
-    button.className = 'form-button';
-    button.textContent = ctaButtonText;
-    
-    // Build form structure
-    form.appendChild(formFields);
-    form.appendChild(button);
-  } else {
-    // Just add fields if no CTA text
-    form.appendChild(formFields);
+  // Add name field if enabled
+  if (showNameField) {
+    const nameWrapper = document.createElement('div');
+    nameWrapper.className = 'form-field-wrapper';
+    const nameInput = document.createElement('input');
+    nameInput.type = 'text';
+    nameInput.name = 'name';
+    nameInput.placeholder = 'Name*';
+    nameInput.required = true;
+    nameInput.className = 'form-input';
+    nameWrapper.appendChild(nameInput);
+    formFields.appendChild(nameWrapper);
   }
 
-  formSection.appendChild(form);
-  formContent.appendChild(formSection);
-  formContainer.appendChild(formContent);
+  // Add mobile field if enabled  
+  if (showMobileField) {
+    const mobileWrapper = document.createElement('div');
+    mobileWrapper.className = 'form-field-wrapper';
+    const mobileInput = document.createElement('input');
+    mobileInput.type = 'tel';
+    mobileInput.name = 'mobile';
+    mobileInput.placeholder = 'Mobile Number*';
+    mobileInput.required = true;
+    mobileInput.className = 'form-input';
+    mobileWrapper.appendChild(mobileInput);
+    formFields.appendChild(mobileWrapper);
+  }
 
-  // Add the form after the title row, don't replace anything
-  block.appendChild(formContainer);
+  // Add pincode field if enabled
+  if (showPincodeField) {
+    const pincodeWrapper = document.createElement('div');
+    pincodeWrapper.className = 'form-field-wrapper';
+    const pincodeInput = document.createElement('input');
+    pincodeInput.type = 'text';
+    pincodeInput.name = 'pincode';
+    pincodeInput.placeholder = 'Pincode*';
+    pincodeInput.required = true;
+    pincodeInput.className = 'form-input';
+    pincodeWrapper.appendChild(pincodeInput);
+    formFields.appendChild(pincodeWrapper);
+  }
 
-  // Move instrumentation
-  moveInstrumentation(block, formContainer);
+  // Add Indian resident field if enabled
+  if (showIndianResidentField) {
+    const residentWrapper = document.createElement('div');
+    residentWrapper.className = 'form-field-wrapper';
+    const residentSelect = document.createElement('select');
+    residentSelect.name = 'indianResident';
+    residentSelect.required = true;
+    residentSelect.className = 'form-select';
+    
+    const residentOptions = [
+      { value: '', text: 'Are you an Indian Resident*' },
+      { value: 'yes', text: 'Yes' },
+      { value: 'no', text: 'No' }
+    ];
+    
+    residentOptions.forEach((option) => {
+      const optionElement = document.createElement('option');
+      optionElement.value = option.value;
+      optionElement.textContent = option.text;
+      if (option.value === '') {
+        optionElement.disabled = true;
+        optionElement.selected = true;
+      }
+      residentSelect.appendChild(optionElement);
+    });
+    
+    residentWrapper.appendChild(residentSelect);
+    formFields.appendChild(residentWrapper);
+  }
+
+  // Add employment type field if enabled
+  if (showEmploymentTypeField) {
+    const employmentWrapper = document.createElement('div');
+    employmentWrapper.className = 'form-field-wrapper';
+    const employmentSelect = document.createElement('select');
+    employmentSelect.name = 'employmentType';
+    employmentSelect.required = true;
+    employmentSelect.className = 'form-select';
+    
+    const employmentOptions = [
+      { value: '', text: 'Employment Type*' },
+      { value: 'self-employed-business', text: 'Self Employed Business' },
+      { value: 'doctor', text: 'Doctor' },
+      { value: 'chartered-accountant', text: 'Chartered Accountant' },
+      { value: 'architect', text: 'Architect' },
+      { value: 'engineer', text: 'Engineer' }
+    ];
+    
+    employmentOptions.forEach((option) => {
+      const optionElement = document.createElement('option');
+      optionElement.value = option.value;
+      optionElement.textContent = option.text;
+      if (option.value === '') {
+        optionElement.disabled = true;
+        optionElement.selected = true;
+      }
+      employmentSelect.appendChild(optionElement);
+    });
+    
+    employmentWrapper.appendChild(employmentSelect);
+    formFields.appendChild(employmentWrapper);
+  }
+
+  // Add submit button
+  const button = document.createElement('button');
+  button.type = 'submit';
+  button.className = 'form-button';
+  button.textContent = 'Apply Now';
+
+  form.appendChild(formFields);
+  form.appendChild(button);
+
+  // Add form to the block (don't replace anything)
+  block.appendChild(form);
+
+  moveInstrumentation(block, form);
 }
