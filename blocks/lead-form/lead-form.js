@@ -3,69 +3,72 @@ import { moveInstrumentation } from '../../scripts/scripts.js';
 export default function decorate(block) {
   const rows = [...block.children];
 
-  // Extract configuration from the rows (simple row-based approach)
-  let title = 'Get a gold loan at low interest rates'; // Default
+  // Read configuration from the block structure
+  let title = 'Get a gold loan at low interest rates';
   let actionUrl = '';
-  let ctaButtonText = 'Apply Now'; // Default
+  let ctaButtonText = 'Apply Now';
   let showNameField = true;
   let showMobileField = true;
   let showPincodeField = true;
   let showIndianResidentField = false;
   let showEmploymentTypeField = false;
 
-  // Parse configuration from block rows
-  // Expected format: Label | Value pairs
-  rows.forEach(row => {
-    if (row.children.length >= 2) {
-      const label = row.children[0].textContent.trim().toLowerCase();
-      const value = row.children[1].textContent.trim();
-      
-      switch (label) {
-        case 'title':
-        case 'form title':
-          if (value) title = value;
-          break;
-        case 'actionurl':
-        case 'form action url':
-          if (value) actionUrl = value;
-          break;
-        case 'ctabuttontext':
-        case 'cta button text':
-          if (value) ctaButtonText = value;
-          break;
-        case 'shownamefield':
-        case 'show name field':
-          showNameField = value.toLowerCase() === 'true';
-          break;
-        case 'showmobilefield':
-        case 'show mobile number field':
-          showMobileField = value.toLowerCase() === 'true';
-          break;
-        case 'showpincodefield':
-        case 'show pincode field':
-          showPincodeField = value.toLowerCase() === 'true';
-          break;
-        case 'showindianresidentfield':
-        case 'show indian resident field':
-          showIndianResidentField = value.toLowerCase() === 'true';
-          break;
-        case 'showemploymenttypefield':
-        case 'show employment type field':
-          showEmploymentTypeField = value.toLowerCase() === 'true';
-          break;
-      }
-    }
-  });
+  // Extract values from the existing row structure
+  // Row 0: Title
+  if (rows[0] && rows[0].querySelector('p')) {
+    const titleText = rows[0].querySelector('p').textContent.trim();
+    if (titleText) title = titleText;
+  }
 
-  // Create the main form container
+  // Row 1: Action URL
+  if (rows[1] && rows[1].querySelector('p')) {
+    const urlText = rows[1].querySelector('p').textContent.trim();
+    if (urlText) actionUrl = urlText;
+  }
+
+  // Row 2: CTA Button Text
+  if (rows[2] && rows[2].querySelector('p')) {
+    const ctaText = rows[2].querySelector('p').textContent.trim();
+    if (ctaText) ctaButtonText = ctaText;
+  }
+
+  // Row 3: Show Name Field
+  if (rows[3] && rows[3].querySelector('p')) {
+    const nameFieldText = rows[3].querySelector('p').textContent.trim();
+    showNameField = nameFieldText.toLowerCase() === 'true';
+  }
+
+  // Row 4: Show Mobile Field
+  if (rows[4] && rows[4].querySelector('p')) {
+    const mobileFieldText = rows[4].querySelector('p').textContent.trim();
+    showMobileField = mobileFieldText.toLowerCase() === 'true';
+  }
+
+  // Row 5: Show Pincode Field
+  if (rows[5] && rows[5].querySelector('p')) {
+    const pincodeFieldText = rows[5].querySelector('p').textContent.trim();
+    showPincodeField = pincodeFieldText.toLowerCase() === 'true';
+  }
+
+  // Row 6: Show Indian Resident Field
+  if (rows[6] && rows[6].querySelector('p')) {
+    const indianResidentText = rows[6].querySelector('p').textContent.trim();
+    showIndianResidentField = indianResidentText.toLowerCase() === 'true';
+  }
+
+  // Row 7: Show Employment Type Field
+  if (rows[7] && rows[7].querySelector('p')) {
+    const employmentTypeText = rows[7].querySelector('p').textContent.trim();
+    showEmploymentTypeField = employmentTypeText.toLowerCase() === 'true';
+  }
+
+  // Create the form HTML structure
   const formContainer = document.createElement('div');
   formContainer.className = 'lead-form-container';
 
-  // Create form content wrapper
   const formContent = document.createElement('div');
   formContent.className = 'form-content';
 
-  // Create form section
   const formSection = document.createElement('div');
   formSection.className = 'form-section';
 
@@ -87,30 +90,34 @@ export default function decorate(block) {
   const formFields = document.createElement('div');
   formFields.className = 'form-fields';
 
-  // Define all possible form fields with their configurations
-  const fieldConfigurations = {
-    name: {
-      name: 'name', 
-      placeholder: 'Name*', 
-      type: 'text', 
+  // Define field configurations
+  const fieldConfigurations = [
+    {
+      key: 'name',
+      name: 'name',
+      placeholder: 'Name*',
+      type: 'text',
       required: true,
       show: showNameField
     },
-    mobile: {
-      name: 'mobile', 
-      placeholder: 'Mobile Number*', 
-      type: 'tel', 
+    {
+      key: 'mobile',
+      name: 'mobile',
+      placeholder: 'Mobile Number*',
+      type: 'tel',
       required: true,
       show: showMobileField
     },
-    pincode: {
-      name: 'pincode', 
-      placeholder: 'Pincode*', 
-      type: 'text', 
+    {
+      key: 'pincode',
+      name: 'pincode',
+      placeholder: 'Pincode*',
+      type: 'text',
       required: true,
       show: showPincodeField
     },
-    indianResident: {
+    {
+      key: 'indianResident',
       name: 'indianResident',
       label: 'Are you an Indian Resident*',
       type: 'select',
@@ -122,7 +129,8 @@ export default function decorate(block) {
         { value: 'no', text: 'No' }
       ]
     },
-    employmentType: {
+    {
+      key: 'employmentType',
       name: 'employmentType',
       label: 'Employment Type*',
       type: 'select',
@@ -137,11 +145,10 @@ export default function decorate(block) {
         { value: 'engineer', text: 'Engineer' }
       ]
     }
-  };
+  ];
 
   // Create form fields based on configuration
-  Object.keys(fieldConfigurations).forEach((fieldKey) => {
-    const fieldConfig = fieldConfigurations[fieldKey];
+  fieldConfigurations.forEach((fieldConfig) => {
     if (!fieldConfig.show) return;
 
     // Create form field wrapper
@@ -149,32 +156,28 @@ export default function decorate(block) {
     fieldWrapper.className = 'form-field-wrapper';
 
     if (fieldConfig.type === 'select') {
-      // Create select element with placeholder as first option
+      // Create select element
       const select = document.createElement('select');
       select.name = fieldConfig.name;
       select.id = fieldConfig.name;
       select.required = fieldConfig.required;
       select.className = 'form-select';
 
-      // Add placeholder as first disabled option
-      const placeholderOption = document.createElement('option');
-      placeholderOption.value = '';
-      placeholderOption.textContent = fieldConfig.label;
-      placeholderOption.disabled = true;
-      placeholderOption.selected = true;
-      select.appendChild(placeholderOption);
-
-      // Add actual options (skip first placeholder option)
-      fieldConfig.options.slice(1).forEach((option) => {
+      // Add options
+      fieldConfig.options.forEach((option) => {
         const optionElement = document.createElement('option');
         optionElement.value = option.value;
         optionElement.textContent = option.text;
+        if (option.value === '') {
+          optionElement.disabled = true;
+          optionElement.selected = true;
+        }
         select.appendChild(optionElement);
       });
 
       fieldWrapper.appendChild(select);
     } else {
-      // Create input element for text/tel fields
+      // Create input element
       const input = document.createElement('input');
       input.type = fieldConfig.type;
       input.name = fieldConfig.name;
@@ -194,19 +197,27 @@ export default function decorate(block) {
   button.className = 'form-button';
   button.textContent = ctaButtonText;
 
-  // Add fields and button to form
+  // Build form structure
   form.appendChild(formFields);
   form.appendChild(button);
-
-  // Build the structure
   formSection.appendChild(form);
   formContent.appendChild(formSection);
   formContainer.appendChild(formContent);
 
-  // Move instrumentation from original block
-  moveInstrumentation(block, formContainer);
-
-  // Replace block content
-  block.textContent = '';
+  // Clear the block content but preserve the structure for authoring
+  const blockClone = block.cloneNode(true);
+  
+  // Clear block content and add form
+  block.innerHTML = '';
   block.appendChild(formContainer);
+  
+  // For authoring mode, preserve the original structure
+  if (document.body.classList.contains('editor') || window.location.href.includes('editor')) {
+    // Keep original rows for authoring
+    blockClone.style.display = 'none';
+    block.appendChild(blockClone);
+  }
+
+  // Move instrumentation
+  moveInstrumentation(block, formContainer);
 }
