@@ -1,86 +1,5 @@
 import { moveInstrumentation } from '../../scripts/scripts.js';
-
-// Dummy data - replace with actual JSON file fetching later
-const articlesData = {
-  related: [
-    {
-      id: '1',
-      title: 'Government Policies and Gold Loan Regulations',
-      image: 'https://cdn.shriramfinance.in/sfl-kalam/files/2025-07/Tips%20for%20Medical%20Professionals%20Using%20the%20Doctor%20Loan%20Calculator-1.jpg',
-      url: '/articles/government-policies',
-    },
-    {
-      id: '2',
-      title: 'Understanding Gold Loan Interest Rates',
-      image: 'https://cdn.shriramfinance.in/sfl-kalam/files/2025-07/Tips%20for%20Managing%20Education%20Loans%20with%20the%20Calculator-1.jpg',
-      url: '/articles/interest-rates',
-    },
-    {
-      id: '3',
-      title: 'Types of Gold Assets for Loans',
-      image: 'https://cdn.shriramfinance.in/sfl-kalam/files/2025-07/ROI%20vs.%20ROE%20Key%20Differences%20and%20Importance%20in%20Investment%20Analysis_1_1.jpg',
-      url: '/articles/gold-assets',
-    },
-    {
-      id: '4',
-      title: 'Gold Loan Application Process',
-      image: 'https://cdn.shriramfinance.in/sfl-kalam/files/2025-07/Tips%20for%20Loan%20Repayment%20Strategies%20with%20the%20Simple%20Interest%20Calculator-1.jpg',
-      url: '/articles/application-process',
-    },
-  ],
-  popular: [
-    {
-      id: '5',
-      title: 'Most Popular Gold Loan Guide',
-      image: 'https://cdn.shriramfinance.in/sfl-kalam/files/2025-07/Planning%20for%20Retirement.%20Leveraging%20the%20Pension%20Calculator%20for%20Financial%20Security-1.jpg',
-      url: '/articles/popular-guide',
-    },
-    {
-      id: '6',
-      title: 'Top Gold Investment Tips',
-      image: 'https://cdn.shriramfinance.in/sfl-kalam/files/2025-07/Tips%20for%20Homebuyers%20Using%20the%20Home%20Affordability%20Calculator-1.jpg',
-      url: '/articles/investment-tips',
-    },
-    {
-      id: '7',
-      title: 'Best Gold Loan Rates 2024',
-      image: 'https://cdn.shriramfinance.in/sfl-kalam/files/2025-07/Tips%20for%20Entrepreneurs%20Using%20the%20Secured%20Business%20Loan%20EMI%20Calculator-1.jpg',
-      url: '/articles/best-rates',
-    },
-    {
-      id: '8',
-      title: 'Gold Loan vs Personal Loan',
-      image: 'https://cdn.shriramfinance.in/sfl-kalam/files/2025-07/Optimizing%20Investments%20for%20Girl%20Child.%20Tips%20from%20the%20Sukanya%20Samriddhi%20Yojana%20Calculator-1.jpg',
-      url: '/articles/loan-comparison',
-    },
-  ],
-  recent: [
-    {
-      id: '9',
-      title: 'Latest Gold Market Trends',
-      image: 'https://cdn.shriramfinance.in/sfl-kalam/files/2025-07/Optimising%20Financial%20Planning%20with%20EMI%20Calculator%20Utilisation-1.jpg',
-      url: '/articles/market-trends',
-    },
-    {
-      id: '10',
-      title: 'New RBI Guidelines for Gold Loans',
-      image: 'https://cdn.shriramfinance.in/sfl-kalam/files/2025-07/NSC%20Calculator-1.jpg',
-      url: '/articles/rbi-guidelines',
-    },
-    {
-      id: '11',
-      title: 'Digital Gold Loans: The Future',
-      image: 'https://cdn.shriramfinance.in/sfl-kalam/files/2025-07/NSC%20Calculator-1.jpg',
-      url: '/articles/digital-loans',
-    },
-    {
-      id: '12',
-      title: 'Gold Price Predictions 2024',
-      image: 'https://cdn.shriramfinance.in/sfl-kalam/files/2025-07/NSC%20Calculator-1.jpg',
-      url: '/articles/price-predictions',
-    },
-  ],
-};
+import { fetchWithCache } from '../../scripts/utils.js';
 
 function getTitleFromType(type) {
   const titles = {
@@ -150,8 +69,33 @@ async function loadArticles(articleType, container, loading) {
     // const response = await fetch(`/data/${articleType}-articles.json`);
     // const data = await response.json();
 
-    // For now, use dummy data
-    const articles = articlesData[articleType] || articlesData.related;
+    // Fetch full articles list
+    const articlesData = await fetchWithCache(
+      '/query-index.json',
+      'articlesQueryIndex',
+      null,
+      {},
+      60,
+      'GET',
+    );
+
+    const allArticles = articlesData?.data || [];
+
+    // Remove trailing slash from path
+    const currentPath = window.location.pathname.replace(/\/$/, '');
+    const [, , category] = currentPath.split('/'); // "/articles/{category}/..."
+
+    let filteredArticles = [];
+
+    if (articleType === 'related' && category) {
+      filteredArticles = allArticles.filter((article) => article.path.startsWith(`/articles/${category}/`)
+        && article.path !== currentPath);
+    } else if (articleType === 'recent') {
+      filteredArticles = [...allArticles];
+    }
+
+    // Take first 4
+    const articles = filteredArticles.slice(0, 4);
 
     // Remove loading state
     loading.remove();
@@ -161,7 +105,7 @@ async function loadArticles(articleType, container, loading) {
     widgetSection.className = 'widget-section-full';
 
     // Group articles into pairs (matching Figma structure)
-    const articlePairs = chunkArray(articles.slice(0, 4), 2);
+    const articlePairs = chunkArray(articles, 2);
 
     // Create articles grids for each pair
     articlePairs.forEach((pair) => {
