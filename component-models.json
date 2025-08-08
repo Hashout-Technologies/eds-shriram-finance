@@ -1016,7 +1016,7 @@
   "id": "lead-form",
   "fields": [
     {
-      "component": "richtext",
+      "component": "text",
       "name": "title",
       "label": "Form Title",
       "description": "The main heading for the form"
@@ -1076,7 +1076,7 @@
       "component": "text",
       "name": "buttonText",
       "label": "Button Text",
-      "description": "Text for the submit button"
+      "description": "Text for the submit button (leave empty to hide button)"
     },
     {
       "component": "select",

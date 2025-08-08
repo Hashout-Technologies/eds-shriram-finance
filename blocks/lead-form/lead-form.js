@@ -9,6 +9,7 @@ export default function decorate(block) {
   let showPincode = false;
   let showIndianResident = false;
   let showEmploymentType = false;
+  let buttonText = '';
 
   // Row 1: Name field toggle
   try {
@@ -42,6 +43,17 @@ export default function decorate(block) {
       }
     }
   } catch (e) { console.log('Row 3 error:', e); }
+
+  // Row 5: Button text (authorable)
+  try {
+    if (block.children[5] && block.children[5].children[0]) {
+      const p = block.children[5].children[0].querySelector('p');
+      if (p) {
+        buttonText = p.textContent.trim();
+        console.log('Button Text:', buttonText);
+      }
+    }
+  } catch (e) { console.log('Row 5 error:', e); }
 
   // Row 6: Indian Resident field toggle
   try {
@@ -143,8 +155,14 @@ export default function decorate(block) {
   }
 
   formHTML += `
-            </div>
-            <button type="submit" class="form-button">Apply Now</button>
+            </div>`;
+
+  // Add button only if button text is provided
+  if (buttonText && buttonText.length > 0) {
+    formHTML += `<button type="submit" class="form-button">${buttonText}</button>`;
+  }
+
+  formHTML += `
           </form>
         </div>
       </div>
@@ -159,6 +177,7 @@ export default function decorate(block) {
     mobile: showMobile, 
     pincode: showPincode,
     indianResident: showIndianResident,
-    employmentType: showEmploymentType
+    employmentType: showEmploymentType,
+    buttonText: buttonText
   });
 }
